@@ -1,0 +1,34 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/tclass")
+public class TClassController {
+
+	@RequestMapping("/list")
+	public String list(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "tclass/list";
+
+		return url;
+	}
+	
+	
+	@RequestMapping("/review")
+	public String review(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "tclass/review";
+
+		return url;
+	}
+	
+	@RequestMapping("/star")
+	public String star(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "tclass/rater-js-master/rater-js-master/example/index";
+
+		return url;
+	}
+	
+	
+}

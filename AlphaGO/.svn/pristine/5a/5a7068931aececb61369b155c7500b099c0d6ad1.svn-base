@@ -1,0 +1,36 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.ScoreDAO;
+import kr.or.ddit.dto.SchoolScoreVO;
+
+public class ScoreServiceImpl implements ScoreService{
+
+	private ScoreDAO scoreDAO;
+	public void setScoreDAO(ScoreDAO scoreDAO) {
+		this.scoreDAO = scoreDAO;
+	}
+
+	@Override
+	public List<SchoolScoreVO> getScoreList(SchoolScoreVO score) throws SQLException {
+		return scoreDAO.selectSchoolScoreListByTestName(score);
+	}
+
+	@Override
+	public void deleteScoreDate(int sscode) throws SQLException {
+		scoreDAO.deleteScoreData(sscode);
+	}
+
+	@Override
+	public void insertScore(SchoolScoreVO score) throws SQLException {
+		int sscode = scoreDAO.selectNextSeq();
+		score.setSscode(sscode);
+
+		System.out.println("scoreService : =========");
+		System.out.println(score.toString());
+		scoreDAO.insertScore(score);
+	}
+
+}

@@ -1,0 +1,22 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.SHUnivVO;
+import kr.or.ddit.dto.SchoolScoreVO;
+import kr.or.ddit.dto.UniversityVO;
+
+public interface ScoreService {
+	public List<SchoolScoreVO> getScoreList(SchoolScoreVO score) throws SQLException;
+
+	public void deleteScoreDate(int sscode) throws SQLException;
+
+	public void insertScore(SchoolScoreVO score) throws SQLException;
+
+	public void modifyScore(SchoolScoreVO score) throws SQLException;
+
+	public Map<String, Object> getScoreListBySubjectMap(String id) throws SQLException;
+
+}

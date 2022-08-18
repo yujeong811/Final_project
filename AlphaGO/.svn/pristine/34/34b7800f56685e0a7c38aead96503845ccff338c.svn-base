@@ -1,0 +1,255 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.StudentDAO;
+import kr.or.ddit.dao.TeacherMasDAO;
+import kr.or.ddit.dto.AttendanceVO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public class TeacherMasServiceImpl implements TeacherMasService {
+
+	private TeacherMasDAO teachermasDAO;
+
+	public void setTeachermasDAO(TeacherMasDAO teachermasDAO) {
+		this.teachermasDAO = teachermasDAO;
+	}
+
+	@Override
+	public Map<String, Object> getTeacherList(Criteria cri) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(teachermasDAO.selectTeacherListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<TeachermasVO> teacherList = teachermasDAO.selectSearchTeacherList(searchCri);
+
+		dataMap.put("teacherList", teacherList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public void regist(TeachermasVO teamas) throws Exception {
+
+		String teaid = teachermasDAO.selectTeacherSequenceNextValue();
+
+		if (teamas.getAuthority().equals("ROLE_STUDENT")) {
+			teamas.setId("S" + teaid);
+		} else if (teamas.getAuthority().equals("ROLE_TEACHER")) {
+			teamas.setId("T" + teaid);
+		}
+
+		teachermasDAO.insertTeacher(teamas);
+
+	}
+
+	@Override
+	public TeachermasVO getTeacher(String id) throws Exception {
+
+		TeachermasVO teamas = teachermasDAO.selectTeacherById(id);
+
+		return teamas;
+	}
+
+	@Override
+	public void remove(String id) throws Exception {
+		teachermasDAO.deleteTeacher(id);
+
+	}
+
+	@Override
+	public TeachermasVO selectScoreBySubjectName(String subjectName) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectScoreBySubjectName(subjectName);
+
+		return teamas;
+	}
+
+	@Override
+	public Map<String, Object> getTeacherAttendList(Criteria cri) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		cri.setPerPageNum(10);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(teachermasDAO.selectTeacherAttendListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<TeachermasVO> teacherattendList = teachermasDAO.selectSearchTeacherAttendList(searchCri);
+
+		dataMap.put("teacherattendList", teacherattendList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> getTeacherAllAttendList(String id, Criteria cri) throws Exception {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+
+		pageMaker.setTotalCount(teachermasDAO.selectSearchAllAttendTeacherByIdListCount(id));
+
+		List<TeachermasVO> teattendList = null;
+		try {
+			teattendList = teachermasDAO.selectAllAttendTeacherById(id, cri);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dataMap.put("teattendList", teattendList);
+		dataMap.put("pageMaker", pageMaker);
+		return dataMap;
+	}
+
+	@Override
+	public List<TeachermasVO> selectAllAttendTeacherByChartId(String id) throws SQLException {
+		return teachermasDAO.selectAllAttendTeacherByChartId(id);
+	}
+
+	@Override
+	public TeachermasVO selectFinalTestBykor(String subject) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectFinalTestBykor(subject);
+
+		return teamas;
+	}
+
+	@Override
+	public TeachermasVO selectFinalTestByFisrtFinal(String subject) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectFinalTestByFisrtFinal(subject);
+
+		return teamas;
+	}
+
+	@Override
+	public TeachermasVO selectFinalTestBySecondMiddle(String subject) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectFinalTestBySecondMiddle(subject);
+
+		return teamas;
+	}
+
+	@Override
+	public TeachermasVO selectFinalTestBySecondFinal(String subject) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectFinalTestBySecondFinal(subject);
+
+		return teamas;
+	}
+
+	@Override
+	public List<TeachermasVO> selectclassName(String id) throws Exception {
+		return teachermasDAO.selectclassName(id);
+	}
+
+	@Override
+	public List<TeachermasVO> selectReviewListByClassCode(int classCode) throws Exception {
+		return teachermasDAO.selectReviewListByClassCode(classCode);
+	}
+
+	@Override
+	public List<TeachermasVO> selectAllReviewListById(String id) throws Exception {
+		return teachermasDAO.selectAllReviewListById(id);
+	}
+
+	@Override
+	public List<TeachermasVO> selectTeacherCareer(String id) throws Exception {
+		return teachermasDAO.selectTeacherCareer(id);
+	}
+
+	@Override
+	public TeachermasVO selectAllStarById(String id) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectAllStarById(id);
+
+		return teamas;
+	}
+
+	@Override
+	public TeachermasVO selectAvgByclassCode(int classCode) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectAvgByclassCode(classCode);
+
+		return teamas;
+	}
+
+	@Override
+	public Map<String, Object> selectClassTeacheringById(String id) throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		List<TeachermasVO> classteacherList = teachermasDAO.selectClassTeacheringById(id);
+		System.out.println(classteacherList.size());
+		System.out.println(classteacherList);
+		
+		List<TeachermasVO> realList = new ArrayList<TeachermasVO>();//담아줄 리스트
+		
+		for(TeachermasVO teacherMasVO : classteacherList) {
+//			System.out.println("sdf"+teacherMasVO);
+			String classCode = String.valueOf(teacherMasVO.getClassCode());
+//			System.out.println("classCode : " + classCode);
+			
+			LocalDate localDate = LocalDate.now();
+			System.out.println(localDate.toString());
+			
+//			System.out.println("요일 : " + localDate.getDayOfMonth());
+			//월요일 1 화요일 2 수요일 3 목요일 4 금요일 5 토요일 6 일요일 7
+			
+			int classday=localDate.getDayOfMonth();
+			if(classday==7) {
+				classday=0;
+			}
+			ClassVO classvo=new ClassVO();
+			classvo.setClassCode(classCode);
+			classvo.setClassday(classday);
+//			System.out.println("이거다:"+classvo.getClassCode());
+//			System.out.println("classday:"+classvo.getClassday());
+			
+			TeachermasVO teamas=teachermasDAO.selectClassTimeByClassDay(classvo);
+			if(teamas!=null) {
+				teacherMasVO.setStartTime(teamas.getStartTime());
+				teacherMasVO.setEndTime(teamas.getEndTime());
+//				System.out.println("starttime:"+teamas.getStartTime());
+//				System.out.println("endtime:"+teamas.getEndTime());
+				
+				realList.add(teacherMasVO);
+				System.out.println("걸러진 오늘 수업 있는 애들 : " + realList);
+				System.out.println("걸러진 개수 : " + realList.size());
+			}
+			
+		}
+		data.put("classteacherList", realList);
+
+		return data;
+	}
+
+	@Override
+	public TeachermasVO selectTeacherAttendDetail(String id) throws SQLException {
+		TeachermasVO teamas = teachermasDAO.selectTeacherAttendDetail(id);
+
+		return teamas;
+	}
+
+	
+
+}

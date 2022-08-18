@@ -1,0 +1,24 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/assignManage")
+public class AssignManageController {
+
+	@RequestMapping("/list")
+	public String list(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "assign_manage/list";
+
+		return url;
+	}
+	
+	@RequestMapping("/test")
+	public String test(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "assign_manage/test";
+
+		return url;
+	}
+}

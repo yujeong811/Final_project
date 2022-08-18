@@ -1,0 +1,38 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.PdsVO;
+
+public class PdsDAOImpl implements PdsDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	@Override
+	public List<PdsVO> selectAllPdsList() throws Exception {
+		List<PdsVO> list =  session.selectList("Pds-Mapper.selectAllPdsList");
+
+		System.out.println("PdsDAO - 0번째 title" + list.get(0).getTitle());
+
+		return list;
+	}
+
+	@Override
+	public PdsVO selectPdsByLCode(int lCode) throws SQLException {
+		return session.selectOne("Pds-Mapper.selectPdsByLCode", lCode);
+	}
+	@Override
+	public void increaseViewCnt(int lCode) throws SQLException {
+		session.update("Pds-Mapper.increaseViewCnt",lCode);
+	}
+	@Override
+	public void deletePds(int lcode) {
+		session.update("Pds-Mapper.deletePds", lcode);
+	}
+
+}

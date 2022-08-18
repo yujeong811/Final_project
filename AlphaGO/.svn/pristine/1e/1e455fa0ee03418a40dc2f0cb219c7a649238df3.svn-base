@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-3" style="text-align: center;">
+			<div class="card">
+				<div class="card-body" style="height:800px;">
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="font-size: 1.2em;">
+							<th style="background:#8BDDA8;" colspan="2">강의명</th>
+
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="font-size: 1.2em; padding: 5px;">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px;"><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+
+						</tr>
+						<tr>
+
+
+							<td style="font-size: 1.2em; padding: 5px;">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px;"><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기" style="">
+								</td>
+
+
+						</tr>
+
+	<tr>
+
+
+							<td style="font-size: 1.2em; padding: 5px; ">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px; "><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기" style="">
+								</td>
+
+
+						</tr>
+							<tr>
+
+
+							<td style="font-size: 1.2em; padding: 5px;">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px;"><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기" style="">
+								</td>
+
+
+						</tr>
+							<tr>
+
+
+							<td style="font-size: 1.2em; padding: 5px;">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px;"><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기" style="">
+								</td>
+
+
+						</tr>
+							<tr>
+
+
+							<td style="font-size: 1.2em; padding: 5px;">수1 미치도록 잘해버리기</td>
+
+							<td style=" padding: 5px;">
+						<div>
+							<input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기" style="margin: 0px auto; ">
+</div>
+
+						</tr>
+
+					</table>
+
+				</div>
+
+				
+			</div>
+		</div>
+   <div class="col-sm-9">
+     <div class="card">
+     <div class="card-body">
+      <label>시험지명</label>
+      <input type="text"placeholder="시험지명을 입력해 주세요" style="width:200px;">
+<br>
+<div style="margin-left:10px;margin-top:10px">
+<select  class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">시작단원</option>
+    
+</select>
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">끝단원</option>
+    
+</select>     
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">제한시간</option>
+ 
+</select>
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">문항수</option>
+ 
+</select>
+
+<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">자동생성</button>
+						<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">수동생성</button>
+
+</div><!-- 셀렉트박스 div로묶은것 끝 -->
+
+</div><!-- card-body끝 -->
+     </div><!--card끝-->
+       <div class="card">
+     <div class="card-body" style="height:660px;text-align:center;padding-top:280px;">
+                  <label style="font-size:1.6em;weight:200;">자동 선택시 나타난다화면</label>
+     </div>
+     </div>
+   </div>
+
+
+
+	</div>
+	<!-- 		row끝 -->
+
+
+
+
+</body>
+</html>

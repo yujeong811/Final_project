@@ -1,0 +1,25 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/studyplan")
+public class StudyplanController {
+
+	@RequestMapping("/list")
+	public String list(Model model) {
+		String url = "studyplan/list";
+		
+		return url;
+	}
+	
+	@RequestMapping("/calendar")
+	public String CalendarTest() {
+		String url = "studyplan/calendar";
+		return url;
+	}
+	
+	
+}

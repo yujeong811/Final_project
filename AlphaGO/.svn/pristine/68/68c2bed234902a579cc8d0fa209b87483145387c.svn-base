@@ -1,0 +1,307 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="pdsList" value="${dataMap.pdsList }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+
+<head>
+<style>
+table th, td {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+	<!-- Content Header (Page header) -->
+
+
+	<!-- Main content -->
+
+	<div class="card">
+		<div class="row">
+			<h5 style="font-weight: bold; padding: 15px;">
+				<i class="uil-calender" style="">상담신청내역</i>
+			</h5>
+
+		</div>
+
+
+		<div class="card-header with-border">
+
+
+			<div id="keyword" class="card-tools"
+				style="width: 280px; float: left;">
+				<div class="input-group">
+
+					<select class="form-control col-md-4" name="searchType"
+						id="searchType">
+						<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>전체</option>
+						<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>1달</option>
+						<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>3달</option>
+						<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>6달</option>
+
+
+					</select> <input class="form-control" type="text" style="width: 130px;"
+						name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }" />
+					<span class="input-group-append">
+						<button class="btn btn-soft-purple" style="float: right;"
+							type="button" id="searchBtn" data-card-widget="search"
+							onclick="list_go(1);">
+							<i class="fa fa-fw fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table   table-bordered text-center table-hover">
+				<thead class="">
+					<tr style="font-size: 0.95em;" class="bg-soft-purple">
+						<th style="width: 5%;">번호</th>
+						<th style="width: 8%;">상담일</th>
+						<th style="width: 8%;">강사명</th>
+						<th style="width: 5%;">강사목적</th>
+						<th style="width: 8%;">상태</th>
+
+					</tr>
+				</thead>
+
+
+				<tr class="table-white ">
+					<th>1</th>
+					<th>2022-06-25</th>
+					<th>김형민 강사</th>
+					<th>성적상담</th>
+					<th><button type="button" class="btn btn-soft-primary"
+							data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							신청중</button></th>
+
+				</tr>
+				<tr class="table-white">
+					<th>2</th>
+					<th>2022-06-27</th>
+					<th>강동주 강사</th>
+					<th>성적상담</th>
+					<th><button class="btn btn-soft-primary" type="button">신청중</button></th>
+
+				</tr>
+
+			</table>
+		</div>
+		<div class="card-footer">
+			<nav aria-label="pds list Navigation">
+				<ul class="pagination justify-content-center m-0">
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+
+
+
+
+	<div class="card">
+
+		
+			<div class="container-fluid">
+				<div class="row">
+					<h5 style="margin-bottom: 15px; font-weight: bold; padding: 15px;">
+						<i class="uil-calender" style="">상담내역</i>
+					</h5>
+
+				</div>
+			</div>
+		
+		<div class="card-header with-border">
+
+
+			<div id="keyword" class="card-tools"
+				style="width: 280px; float: left;">
+				<div class="input-group">
+
+					<select class="form-control col-md-4" name="searchType"
+						id="searchType">
+						<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>전체</option>
+						<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>1달</option>
+						<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>3달</option>
+						<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>6달</option>
+
+
+					</select> <input class="form-control" type="text" style="width: 130px;"
+						name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }" />
+					<span class="input-group-append">
+						<button class="btn btn-soft-purple" style="float: right;"
+							type="button" id="searchBtn" data-card-widget="search"
+							onclick="list_go(1);">
+							<i class="fa fa-fw fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table   table-bordered text-center table-hover">
+				<thead class="">
+					<tr style="font-size: 0.95em; padding: 30px;"
+						class="bg-soft-purple">
+						<th style="width: 5%;">번호</th>
+						<th style="width: 8%;">상담일</th>
+						<th style="width: 8%;">강사명</th>
+						<th style="width: 5%;">강사목적</th>
+						<th style="width: 8%;">상태</th>
+
+					</tr>
+				</thead>
+
+
+				<tr class="table-white ">
+					<th>1</th>
+					<th>2022-06-25</th>
+					<th>김형민 강사</th>
+					<th>성적상담</th>
+					<th><button class="btn btn-soft-success" type="button">상담예정</button></th>
+
+				</tr>
+				<tr class="table-white">
+					<th>2</th>
+					<th>2022-06-27</th>
+					<th>강동주 강사</th>
+					<th>성적상담</th>
+					<th><button type="button" class="btn btn-soft-secondary"
+							data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+							상담완료</button></th>
+
+				</tr>
+				<tr class="table-white">
+					<th>3</th>
+					<th>2022-06-29</th>
+					<th>강동주 강사</th>
+					<th>학부모상담</th>
+					<th><button class="btn btn-soft-secondary" type="button">상담완료</button></th>
+
+				</tr>
+				<tr class="table-white">
+					<th>4</th>
+					<th>2022-05-27</th>
+					<th>강동주 강사</th>
+					<th>기타상담</th>
+					<th><button class="btn btn-soft-warning" type="button">반려</button></th>
+
+				</tr>
+				<tr class="table-white">
+					<th>5</th>
+					<th>2022-07-27</th>
+					<th>강동주 강사</th>
+					<th>성적상담</th>
+					<th><button class="btn btn-soft-secondary" type="button">상담완료</button></th>
+
+				</tr>
+
+			</table>
+		</div>
+
+	</div>
+
+
+	<!-- Button trigger modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">
+						<i class="uil-calender">상담신청내역</i>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<P>상담일자 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp2022-06-27</P>
+					<hr>
+					<p>시작시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11:00
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;종료시간 12:00</p>
+
+					<hr>
+					<p>강사명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예연희</p>
+					<hr>
+					<p>목적 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						학부모 상담</p>
+					<hr>
+					<P>
+						상태 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-soft-primary" type="button">신청중</button>
+					</P>
+					<hr>
+					<p>내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 학원을 다닌지
+						1년이 넘었는데 성적이 안오릅니다.</p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-soft-primary">수정</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">
+						<i class="uil-calender">상담신청내역</i>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<P>상담일자 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp2022-06-27</P>
+					<hr>
+					<p>시작시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11:00
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;종료시간 12:00</p>
+
+					<hr>
+					<p>강사명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예연희</p>
+					<hr>
+					<p>목적 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						학부모 상담</p>
+					<hr>
+					<P>
+						상태 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-soft-secondary" type="button">상담완료</button>
+					</P>
+					<hr>
+					<p>내용 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 학원을 다닌지
+						1년이 넘었는데 성적이 안오릅니다.</p>
+					<hr>
+					<p>결과 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아이가 수업시간에
+						집중을 못하네요.집중부탁이요.</p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">닫기</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>

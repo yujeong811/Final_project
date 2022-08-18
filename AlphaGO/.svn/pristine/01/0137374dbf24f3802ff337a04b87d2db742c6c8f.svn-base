@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Teacher-Mapper">
+		
+	<sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and title like '%'||#{name}||'%'			
+		</if>
+		<if test="searchType == 's'.toString()">
+			and writer like '%'||#{school_name}||'%'			
+		</if>
+	
+		<if test="searchType == 'ns'.toString()">
+			and (
+			title like '%'||#{name}||'%'
+			or
+			content like '%'||#{school_name}||'%'						
+			)			
+		</if>
+		
+	</sql>
+	<select id="processSearch"  parameterType="string">
+	 select class_name from class 
+	 where id=#{id}
+	
+	</select>
+	
+	
+	
+	<select id="classCode"  parameterType="string">
+	select class_code from class
+	 where class_name=#{class_name} 
+	</select>
+	
+	
+	
+	
+	<select id="processStudentlist" resultType="member">		
+		select *
+		from(
+		    select rownum as rnum,SearchProcessStudentResult.*
+		    from ( 
+		    	select * 
+				from member a,(select id from class_ing where class_code=#{class_code}) b
+				where id is not null
+				<include refid="search" />				
+				order by regDate desc
+		    )  SearchProcessStudentResult
+		    <![CDATA[
+		    where rownum <= #{endRow}
+		    ]]>
+		)
+		 <![CDATA[
+		where rnum > #{startRow}		
+		 ]]>
+	</select>
+	
+	
+	
+	<select id="teacherstudentDetail" resultType="member">
+	 select *from member where id=#{id}
+	</select>
+	
+	
+	
+</mapper>

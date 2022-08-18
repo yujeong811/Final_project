@@ -1,0 +1,76 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.PdsVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public class ClassDAOImpl implements ClassDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	/**
+	 * 모든 수업 리스트
+	 */
+	@Override
+	public List<ClassVO> getAllClass(Map<String, Object> dataParam) throws SQLException {
+		List<ClassVO> classList = session.selectList("Class-Mapper.getAllClass", dataParam);
+		return classList;
+	}
+
+	@Override
+	public int selectSearchClassListCount(SearchCriteria cri) throws SQLException {
+		return session.selectOne("Class-Mapper.selectSearchClassListCount",cri);
+	}
+	
+	@Override
+	public List<SubjectVO> getSubDetail(int subcode) throws SQLException {
+		return session.selectList("Class-Mapper.getSubDetail", subcode);
+	}
+
+	@Override
+	public ClassVO getClassDetail(int class_code) throws SQLException {
+		return session.selectOne("Class-Mapper.getClassDetail", class_code);
+	}
+
+	@Override
+	public int getClassCode() throws SQLException {
+		return session.selectOne("Class-Mapper.getClassCode");
+	}
+
+	@Override
+	public void registClass(ClassVO classVO) throws SQLException {
+		session.update("Class-Mapper.registClass", classVO);
+	}
+
+	@Override
+	public void removeClass(ClassVO classVO) throws SQLException {
+		session.update("Class-Mapper.removeClass", classVO);
+	}
+
+	@Override
+	public List<ClassVO> selectSearchClassList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<ClassVO> classList = session.selectList("Class-Mapper.selectSearchClassList", cri, rowBounds);
+
+		return classList;
+	}
+
+
+
+
+
+}

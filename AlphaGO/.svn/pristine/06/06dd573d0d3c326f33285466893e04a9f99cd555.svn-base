@@ -1,0 +1,207 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+// 학원성적
+@SuppressWarnings("serial")
+public class AcademyScoreVO implements Serializable{
+	private int ascode;
+	private int academyScore;
+	private int examCode;
+	private String id;
+	private String regdate;
+	private int perfectScore;
+	private String achievement;
+	
+	
+	
+	
+	
+	//시험명
+	private String examName;
+	
+	
+	//언어 세부영역
+	private int ko1;
+	private int ko2;
+	private int ko3;
+	private int ko4;
+	
+	//수학 세부영역
+	private int ma1;
+	private int ma2;
+	private int ma3;
+	private int ma4;
+	
+	//사회 세부영역
+	private int so1;
+	private int so2;
+	private int so3;
+	private int so4;
+	
+	
+	//과학 영역
+	private int sc1;
+	private int sc2;
+	private int sc3;
+	private int sc4;
+	
+	
+	
+	
+	
+	
+	public int getSc1() {
+		return sc1;
+	}
+	public void setSc1(int sc1) {
+		this.sc1 = sc1;
+	}
+	public int getSc2() {
+		return sc2;
+	}
+	public void setSc2(int sc2) {
+		this.sc2 = sc2;
+	}
+	public int getSc3() {
+		return sc3;
+	}
+	public void setSc3(int sc3) {
+		this.sc3 = sc3;
+	}
+	public int getSc4() {
+		return sc4;
+	}
+	public void setSc4(int sc4) {
+		this.sc4 = sc4;
+	}
+	public int getKo1() {
+		return ko1;
+	}
+	public void setKo1(int ko1) {
+		this.ko1 = ko1;
+	}
+	public int getKo2() {
+		return ko2;
+	}
+	public void setKo2(int ko2) {
+		this.ko2 = ko2;
+	}
+	public int getKo3() {
+		return ko3;
+	}
+	public void setKo3(int ko3) {
+		this.ko3 = ko3;
+	}
+	public int getKo4() {
+		return ko4;
+	}
+	public void setKo4(int ko4) {
+		this.ko4 = ko4;
+	}
+	public int getMa1() {
+		return ma1;
+	}
+	public void setMa1(int ma1) {
+		this.ma1 = ma1;
+	}
+	public int getMa2() {
+		return ma2;
+	}
+	public void setMa2(int ma2) {
+		this.ma2 = ma2;
+	}
+	public int getMa3() {
+		return ma3;
+	}
+	public void setMa3(int ma3) {
+		this.ma3 = ma3;
+	}
+	public int getMa4() {
+		return ma4;
+	}
+	public void setMa4(int ma4) {
+		this.ma4 = ma4;
+	}
+	public int getSo1() {
+		return so1;
+	}
+	public void setSo1(int so1) {
+		this.so1 = so1;
+	}
+	public int getSo2() {
+		return so2;
+	}
+	public void setSo2(int so2) {
+		this.so2 = so2;
+	}
+	public int getSo3() {
+		return so3;
+	}
+	public void setSo3(int so3) {
+		this.so3 = so3;
+	}
+	public int getSo4() {
+		return so4;
+	}
+	public void setSo4(int so4) {
+		this.so4 = so4;
+	}
+	public String getExamName() {
+		return examName;
+	}
+	public void setExamName(String examName) {
+		this.examName = examName;
+	}
+	public int getAscode() {
+		return ascode;
+	}
+	public void setAscode(int ascode) {
+		this.ascode = ascode;
+	}
+	public int getAcademyScore() {
+		return academyScore;
+	}
+	public void setAcademyScore(int academyScore) {
+		this.academyScore = academyScore;
+	}
+	public int getExamCode() {
+		return examCode;
+	}
+	public void setExamCode(int examCode) {
+		this.examCode = examCode;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public int getPerfectScore() {
+		return perfectScore;
+	}
+	public void setPerfectScore(int perfectScore) {
+		this.perfectScore = perfectScore;
+	}
+	public String getAchievement() {
+		return achievement;
+	}
+	public void setAchievement(String achievement) {
+		this.achievement = achievement;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+	
+}

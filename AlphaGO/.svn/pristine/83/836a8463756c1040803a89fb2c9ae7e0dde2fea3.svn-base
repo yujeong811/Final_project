@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Calender-Mapper">
+	  <select id="getAllCalender" resultType="map">
+		select pc_code,
+			   pc_start,
+			   pc_end,
+			   title
+		  from pacounselt
+	  </select>
+	  
+  	  <update id = "insertCalender">
+  	  	insert into	schedule (schedule_no, start_date, end_date, title, allday)
+  	  	values(schedule_seq.nextval, #{start}, #{end}, #{title}, #{allDay})
+  	  </update>
+  	  
+  	  <delete id="deleteCalender">
+  	  	delete from schedule
+  	  </delete>
+  
+  </mapper>

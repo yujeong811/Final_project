@@ -1,0 +1,36 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.PopupDAO;
+import kr.or.ddit.dto.PopupVO;
+
+public class PopupServiceImpl implements PopupService {
+
+	private PopupDAO popupDAO;
+	public void setPopupDAO(PopupDAO popupDAO) {
+		this.popupDAO = popupDAO;
+	}
+	
+	@Override
+	public Map<String, Object> selectSearchPopupList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		List<PopupVO> popupList = popupDAO.selectSearchPopupList(cri);
+		PageMaker pageMaker = new PageMaker();
+		int totalCount = popupDAO.selectPopupCount();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		dataMap.put("popupList", popupList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+}

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Tclass-Mapper">
+
+	<sql id="search">
+		<if test="keyword != null or keyword !=''">
+			and a.class_name like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
+	<select id="selectSearchClassList" resultType="class">
+		select distinct
+			a.class_code
+		   ,a.cpno	
+		   ,a.id	
+		   ,b.subject_name	
+		   ,a.class_rank
+		   ,a.class_name
+		   ,a.start_date
+		   ,a.end_date
+		from
+			class a, subject b, subdetail c
+		where a.cpno is not null   
+		and a.subdetail_code=c.subdetail_code 
+		and c.subject_code=b.subject_code	
+		<include refid="search" />
+	</select>
+	
+	<select id="selectSearchUnregisteredClassList" resultType="class">
+		select  
+			a.class_code
+		   ,a.id	
+		   ,b.subject_name	
+		   ,a.class_rank
+		   ,a.class_name		  
+		   ,a.start_date
+		   ,a.end_date
+		from
+			class a, subject b, subdetail c
+		where a.cpno is null   
+		and a.subdetail_code=c.subdetail_code 
+		and c.subject_code=b.subject_code		   
+		<include refid="search" />
+	</select>
+	
+	<select id="selectClassForModal" resultType="class">
+		select distinct
+			a.class_code
+           ,f.name
+           ,a.total_time
+		   ,d.subject_name	
+		   ,a.class_rank
+		   ,a.class_name
+		   ,a.start_date
+		   ,a.end_date
+		from
+			class a, time_detail b, classroom c, subject d, subdetail e, member f
+		where
+			a.class_code=b.class_code
+		and b.room_code=c.room_code	
+        and a.id=f.id
+		and a.subdetail_code=e.subdetail_code
+		and e.subject_code=d.subject_code
+				   
+		and a.class_code=#{class_code}
+	</select>
+	
+	<select id="selectCPNOandTextbook" resultType="classPlan">
+		select a.cphead,a.textbook,a.cpno
+		  from class_plan a, class b
+	  	 where a.cpno=b.cpno
+		   and b.class_code=#{class_code}
+	</select>
+	
+	<select id="selectClassTime" resultType="classTime" >
+		select 
+			a.class_code
+		   ,a.start_time
+		   ,a.end_time
+		   ,a.classday
+		   ,b.room_no
+		from
+		    time_detail a, classroom b
+		where class_code=#{class_code}
+		  and a.room_code=b.room_code
+		order by a.classday   
+	</select>
+	
+	<select id="selectWeekPlan" resultType="weekPlan" >
+		select c.wpno, c.week, c.content, c.cpno
+		  from class_plan a, class b, weekplan c
+		 where a.cpno=b.cpno
+		   and b.cpno=c.cpno
+		   and b.class_code=#{class_code}
+		 order by c.week  
+	</select>
+	
+	<select id="selectHomeworkPlan" resultType="homeworkPlan">
+		select c.homeworkplan, c.no, c.content, c.cpno
+		  from class_plan a, class b, homeworkplan c
+		 where a.cpno=b.cpno
+		   and b.cpno=c.cpno
+		   and b.class_code=#{class_code}
+		 order by c.no  
+	</select>
+	
+	<select id="selectClassPlanSeqNextValue" resultType="int">
+		select classplan_seq.nextval
+		from dual		
+	</select>
+	
+	<update id="insertClassPlan" parameterType="classPlan" >
+		insert into class_plan (cpno, subject_code, cphead, textbook)
+		values (#{cpno},#{subject_code},#{cphead},#{textbook})
+	</update>
+	
+	<select id="selectWeekPlanSeqNextValue" resultType="int">
+		select classplan_seq.nextval
+		from dual		
+	</select>
+	
+	<update id="insertWeekPlan" parameterType="weekPlan">
+		insert into weekplan (wpno, cpno, week, content)
+		values (#{wpno},#{cpno},#{week},#{content})
+	</update>
+	
+	<select id="selectHomeworkPlanSeqNextValue" resultType="int">
+		select classplan_seq.nextval
+		from dual		
+	</select>
+	
+	<update id="insertHomeworkPlan" parameterType="homeworkPlan">
+		insert into homeworkplan (homeworkplan, cpno, content, no)
+		values (#{homeworkplan},#{cpno},#{content},#{no})
+	</update>
+	
+	<update id="updateClassToRegisterClassPlan" parameterType="class">
+		update class
+		set cpno=#{cpno}
+		where class_code=#{classCode}
+	</update>
+	
+	
+	<update id="deleteClassPlan">
+		delete
+		  from weekplan
+		 where wpno=#{wpno} 
+	</update>
+	<update id="deleteHomeworkPlan">
+		delete
+		  from homeworkplan
+		 where homeworkplan=#{homeworkplan} 
+	</update>
+	
+	
+	<update id="updateWeekPlan" >
+		update weekplan
+		set 
+			week=#{week},
+			content=#{content}
+		where wpno=#{wpno}	
+	</update>
+	<update id="updateHomeworkPlan" >
+		update homeworkplan
+		set 
+			no=#{no},
+			content=#{content}
+		where homeworkplan=#{homeworkplan}	
+	</update>
+	
+	
+	
+</mapper>

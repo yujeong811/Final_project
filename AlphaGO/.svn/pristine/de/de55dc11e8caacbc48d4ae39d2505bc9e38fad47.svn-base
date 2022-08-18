@@ -1,0 +1,153 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<body>
+	<div class="d-flex">
+		<h5 class="flex-grow-1"
+			style="font-weight: bold; margin-bottom: 15px;">
+			<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>3월
+			국어 모의고사
+		</h5>
+		<p style="font-weight: bold; padding: 5px; margin-right: 15px;">
+			시험결과 : <span style="color: red;">85점</span>
+		</p>
+		<button type="button" class="btn btn-purple"
+			style="width: 100px; height: 30px; padding-top: 3px;"
+			onclick="location.href='list.go'">목록가기</button>
+	</div>
+	<div class="row gx-3 gy-2">
+		<div class="col-9" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<!-- end -->
+					<div class="row gx-3 gy-2">
+						<div class="col-6" style="float: left;">
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/x.png"
+								height="40px" width="50px"
+								style="position: absolute; top: -10px; left: -10px;"> 1.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								● 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> <span
+									style="color: red;">●</span> 간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="position: absolute; top: 135px; left: -10px;"> 2.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ● 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="position: absolute; top: 280px; left: -10px;"> 3.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ● 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="position: absolute; bottom: 252px; left: -10px;">
+							4. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ● 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="position: absolute; bottom: 107px; left: -10px;">
+							5. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ● 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+						<div class="col-6" style="float: left;">
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="position: absolute; top: -10px; left: -10px;"> 6.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ● 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="left: -10px; position: absolute; top: 135px;"> 7.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ● 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="left: -10px; position: absolute; top: 280px;"> 8.
+							(가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ●
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/x.png"
+								height="40px" width="50px"
+								style="left: -10px; position: absolute; bottom: 260px;">
+							9. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> <span style="color: red;">●</span> 포착(捕捉)한다<br>
+								③ 귀결(歸結)되어도<br> ● 간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							<img alt=""
+								src="<%=request.getContextPath()%>/resources/images/circle.png"
+								height="50px" width="50px"
+								style="left: -10px; position: absolute; bottom: 107px;">
+							10. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ● 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+						<!-- pagination -->
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="card">
+				<div class="card-body">
+					<p style="font-weight: bold; margin-right: 15px;">
+						<i class="uil-check-circle"
+							style="padding: 5px; font-size: 1.2em;"></i>답안지
+					</p>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						01. ● ② ③ <span style="color: red;">●</span> ⑤ <br> 02. ① ② ③
+						④ ● <br> 03. ① ● ③ ④ ⑤ <br> 04. ① ● ③ ④ ⑤ <br> 05.
+						① ● ③ ④ ⑤ <br> 06. ① ② ● ④ ⑤ <br> 07. ① ② ③ ● ⑤ <br>
+						08. ① ② ③ ● ⑤ <br> 09. ① ② <span style="color: red;">●</span>
+						④ ● <br> 10. ● ② ③ ④ ⑤ <br>
+					<hr>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						11. ① ● ③ ④ ⑤ <br> 12. ① ② ● ④ ⑤ <br> 13. ① ② ③ ● ⑤ <br>
+						14. ① ② ● ④ ⑤ <br> 15. ① ② ③ ④ ● <br> 16. ① ② ③ ④ ● <br>
+						17. ① ② ● ④ ⑤ <br> 18. ● ② ③ ④ ⑤ <br> 19. ① ● ③ ④ ⑤ <br>
+						20. ① ● ③ ④ ⑤ <br>
+					<hr>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						21. ① ② ③ ④ ● <br> 22. ① ● ③ ④ ⑤ <br> 23. ① ② ● ④ ⑤ <br>
+						24. ● ② ③ ④ ⑤ <br> 25. ① ② ③ ● ⑤ <br>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>
+</body>

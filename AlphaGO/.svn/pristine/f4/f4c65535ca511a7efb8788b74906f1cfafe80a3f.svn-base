@@ -1,0 +1,57 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.CounseltDAO;
+import kr.or.ddit.dto.CounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public class CounseltServiceImpl implements CounseltService{
+	
+	private CounseltDAO counseltDAO;
+	public void setCounseltDAO(CounseltDAO counseltDAO) {
+		this.counseltDAO = counseltDAO;
+	}
+
+	@Override
+	public Map<String, Object> getCounseltList(Criteria cri) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(counseltDAO.selectCounseltListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<CounseltVO> counseltList =counseltDAO.selectSearchCounseltList(searchCri);
+		for(CounseltVO counselt:counseltList) {
+			try {
+				String name=counseltDAO.selectName();
+				//String name=counseltDAO.selectName(counselt.getCounCode());
+				
+				//counselt.setCounCode(counCode);
+				counselt.setName(name);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		dataMap.put("counseltList",counseltList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+}
+
+

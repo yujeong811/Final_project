@@ -1,0 +1,239 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+</head>
+<body>
+<c:set var="classList" value="${dataMap.classList }"/>
+<c:set var="pageMaker" value="${dataMap.pageMaker }"/>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header">
+					<h6 class="card-title">수업 목록</h6>
+				</div>
+				<!-- card-header 끝 -->
+
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding: 0.9rem 0.9rem;padding-bottom: 0;">
+					<!-- title 시작 -->
+					<div class="col-md-12"
+						style="text-align: center; padding-left: 50px; padding-right: 50px;">
+						<h5 style="font-weight: bold;">수업 목록</h5>
+					</div>
+					<!-- title 끝 -->
+
+					<!-- 검색 및 등록 시작-->
+										<!-- 검색 -->
+					<div class="row">
+						<div class="col-sm-6"></div>
+						<div class="col-sm-6">
+							<div class="col-sm-6 input-group" id="keyword"
+								style="float: right; margin-top: 30px; padding-right: 40px;">
+								<!-- keyword -->
+									<select class="form-select " style="float: left;width: 20%;"
+										aria-label="Default select example" name="searchType"
+										id="searchType">
+										<option value="nst" ${cri.searchType eq 'nst' ? 'selected':'' }>전체</option>
+										<option value="n" ${cri.searchType eq 'n' ? 'selected':'' }>수업명</option>
+										<option value="s" ${cri.searchType eq 's' ? 'selected':'' }>과목</option>
+									</select>
+									<input class="form-control col-sm-6 " type="text" name="keyword"
+										placeholder="검색어를 입력하세요." value="${param.keyword }"
+										style="width: 40%; "> <span
+										class="input-group-append">
+										<button class="btn btn-soft-primary" type="button"
+											id="searchBtn" style="float: right;"
+											data-card-widget="search" onclick="list_go(1);">
+											<i class="fa fa-fw fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					<!-- 검색 및 등록 끝 -->
+				</div>
+				<!-- card-body 끝 -->
+
+				<!-- card-body list시작 -->
+				<div class="card-body" style="padding: 0.9rem 0.9rem;">
+					<!-- table 시작 -->
+					<div class="col-md-12">
+						<p style="font-size: small;">* 수업 목록을 클릭해 수업 상세 정보를 확인하세요 *</p>
+						<table class="table  table-hover" style="text-align: center;">
+							<thead style="background-color: #86a8d9; color: white;">
+								<tr>
+									<th>과목명</th>
+									<th>영역</th>
+									<th>수업명</th>
+									<th>강사명</th>
+									<th>기간</th>
+									<th>수준</th>
+									<th>수강생수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="classvo" items="${classList }">
+									<tr onclick="classDetail(this);">
+										<td style="display:none;">${classvo.classCode }</td>
+										<td>${classvo.subjectName }</td>
+										<td>${classvo.subdetailName }</td>
+										<td>${classvo.className }</td>
+										<td>${classvo.name }</td>
+										<td>${classvo.startDate }~${classvo.endDate }</td>
+										<td>${classvo.classRank }</td>
+										<td>${classvo.stuCnt}명</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<!-- pagination -->
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+				</div>
+			</div>
+			<!-- class detail 시작 -->
+			<div class="row">
+				
+			</div>
+			<!-- row2 끝 -->
+		</div>
+	</div>
+
+<head>
+	<script>
+	//수업 상세정보를 불러온다
+	function classDetail(tr) {
+		var classcode = $(tr).children('td:eq(0)').text();
+		console.log("classCode: " + classcode);
+		$.ajax({
+			url : "classDeepDetail.go",
+			method : "post",
+			data : {
+				classCode : classcode
+			},
+			success : function(data) {
+				printData(data,$('#classDetailTemplate'),$('#class-detail-template'));
+				console.log("data.classvo : "+ data.classvo);
+				console.log("data.newRoomNoList : " + data.newRoomNoList);
+				console.log("data.timeList : " + data.timeList);
+				console.log("data.memberInfo : " + data.memberInfo);
+			},
+			error : function(error) {
+				alert("error : " + error.status);
+			},
+			dataType : "json"
+		});
+	}
+	</script>	
+	
+	<script type="text/javascript">
+	//원생 클릭시 원생 성적 상세정보 페이지 오픈
+	function goMemberInfo(id){
+		//새로운 Window창을 Open할 경우 사용되는 함수 ( arg : 주소 , 창타이틀 , 가로 , 세로 )
+		OpenWindow('<%=request.getContextPath()%>/sscore/detail.go?id='+id, '원생 성적 정보', 700, 500);
+	}
+	</script>
+	
+	<!-- 수업목록 - 수업 상세정보, 수강생 정보 템플릿 -->
+	<script type="text/x-handlebars-template"  id="class-detail-template" >
+						<div class="card-body">
+							<div class="col-md-8" style="float: left; padding-right: 10px;">
+								<span class="badge badge-soft-primary" style="font-size: 1.0em;">
+									수업 상세</span>
+								<table class="table "
+									style="font-size: small; text-align: center; margin-top: 5px;">
+									<tr>
+										<td style="background-color: #86a8d9; color: white;">수업명</td>
+										<td colspan="5">{{classvo.className}}</td>
+										<td style="background-color: #86a8d9; color: white;">강의금액</td>
+										<td>{{classvo.classPrice}}</td>
+									</tr>
+									<tr>
+										<td style="background-color: #86a8d9; color: white;">과목</td>
+										<td>{{classvo.subjectName}}</td>
+										<td style="background-color: #86a8d9; color: white;">과목영역</td>
+										<td>{{classvo.subdetailName}}</td>
+										<td style="background-color: #86a8d9; color: white;">시작일</td>
+										<td>{{classvo.startDate}}</td>
+										<td style="background-color: #86a8d9; color: white;">종료일</td>
+										<td>{{classvo.endDate}}</td>
+									</tr>
+									<tr>
+										<td style="background-color: #86a8d9; color: white;">강의시간</td>
+										<td colspan="3">
+										{{#each timeList}}
+											{{classday}}{{ctperiod}}
+										{{/each}}
+										</td>
+										<td style="background-color: #86a8d9; color: white;">정원</td>
+										<td>{{classvo.stuCnt}}</td>
+										<td style="background-color: #86a8d9; color: white;">시수</td>
+										<td>{{classvo.totalTime}}</td>
+									</tr>
+									<tr>
+										<td style="background-color: #86a8d9; color: white;">강의실</td>
+										<td colspan="3">
+										{{#each newRoomNoList}}
+											{{this}}호
+										{{/each}}
+										</td>
+										<td style="background-color: #86a8d9; color: white;">강사명</td>
+										<td>{{classvo.name}}</td>
+										<td style="background-color: #86a8d9; color: white;">학년</td>
+										<td>{{classvo.classGrade}}</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-sm-1"
+								style="float: left; margin-top: 60px; display: flex; justify-content: center; align-items: center;">
+								<i style="font-size: 50px;" class="uil-angle-double-right"></i>
+							</div>
+							<div class="col-md-3" style="float: right;">
+								<span class="badge badge-soft-primary" style="font-size: 1.0em;">
+									해당 수업 수강생 목록</span>
+								<table class="table table-hover"
+									style="font-size: small; text-align: center; margin-top: 5px;">
+									<thead style="background-color: #86a8d9; color: white;">
+										<tr>
+											<th>이름</th>
+											<th>학년</th>
+											<th>학교명</th>
+										</tr>
+									</thead>
+									<tbody>
+									{{#each memberInfo}}
+										<tr onclick="goMemberInfo({{this.id}})">
+											<td>{{this.name}}</td>
+											<td>{{this.grade}}</td>
+											<td>{{this.schoolName}}</td>
+										</tr>
+									{{/each}}
+									</tbody>
+								</table>
+							</div>
+						</div>
+	</script>	
+
+</head>
+	
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+

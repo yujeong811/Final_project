@@ -1,0 +1,450 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<head>
+
+<script src="<%=request.getContextPath() %>/resources/js/sm_chart.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/jspdf.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.js"></script>
+    
+    <script type="text/javascript">
+   
+    
+    </script>
+    
+    <script type="text/javascript">
+    function print() {
+        $("#pdf_wrap").printThis({
+            debug: false,           
+            importCSS: true,   
+            printContainer: true,
+            loadCSS: "common.css",
+            pageTitle: "",
+            removeInline: false      
+        });
+    }   
+    </script>
+    
+    <script>
+    $(function(){
+    	$('#go').on('click',function(){
+    		/* 
+    		$('body').html('ddddd'); */
+    		print();
+    		  location.href = "http://localhost/ddit/master/pdfprpr.go";
+    	
+    	/* 	$('body').html() */
+    		
+    	})
+    })
+$(function(){
+	$("#btn").on('click',function(){
+		html2canvas(document.body, {
+			  onrendered: function(canvas) {
+			 
+			    // 캔버스를 이미지로 변환
+			    var imgData = canvas.toDataURL('image/png');
+			     
+			    var imgWidth = 210; // 이미지 가로 길이(mm) A4 기준
+			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+			    var imgHeight = canvas.height * imgWidth / canvas.width;
+			    var heightLeft = imgHeight;
+			     
+			        var doc = new jsPDF('p', 'mm');
+			        var position = 0;
+			         
+			        // 첫 페이지 출력
+			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			        heightLeft -= pageHeight;
+			         
+			        // 한 페이지 이상일 경우 루프 돌면서 출력
+			        while (heightLeft >= 20) {
+			          position = heightLeft - imgHeight;
+			          doc.addPage();
+			          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			          heightLeft -= pageHeight;
+			        }
+			 
+			        // 파일 저장
+			        doc.save('분석.pdf');
+			  }
+			});
+	})
+	})
+	
+
+
+     
+  
+</script>
+    
+<style>
+table {
+	width: 100%;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #444444;
+	padding: 10px;
+}
+}
+</style>
+</head>
+<body>
+<button id="go">go</button>
+ <div id="pdf_wrap">
+	<div class="row">
+		<div class="card">
+			<div class="col-md-12">
+
+				<div class="col-md-2" style="float: left;">
+					<p style="text-align: center;"><span class="badge badge-soft-primary" style="font-size:1.2em; ">희망대학</span></p>
+					<table class="table table-bordered text-center  table-hover ">
+						<tr style="font-size: 0.95em;" class="table-primary">
+							<th style="width: 5%;">학부모</th>
+							<th style="width: 5%;">원생</th>
+						</tr>
+
+
+						<tr class="table-white">
+							<th>서울대</th>
+							<th>경희대</th>
+						</tr>
+						<tr class="table-white">
+							<th>연세대</th>
+							<th>한양대</th>
+						</tr>
+
+						<tr class="table-white">
+							<th>고려대</th>
+							<th>서강대</th>
+						</tr>
+
+
+
+					</table>
+
+
+				</div>
+				<div class="col-md-5" style="float: right;">
+					<p style="text-align: center; float: center;"> <span class="badge badge-soft-primary" style="font-size:1.2em;">부모님 희망대학 내신 등급</span><button id="btn" class="btn btn-danger" style="margin-left:20px;">PDF다운</button></p>
+                               
+					<div id="chart_bar"></div>
+				</div>
+
+				<div class="col-md-5" style="float: right;">
+					<p style="text-align: center;"><span class="badge badge-soft-primary" style="font-size:1.2em;">원생 희망대학 내신 등급</span></p>
+
+					<div id="chart_bar2"></div>
+				</div>
+
+			</div>
+
+			<div class="col-md-12">
+
+
+				<div class="col-sm-5" style="float: left; margin-left: 30px;">
+					<p style="text-align: center; float: center;"><span class="badge badge-soft-primary" style="font-size:1.2em;">원생 희망대학 과목별 내신
+						등급</span></p>
+
+					<div>
+						<table class="table table-bordered text-center  table-hover ">
+							<tr style="font-size: 0.95em;" class="table-primary ">
+								<th style="width: 10%;">대학/과목</th>
+								<th style="width: 5%;">국어</th>
+								<th style="width: 5%;">수학</th>
+								<th style="width: 5%;">영어</th>
+								<th style="width: 5%;">사회</th>
+								<th style="width: 5%;">과학</th>
+							</tr>
+
+
+							<tr class="table-white">
+								<th>서울대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+							<tr class="table-white">
+								<th>연세대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+
+							<tr class="table-white">
+								<th>고려대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+
+
+
+						</table>
+
+					</div>
+
+				</div>
+
+				<div class="col-sm-5" style="float: right; margin-right: 30px;">
+					<p style="text-align: center; float: center;">
+						<span class="badge badge-soft-primary" style="font-size: 1.2em;">학부모
+							희망대학 과목별 내신 등급</span>
+					</p>
+					<div>
+						<table class="table table-bordered text-center  table-hover ">
+							<tr style="font-size: 0.95em;" class="table-primary ">
+								<th style="width: 10%;">대학/과목</th>
+								<th style="width: 5%;">국어</th>
+								<th style="width: 5%;">수학</th>
+								<th style="width: 5%;">영어</th>
+								<th style="width: 5%;">사회</th>
+								<th style="width: 5%;">과학</th>
+							</tr>
+
+
+							<tr class="table-white">
+								<th>경희대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+							<tr class="table-white">
+								<th>한양대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+
+							<tr class="table-white">
+								<th>서강대</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+								<th>1</th>
+							</tr>
+
+
+
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<div class="col-md-12" style="float: left;">
+				<p style="text-align: center;">
+					<span class="badge badge-soft-success" style="font-size: 1.2em;">합격예측</span>
+				</p>
+				<table class="table table-bordered text-center  table-hover ">
+
+
+
+					<tr class="table-danger">
+						<th style="width: 15;"%>상향</th>
+						<th>경희대,한양대,서울대</th>
+					</tr>
+					<tr class="table-primary">
+						<th style="width: 15%;">적정</th>
+						<th>아주대,세종대,과기대</th>
+					</tr>
+
+					<tr class="table-warning">
+						<th style="width: 15%;">하향</th>
+						<th>충남대,전북대,상명대</th>
+					</tr>
+
+
+
+				</table>
+
+
+
+
+			</div>
+
+			<div class="col-md-12">
+				<div class="col-md-4" style="float: left; padding: 10px;">
+
+
+					<p style="text-align: center;">
+						<span class="badge badge-soft-danger" style="font-size: 1.2em;">상향
+							대학 과목별 내신 등급</span>
+					</p>
+
+					<table border="1" class="table myclass">
+						<tr style="font-size: 0.5em; background: #d07684;"
+							class="table-danger ">
+							<th style="width: 13%;">대학/과목</th>
+							<th style="width: 5%;">국어</th>
+							<th style="width: 5%;">수학</th>
+							<th style="width: 5%;">영어</th>
+							<th style="width: 5%;">사회</th>
+							<th style="width: 5%;">과학</th>
+						</tr>
+
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>서울대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>한양대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+
+						</tr>
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>경희대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+					</table>
+
+				</div>
+
+				<div class="col-md-4" style="float: left; padding: 10px;">
+
+
+					<p style="text-align: center;">
+						<span class="badge badge-soft-primary" style="font-size: 1.2em;">적정
+							대학 과목별 내신 등급</span>
+					</p>
+
+					<table border="1" class="table myclass">
+						<tr style="font-size: 0.5em; background: #d07684;"
+							class="table-primary ">
+							<th style="width: 13%;">대학/과목</th>
+							<th style="width: 5%;">국어</th>
+							<th style="width: 5%;">수학</th>
+							<th style="width: 5%;">영어</th>
+							<th style="width: 5%;">사회</th>
+							<th style="width: 5%;">과학</th>
+						</tr>
+
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>아주대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>세종대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+
+						</tr>
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>과기대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+					</table>
+
+				</div>
+				<div class="col-md-4" style="float: left; padding: 10px;">
+
+
+					<p style="text-align: center;">
+						<span class="badge badge-soft-warning" style="font-size: 1.2em;">하향
+							대학 과목별 내신 등급</span>
+					</p>
+
+					<table border="1" class="table myclass">
+						<tr style="font-size: 0.5em; background: #d07684;"
+							class="table-warning ">
+							<th style="width: 13%;">대학/과목</th>
+							<th style="width: 5%;">국어</th>
+							<th style="width: 5%;">수학</th>
+							<th style="width: 5%;">영어</th>
+							<th style="width: 5%;">사회</th>
+							<th style="width: 5%;">과학</th>
+						</tr>
+
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>충남대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>전북대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+
+						</tr>
+
+						<tr class="table-white" style="font-size: 0.5em;">
+							<th>상명대</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+							<th>1</th>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+
+				<div class="col-sm-12">
+					<p style="font-size: 1.1em; color: red; margin-left: 200px;">※분석결과:수학이
+						부족하며 영어도 부족합니다.앞으로 이렇게 가면 원하는대학에 못갑니다.</p>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+ </div>
+</body>

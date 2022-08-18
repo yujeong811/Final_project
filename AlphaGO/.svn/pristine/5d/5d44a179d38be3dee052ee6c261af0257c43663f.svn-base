@@ -1,0 +1,24 @@
+package kr.or.ddit.dto;
+
+public class LboardVO {
+	private int lcode;
+	private String bcode;
+	
+	public int getLcode() {
+		return lcode;
+	}
+	public void setLcode(int lcode) {
+		this.lcode = lcode;
+	}
+	public String getBcode() {
+		return bcode;
+	}
+	public void setBcode(String bcode) {
+		this.bcode = bcode;
+	}
+	@Override
+	public String toString() {
+		return "LboardVO [lcode=" + lcode + ", bcode=" + bcode + "]";
+	}
+	
+}

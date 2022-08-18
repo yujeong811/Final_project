@@ -1,0 +1,63 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ExamVO;
+import kr.or.ddit.dto.WrongVO;
+
+public class WrongDAOImpl implements WrongDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	/**
+	 * selectbox examlist
+	 */
+	@Override
+	public List<ExamVO> selectExam(Map<String, Object> map) throws SQLException {
+		// TODO Auto-generated method stub
+		return session.selectList("Wrong-Mapper.selectExam", map);
+	}
+
+	/**
+	 * 오답리스트
+	 */
+	@Override
+	public List<WrongVO> selectWrong(String id) throws SQLException {
+//		int offset = cri.getStartRowNum();
+//		int limit = cri.getPerPageNum();
+//		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return session.selectList("Wrong-Mapper.selectWrong", id);
+	}
+
+	/**
+	 * 오답리스트 카운트
+	 */
+	@Override
+	public int selectWrongCount(String id) throws SQLException {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("id", id);
+//		map.put("cri", cri);
+		
+		int count = session.selectOne("Wrong-Mapper.selectWrongCount", id);
+		return count;
+	}
+
+	@Override
+	public WrongVO selectDetailWrong(Map<String, Object> map) throws SQLException {
+		// TODO Auto-generated method stub
+		return session.selectOne("Wrong-Mapper.selectDetailWrong", map);
+	}
+
+}

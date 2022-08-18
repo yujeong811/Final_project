@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Class-Mapper">
+  <sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and a.class_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 's'.toString()">
+			and c.subject_name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 't'.toString()">
+			and total_time like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'nst'.toString()">
+			and (
+			class_name like '%'||#{keyword}||'%'
+			or
+			c.subject_name like '%'||#{keyword}||'%'						
+			or
+			total_time like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+
+	<select id="getAllClass" resultType="class">
+        select *
+		from(
+                select rownum as rnum,SearchClassResult.*
+                from ( 
+                select
+                    a.class_code
+                   ,a.class_rank
+                   ,a.class_name
+                   ,a.id
+                   ,a.subdetail_code
+                   ,a.room_code
+                   ,a.cpno
+                   ,a.start_date
+                   ,a.end_date
+                   ,a.stu_cnt
+                   ,a.class_price
+                   ,a.total_time
+                   ,a.class_grade
+                   ,b.subdetail_name
+                   ,b.subject_code
+                   ,c.subject_name
+                from
+                    class a, subdetail b, subject c
+                where a.subdetail_code = b.subdetail_code
+                  and b.subject_code=c.subject_code	
+                	<include refid="search" />			
+		    )  SearchClassResult
+ 			<![CDATA[
+		    where rownum <= #{endRow}
+		    ]]>
+		)<![CDATA[
+		where rnum > #{startRow}
+		 ]]>	
+	</select>
+	
+	<select id="selectSearchClassList" resultType="class">
+                select
+                    a.class_code
+                   ,a.class_rank
+                   ,a.class_name
+                   ,a.id
+                   ,a.subdetail_code
+                   ,a.room_code
+                   ,a.cpno
+                   ,a.start_date
+                   ,a.end_date
+                   ,a.stu_cnt
+                   ,a.class_price
+                   ,a.total_time
+                   ,a.class_grade
+                   ,b.subdetail_name
+                   ,b.subject_code
+                   ,c.subject_name
+                from
+                    class a, subdetail b, subject c
+                where a.subdetail_code = b.subdetail_code
+                  and b.subject_code=c.subject_code	
+                	<include refid="search" />			
+	</select>
+
+	<select id="selectSearchClassListCount" resultType="int">
+		select
+		count(*)
+		from class
+		where class_code is not null
+		<include refid="search" />
+	</select>
+
+	<select id="getClassDetail" resultType="class">
+		select
+			a.class_code
+			,a.class_rank
+			,a.class_name
+			,a.id
+			,a.subdetail_code
+			,a.room_code
+			,a.cpno
+			,a.start_date
+			,a.end_date
+			,a.stu_cnt
+			,a.class_price
+			,a.total_time
+			,a.class_grade
+			,b.subdetail_name
+			,b.subject_code
+			, c.subject_name
+		from
+			class a, subdetail b, subject c
+		where a.subdetail_code = b.subdetail_code
+		  and b.subject_code=c.subject_code
+		  and a.class_code = #{classCode}
+	</select>
+
+	<select id="getSubDetail" resultType="subject">
+		select *
+		from subdetail
+		where subject_code = #{target}
+	</select>
+
+	<select id="getClassCode" resultType="int">
+		select classcode_seq.nextval from dual
+	</select>
+	
+	<update id="registClass" parameterType="class">
+		insert into class (
+		    class_code
+		   ,class_rank
+		   ,class_name
+		   ,subdetail_code
+		   ,stu_cnt
+		   ,class_price
+		   ,total_time
+		   ,class_grade
+		) values (
+		    #{classCode}
+		    ,#{classRank}
+		    ,#{className}
+		    ,#{subdetailCode}
+		    ,#{stuCnt}
+		    ,#{classPrice}
+		    ,#{totalTime}
+		    ,#{classGrade}
+		)
+	</update>
+	
+	<update id="removeClass" parameterType="class">
+		delete from class
+		 where class_code = #{classCode}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

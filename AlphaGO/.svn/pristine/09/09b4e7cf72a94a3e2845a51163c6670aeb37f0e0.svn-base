@@ -1,0 +1,218 @@
+package kr.or.ddit.command;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import kr.or.ddit.dto.StudentVO;
+
+@SuppressWarnings("serial")
+public class StudentRegistCommand implements Serializable{
+	private String id;
+	private String name;
+	
+	private String schoolName;
+	private String picture;
+	private String[] phone;
+	
+	private String parentPhone;
+	
+	private String grade;
+	
+	
+	 private String parentName;
+	 
+	 private String authority;
+	 
+	 
+
+
+
+	 
+	 public String getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	public String getSchoolName() {
+		return schoolName;
+	}
+
+
+
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+
+
+
+
+
+	public String getPicture() {
+		return picture;
+	}
+
+
+
+
+
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+
+
+
+
+	public String[] getPhone() {
+		return phone;
+	}
+
+
+
+
+
+	public void setPhone(String[] phone) {
+		this.phone = phone;
+	}
+
+
+
+	public String getParentPhone() {
+		return parentPhone;
+	}
+
+
+
+
+	public void setParentPhone(String parentPhone) {
+		this.parentPhone = parentPhone;
+	}
+
+
+
+
+	public String getGrade() {
+		return grade;
+	}
+
+
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+
+
+
+	public String getParentName() {
+		return parentName;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getAuthority() {
+		return authority;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);
+	}
+	
+
+
+
+
+
+
+
+	public StudentVO toStudentVO() {
+		
+		 String phone = "";
+			
+			for (String data : this.phone) {
+				phone += data;
+			}
+		 
+		 StudentVO student=new StudentVO();
+		 
+	 student.setId(id);
+		 student.setSchoolName(schoolName);
+		 student.setName(name);
+		 student.setPicture(picture);
+		 student.setPhone(phone);
+		 student.setParentPhone(parentPhone);
+		 student.setGrade(grade);
+		 student.setParentName(parentName);
+		 student.setRegDate(new Date());
+		 student.setAuthority(authority);
+		 
+		 return student;
+	 }
+}

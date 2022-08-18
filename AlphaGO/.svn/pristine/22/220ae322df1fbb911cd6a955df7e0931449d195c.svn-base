@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+
+function pstudentlistgo(){
+	//var data2 = {'page':page,'process':process};
+	
+//	jobForm.find("[name='page']").val(page);
+//	jobForm.find("[name='perPageNum']").val($('select[name="perPageNum"]').val());
+//	jobForm.find("[name='searchType']")
+//		.val($('select[name="searchType"]').val());
+//	jobForm.find("[name='keyword']")
+//		.val($('div.input-group>input[name="keyword"]').val());
+	
+	 alert(page);
+	 alert(searchType);
+	 alert(keyword);
+	 alert(processname);
+	 
+	 $.ajax({
+			url : '../rteacher/pslist',
+			type : 'get',
+			data : {'page' : page,
+		        'searchtype' : searchtype,
+		        'keyword' : keyword,
+		        'processname':processname},
+		    success : function(res){
+				res
+			},
+			error : function(xhr){
+				alert("상태 : " + xhr.status + " 체크");
+			},
+			dataType : 'json'
+		})
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+//	$.ajax({
+//	        
+//			url:'../rteacher/pslist',
+//			data :{'page' : page,
+//	        'searchtype' : searchtype,
+//	        'keyword' : keyword,
+//	        'processname':processname},
+//	    	type: "get",
+//	    	dataType:"json"
+//	    	success:function(res) {
+//	    		
+//			str="";
+//	str+='  <thead>';
+//   str+= '          <tr style="background:#8BDDA8;">           ';
+//   str+= '          <th style="font-weight: bold;">이름</th>   ';
+//   str+= '          <th style="font-weight: bold;">학교</th>   ';
+//   str+= '          <th style="font-weight: bold;">학년</th>   ';
+//   str+= '          <th style="font-weight: bold;">전화번호</th';
+//   str+= '          <th style="font-weight: bold;">등록일</th> ';
+//   str+= '          </tr>                                          ';
+//   str+= '  </thead>                                           ';
+//   str+=' <tbody>';
+//   
+//	    		$.each(res.processStudentList,function(i,v){                 
+//	    		str+="<tr id='"+v.id+"'>";
+//	    		str+="<td>"+v.name+"</td>";
+//	    		str+="<td>"+v.name+"</td>";
+//	    		str+="<td>"+v.name+"</td>";
+//	    		str+="<td>"+v.name+"</td>";
+//	    		str+="</tr>"	
+//	    		})
+//	    		$('#studentlist').html(str);
+//	    		
+//	    	
+//	    		
+//	    		
+//	    	},
+//	    	error:function(){
+//	    	   alert("실패다");
+//	    	}
+//		
+//	});
+}

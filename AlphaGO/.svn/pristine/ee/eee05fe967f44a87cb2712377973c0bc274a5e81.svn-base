@@ -1,0 +1,224 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-3" style="text-align: center;">
+			<div class="card">
+				<div class="card-body" style="height:1145px;">
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="font-size: 0.6em;background:lightgreen;">
+							<th style="" colspan="2">강의명</th>
+
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="">수1 미치도록 잘해버리기</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+
+						</tr>
+						<tr>
+
+
+							<td style="">수2 미치도록 잘해버리기</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+						</tr>
+	<tr>
+
+
+							<td style="">고등수학 하.!</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+						</tr>
+							<tr>
+
+
+							<td style="">고등수학 상.</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+						</tr>
+							<tr>
+
+
+							<td style="">수1 미치도록 잘해버리기</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+						</tr>
+
+					</table>
+
+				</div>
+
+				
+			</div>
+		</div>
+   <div class="col-sm-9">
+     <div class="card">
+     <div class="card-head">
+      <label>시험지명</label>
+      <input type="text"placeholder="시험지명을 입력해 주세요" style="width:200px;">
+<br>
+<div style="margin-left:10px;margin-top:10px">
+<select  class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">시작단원</option>
+    
+</select>
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">끝단원</option>
+    
+</select>     
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">제한시간</option>
+ 
+</select>
+<select name="job"class="form-select"name="job"style="width:100px;float:left;">
+    <option value="">문항수</option>
+ 
+</select>
+
+<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">자동생성</button>
+						<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">수동생성</button>
+
+</div><!-- 셀렉트박스 div로묶은것 끝 -->
+
+</div><!-- card-head끝 -->
+<div class="card-body">
+
+	<div class="row gx-3 gy-2">
+		<div class="col-12" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<!-- pagenation -->
+					<ul class="pagination pagination-rounded">
+						<li class="page-item disabled" style="margin-right: 265px;"><span
+							class="page-link"><i class="mdi mdi-chevron-left"></i></span></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><span class="page-link">
+								2 <span class="sr-only">(current)</span>
+						</span></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item" style="margin-left: 240px;"><a
+							class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
+					</ul>
+					<!-- end -->
+					<div class="row gx-3 gy-2">
+						<div class="col-6" style="float: left;">
+							1. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							2. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							3. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							4. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							5. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+						<div class="col-6" style="float: left;">
+							6. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							7. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							8. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							9. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							10. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="modal fade bs-example-modal-center" tabindex="-1"
+		role="dialog" id="submit" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">			
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="location.href='list.go'"></button>
+				</div>
+				
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
+     </div><!--card끝-->
+   
+   
+	<!-- 		row끝 -->
+
+
+
+
+</body>
+</html>

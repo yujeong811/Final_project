@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">쪽지함</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">쪽지함</a></li>
+                    <li class="breadcrumb-item active">쪽지</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <!-- Left sidebar -->
+        <div class="email-leftbar card">
+          <button type="button" class="btn btn-soft-purple w-100 fw-semibold">
+                         쪽지 보내기
+          </button>
+          <div class="mail-list mt-4">
+              <a href="#" class="active" style="color:#564ab1; "><i class="bx bxs-inbox font-size-16 align-middle me-2"></i> 받은쪽지함 <span class="ms-1 float-end">(18)</span></a>
+              <a href="sendList.go"><i class="bx bx-mail-send font-size-16 align-middle me-2"></i>보낸쪽지함</a>
+          </div>
+
+
+      </div>
+        <!-- End Left sidebar -->
+        <!-- Right Sidebar -->
+        <div class="email-rightbar mb-3">
+
+            <div class="card">
+              <div class="btn-toolbar p-3 d-flex flex-row-reverse  " role="toolbar">
+                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>&nbsp;삭제하기</button>
+                </div>
+
+                <div class="card-body">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="flex-shrink-0 me-3">
+                            <img class="rounded-circle avatar-sm" src="<%=request.getContextPath() %>/resources/assets/images/users/avatar-2.jpg" alt="Generic placeholder image">
+                        </div>
+                        
+                        <div class="flex-grow-1">
+                            <h5 class="font-size-14 my-1">Humberto D. Champion</h5>
+                            <small class="text-muted">support@domain.com</small>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-0 mb-4 font-size-16">Your Storage is lonely. Add some files!</h4>
+
+                    <p class="text-muted">Dear User,</p>
+                    <p class="text-muted">Once your files are in Storage, they’ll be waiting for you anywhere you install the app—like your computer, phone, or tablet. Your files will also be securely backed up and easy to share, no matter what type of files they are.</p>
+                    <p class="text-muted">An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you:</p>
+                    <p class="text-muted mb-0">Sincerly,</p>
+                    <p class="text-muted">Pichforest</p>
+
+                   
+
+
+                </div>
+
+            </div>
+            <!-- end card -->
+        </div><!-- End email-rightbar -->
+
+    </div>
+    <!-- end Col-9 -->
+
+</div>

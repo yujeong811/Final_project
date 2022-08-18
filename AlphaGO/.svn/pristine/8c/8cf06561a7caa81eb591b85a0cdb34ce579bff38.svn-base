@@ -1,0 +1,768 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="startDate" value="${data.startDate }" />
+<c:set var="endDate" value="${data.endDate}" />
+<c:set var="processCode" value="${data.processCode}" />
+<c:set var="examName" value="${data.examName}" />
+<c:set var="startDan" value="${data.startDan}" />
+<c:set var="endDan" value="${data.endDan }" />
+<c:set var="probCount" value="${data.probCount}" />
+
+
+
+<head>
+<script>
+var page2=1;
+var page3=1;
+var toto=0;
+var problemArr=[];
+$(function(){
+	problemjsListgo();
+})
+</script>
+
+
+
+<script>
+$(function(){
+	  //page번호 클릭하는 이벤트
+	   $('#pagegogo').on('click','.pnum',function(){
+		//   alert("클릭");
+		// alert($(this).text());
+		   page2=$(this).text();
+		  // alert(page);
+		  problemjsListgo();
+		   
+	   })
+	   
+		 $('#pagegogo').on('click','.prev',function(){
+		   page2=parseInt($('.pager a').first().text())-1;
+		  if(page<=1){
+			  page2=1;
+			  problemjsListgo();
+		  }else{
+			   
+			  problemjsListgo();
+		  }
+		   
+		  
+		  
+	   })
+	   
+	     $('#pagegogo').on('click','.next',function(){
+		   page=parseInt($('.pager a').last().text())+1;
+		  // alert(page2);
+		 //  alert(searchtype);
+		//	alert(keyword);
+		   if(page2>endPage){
+			      page2-=1; 
+			      problemjsListgo();
+			  }
+		   else{
+			   problemjsListgo();
+		   }
+		
+		  
+	   })
+})
+
+</script>
+
+
+
+
+
+<script>
+function problemjsListgo(){
+	
+
+
+	
+	
+	 $.ajax({
+			url : '<%=request.getContextPath()%>/rteacher/problemjxlistgo.go',
+			type : 'get',
+			data : {'page':page2,'startDan' :${data.startDan},'enddan':${data.endDan},'detailCode':${data.processCode}},
+		    success: function(res){
+		    	str="";
+		str+='<thead>';
+		str+='<tr>';
+		str+='<th data-column-id="name"';
+		str+='style="font-weight: bold; background: #8BDDA8; width: 55px;"><div';
+		str+='class="gridjs-th-content">';		                                                                      
+		str+='</div></th>';
+		str+='<th data-column-id="name"';
+		str+='style="font-weight: bold; background: #8BDDA8; width: 55px;"><div';
+		str+='class="gridjs-th-content">코드</div></th>';
+		str+='<th data-column-id="email"';
+		str+='style="font-weight: bold; background: #8BDDA8;"><div';
+		str+='  	class="gridjs-th-content">유형</div></th>';
+		str+='  		<th data-column-id="position"';
+		str+='  			style="font-weight: bold; background: #8BDDA8;"><div                      ';
+		str+='  				class="gridjs-th-content">문제</div></th>                             ';
+		str+='  		<th data-column-id="company"                                                  ';
+		str+='  			style="font-weight: bold; background: #8BDDA8; width: 68px;"><div         ';
+		str+='  				class="gridjs-th-content">난이도</div></th>                           ';
+		str+='  		<th data-column-id="company"                                                  ';
+		str+='  			style="font-weight: bold; background: #8BDDA8; width: 68px;"><div         ';
+		str+='  				class="gridjs-th-content">오답률</div></th>                           ';
+		str+='  		                                                                              ';
+		str+='  	</tr>                                                                             ';
+		str+='  </thead>                                                                              ';
+			   str+=' <tbody>';
+			   
+				    		$.each(res.problemList,function(i,v){
+				    		
+				    		str+="<tr id='"+v.problemCode+"'onclick=OpenWindow('problemDetail.go?prC="+v.problemCode+"','문제디테일',800,700)>";
+				    		str+="<td><button id='px"+v.problemCode+"'onclick=plus(this);>추가</button></td>";	
+				    		str+="<td>"+v.problemCode+"</td>";
+				    		str+="<td>"+v.lproblem+"</td>";
+				    		str+="<td>"+v.name+"</td>";
+				    		str+="<td>"+v.plevel+"</td>";
+				    		if(v.odap==0){
+				    			str+="<td>-</td>";
+				    		}
+				    		else{
+				    			str+="<td>"+v.odap+"</td>";
+				    		}
+				    		str+="</tr>"	
+				    		})
+				    		$('#problemjxList').html(str);
+				    		
+				    	
+				    		 startPage=res.pageMaker.startPage;
+				    		 endPage=res.pageMaker.endPage;
+				    	    var pg=res.pageMaker.cri.page;
+				    	    var pre=res.pageMaker.prev;
+				    	    var next=res.pageMaker.next;
+				    	   
+				    	    page="";
+					    	 
+				    	    
+				    	    
+						    page+='	<ul class="pagination justify-content-center m-0">';
+						    page+='	<li class="page-item">';
+						    page+='		<a class="page-link">';
+						    page+='			<i class="fas fa-angle-double-left"></i>';
+						    page+='		</a>';
+						    page+='	<li class="page-item">';
+						    page+='		<a class="page-link prev" href="#">';
+						    page+='			<i class="fas fa-angle-left"></i>';
+						    page+='		</a>						                                    ';
+						    page+='	</li>                                                                                   ';
+						    
+						    for(let i=startPage;i<=endPage;i++){
+						    	if(pg==i){
+						    		  page+='		<li class="page-item active pager">';  
+						    		    page+='			<a class="page-link pnum" href="#" >'+i+'</a>';
+									    page+='		</li>';
+						    	}else{
+						    		  page+='		<li class="page-item  pager">'; 
+						    		    page+='			<a class="page-link pnum" href="#" >'+i+'</a>';
+						    		    
+									    page+='		</li>';
+						    	}
+						    	                      
+								
+						    }
+						    
+						    
+						    
+						    
+		
+						    
+						    
+								    
+						    
+						    
+						    
+						
+						    page+='	                                                                                        ';
+						    page+='	                                                                                        ';
+						    page+='	<li class="page-item">                                                                  ';
+						    page+='		<a class="page-link next">                                                       ';
+						    page+='			<i class="fas fa-angle-right"></i>                                              ';
+						    page+='		</a>						                                                        ';
+						    page+='	</li>                                                                                   ';
+						    page+='	<li class="page-item">                                                                  ';
+						    page+='		<a class="page-link">                                                       ';
+						    page+='			<i class="fas fa-angle-double-right"></i>                                       ';
+						    page+='		</a>						                                                        ';
+						    page+='	</li> ';
+						    page+='</ul>	                                                                                    ';
+						    		
+						    		$('#pagegogo').html(page);
+						    		
+						    		 if(problemArr.length>0){
+						    			 alert("받긴하니?");
+						    			 for(let i=0;i<problemArr.length;i++){
+						    				
+						    				 $('#px'+problemArr[i]).attr("disabled",true);
+						    			   
+						    			 }
+						    		 }    		
+						    		
+				    		
+			},
+			error : function(xhr){
+				alert("상태 : " + xhr.status + " 체크");
+			},
+			dataType : 'json'
+		});
+	
+	
+	 
+	 
+}
+
+</script>
+
+
+
+
+
+<script>
+function problemjListgo(){
+	
+
+
+	
+	
+	 $.ajax({
+			url : '<%=request.getContextPath()%>/rteacher/problemjlistgo.go',
+			type : 'get',
+			data : {'page':page2,'startDan' :${data.startDan},'enddan':${data.endDan},'detailCode':${data.processCode}},
+		    success: function(res){
+		    	str="";
+		str+='<thead>';
+		str+='<tr>';
+		str+='<th data-column-id="name"';
+		str+='style="font-weight: bold; background: #8BDDA8; width: 55px;"><div';
+		str+='class="gridjs-th-content">';		                                                                      
+		str+='</div></th>';
+		str+='<th data-column-id="name"';
+		str+='style="font-weight: bold; background: #8BDDA8; width: 55px;"><div';
+		str+='class="gridjs-th-content">코드</div></th>';
+		str+='<th data-column-id="email"';
+		str+='style="font-weight: bold; background: #8BDDA8;"><div';
+		str+='  	class="gridjs-th-content">유형</div></th>';
+		str+='  		<th data-column-id="position"';
+		str+='  			style="font-weight: bold; background: #8BDDA8;"><div                      ';
+		str+='  				class="gridjs-th-content">문제</div></th>                             ';
+		str+='  		<th data-column-id="company"                                                  ';
+		str+='  			style="font-weight: bold; background: #8BDDA8; width: 68px;"><div         ';
+		str+='  				class="gridjs-th-content">난이도</div></th>                           ';
+		str+='  		<th data-column-id="company"                                                  ';
+		str+='  			style="font-weight: bold; background: #8BDDA8; width: 68px;"><div         ';
+		str+='  				class="gridjs-th-content">오답률</div></th>                           ';
+		str+='  		                                                                              ';
+		str+='  	</tr>                                                                             ';
+		str+='  </thead>                                                                              ';
+			   str+=' <tbody>';
+			   
+				    		$.each(res.problemList,function(i,v){
+				    		
+				    		str+="<tr id='"+v.problemCode+"'onclick=OpenWindow('problemDetail.go?prC="+v.problemCode+"','문제디테일',800,700)>";
+				    		str+="<td><button id='px"+v.problemCode+"'onclick=plus(this);>추가</button></td>";	
+				    		str+="<td>"+v.problemCode+"</td>";
+				    		str+="<td>"+v.lproblem+"</td>";
+				    		str+="<td>"+v.name+"</td>";
+				    		str+="<td>"+v.plevel+"</td>";
+				    		if(v.odap==0){
+				    			str+="<td>-</td>";
+				    		}
+				    		else{
+				    			str+="<td>"+v.odap+"</td>";
+				    		}
+				    		str+="</tr>"	
+				    		})
+				    		$('#problemjxList').html(str);
+				    		
+				    	
+				    		 startPage=res.pageMaker.startPage;
+				    		 endPage=res.pageMaker.endPage;
+				    	    var pg=res.pageMaker.cri.page;
+				    	    var pre=res.pageMaker.prev;
+				    	    var next=res.pageMaker.next;
+				    	   
+				    	    page="";
+					    	 
+				    	    
+				    	    
+						    page+='	<ul class="pagination justify-content-center m-0">';
+						    page+='	<li class="page-item">';
+						    page+='		<a class="page-link">';
+						    page+='			<i class="fas fa-angle-double-left"></i>';
+						    page+='		</a>';
+						    page+='	<li class="page-item">';
+						    page+='		<a class="page-link prev" href="#">';
+						    page+='			<i class="fas fa-angle-left"></i>';
+						    page+='		</a>						                                    ';
+						    page+='	</li>                                                                                   ';
+						    
+						    for(let i=startPage;i<=endPage;i++){
+						    	if(pg==i){
+						    		  page+='		<li class="page-item active pager">';  
+						    		    page+='			<a class="page-link pnum" href="#" >'+i+'</a>';
+									    page+='		</li>';
+						    	}else{
+						    		  page+='		<li class="page-item  pager">'; 
+						    		    page+='			<a class="page-link pnum" href="#" >'+i+'</a>';
+						    		    
+									    page+='		</li>';
+						    	}
+						    	                      
+								
+						    }
+						    
+						    
+						    
+						    
+		
+						    
+						    
+								    
+						    
+						    
+						    
+						
+						    page+='	                                                                                        ';
+						    page+='	                                                                                        ';
+						    page+='	<li class="page-item">                                                                  ';
+						    page+='		<a class="page-link next">                                                       ';
+						    page+='			<i class="fas fa-angle-right"></i>                                              ';
+						    page+='		</a>						                                                        ';
+						    page+='	</li>                                                                                   ';
+						    page+='	<li class="page-item">                                                                  ';
+						    page+='		<a class="page-link">                                                       ';
+						    page+='			<i class="fas fa-angle-double-right"></i>                                       ';
+						    page+='		</a>						                                                        ';
+						    page+='	</li> ';
+						    page+='</ul>	                                                                                    ';
+						    		
+						    		$('#pagegogo').html(page);
+						    		
+						    		 if(problemArr.length>0){
+						    			 alert("받긴하니?");
+						    			 for(let i=0;i<problemArr.length;i++){
+						    				
+						    				 $('#px'+problemArr[i]).attr("disabled",true);
+						    			   
+						    			 }
+						    		 }    		
+						    		
+				    		
+			},
+			error : function(xhr){
+				alert("상태 : " + xhr.status + " 체크");
+			},
+			dataType : 'json'
+		});
+	
+	
+	 
+	 
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function plus(t){
+	
+	//alert($(t).attr("id"));
+	var arrt=[];
+	var prt=$(t).parent().parent();
+	var chil=prt.children();
+	 chil.each(function(i){arrt.push(chil.eq(i).text());    
+	});
+	var ct=1;
+	for(let i=1;i<=${probCount};i++){
+		if($('#code'+i).html().trim()==""){
+			ct=i;
+			break;
+		}
+	}
+	
+	$('#code'+ct).html(arrt[1]);
+	$('#lproblem'+ct).html(arrt[2]);
+	$('#level'+ct).html(arrt[4]);
+	if(arrt[4]=="상"){
+		$('#level'+ct).css("color","red");
+	}
+	if(arrt[4]=="중"){
+		$('#level'+ct).css("color","blue");
+	}
+	if(arrt[4]=="하"){
+		$('#level'+ct).css("color","black");
+	}
+	problemArr.push(arrt[1]);
+	$(t).attr("disabled",true);
+ 	toto=toto+1;
+ 
+	$('#total').text(toto);
+	 event.stopPropagation() 
+}
+</script>
+
+<script>
+
+function cancel(t){
+	var arrt=[];
+	var prt=$(t).parent().parent();
+	var chil=prt.children();
+	 chil.each(function(i){arrt.push(chil.eq(i).text());    
+	});
+//	alert(arrt[1]);
+	
+	
+	if($('#code'+arrt[1]).html()==""){
+		
+	}else{
+        toto=toto-1;
+        alert(problemArr);
+         if(problemArr.length>0){
+        	 //alert("이건 받지롱");
+        	 
+         	 for(let i = 0; i < problemArr.length; i++) {
+         		 
+         	
+           	  if(problemArr[i] ==$('#code'+arrt[1]).html())  {
+           		problemArr.splice(i, 1);
+            	 
+                alert($('#code'+arrt[1]).html());
+                break;
+          	  }
+           	}
+        }
+       
+		$('#total').text(toto);
+
+	}
+	
+	$('#code'+arrt[1]).html("");
+	$('#lproblem'+arrt[1]).html("");
+	$('#level'+arrt[1]).html("");
+	$('#px'+arrt[2]).attr("disabled",false);
+	
+	
+}
+</script>
+
+<script>
+$(function(){
+	$('#jimoonCheck').on('change',function(){
+		if($(":selected",this).val()=="지문"){
+		
+		}else{
+			problemjsListgo();
+		}
+	})
+})
+
+</script>
+
+
+</head>
+
+
+
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-7" style="float: left;">
+			<div class="card">
+				<div class="card-body" style="padding: 15px;">
+					<h5 style="font-weight: bold; margin-bottom: 15px;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>문제 리스트
+					
+					</h5>
+					<div>
+						<div class="dropdown col-sm-6"
+							style="margin-bottom: 5px; float: left;">
+								<select class="form-select col-md-3" id="jimoonCheck"
+									style="width: 130px; height: 40px; font-size: 1.2em;"name="lproblem">
+									<option value="지문x"selected="selected">지문x</option>
+									<option value="지문" >지문</option>
+
+								</select>
+
+						</div>
+						<div class="input-group col-sm-6"
+							style="width: 250px; float: right; margin-bottom: 10px;">
+
+
+						
+						</div>
+					</div>
+					<div>
+
+
+						<div style="width: 100%;">
+							<div style="height: auto;">
+								<table class="table text-center table-hover"
+									style="height: auto; text-align: center;" id="problemjxList">
+								
+									<tbody>
+										<tr>
+											<td data-column-id="name"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">추가</button></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: red;">상</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">추가</button></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">보통</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: blue;">하</td>
+											<td data-column-id="company">낮음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: red;">상</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">보통</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<!-- pagination -->
+										<nav aria-label="Navigation" id="pagegogo">
+
+</nav>   
+
+				</div>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="card" style="height: 850px;">
+				<div class="card-body" style="padding: 15px;">
+					<div class="d-flex">
+						<div class="me-auto d-flex justify-content-start">
+							<h5 style="font-weight: bold; margin-right: 5px;"
+								class="flex-grow-1">시험 출제 문제 |</h5>
+							<p>2022학년도 중간테스트</p>
+						</div>
+					
+						<button type="button" class="btn btn-soft-success"
+							style="margin-bottom: 10px; height: 30px; line-height: 5px;">완료</button>
+					</div>
+					<div
+						style="background: lightgray; font-weight: bold; margin-bottom: 14px; padding: 5px; width: 80px; text-align: center; border-radius: 15px">
+						<span id="total">0</span> / <span>${probCount}</span></div>
+
+					<div style="height:750px;overflow:auto;">
+						<table class="table text-center table-hover"
+							style="height: auto; text-align: center; margin-top: 10px;" id="proplus">
+							<thead>
+								<tr>
+									<th data-column-id="name"
+										style="font-weight: bold; background: #8BDDA8; width: 55px;"><div
+											class="gridjs-th-content">
+											
+										</div></th>
+									<th data-column-id="name"
+										style="font-weight: bold; background: #8BDDA8; width: 53px;"><div
+											class="gridjs-th-content">문항</div></th>
+									<th data-column-id="email"
+										style="font-weight: bold; background: #8BDDA8;"><div
+											class="gridjs-th-content">코드</div></th>
+									<th data-column-id="position"
+										style="font-weight: bold; background: #8BDDA8;"><div
+											class="gridjs-th-content">단원</div></th>
+									<th data-column-id="company"
+										style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+											class="gridjs-th-content">유형</div></th>
+									<th data-column-id="company"
+										style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+											class="gridjs-th-content">난이도</div></th>
+								
+								</tr>
+							</thead>
+							<tbody>
+							
+							<c:forEach var="i" begin="1" end="${data.probCount}">   
+
+								<tr>
+									<td id="pt${i}"><button onclick="cancel(this);">삭제</button></td>
+									<td id="proN${i}">${i}</td>
+									<td id="code${i}"></td>
+									<td id="dan${i}"></td>
+									<td id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;" id="lproblem${i}"></span></td>
+									<td id="level${i }" style="color: red"></td>
+									<td data-column-id="company">
+									</td>
+								</tr>
+								</c:forEach>
+							
+
+							</tbody>
+
+						</table>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	
+</body>

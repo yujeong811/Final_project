@@ -1,0 +1,12 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+
+public interface ApplyService {
+
+	
+	Map<String, Object> getApplyList(Criteria cri) throws SQLException;
+}

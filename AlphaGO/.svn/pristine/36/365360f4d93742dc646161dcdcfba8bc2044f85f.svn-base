@@ -1,0 +1,184 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.RoomCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.ClassroomDAO;
+import kr.or.ddit.dao.UseFixtureDAO;
+import kr.or.ddit.dto.ClassroomVO;
+import kr.or.ddit.dto.FixtureVO;
+import kr.or.ddit.dto.UseFixtVO;
+
+public class ClassroomServiceImpl implements ClassroomService {
+	private ClassroomDAO classroomDAO;
+	public void setClassroomDAO(ClassroomDAO classroomDAO) {
+		this.classroomDAO = classroomDAO;
+	}
+	
+	private UseFixtureDAO useFixtureDAO;
+	public void setUseFixtureDAO(UseFixtureDAO useFixtureDAO) {
+		this.useFixtureDAO = useFixtureDAO;
+	}
+
+	/**
+	 * 강의실 테이블 목록 전체 불러오기
+	 */
+	@Override
+	public Map<String, Object> getAllClassroom(SearchCriteria cri) throws SQLException{
+		//강의실 정보 리스트
+		List<ClassroomVO> classroomList = null;
+		//강의실에서 사용하는 비품 리스트
+		List<UseFixtVO> useFixList = null;
+		//jsp에 forward할 데이터맵
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		
+		int startRow = cri.getStartRowNum();
+		int endRow = startRow+cri.getPerPageNum()-1;
+		
+		Map<String, Object> dataParam = new HashMap<String, Object>();
+		dataParam.put("startRow", startRow);
+		dataParam.put("endRow", endRow);
+		dataParam.put("searchType", cri.getSearchType());
+		dataParam.put("keyword", cri.getKeyword());
+		
+		//전체 강의실 리스트
+		classroomList = classroomDAO.getAllClassroom(dataParam);
+		//전체 사용 비품 리스트
+		useFixList = useFixtureDAO.getUseFixture();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		dataMap.put("classroomList", classroomList);
+		dataMap.put("useFixList", useFixList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+	@Override
+	public int getClassroomSeq() throws SQLException {
+		int roomCode = classroomDAO.getClassroomSeq();
+		return roomCode;
+	}
+
+	@Override
+	public void registClassroom(RoomCommand roomCommand) throws SQLException {
+		
+		int introomCode = classroomDAO.getClassroomSeq();
+		//ClassroomCode 기본키(시퀀스)
+		String roomCode = String.valueOf(introomCode);
+		
+		ClassroomVO roomVO = new ClassroomVO();
+		roomVO.setRoom_code(roomCode);
+		roomVO.setRoom_floor(roomCommand.getRoom_floor());
+		roomVO.setRoom_no(roomCommand.getRoom_no());
+		roomVO.setCapacity(roomCommand.getCapacity());
+		roomVO.setUse_purpose(roomCommand.getUse_purpose());
+		//강의실 등록
+		classroomDAO.registClassroom(roomVO);
+		
+		//사용 비품 등록
+		//roomCommand의 fx들은 'Y' or 'N'의 문자열을 가짐.
+		String fx1 = roomCommand.getFx1();
+		String fx2 = roomCommand.getFx2();
+		String fx3 = roomCommand.getFx3();
+		String fx4 = roomCommand.getFx4();
+		String fx5 = roomCommand.getFx5();
+		String fx6 = roomCommand.getFx6();
+		
+		if(fx1!=null&&fx1.equals("Y")) {
+//			System.out.println("fx1 from if문 : " + fx1);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx1, "FXT_01", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx2!=null&&fx2.equals("Y")) {
+//			System.out.println("fx2 from if문 : " + fx2);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx2, "FXT_02", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx3!=null&&fx3.equals("Y")) {
+//			System.out.println("fx3 from if문 : " + fx3);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx3, "FXT_03", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx4!=null&&fx4.equals("Y")) {
+//			System.out.println("fx4 from if문 : " + fx4);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx4, "FXT_04", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx5!=null&&fx5.equals("Y")) {
+//			System.out.println("fx5 from if문 : " + fx5);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx5, "FXT_05", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx6!=null&&fx6.equals("Y")) {
+//			System.out.println("fx6 from if문 : " + fx6);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx6, "FXT_06", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+	}
+
+	private UseFixtVO fixtData(String fx, String fxtCode, String roomCode, int useFixtSeq) {
+		UseFixtVO fixVO = new UseFixtVO();
+		if(fx.equals("Y")) {
+			fixVO.setFxtcode(fxtCode);
+			fixVO.setRoom_code(roomCode);
+			String useFixCode = String.valueOf(useFixtSeq);
+			fixVO.setFixuseno(useFixCode);
+		}else {
+			System.out.println("fx in fixtData method: " + fx);
+		}
+		return fixVO;
+	}
+
+	@Override
+	public void removeClassroom(int roomCode) throws SQLException {
+		useFixtureDAO.removeUseFixt(roomCode);
+		classroomDAO.removeClassroom(roomCode);
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

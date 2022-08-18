@@ -1,0 +1,145 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@SuppressWarnings("serial")
+public class MemberVO implements Serializable{
+
+
+	private String id;
+	private String name;
+	private Date regDate;
+	private String pwd;
+	private String email;
+	private String picture;
+	private String phone;
+	private String address;
+	private String authority;
+	private int enabled;
+	private String parentPhone;
+	private int age;
+	private String grade;
+	private int schoolCode;
+	private String register;
+	private String subject;
+	private String major;
+	private String schoolName;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	public String getParentPhone() {
+		return parentPhone;
+	}
+	public void setParentPhone(String parentPhone) {
+		this.parentPhone = parentPhone;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public int getSchoolCode() {
+		return schoolCode;
+	}
+	public void setSchoolCode(int schoolCode) {
+		this.schoolCode = schoolCode;
+	}
+	public String getRegister() {
+		return register;
+	}
+	public void setRegister(String register) {
+		this.register = register;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public String getSchoolName() {
+		return schoolName;
+	}
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", name=" + name + ", regDate=" + regDate + ", pwd=" + pwd + ", email=" + email
+				+ ", picture=" + picture + ", phone=" + phone + ", address=" + address + ", authority=" + authority
+				+ ", enabled=" + enabled + ", parentPhone=" + parentPhone + ", age=" + age + ", grade=" + grade
+				+ ", schoolCode=" + schoolCode + ", register=" + register + ", subject=" + subject + ", major=" + major
+				+ ", schoolName=" + schoolName + "]";
+	}
+
+}

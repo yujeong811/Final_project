@@ -1,0 +1,249 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.RoomCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.ClassroomDAO;
+import kr.or.ddit.dao.UseFixtureDAO;
+import kr.or.ddit.dto.ClassroomVO;
+import kr.or.ddit.dto.UseFixtVO;
+
+public class ClassroomServiceImpl implements ClassroomService {
+	private ClassroomDAO classroomDAO;
+	public void setClassroomDAO(ClassroomDAO classroomDAO) {
+		this.classroomDAO = classroomDAO;
+	}
+	
+	private UseFixtureDAO useFixtureDAO;
+	public void setUseFixtureDAO(UseFixtureDAO useFixtureDAO) {
+		this.useFixtureDAO = useFixtureDAO;
+	}
+
+	/**
+	 * 강의실 테이블 목록 전체 불러오기
+	 */
+	@Override
+	public Map<String, Object> getAllClassroom(SearchCriteria cri) throws SQLException{
+		//강의실 정보 리스트
+		List<ClassroomVO> classroomList = null;
+		//강의실에서 사용하는 비품 리스트
+		List<UseFixtVO> useFixList = null;
+		//jsp에 forward할 데이터맵
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		//층수 계산을 위한 강의실 리스트
+		List<ClassroomVO> roomList = null;
+		//사용중인 강의실 정보 리스트(중복있음)
+		List<ClassroomVO> useAllList = null;
+
+		//전체 강의실 리스트
+		classroomList = classroomDAO.getAllClassroom(cri);
+		//전체 사용 비품 리스트
+		useFixList = useFixtureDAO.getUseFixture();
+
+		// 전체 board 개수
+		int totalCount = classroomDAO.selectClassroomListCount(cri);
+		
+		//-------------층 개수 구하기-----------------
+		//층을 담을 리스트
+		List<String> roomFloor = new ArrayList<String>();
+		//일반 전체 강의실 리스트(No criteria)
+		roomList = classroomDAO.getNoSearchClassroom();
+		for(ClassroomVO room : roomList) {
+			String roomno = room.getRoomNo();
+			String tempno = roomno.substring(0, 1);
+			roomFloor.add(tempno);
+		}
+		//중복제거
+		Set<String> set1 = new HashSet<String>(roomFloor);
+		List<String> newFloor =new ArrayList<String>(set1);
+		int floorCnt = newFloor.size();//층 개수
+		//-------------------------------------------
+		
+		//---------------사용중인 강의실 구하기---------------
+		//사용중인 강의실 목록(중복있음)
+		useAllList = classroomDAO.getAllUseRoom();
+		
+//		int dayOfWeekValue = now.getDayOfWeek().getValue();
+//		DayOfWeek 객체의 getValue() 메소드를 사용하여 요일을 숫자로 변환할 수 있습니다.
+//		월요일(1) ~ 일요일(7)을 리턴합니다.
+		LocalDate now = LocalDate.now();
+		System.out.println(now.getDayOfWeek().getValue());
+		int todayYoil = now.getDayOfWeek().getValue();
+		//데이터베이스에 저장된 일요일은 0, 자바 LocalDate의 일요일은 7이기때문에 비교를 위해 값을 바꿔줌
+		if(todayYoil==7) todayYoil=0; 
+		
+		//사용중이지않은 강의실을 담을 리스트
+		List<String> unUsedRoomList = new ArrayList<String>();
+		Map<String, String> checkUseMap = new HashMap<String, String>();
+		for(ClassroomVO room : useAllList) {//사용중인 강의실의 반복문
+			int classday = Integer.parseInt(room.getClassday());//요일
+			String roomno = room.getRoomNo();
+			if(todayYoil==classday) {//오늘의 요일과 수업중 요일이 같으면
+				//사용중
+				checkUseMap.put(roomno, "사용중");
+			}else { //같지 않으면 사용중 X
+				checkUseMap.put(roomno, "사용가능");
+			}
+			
+			unUsedRoomList.add(roomno);
+		}
+		//중복제거
+		Set<String> set2 = new HashSet<String>(unUsedRoomList);
+		List<String> newUsedRoomNo =new ArrayList<String>(set2);
+		int usedRoomCnt = newUsedRoomNo.size();//사용중인 강의실 개수
+		//----------------------------------------------
+		
+		//---------------사용중이지 않은 강의실 구하기--------------
+		
+		//----------------------------------------------------
+
+		// PageMaker 생성.
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		dataMap.put("classroomList", classroomList);
+		dataMap.put("useFixList", useFixList);
+		dataMap.put("floorCnt", floorCnt);
+		dataMap.put("usedRoomCnt", usedRoomCnt);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+	@Override
+	public int getClassroomSeq() throws SQLException {
+		int roomCode = classroomDAO.getClassroomSeq();
+		return roomCode;
+	}
+
+	@Override
+	public void registClassroom(RoomCommand roomCommand) throws SQLException {
+		
+		int introomCode = classroomDAO.getClassroomSeq();
+		//ClassroomCode 기본키(시퀀스)
+		String roomCode = String.valueOf(introomCode);
+		
+		ClassroomVO roomVO = new ClassroomVO();
+		roomVO.setRoomCode(roomCode);
+		roomVO.setRoomFloor(roomCommand.getRoomFloor());
+		roomVO.setRoomNo(roomCommand.getRoomNo());
+		roomVO.setCapacity(roomCommand.getCapacity());
+		roomVO.setUsePurpose(roomCommand.getUsePurpose());
+		//강의실 등록
+		classroomDAO.registClassroom(roomVO);
+		
+		//사용 비품 등록
+		//roomCommand의 fx들은 'Y' or 'N'의 문자열을 가짐.
+		String fx1 = roomCommand.getFx1();
+		String fx2 = roomCommand.getFx2();
+		String fx3 = roomCommand.getFx3();
+		String fx4 = roomCommand.getFx4();
+		String fx5 = roomCommand.getFx5();
+		String fx6 = roomCommand.getFx6();
+		
+		if(fx1!=null&&fx1.equals("Y")) {
+//			System.out.println("fx1 from if문 : " + fx1);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx1, "FXT_01", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx2!=null&&fx2.equals("Y")) {
+//			System.out.println("fx2 from if문 : " + fx2);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx2, "FXT_02", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx3!=null&&fx3.equals("Y")) {
+//			System.out.println("fx3 from if문 : " + fx3);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx3, "FXT_03", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx4!=null&&fx4.equals("Y")) {
+//			System.out.println("fx4 from if문 : " + fx4);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx4, "FXT_04", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx5!=null&&fx5.equals("Y")) {
+//			System.out.println("fx5 from if문 : " + fx5);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx5, "FXT_05", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+		if(fx6!=null&&fx6.equals("Y")) {
+//			System.out.println("fx6 from if문 : " + fx6);
+			//사용비품 테이블 기본키
+			int useFixtSeq = useFixtureDAO.getUseFixtSeq();
+			UseFixtVO useFixtVO=fixtData(fx6, "FXT_06", roomCode, useFixtSeq);
+			//등록
+			useFixtureDAO.registUseFixt(useFixtVO);
+		}
+	}
+
+	private UseFixtVO fixtData(String fx, String fxtCode, String roomCode, int useFixtSeq) {
+		UseFixtVO fixVO = new UseFixtVO();
+		if(fx.equals("Y")) {
+			fixVO.setFxtcode(fxtCode);
+			fixVO.setRoomCode(roomCode);
+			String useFixCode = String.valueOf(useFixtSeq);
+			fixVO.setFixuseno(useFixCode);
+		}else {
+			System.out.println("fx in fixtData method: " + fx);
+		}
+		return fixVO;
+	}
+
+	@Override
+	public void removeClassroom(int roomCode) throws SQLException {
+		useFixtureDAO.removeUseFixt(roomCode);
+		classroomDAO.removeClassroom(roomCode);
+	}
+
+	@Override
+	public ClassroomVO getOneClassroom(String roomCode) throws SQLException {
+		ClassroomVO room = classroomDAO.getOneClassroom(roomCode);
+		return room;
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,183 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.ClassDAO;
+import kr.or.ddit.dao.ClassroomDAO;
+import kr.or.ddit.dto.CertificateVO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.ClassingVO;
+import kr.or.ddit.dto.ClassroomVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public class ClassServiceImpl implements ClassService {
+
+	private ClassDAO classDAO;
+	public void setClassDAO(ClassDAO classDAO) {
+		this.classDAO = classDAO;
+	}
+	
+	private ClassroomDAO classroomDAO;
+	public void setClassroomDAO(ClassroomDAO classroomDAO) {
+		this.classroomDAO = classroomDAO;
+	}
+	
+	@Override
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClassVO> classList = null;
+		List<SubjectVO> subjectList = null;
+		
+		int startRow = cri.getStartRowNum();
+		int endRow = startRow+cri.getPerPageNum()-1;
+		Map<String, Object> dataParam = new HashMap<String, Object>();
+		dataParam.put("startRow", startRow);
+		dataParam.put("endRow", endRow);
+		dataParam.put("searchType", cri.getSearchType());
+		dataParam.put("keyword", cri.getKeyword());
+		
+		classList = classDAO.getAllClass(dataParam);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		dataMap.put("classList", classList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+	@Override
+	public List<SubjectVO> getSubDetail(int subcode) throws SQLException {
+		List<SubjectVO> subList = null;
+		subList = classDAO.getSubDetail(subcode);
+		return subList;
+	}
+
+	/**
+	 * 수업 상세 정보 받기
+	 */
+	@Override
+	public Map<String, Object> getClassDetail(int class_code) throws SQLException {
+		Map<String, Object> classDetailMap = new HashMap<String, Object>(); 
+		
+		ClassVO classvo = classDAO.getClassDetail(class_code);
+		
+//		System.out.println(classvo.getSubject_code());
+		int subjectCode = Integer.parseInt(classvo.getSubjectCode());
+		List<SubjectVO> subDetailList = classDAO.getSubDetail(subjectCode);
+		
+		if(classvo!=null && subDetailList!=null) {
+			classDetailMap.put("classvo", classvo);
+			classDetailMap.put("subDetailList", subDetailList);
+		}
+		return classDetailMap;
+	}
+
+	@Override
+	public void registClass(ClassVO classVO) throws SQLException {
+//		System.out.println("class from Service : " + classVO);
+		int classSeq = classDAO.getClassCode();
+//		System.out.println(classSeq);
+//		System.out.println(classVO.getClassCode());
+		String class_code = String.valueOf(classSeq);
+		classVO.setClassCode(class_code);
+		
+		classDAO.registClass(classVO);
+	}
+
+	@Override
+	public void removeClass(ClassVO classVO) throws SQLException {
+
+		ClassVO getClass = classDAO.getClassDetail(Integer.parseInt(classVO.getClassCode()));
+		
+		classDAO.removeClass(getClass);
+	}
+
+	@Override
+	public Map<String, Object> getSearchClassList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(classDAO.selectSearchClassListCount(cri));
+
+		List<ClassVO> classList = classDAO.selectSearchClassList(cri);
+
+		dataMap.put("classList", classList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public List<MemberVO> getTeacherList(String subjectName) throws SQLException {
+		List<MemberVO> teacherList = null;
+		teacherList = classDAO.getTeacherList(subjectName);
+		return teacherList;
+	}
+
+	@Override
+	public Map<String, Object> getTeacherDetail(String id) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		MemberVO teacher = classDAO.getTeacherById(id);
+		List<CertificateVO> cerList = classDAO.getCertificateList(id);
+		
+		dataMap.put("teacher", teacher);
+		dataMap.put("cerList", cerList);
+		
+		return dataMap;
+	}
+
+	/**
+	 * 수업 개설에 필요한 모든 데이터들 반환
+	 */
+	@Override
+	public Map<String, Object> getClassRegElementList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(classDAO.selectSearchClassListCount(cri));
+
+		List<ClassVO> classList = classDAO.selectSearchClassList(cri);
+		List<ClassroomVO> roomList = classroomDAO.getClassroom();
+
+		dataMap.put("classList", classList);
+		dataMap.put("roomList", roomList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> getClassing(String id) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClassingVO> classingList = classDAO.getClassing(id);
+		
+		dataMap.put("classingList", classingList);
+
+		return dataMap;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

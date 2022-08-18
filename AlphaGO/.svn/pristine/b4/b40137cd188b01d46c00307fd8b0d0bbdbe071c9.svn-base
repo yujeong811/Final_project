@@ -1,0 +1,56 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class AttendanceVO {
+	private int attendance_code;
+	private Date in_time;
+	private Date out_time;
+	private String id;
+	private int attendance_status;
+	private String reason;
+	public int getAttendance_code() {
+		return attendance_code;
+	}
+	public void setAttendance_code(int attendance_code) {
+		this.attendance_code = attendance_code;
+	}
+	public Date getIn_time() {
+		return in_time;
+	}
+	public void setIn_time(Date in_time) {
+		this.in_time = in_time;
+	}
+	public Date getOut_time() {
+		return out_time;
+	}
+	public void setOut_time(Date out_time) {
+		this.out_time = out_time;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getAttendance_status() {
+		return attendance_status;
+	}
+	public void setAttendance_status(int attendance_status) {
+		this.attendance_status = attendance_status;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	@Override
+	public String toString() {
+		return "AttendanceVO [attendance_code=" + attendance_code + ", in_time=" + in_time + ", out_time=" + out_time
+				+ ", id=" + id + ", attendance_status=" + attendance_status + ", reason=" + reason + "]";
+	}
+
+
+
+}

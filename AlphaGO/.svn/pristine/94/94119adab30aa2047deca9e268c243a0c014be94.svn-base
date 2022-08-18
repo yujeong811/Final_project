@@ -1,0 +1,366 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    
+    
+<body>
+	<div class="container-fluid">
+
+                        <div class="mx-n4 mt-n4">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card mb-0">
+                                        <div class="card-body p-0">
+                                            <div class="profile-bg position-relative overflow-hidden">
+                                                <div class="bg-overlay bg-dark bg-gradient"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <div class="card mt-n5">
+                                    <div class="card-body text-center">
+                                        <div class="avatar-xl mx-auto mb-4">
+                                            <img src="<%=request.getContextPath() %>/resources/assets/images/users/avatar-1.jpg" alt="" class="rounded-circle img-thumbnail">
+                                        </div>
+                                        <h5 class="mb-1">홍길동</h5>
+                                        <p class="text-muted">노운고등학교 2학년</p>
+
+                                        <div><i class="mdi mdi-clock-time-four-outline text-muted font-size-16 align-middle me-1"></i> <span class="align-middle"><b class="fw-semibold font-size-16">58:32</b> 후 자동 로그아웃 </span></div>
+                                    </div>
+                                    <div class="d-flex border-top p-2">
+                                        <div class="flex-grow-1">
+                                            <div class="p-2 ps-3 text-danger">미출석</div>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <button type="button" class="btn btn-soft-purple"><i class="mdi mdi-qrcode-scan me-1"></i> QR 출석체크</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card -->
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div id="my_calendar"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-xl-9">
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                  <div class="row">
+                                                    <div class="col-9">
+	                                                    <h5 class="card-title mb-4">
+	                                                    	<i class="uil uil-calender font-size-20 me-2"></i>
+	                                                    	<span class="font-size-16"><b>오늘의 일정</b>&nbsp;&nbsp;&nbsp;7월 1일(금)</span>
+	                                                    </h5>
+                                                    </div>
+                                                    <div class="col-3 text-end">
+                                                      <button type="button" class="btn btn-soft-purple btn-sm">시간표</button>
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  
+													  <div class="table-responsive">
+			                                            <table class="table table-hover mb-0">
+			                                               
+			                                                <tbody>
+			                                                    <tr>
+			                                                        <th scope="row" style="width: 100px;">13:00</th>
+			                                                        <td>국어수업시간</td>
+			                                                        
+			                                                    </tr>
+			                                                    <tr>
+			                                                        <th scope="row">14:30</th>
+			                                                        <td>영어수업시간</td>
+			                                                    </tr>
+			                                                    <tr>
+			                                                        <th scope="row">16:30</th>
+			                                                        <td>수학수업시간</td>
+			                                                    </tr>
+			                                                </tbody><!-- end tbody -->
+			                                            </table><!-- end table -->
+			                                        </div>
+
+                                                    
+                                                </div>
+                                                <!-- end card body -->
+                                            </div>
+                                            <!-- end card -->
+
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-3">Blog</h5>
+
+                                                    <div data-simplebar="init" style="max-height: 242px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -20px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; padding-right: 20px; padding-bottom: 0px; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item py-3 px-0">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img src="assets/images/small/img-4.jpg" alt="blog img" class="avatar-lg h-auto rounded">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="font-size-14 mb-1 text-truncate"><a href="#" class="text-dark">Beautiful Day with Friends</a></h5>
+                                                                        <ul class="list-inline font-size-13 text-muted">
+                                                                            <li class="list-inline-item">
+                                                                                <a href="#" class="text-muted">
+                                                                                    <i class="uil uil-user me-1"></i> Katie
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="list-inline-item">
+                                                                                <i class="uil uil-calender me-1"></i> 12 May
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div class="dropdown">
+                                                                            <a class="btn btn-link text-dark font-size-16 p-1 dropdown-toggle shadow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <i class="uil uil-ellipsis-h"></i>
+                                                                            </a>
+                                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item py-3 px-0">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img src="assets/images/small/img-3.jpg" alt="blog img" class="avatar-lg h-auto rounded">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="font-size-14 mb-1 text-truncate"><a href="#" class="text-dark">Morning skating with friends</a></h5>
+                                                                        <ul class="list-inline font-size-13 text-muted">
+                                                                            <li class="list-inline-item">
+                                                                                <a href="#" class="text-muted">
+                                                                                    <i class="uil uil-user me-1"></i> Katie
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="list-inline-item">
+                                                                                <i class="uil uil-calender me-1"></i> 24 Apr
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div class="dropdown">
+                                                                            <a class="btn btn-link text-dark font-size-16 p-1 dropdown-toggle shadow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <i class="uil uil-ellipsis-h"></i>
+                                                                            </a>
+                                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item py-3 px-0">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img src="assets/images/small/img-2.jpg" alt="blog img" class="avatar-lg h-auto rounded">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="font-size-14 mb-1 text-truncate"><a href="#" class="text-dark">Project Discussion with Team</a></h5>
+                                                                        <ul class="list-inline font-size-13 text-muted">
+                                                                            <li class="list-inline-item">
+                                                                                <a href="#" class="text-muted">
+                                                                                    <i class="uil uil-user me-1"></i> Katie
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="list-inline-item">
+                                                                                <i class="uil uil-calender me-1"></i> 12 Apr
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div class="dropdown">
+                                                                            <a class="btn btn-link text-dark font-size-16 p-1 dropdown-toggle shadow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <i class="uil uil-ellipsis-h"></i>
+                                                                            </a>
+                                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item py-3 px-0">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0 me-3">
+                                                                        <div>
+                                                                            <img src="assets/images/small/img-9.jpg" alt="blog img" class="avatar-lg h-auto rounded">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 overflow-hidden">
+                                                                        <h5 class="font-size-14 mb-1 text-truncate"><a href="#" class="text-dark">Reading book</a></h5>
+                                                                        <ul class="list-inline font-size-13 text-muted">
+                                                                            <li class="list-inline-item">
+                                                                                <a href="#" class="text-muted">
+                                                                                    <i class="uil uil-user me-1"></i> Katie
+                                                                                </a>
+                                                                            </li>
+                                                                            <li class="list-inline-item">
+                                                                                <i class="uil uil-calender me-1"></i> 01 Apr
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="flex-shrink-0 ms-2">
+                                                                        <div class="dropdown">
+                                                                            <a class="btn btn-link text-dark font-size-16 p-1 dropdown-toggle shadow-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <i class="uil uil-ellipsis-h"></i>
+                                                                            </a>
+                                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 344px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 180px; transform: translate3d(0px, 62px, 0px); display: block;"></div></div></div>
+                                                </div>
+                                                <!-- end card body -->
+                                            </div>
+                                            <!-- end card -->
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            
+		                                  <div class="card">
+		                                    
+		                                    <div class="card-body">
+		
+		                                        <!-- Nav tabs -->
+		                                        <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
+		                                            <li class="nav-item">
+		                                                <a class="nav-link active" data-bs-toggle="tab" href="#home1" role="tab" aria-selected="false">
+		                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+		                                                    <span class="d-none d-sm-block">학교성적</span> 
+		                                                </a>
+		                                            </li>
+		                                            <li class="nav-item">
+		                                                <a class="nav-link" data-bs-toggle="tab" href="#profile1" role="tab" aria-selected="false">
+		                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+		                                                    <span class="d-none d-sm-block">학원성적</span> 
+		                                                </a>
+		                                            </li>
+		                                        </ul>
+		        
+		                                        <!-- Tab panes -->
+		                                        <div class="tab-content text-muted">
+		                                            <div class="tab-pane active" id="home1" role="tabpanel">
+		                                                <div id="sch_chart" class="apex-chart pt-3" style="padding-left: 20px;"></div>
+		                                            </div>
+		                                            <div class="tab-pane" id="profile1" role="tabpanel">
+		                                                <div id="acd_chart" class="apex-chart pt-3" style="padding-left: 20px;"></div>
+		                                            </div>
+		                                            
+		                                        </div>
+		                                    </div><!-- end card body -->
+		                                </div>
+                                            <!-- end card -->
+
+                                            
+                                            
+                                            
+                                            <!-- end card -->
+
+                                            <div class="card">
+                                                <div class="card-header border-bottom-0">
+                                                    <h5 class="card-title">Similar Profiles</h5>
+                                                </div>
+                                                <div>
+
+                                                    <div class="list-group list-group-flush mb-2">
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-2.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Esther James</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Frontend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-3.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Jacqueline Steve</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">UI/UX Designer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">George Whalen</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Backend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-5.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Frontend Developer</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Frontend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div><!-- end card body -->
+                                            </div><!-- end card -->
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                        
+                    </div>
+
+                 
+</body>

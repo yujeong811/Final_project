@@ -1,0 +1,10 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.AssignVO;
+
+public interface AssignService {
+	public List<AssignVO> selectAssign() throws SQLException;
+}

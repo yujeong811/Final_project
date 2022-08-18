@@ -1,0 +1,17 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.CalendarVO;
+
+public interface CalendarDAO {
+
+	public List<CalendarVO> selectAllCalender() throws SQLException;
+	
+	public void insertCalender(CalendarVO calendarVO) throws SQLException;
+	
+	public void deleteCalender() throws SQLException;
+}

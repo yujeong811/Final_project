@@ -1,0 +1,72 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class AssignVO {
+	private int assign_code;
+	private int class_code;
+	private Date start_date;
+	private Date end_date;
+	private Date regdate;
+	private Date updatedate;
+	private String title;
+	private String content;
+	private String status;
+	
+	public int getAssign_code() {
+		return assign_code;
+	}
+	public void setAssign_code(int assign_code) {
+		this.assign_code = assign_code;
+	}
+	public int getClass_code() {
+		return class_code;
+	}
+	public void setClass_code(int class_code) {
+		this.class_code = class_code;
+	}
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public Date getUpdatedate() {
+		return updatedate;
+	}
+	public void setUpdatedate(Date updatedate) {
+		this.updatedate = updatedate;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+}

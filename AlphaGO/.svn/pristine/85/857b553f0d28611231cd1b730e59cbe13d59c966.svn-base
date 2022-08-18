@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="classingList" value="${dataMap.classingList }" />
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/index2.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/index3.js"></script>
+<script>
+// var score = ${teacher.reviewScore};
+// var scoreList = ${classReviewList};
+
+// var starRatings;
+// function onload(event) { //별점 onload 함수
+// 	var starRating3 = raterJs( {
+// 		max:5, 
+// 		readOnly:true, 
+// 		rating:parseFloat(score), 
+// 		element:document.querySelector("#reviewScoreRater")
+// }); 
+</script>
+<script>
+function revClass(btn) {
+	className = $(btn).val();
+	
+	$.ajax({
+	    type : "POST",          
+	    url : "<%=request.getContextPath()%>/review/reviewList.go",
+		data : {
+			"className" : className							
+		}, // Json 형식의 데이터이다.
+		success : function(res) {
+			if(res != null){
+				printData(res, $('#hello'), $('#review-template'));
+			}else(res == null){
+				str = "";
+				str += '<div class="bg-light mb-2" style="border-radius: 5px; padding: 15px;">';
+				str += '<p style="font-weight: bold;">후기가 없습니다.</p>';
+				str += '</div>';				
+			}
+		},
+		error : function(error) { 
+			alert("에러 : " + error.status);
+		}
+	});
+}
+
+function notrevClass(btn) {
+	className = $(btn).val();
+	
+	$.ajax({
+	    type : "POST",          
+	    url : "<%=request.getContextPath()%>/review/reviewList.go",
+		data : {
+			"className" : className							
+		}, // Json 형식의 데이터이다.
+		success : function(res) {
+			printData(res, $('#hello'), $('#review-template'));
+		},
+		error : function(error) { 
+			alert("에러 : " + error.status);
+		}
+	});
+}
+
+function printingData(data,target,templateObject){
+	var template=Handlebars.compile(templateObject.html());
+	var html = template(data);	
+	target.append(html);
+}
+
+Handlebars.registerHelper("fn_persent20", function(v1, option) {            
+	return v1 * 20;
+});
+
+
+</script>
+<script type="text/x-handlebars-template" id="review-template">
+<span>{{avg}}</span>
+{{#each revList}}
+<div class="card-body bg-light mb-2" style="border-radius: 5px; padding: 15px;">					
+	<p style="font-weight: bold;">{{className}} | {{name}}</p>
+	<div class="d-flex justify-content-start">
+		<div id="reviewScoreRater" class="star-rating disabled" data-rating="{{starScore}}" title="{{starScore}}/5" style="width: 80px; height: 16px; background-size: 16px;margin-top: 4px;">
+			<div class="star-value" style="background-size: 16px; width:{{fn_persent20 starScore}}%;"></div>
+		</div>
+		<div style="font-weight: bold; margin-left: 10px;">{{starScore}}</div>
+	</div>
+	<div style="margin-top: 10px;">{{content}}</div>						
+</div>
+{{/each}}
+</script>
+</head>
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-4" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<h5 style="margin-bottom: 15px; font-weight: bold;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>수업 리스트
+					</h5>
+					<div style="overflow:auto;height: 770px;">
+						<c:forEach items="${classList }" var="cla">	
+							<button type="button" class="btn btn-outline-purple mb-2 claName" style="width: 100%;" onclick="revClass(this)"
+							    	value="${cla.className}">${cla.className}</button>
+						</c:forEach>
+						<hr style="margin-top: 7px;">
+						<c:forEach items="${classingList }" var="classing">
+						 	<button type="button" class="btn btn-outline-secondary mb-2"
+								style="width: 100%;" onclick="notrevClass(this)"
+								value="${classing.className}">${classing.className}</button>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="card">
+				<div class="card-body" style="height:848px;overflow:auto">
+					<h5 style="font-weight:bold;margin-bottom: 15px;"><i class="uil-comment-lines" style="margin-right:5px"></i>수업 후기</h5>
+							<div id="hello">
+								<c:if test="${not empty revList }">
+									<c:forEach var="review" items="${revList }" varStatus="cnt">
+										<div class="card-body bg-light mb-2" style="border-radius: 5px; padding: 15px;">					
+											<p style="font-weight: bold;">${review.className } | ${review.name }</p>
+											<div class="d-flex justify-content-start">
+												<div class="reviewScoreRater${cnt.index }">
+													<div id="reviewScoreRater" class="star-rating disabled" data-rating="${review.starScore}" title="${review.starScore}/5" style="width: 80px; height: 16px; background-size: 16px;margin-top: 4px;"><div class="star-value" style="background-size: 16px; width: ${review.starScore * 20}%;"></div></div>
+												</div>
+												<div style="font-weight: bold; margin-left: 10px;">${review.starScore }</div>
+											</div>
+											<div style="margin-top: 10px;">${review.content }</div>						
+										</div>
+									</c:forEach>
+								</c:if>
+								<c:if test="${empty revList }">
+								<div class="bg-light mb-2" style="border-radius: 5px; padding: 15px;">
+									<p style="font-weight: bold;">후기가 없습니다.</p>
+								</div>
+								</c:if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+</body>

@@ -1,0 +1,391 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="teacherList" value="${dataMap.teacherList }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+
+<head>
+<script src="<%= request.getContextPath()%>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/sm_chart.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets/libs/rater-js/index.js"></script>
+
+<style>
+table th, td {
+	text-align: center;
+}
+</style>
+</head>
+
+
+
+
+<body>
+
+	<!-- Content Header (Page header) -->
+
+
+	<!-- Main content -->
+
+	<div class="card">
+     <div class="col-sm-12">
+       <div class="col-sm-5" style="float:left;">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h4 style="margin-top: 20px;">강사 조회</h4>
+					</div>
+
+					
+				</div>
+			</div>
+		</section>
+		<div class="card-header with-border">
+             
+			<button type="button" class="btn btn-primary" id="registBtn"
+				onclick="OpenWindow('registteacher.go','강사등록',800,800);">강사등록</button>
+			<div id="keyword" class="card-tools"
+				style="width: 250px; float: right;">
+				<div class="input-group">
+
+					<select class="form-control col-md-3" name="perPageNum"
+						id="perPageNum">
+						<option value="10" ${cri.perPageNum==10 ? 'selected':'' }>개수</option>
+						<option value="20" ${cri.perPageNum==20 ? 'selected':'' }>20개씩</option>
+						<option value="30" ${cri.perPageNum==30 ? 'selected':'' }>30개씩</option>
+						<option value="50" ${cri.perPageNum==50 ? 'selected':'' }>50개씩</option>
+
+					</select> <select class="form-control col-md-3" name="searchType"
+						id="searchType">
+						<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>전체</option>
+						<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>이름</option>
+						<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>과목</option>
+						<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>전화번호</option>
+					
+
+					</select> <input class="form-control" type="text" style="width: 40px;"
+						name="keyword" placeholder="검색어" value="${cri.keyword }" />
+					<span class="input-group-append">
+						<button class="btn btn-soft-primary" style="float: right;"
+							type="button" id="searchBtn" data-card-widget="search"
+							onclick="list_go(1);">
+							<i class="fa fa-fw fa-search"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="card-body" style="padding:5px;">
+			<table class="table table-bordered text-center  table-hover ">
+			   <thead>
+				<tr style="font-size: 0.95em; background-color:#86a8d9;color:white;" >
+					<th style="width: 3%;">이름</th>
+					<th style="width: 3%;">과목</th>
+					<th style="width: 5%;">전화번호</th>
+					
+					
+
+				</tr>
+				</thead>
+					<c:if test="${!empty teacherList }">
+							<c:forEach items="${teacherList }" var="tea">
+							 
+								<tr style='font-size: 0.85em;' onclick="">
+								    <td style="display:none;"><input type="hidden" name="id" value="${tea.id }" ></td>
+									<td >${tea.name }</td>
+									<td>${tea.subject }</td>
+									<td>${tea.phone}</td>
+									
+								</tr>
+							</c:forEach>
+					</c:if>
+				
+			</table>
+		</div>
+		<div class="card-footer">
+			<nav aria-label="pds list Navigation">
+				<ul class="pagination justify-content-center m-0">
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	
+
+
+
+	<!-- Main content -->
+
+	<div class="col-sm-7" style="float:right; padding:5px;">
+						
+					<div class="card" >
+					    <div class="card-header">
+							<h5 class="card-title"><i class="uil-book-reader"></i>&nbsp;강사 정보 상세보기</h5>
+							
+							  <button type="button"  style="float:right;  margin-left:5px;"class="btn btn-danger" id="deleteBtn"
+						onclick="">삭제</button>
+						        <button type="button" style="float: right;" class="btn btn-warning"
+					data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					학생들 성적 증감률</button>
+
+
+				<button type="button" style="float: right; margin-right: 10px;"
+					class="btn btn-success" data-bs-toggle="modal"
+					data-bs-target="#staticBackdrop2">강사후기</button>
+						
+						
+					    </div>
+						<div class="card-body d-flex justify-content-center">
+							<div class="table-responsive" style="width: 578px;">
+                              <table class="table table-bordered  mb-0">
+                                  <tbody>
+                                      <tr>
+                                          <td rowspan="3" style="width: 131px;">
+                                            <img src="<%=request.getContextPath() %>/resources/assets/images/users/avatar-10.jpg" alt="" class="avatar-xl">
+                                          </td>
+                                          <td style="width: 149px; background:#86a8d9;  color: white; font-weight: bold; ">아이디</td>
+                                          <td>rewr</td>
+                                      </tr>
+                                      <tr>
+                                          <td scope="row" style="background:#86a8d9;  color: white; font-weight: bold;">이름</td>
+                                          <td>홍길동</td>
+                                      </tr>
+                                      <tr>
+                                          <td scope="row" style="background:#86a8d9;  color: white; font-weight: bold;">전화번호</td>
+                                          <td>010-2222-2222</td>
+                                      </tr>
+                                      <tr>
+                                          <td></td>
+                                          <td scope="row" style="background:#86a8d9;  color: white; font-weight: bold;">등록일</td>
+                                          <td>2022-07-08</td>
+                                      </tr>
+                                  </tbody><!-- end tbody -->
+                              </table><!-- end table -->
+                              <table class="table table-bordered mb-0">
+                                  <tbody>
+                                      <tr>
+                                        <td scope="row" style="width: 131px; background:#86a8d9;  color: white; font-weight: bold;">출근시간</td>
+                                        <td>09:00</td>
+                                        <td scope="row" style="width: 131px; background:#86a8d9;  color: white; font-weight: bold;">퇴근시간</td>
+                                        <td>18:00</td>
+                                      </tr>
+                                      <tr>
+                                        <td scope="row" style="width: 131px;background:#86a8d9;  color:white; font-weight: bold;">과목</td>
+                                        <td>국어</td>
+                                        <td scope="row" style="width: 131px; background:#86a8d9;  color: white; font-weight: bold;">생년월일</td>
+                                        <td>1992-05-01</td>
+                                      </tr>
+                                  </tbody><!-- end tbody -->
+                              </table><!-- end table -->
+                              
+                              <hr>
+                             
+                          	<table class="table table-bordered mb-0">
+                          	
+                          	    <tr>
+                          	      <th scope="row" colspan="3" style="background:#86a8d9;  color: white; font-weight: bold;">강사 경력</th>
+                          	    </tr>
+                          	  </table>
+                              
+                             
+                              <!-- 코멘트  -->
+                             <div class="shadow p-3 mb-3 bg-light rounded" style="height: 139px;">
+                                 대덕인재개발원 수석 사원<br>
+                               	삼성 3년  연구원 근무<br>
+                                	넥슨 5년차 개발자
+                             </div>
+                             
+                             
+                     
+
+                             
+                          </div>
+						</div>
+	
+	
+					</div>
+
+
+					</div>
+			</div>
+		</div>
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel"></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<h5 style="margin-bottom: 15px; font-weight: bold;">
+						<i class="uil-chat-info" style="margin-right: 10px;"></i>수강평
+					</h5>
+					<div class="card">
+						<div class="card-body">
+							<p style="font-weight: bold;">
+								4차 산업과 혁명<span class="badge rounded-pill bg-primary"
+									style="font-size: 0.8em; padding: 8px; height: 25px; width: 50px; margin-left: 10px;">사회</span>
+							</p>
+							<p>이유정</p>
+							<div class="d-flex justify-content-start">
+								<div style="margin-right: 10px;">총 평점</div>
+								<div id="rater-step" dir="ltr" class="star-rating"
+									style="width: 110px; height: 22px; background-size: 22px;"
+									data-rating="2.5" title="3.5/5">
+									<div class="star-value"
+										style="background-size: 22px; width: 50%;"></div>
+								</div>
+								<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+							</div>
+							<div class="bg-light mt-3 mb-2"
+								style="border-radius: 5px; padding: 15px;">
+								<p style="font-weight: bold;">4차 산업과 혁명 | 이유정</p>
+								<div class="d-flex justify-content-start">
+									<div id="rater-step" dir="ltr" class="star-rating"
+										style="width: 110px; height: 22px; background-size: 22px;"
+										data-rating="2.5" title="3.5/5">
+										<div class="star-value"
+											style="background-size: 22px; width: 50%;"></div>
+									</div>
+									<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+								</div>
+								<div style="margin-top: 10px;">저도 타학원, 인강 여러 군데를 거쳐왔지만 김정민
+									어학원에는 절대 따라 올 수 없을거 같아요. 진심으로 김정민 선생님께 감사드리고, 학원의 직원분들 또한
+									감사드립니다. 제가 대구에 가면 꼭 들러서 감사 인사드리겠습니다.</div>
+							</div>
+							<div class="bg-light mt-3 mb-2"
+								style="border-radius: 5px; padding: 15px;">
+								<p style="font-weight: bold;">4차 산업과 혁명 | 이유정</p>
+								<div class="d-flex justify-content-start">
+									<div id="rater-step" dir="ltr" class="star-rating"
+										style="width: 110px; height: 22px; background-size: 22px;"
+										data-rating="2.5" title="3.5/5">
+										<div class="star-value"
+											style="background-size: 22px; width: 50%;"></div>
+									</div>
+									<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+								</div>
+								<div style="margin-top: 10px;">저도 타학원, 인강 여러 군데를 거쳐왔지만 김정민
+									어학원에는 절대 따라 올 수 없을거 같아요. 진심으로 김정민 선생님께 감사드리고, 학원의 직원분들 또한
+									감사드립니다. 제가 대구에 가면 꼭 들러서 감사 인사드리겠습니다.</div>
+							</div>
+							<div class="bg-light mt-3 mb-2"
+								style="border-radius: 5px; padding: 15px;">
+								<p style="font-weight: bold;">4차 산업과 혁명 | 이유정</p>
+								<div class="d-flex justify-content-start">
+									<div id="rater-step" dir="ltr" class="star-rating"
+										style="width: 110px; height: 22px; background-size: 22px;"
+										data-rating="2.5" title="3.5/5">
+										<div class="star-value"
+											style="background-size: 22px; width: 50%;"></div>
+									</div>
+									<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+								</div>
+								<div style="margin-top: 10px;">저도 타학원, 인강 여러 군데를 거쳐왔지만 김정민
+									어학원에는 절대 따라 올 수 없을거 같아요. 진심으로 김정민 선생님께 감사드리고, 학원의 직원분들 또한
+									감사드립니다. 제가 대구에 가면 꼭 들러서 감사 인사드리겠습니다.</div>
+							</div>
+							<div class="bg-light mt-3 mb-2"
+								style="border-radius: 5px; padding: 15px;">
+								<p style="font-weight: bold;">4차 산업과 혁명 | 이유정</p>
+								<div class="d-flex justify-content-start">
+									<div id="rater-step" dir="ltr" class="star-rating"
+										style="width: 110px; height: 22px; background-size: 22px;"
+										data-rating="2.5" title="3.5/5">
+										<div class="star-value"
+											style="background-size: 22px; width: 50%;"></div>
+									</div>
+									<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+								</div>
+								<div style="margin-top: 10px;">저도 타학원, 인강 여러 군데를 거쳐왔지만 김정민
+									어학원에는 절대 따라 올 수 없을거 같아요. 진심으로 김정민 선생님께 감사드리고, 학원의 직원분들 또한
+									감사드립니다. 제가 대구에 가면 꼭 들러서 감사 인사드리겠습니다.</div>
+							</div>
+							<div class="bg-light mt-3 mb-2"
+								style="border-radius: 5px; padding: 15px;">
+								<p style="font-weight: bold;">4차 산업과 혁명 | 이유정</p>
+								<div class="d-flex justify-content-start">
+									<div id="rater-step" dir="ltr" class="star-rating"
+										style="width: 110px; height: 22px; background-size: 22px;"
+										data-rating="2.5" title="3.5/5">
+										<div class="star-value"
+											style="background-size: 22px; width: 50%;"></div>
+									</div>
+									<div style="font-weight: bold; margin-left: 10px;">3.5</div>
+								</div>
+								<div style="margin-top: 10px;">저도 타학원, 인강 여러 군데를 거쳐왔지만 김정민
+									어학원에는 절대 따라 올 수 없을거 같아요. 진심으로 김정민 선생님께 감사드리고, 학원의 직원분들 또한
+									감사드립니다. 제가 대구에 가면 꼭 들러서 감사 인사드리겠습니다.</div>
+							</div>
+						</div>
+					</div>
+					>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">닫기</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 학생 증감률 모달 -->
+
+
+	<!-- Button trigger modal -->
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header "style=" background-color: #86a8d9; ">
+					<h5 class="modal-title " id="staticBackdropLabel" style="color: white;">강동주 강사의 수강을 듣는 학생의 성적 증감률</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+			<div class="tab-pane fade show active col-sm-12" id="pills-home"
+				role="tabpanel" aria-labelledby="pills-home-tab">
+				<div id="student_grade" class="col-sm-12"></div>
+			</div></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<c:if test="${from eq 'regist' }">
+		<script>
+			alert("등록되었습니다.");
+			window.close();
+			window.opener.location.reload();
+		</script>
+	</c:if>
+	
+	<script>
+	
+	
+	</script>
+
+
+</body>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeacherMas-Mapper">
+	<sql id="search">
+	
+		<if test="searchType == 'tcw'.toString()">
+			and name like '%'||#{keyword}||'%'
+			 
+			 or subject like '%'||#{keyword}||'%'
+			 
+			 or phone like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 't'.toString()">
+			and name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and subject like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and phone like '%'||#{keyword}||'%'
+		</if>
+		
+	</sql>
+
+
+	<select id="selectTeacherList" resultType="teachermas">
+		select
+		*
+		from
+		member
+			where  authority='ROLE_TEACHER'
+		order by subject asc
+	</select>
+	
+	<select id="selectTeacherListCount" resultType="int">
+		select 
+		count(*)
+		from
+		member
+		where  authority='ROLE_TEACHER'
+		 	order by subject asc	
+	</select>
+
+	<select id="selectSearchTeacherList" resultType="teachermas">
+		select
+		* 
+		from member
+		where id is not null
+		and  authority='ROLE_TEACHER'
+		<include refid="search" />
+		order by subject asc
+	</select>
+	
+	<select id="selectSearchTeacherListCount" resultType="int">
+		select
+		count(*) 
+		from member
+		where id is not null
+		and  authority='ROLE_TEACHER'
+		<include refid="search" />
+	</select>
+	
+	<update id="insertTeacher" parameterType="teachermas">
+		insert into
+		member(picture,id,name,subject,authority,phone,attend_time,out_time,regDate)
+		values(#{picture},#{id},#{name},#{subject},#{authority},#{phone},#{attendTime},#{outTime},#{regDate})
+	</update>
+
+
+	<select id="selectTeacherById" parameterType="str" resultType="teachermas">
+		select
+		*
+		from member
+		where id=#{id}
+	</select>
+	
+<!-- 	<select id="selectTeacherByPicture" parameterType="str" resultType="teachermas"> -->
+<!-- 		select -->
+<!-- 		* -->
+<!-- 		from member -->
+<!-- 		where picture=#{picture} -->
+<!-- 	</select> -->
+	
+	<update id="deleteTeacher" parameterType="str" >
+		delete
+		from member
+		where id=#{id}
+	</update>
+	
+	<select id="selectTeacherSequenceNextValue" resultType="str">
+		select teacher_seq.nextval from dual
+	</select>
+	
+</mapper>

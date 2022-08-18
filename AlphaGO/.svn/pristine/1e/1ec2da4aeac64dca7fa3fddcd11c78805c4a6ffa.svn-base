@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Exam-Mapper">
+	
+	<select id="getExam" resultType="Exam" parameterType="String">
+		select * from
+		(select a.exam_code, TO_CHAR(a.start_date, 'yyyy/MM/dd') as start_date, TO_CHAR(a.end_date, 'yyyy/MM/dd') as end_date,
+		a.exam_name, a.class_code, , d.class_name
+		from exam a, class b, class_ing c, class d
+		where a.class_code = b.class_code
+		and b.class_code = c.class_code
+		and c.class_code = d.class_code
+		and c.id = #{id}
+		minus
+		select a.exam_code, TO_CHAR(a.start_date, 'yyyy/MM/dd') as start_date, TO_CHAR(a.end_date, 'yyyy/MM/dd') as end_date,
+		a.exam_name, a.class_code, e.class_name
+		from exam a, class b, class_ing c, academy_score d, class e
+		where a.class_code = b.class_code
+		and b.class_code = c.class_code
+		and d.exam_code = a.exam_code
+		and c.class_code = e.class_code
+		and c.id = #{id}
+		and d.id = #{id})
+		<![CDATA[where TO_CHAR(SYSDATE, 'yyyy/MM/dd') <= end_date]]>
+		order by end_date
+	</select>
+	
+</mapper>

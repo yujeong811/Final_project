@@ -1,0 +1,22 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.AssignDAO;
+import kr.or.ddit.dto.AssignVO;
+
+public class AssignServiceImpl implements AssignService {
+
+	private AssignDAO assignDAO;
+	public void setAssignDAO(AssignDAO assignDAO) {
+		this.assignDAO = assignDAO;
+	}
+	
+	@Override
+	public List<AssignVO> selectAssign() throws SQLException {
+		List<AssignVO> assignList = assignDAO.selectAssign();
+		return assignList;
+	}
+
+}

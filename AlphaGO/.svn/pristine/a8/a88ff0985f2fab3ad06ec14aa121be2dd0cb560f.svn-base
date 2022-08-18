@@ -1,0 +1,169 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.ScoreDAO;
+import kr.or.ddit.dto.SHUnivVO;
+import kr.or.ddit.dto.SchoolScoreVO;
+import kr.or.ddit.dto.UniversityVO;
+
+public class ScoreServiceImpl implements ScoreService{
+
+	private ScoreDAO scoreDAO;
+	public void setScoreDAO(ScoreDAO scoreDAO) {
+		this.scoreDAO = scoreDAO;
+	}
+
+	@Override
+	public List<SchoolScoreVO> getScoreList(SchoolScoreVO score) throws SQLException {
+		return scoreDAO.selectSchoolScoreListByTestName(score);
+	}
+
+	@Override
+	public void deleteScoreDate(int sscode) throws SQLException {
+		scoreDAO.deleteScoreData(sscode);
+	}
+
+	@Override
+	public void insertScore(SchoolScoreVO score) throws SQLException {
+		int sscode = scoreDAO.selectNextSeq();
+		score.setSscode(sscode);
+
+		System.out.println("scoreService : =========");
+		System.out.println(score.toString());
+		scoreDAO.insertScore(score);
+	}
+
+	@Override
+	public void modifyScore(SchoolScoreVO score) throws SQLException {
+		scoreDAO.modifyScore(score);
+	}
+
+	@Override
+	public Map<String, Object> getScoreListBySubjectMap(String id) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		//국어 1 / 수학 2 / 사회 3 / 과학 4 / 영어 5
+		List<SchoolScoreVO> korList = new ArrayList<SchoolScoreVO>();
+		List<SchoolScoreVO> mathList = new ArrayList<SchoolScoreVO>();
+		List<SchoolScoreVO> socialList = new ArrayList<SchoolScoreVO>();
+		List<SchoolScoreVO> scienceList = new ArrayList<SchoolScoreVO>();
+		List<SchoolScoreVO> engList = new ArrayList<SchoolScoreVO>();
+
+
+		List<SchoolScoreVO> scoreList = scoreDAO.selectAllScoreList(id);
+		for(SchoolScoreVO score : scoreList) {
+			switch (score.getSubjectCode()) {
+			case 1:
+				korList.add(score);
+				break;
+			case 2:
+				mathList.add(score);
+				break;
+			case 3:
+				socialList.add(score);
+				break;
+			case 4:
+				scienceList.add(score);
+				break;
+			case 5:
+				engList.add(score);
+				break;
+
+			}
+		}
+
+		dataMap.put("korList", korList);
+		dataMap.put("mathList", mathList);
+		dataMap.put("socialList", socialList);
+		dataMap.put("scienceList", scienceList);
+		dataMap.put("engList", engList);
+
+
+		double korAvg = getSchoolScoreAVG(korList);
+		double mathAvg = getSchoolScoreAVG(mathList);
+		double socialAvg = getSchoolScoreAVG(socialList);
+		double scienceAvg = getSchoolScoreAVG(scienceList);
+		double engAvg = getSchoolScoreAVG(engList);
+
+		//점수평균
+		dataMap.put("korAvg", korAvg);
+		dataMap.put("mathAvg", mathAvg);
+		dataMap.put("socialAvg", socialAvg);
+		dataMap.put("scienceAvg", scienceAvg);
+		dataMap.put("engAvg", engAvg);
+
+		//등급평균
+		korAvg = getSchoolGradeAVG(korList);
+		mathAvg = getSchoolGradeAVG(mathList);
+		socialAvg = getSchoolGradeAVG(socialList);
+		scienceAvg = getSchoolGradeAVG(scienceList);
+		engAvg = getSchoolGradeAVG(engList);
+
+		dataMap.put("korGradeAvg", korAvg);
+		dataMap.put("mathGradeAvg", mathAvg);
+		dataMap.put("socialGradeAvg", socialAvg);
+		dataMap.put("scienceGradeAvg", scienceAvg);
+		dataMap.put("engGradeAvg", engAvg);
+
+		//평균점수 평균
+		korAvg = getSchoolStandardAVG(korList);
+		mathAvg = getSchoolStandardAVG(mathList);
+		socialAvg = getSchoolStandardAVG(socialList);
+		scienceAvg = getSchoolStandardAVG(scienceList);
+		engAvg = getSchoolStandardAVG(engList);
+
+		dataMap.put("korStandardAvg", korAvg);
+		dataMap.put("mathStandardAvg", mathAvg);
+		dataMap.put("socialStandardAvg", socialAvg);
+		dataMap.put("scienceStandardAvg", scienceAvg);
+		dataMap.put("engStandardAvg", engAvg);
+
+		return dataMap;
+	}
+
+	private double getSchoolScoreAVG(List<SchoolScoreVO> list) {
+		double avg = 0.0;
+		if(list != null && list.size() != 0) {
+			int sum = 0;
+			for(SchoolScoreVO score : list) {
+				sum += score.getMyscore();
+			}
+			avg = (double)sum / list.size();
+		}
+
+		return avg;
+	}
+
+	private double getSchoolGradeAVG(List<SchoolScoreVO> list) {
+		double avg = 0.0;
+		if(list != null && list.size() != 0) {
+			int sum = 0;
+			for(SchoolScoreVO score : list) {
+				sum += Integer.parseInt(score.getMygrade());
+			}
+			avg = (double)sum / list.size();
+		}
+
+		return avg;
+	}
+
+	private double getSchoolStandardAVG(List<SchoolScoreVO> list) {
+		double avg = 0.0;
+		if(list != null && list.size() != 0) {
+			int sum = 0;
+			for(SchoolScoreVO score : list) {
+				sum += score.getStandardScore();
+			}
+			avg = (double)sum / list.size();
+		}
+
+		return avg;
+	}
+
+
+}

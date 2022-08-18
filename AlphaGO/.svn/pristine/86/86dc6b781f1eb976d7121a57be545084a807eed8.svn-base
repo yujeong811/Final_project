@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Popup-Mapper">
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and title like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and content like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			and (
+			title like '%'||#{keyword}||'%'
+			or
+			content like '%'||#{keyword}||'%'
+			)
+		</if>
+	</sql>
+
+	<select id="selectPopupList" resultType="popup">
+		select
+		popcode
+		,title
+		,content
+		,inuse
+		,tel
+		,uploadpath
+		,filename
+		,filetype
+		,regdate
+		,start_date
+		,end_date
+		from
+		popup
+		where
+		popcode is not null
+		<include refid="search" />
+	</select>
+
+	<select id="selectPopupCount" resultType="int">
+		select count(*) from popup
+	</select>
+
+</mapper>

@@ -1,0 +1,142 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/teacher")
+public class TeacherController {
+	   @RequestMapping("/home")
+			public String home() throws Exception {
+				String url = "teacher/home";
+				return url;
+			}
+	   @RequestMapping("/attend")
+		public String atten() throws Exception {
+			String url = "teacher/attend";
+			return url;
+		}
+	   @RequestMapping("/mypage")
+		public String mypage() throws Exception {
+			String url = "teacher/mypage";
+			return url;
+		}
+	   @RequestMapping("/modify")
+		public String modify() throws Exception {
+			String url = "teacher/modify";
+			return url;
+		}
+	   @RequestMapping("/mypagePass")
+	   public String mypagePass() throws Exception {
+		   String url = "teacher/mypagePass";
+		   return url;
+	   }
+	   
+	   
+	   @RequestMapping("/studentmanage_home")
+	   public String detail() throws Exception {
+		   String url = "teacher/studentmanage_home";
+		   return url;
+	   }
+	   @RequestMapping("/studentmanage_exam")
+		public String exam() throws Exception {
+			String url = "teacher/studentmanage_exam";
+			return url;
+		}
+	   @RequestMapping("/studentmanage_attendance")
+	 		public String attendance() throws Exception {
+	 			String url = "teacher/studentmanage_attendance";
+	 			return url;
+	 		}
+	   @RequestMapping("/studentmanage_school")
+		public String schooltest() throws Exception {
+			String url = "teacher/studentmanage_school";
+			return url;
+		}
+	   @RequestMapping("/studentmanage_acardemy")
+			public String acardemytest() throws Exception {
+				String url = "teacher/studentmanage_acardemy";
+				return url;
+			}
+	   @RequestMapping("/exammanage")
+		public String exammange() throws Exception {
+			String url = "teacher/exammanage";
+			return url;
+		}
+	   
+	   @RequestMapping("/exammanage2")
+			public String exammange2() throws Exception {
+				String url = "teacher/exammanage2";
+				return url;
+			}
+	   @RequestMapping("/submitproblem")
+			public String submitproblem() throws Exception {
+				String url = "teacher/submitproblem";
+				return url;
+			}
+	   @RequestMapping("/problemmanage")
+				public String problemmanage() throws Exception {
+					String url = "teacher/problemmanage";
+					return url;
+				}
+	   @RequestMapping("/problemmodify")
+	          public String problemmodify()throws Exception{
+		   String url="teacher/problemmodify";
+		   return url;
+	   }
+	   @RequestMapping("/problemcreateG")
+       public String problemcreateG()throws Exception{
+	   String url="teacher/problemcreateG";
+	   return url;
+}
+	   @RequestMapping("/problemcreateJ")
+       public String problemcreateJ()throws Exception{
+	   String url="teacher/problemcreateJ";
+	   return url;
+}
+	   @RequestMapping("/problemjcreateG")
+       public String problemjcreateG()throws Exception{
+	   String url="teacher/problemjcreateG";
+	   return url;
+}
+	   
+	   @RequestMapping("/problemjcreateJ")
+       public String problemjcreateJ()throws Exception{
+	   String url="teacher/problemjcreateJ";
+	   return url;
+}
+	   
+	   @RequestMapping("/wrongnote")
+       public String wrongnote()throws Exception{
+	   String url="teacher/wrongnote";
+	   return url;
+}
+	   @RequestMapping("/teacherconsult")
+       public String teacherconsult()throws Exception{
+	   String url="teacher/teacherconsult";
+	   return url;
+}
+	   @RequestMapping("/teacherconsultdetail")
+       public String teacherconsultdetail()throws Exception{
+	   String url="teacher/teacherconsultdetail";
+	   return url;
+}
+	   @RequestMapping("/teacherconsultend")
+       public String teacherconsultend()throws Exception{
+	   String url="teacher/teacherconsultend";
+	   return url;
+}
+	   
+	
+	   @RequestMapping("/teacherconsultcancel")
+       public String teacherconsultcancel()throws Exception{
+	   String url="teacher/teacherconsultcancel";
+	   return url;
+}
+	   @RequestMapping("/teacheranalysis")
+       public String teacheranalysis()throws Exception{
+	   String url="teacher/teacheranalysis	";
+	   return url;
+}
+}

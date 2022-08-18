@@ -1,0 +1,49 @@
+package kr.or.ddit.dto;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class ClassroomVO {
+	private String capacity;
+	private String roomCode;
+	private String roomFloor;
+	private String roomNo;
+	private String usePurpose;
+	
+	public String getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+	public String getRoomCode() {
+		return roomCode;
+	}
+	public void setRoomCode(String roomCode) {
+		this.roomCode = roomCode;
+	}
+	public String getRoomFloor() {
+		return roomFloor;
+	}
+	public void setRoomFloor(String roomFloor) {
+		this.roomFloor = roomFloor;
+	}
+	public String getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
+	}
+	public String getUsePurpose() {
+		return usePurpose;
+	}
+	public void setUsePurpose(String usePurpose) {
+		this.usePurpose = usePurpose;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+	
+}

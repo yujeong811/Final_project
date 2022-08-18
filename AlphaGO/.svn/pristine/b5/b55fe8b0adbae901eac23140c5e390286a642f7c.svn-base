@@ -1,0 +1,17 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dto.MemberVO;
+
+public interface TeacherDAO {
+
+	List<String> processSearch(String id)throws SQLException;
+
+	List<MemberVO> processStudentList(String processName,Criteria cri)throws SQLException;
+
+	MemberVO teacherstudentDetail(String id)throws SQLException;
+	
+}

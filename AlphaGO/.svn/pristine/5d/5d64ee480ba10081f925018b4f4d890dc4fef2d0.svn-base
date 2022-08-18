@@ -1,0 +1,14 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.SchoolScoreVO;
+
+public interface ScoreService {
+	public List<SchoolScoreVO> getScoreList(SchoolScoreVO score) throws SQLException;
+
+	public void deleteScoreDate(int sscode) throws SQLException;
+
+	public void insertScore(SchoolScoreVO score) throws SQLException;
+}

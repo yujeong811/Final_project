@@ -1,0 +1,57 @@
+package kr.or.ddit.service;
+
+import java.util.List;
+
+import kr.or.ddit.dao.DmDAO;
+import kr.or.ddit.dto.DmVO;
+
+public class DmServiceImpl implements DmService {
+
+	private DmDAO dmDAO;
+	public void setDmDAO(DmDAO dmDAO) {
+		this.dmDAO = dmDAO;
+	}
+	
+	@Override
+	public List<DmVO> getSendList(String id) throws Exception {
+		List<DmVO> dmList = dmDAO.selectSendList(id);
+		return dmList;
+	}
+
+	@Override
+	public List<DmVO> getReciveList(String id) throws Exception {
+		List<DmVO> dmList = dmDAO.selectReciveList(id);
+		return dmList;
+	}
+
+	@Override
+	public DmVO getDm(String code, String from) throws Exception {
+		
+		String div = null;
+		
+		if("reciveList".equals(from)) {
+			div = "R";
+			//받은 사람이 상세조회 했을 경우 같은 코드의 쪽지를 읽음으로 변경
+			dmDAO.updateDmByRead(code);
+		}
+		if("sendList".equals(from)) {
+			div = "S";
+		}
+
+		DmVO dm = dmDAO.selectDm(code, div);
+		
+		return dm;
+	}
+
+	@Override
+	public int selectNewDm(String id) throws Exception {
+		int cnt = dmDAO.selectNewDm(id);
+		return cnt;
+	}
+
+	@Override
+	public void deleteDm(String code, String div) throws Exception {
+		dmDAO.deleteDm(code, div);
+	}
+
+}

@@ -1,0 +1,101 @@
+package kr.or.ddit.dto;
+
+public class UniversityVO {
+	private String univCode;
+	private String universityName;
+	private int universityKor;
+	private int universityEng;
+	private int universityMath;
+	private int universitySocial;
+	private int universityScience;
+	private int universityKorScore;
+	private int universityEngScore;
+	private int universityMathScore;
+	private int universitySocialScore;
+	private int universityScienceScore;
+
+
+	public int getUniversityKorScore() {
+		return universityKorScore;
+	}
+	public void setUniversityKorScore(int universityKorScore) {
+		this.universityKorScore = universityKorScore;
+	}
+	public int getUniversityEngScore() {
+		return universityEngScore;
+	}
+	public void setUniversityEngScore(int universityEngScore) {
+		this.universityEngScore = universityEngScore;
+	}
+	public int getUniversityMathScore() {
+		return universityMathScore;
+	}
+	public void setUniversityMathScore(int universityMathScore) {
+		this.universityMathScore = universityMathScore;
+	}
+	public int getUniversitySocialScore() {
+		return universitySocialScore;
+	}
+	public void setUniversitySocialScore(int universitySocialScore) {
+		this.universitySocialScore = universitySocialScore;
+	}
+	public int getUniversityScienceScore() {
+		return universityScienceScore;
+	}
+	public void setUniversityScienceScore(int universityScienceScore) {
+		this.universityScienceScore = universityScienceScore;
+	}
+	public String getUnivCode() {
+		return univCode;
+	}
+	public void setUnivCode(String univCode) {
+		this.univCode = univCode;
+	}
+	public String getUniversityName() {
+		return universityName;
+	}
+	public void setUniversityName(String universityName) {
+		this.universityName = universityName;
+	}
+	public int getUniversityKor() {
+		return universityKor;
+	}
+	public void setUniversityKor(int universityKor) {
+		this.universityKor = universityKor;
+	}
+	public int getUniversityEng() {
+		return universityEng;
+	}
+	public void setUniversityEng(int universityEng) {
+		this.universityEng = universityEng;
+	}
+	public int getUniversityMath() {
+		return universityMath;
+	}
+	public void setUniversityMath(int universityMath) {
+		this.universityMath = universityMath;
+	}
+	public int getUniversitySocial() {
+		return universitySocial;
+	}
+	public void setUniversitySocial(int universitySocial) {
+		this.universitySocial = universitySocial;
+	}
+	public int getUniversityScience() {
+		return universityScience;
+	}
+	public void setUniversityScience(int universityScience) {
+		this.universityScience = universityScience;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "UniversityVO [univCode=" + univCode + ", universityName=" + universityName + ", universityKor="
+				+ universityKor + ", universityEng=" + universityEng + ", universityMath=" + universityMath
+				+ ", universitySocial=" + universitySocial + ", universityScience=" + universityScience + "]";
+	}
+
+
+}

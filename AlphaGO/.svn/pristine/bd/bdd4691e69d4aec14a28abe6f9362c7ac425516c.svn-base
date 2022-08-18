@@ -1,0 +1,64 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.AttachDAO;
+import kr.or.ddit.dao.PdsDAO;
+import kr.or.ddit.dto.AttachVO;
+import kr.or.ddit.dto.PdsVO;
+
+public class PdsServiceImpl implements PdsService {
+
+	private PdsDAO pdsDAO;
+	public void setPdsDAO(PdsDAO pdsDAO) {
+		this.pdsDAO = pdsDAO;
+	}
+
+	private AttachDAO attachDAO;
+	public void setAttachDAO(AttachDAO attachDAO) {
+		this.attachDAO = attachDAO;
+	}
+
+
+	@Override
+	public List<PdsVO> getPdsList() throws Exception {
+		return pdsDAO.selectAllPdsList();
+	}
+
+	@Override
+	public PdsVO read(int lCode) throws SQLException{
+
+		PdsVO pds = pdsDAO.selectPdsByLCode(lCode);
+		pdsDAO.increaseViewCnt(lCode);
+
+		addAttachList(pds);
+
+		return pds;
+	}
+
+	@Override
+	public PdsVO getPds(int lCode) throws SQLException{
+		PdsVO pds = pdsDAO.selectPdsByLCode(lCode);
+
+		addAttachList(pds);
+
+		return pds;
+	}
+
+	private void addAttachList(PdsVO pds) throws SQLException{
+		if(pds == null) return;
+
+		int lCode = pds.getlCode();
+		List<AttachVO> attachList = attachDAO.selectAttachesByLCode(lCode);
+
+		pds.setAttachList(attachList);
+	}
+
+
+	@Override
+	public void remove(int lcode) {
+		pdsDAO.deletePds(lcode);
+	}
+
+}

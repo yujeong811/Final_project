@@ -1,0 +1,129 @@
+package kr.or.ddit.controller.view;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import kr.or.ddit.command.RoomCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.service.ClassroomService;
+
+@Controller
+@RequestMapping("/master")
+public class DJ_MasterController {
+
+	@RequestMapping("/main")
+	public void main() {}
+	
+	@RequestMapping("/home")
+	public String home() {
+		String url = "master/home";
+		
+		return url;
+	}
+
+	@Autowired
+	ClassroomService classroomService;
+	
+	@RequestMapping("/classroom")
+	public String classroom(SearchCriteria cri, Model model) throws Exception{
+		String url = "master/classroom";
+
+		Map<String, Object> dataMap = classroomService.getAllClassroom(cri);
+		
+		model.addAttribute("dataMap", dataMap);
+		
+		return url;
+	}
+	@RequestMapping("/roomregist")
+	public String classRegist(@RequestParam Map<String, Object> map,RedirectAttributes rttr) throws Exception{
+		String url = "redirect:/master/classroom.go";
+		
+		RoomCommand roomCommand = new RoomCommand();
+		String floor = ((String)map.get("room_no")).substring(0, 1);
+		
+		String fx1 = (String)map.get("fx1");
+		String fx2 = (String)map.get("fx2");
+		String fx3 = (String)map.get("fx3");
+		String fx4 = (String)map.get("fx4");
+		String fx5 = (String)map.get("fx5");
+		String fx6 = (String)map.get("fx6");
+		
+		if(fx1!=null||fx1!="") {
+			roomCommand.setFx1(fx1);
+		}
+		if(fx2!=null||fx2!="") {
+			roomCommand.setFx2(fx2);
+		}
+		if(fx3!=null||fx3!="") {
+			roomCommand.setFx3(fx3);
+		}
+		if(fx4!=null||fx4!="") {
+			roomCommand.setFx4(fx4);
+		}
+		if(fx5!=null||fx5!="") {
+			roomCommand.setFx5(fx5);	
+		}
+		if(fx6!=null||fx6!="") {
+			roomCommand.setFx6(fx6);
+		}
+		roomCommand.setRoom_floor(floor);
+		roomCommand.setRoom_no((String)map.get("room_no"));
+		roomCommand.setUse_purpose((String)map.get("use_purpose"));
+		roomCommand.setCapacity((String)map.get("capacity"));
+
+		classroomService.registClassroom(roomCommand);
+		rttr.addFlashAttribute("from", "regist");
+		
+		return url;
+	}
+	@RequestMapping("/classRemove")
+	public String removeClassroom(@RequestParam Map<String, Object> map, RedirectAttributes rttr) throws Exception{
+		String url = "redirect:/master/classroom.go";
+		
+		String roomCode = (String)map.get("room_code");
+		
+		int rcode=Integer.parseInt(roomCode);
+		
+		classroomService.removeClassroom(rcode);
+		
+		rttr.addFlashAttribute("from", "remove");
+		
+		return url;
+	}
+	
+
+	@RequestMapping("/classmanage")
+	public String classmanage() {
+		String url = "master/classmanage";
+		
+		return url;
+	}
+
+	@RequestMapping("/classregist")
+	public String classregist() {
+		String url = "master/classregist";
+		
+		return url;
+	}
+
+	@RequestMapping("/classlist")
+	public String classList() {
+		String url = "master/classList";
+		
+		return url;
+	}
+
+	@RequestMapping("/schoollist")
+	public String schoolList() {
+		String url = "master/schoolList";
+		
+		return url;
+	}
+	
+}

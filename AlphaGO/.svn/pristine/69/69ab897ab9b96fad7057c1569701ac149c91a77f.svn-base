@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="classingList" value="${dataMap.classingList }" />
+
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-4" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<h5 style="margin-bottom: 15px; font-weight: bold;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>수업 리스트
+					</h5>
+					<c:forEach items="${classingList }" var="classing">
+						<button type="button" class="btn btn-outline-secondary mb-2"
+							style="width: 100%;" onclick="assign_go(this)"
+							value="${classing.className}">${classing.className}</button>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="card bg-soft-purple" style="margin-bottom: 5px;">
+				<div class="card-body"
+					style="font-weight: bold; text-align: center;">주차별 학습 활동</div>
+			</div>
+			<div id="weekCard"></div>
+<!-- 			<div class="card" id="weekCard" style="margin-bottom: 5px;"> -->
+<!-- 				<div class="card-body"> -->
+<!-- 					<p id="week" style="color: purple; margin-bottom: 0px;"></p> -->
+<!-- 					<span class="badge rounded-pill bg-secondary" -->
+<!-- 						style="font-size: 0.7em; padding: 10px; margin-left: 15px;">제출 -->
+<!-- 						완료</span> -->
+
+<!-- 					<button type="button" class="btn" style="font-weight: bold;"> -->
+<!-- 						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>미적분 -->
+<!-- 						조사해오기 -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+
+<!-- 			</div> -->
+
+		</div>
+		<!-- end card body -->
+	</div>
+	<script>
+function printData(assignArr, target, templateObject) {
+	var template = Handlebars.compile(templateObject.html());
+	var html = template(assignArr);
+	$('#weekCard').remove();
+	target.after(html);
+}
+</script>
+	<script>
+		function assign_go(cl) {	
+			name = cl.value;
+			
+			$.ajax({
+			    type : "POST",          
+			    url : "<%=request.getContextPath()%>/assign/asslist.go",
+				data : {
+					"name" : name
+				}, // Json 형식의 데이터이다.
+				success : function(res) { // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.					
+					var start = res.startDate.substring(0, 10);
+					var end = res.endDate.substring(0, 10);
+
+					let date1 = new Date(end);
+					let date2 = new Date(start);
+					let timeInMilisec = date1.getTime() - date2.getTime();
+					let days = Math.ceil(timeInMilisec / (1000 * 60 * 60 * 24) + 1);
+
+					let weeks = Math.ceil(days/7);
+					
+					str = "";
+					for(var i=1; i<weeks+1; i++) {
+						str += "<div class='card' style='margin-bottom: 5px;'>";
+						str += "<div class='card-body'>";
+						str += "<p id='week' style='color: purple; margin-bottom: 0px;'>" + i + "주차    [" + start + " ~ " + end + "]</p>";
+						str += "</div>";
+						str += "</div>";
+					}					
+					$('#weekCard').html(str);	
+					
+				},
+				error : function(error) { // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+					alert("에러 : " + error.status);
+				}
+			});
+		}
+	</script>
+</body>

@@ -1,0 +1,45 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/master")
+public class DJ_MasterController {
+
+	@RequestMapping("/home")
+	public String home() {
+		String url = "master/home";
+		
+		return url;
+	}
+
+	@RequestMapping("/classroom")
+	public String classroom() {
+		String url = "master/classroom";
+		
+		return url;
+	}
+
+	@RequestMapping("/classmanage")
+	public String classmanage() {
+		String url = "master/classmanage";
+		
+		return url;
+	}
+
+	@RequestMapping("/classregist")
+	public String classregist() {
+		String url = "master/classregist";
+		
+		return url;
+	}
+
+	@RequestMapping("/schoolList")
+	public String schoolList() {
+		String url = "master/schoolList";
+		
+		return url;
+	}
+	
+}

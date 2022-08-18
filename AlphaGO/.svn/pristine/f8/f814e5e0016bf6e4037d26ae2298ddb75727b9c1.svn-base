@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+			<div class="col-sm-2">
+				<div class="card bg-primary text-white-50">
+					<h6 class="card-header bg-primary text-white">승인</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="card bg-success text-white-50">
+					<h6 class="card-header bg-success text-white">제출</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="card bg-danger text-white-50">
+					<h6 class="card-header bg-danger text-white">반려</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="card bg-secondary text-white-50">
+					<h6 class="card-header bg-secondary text-white">미제출</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="card bg-purple text-white-50">
+					<h6 class="card-header bg-purple text-white">인기 수업</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="card bg-dark text-white-50">
+					<h6 class="card-header bg-dark text-white">비인기 수업</h6>
+					<div class="card-body">
+						<p class="card-text">Some quick example text</p>
+					</div>
+				</div>
+		</div>
+		
+		<div class="col-md-12">
+			<table class="table table-hover">
+				<tr style="background-color:#feefee">
+					<th>a</th>
+					<th>a</th>
+					<th>a</th>
+					<th>a</th>
+					<th>a</th>
+				</tr>
+				<tr>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+				</tr>
+				<tr>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+				</tr>
+				<tr>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+				</tr>
+				<tr>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+					<td>a</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>

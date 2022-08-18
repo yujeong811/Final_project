@@ -1,0 +1,212 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script>
+
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-12">
+
+			<div class="card">
+				<div class="car-header">
+					<button type="button" class="btn btn-warning btn-sm"
+						style="float: right; margin-right: 20px;">지문+</button>
+					<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">일반+</button>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-header">
+									<div style="text-aling: center;">
+										<select class="form-select" style="width: 150px; float:left;margin-bottom:10px;">
+											<option>상</option>
+											<option>중</option>
+											<option>하</option>
+										</select> 
+										<select class="form-select" style="width: 150px; float:left;">
+											<option>계산</option>
+											<option>문제해결</option>
+											<option>추론및논리</option>
+										</select>
+
+
+
+										<button type="button" class="btn btn-success btn-sm"
+											style="float: right;">완료</button>
+									</div>
+									<br>
+									<div class="form-group" style="height: 70px;">
+
+										<textarea id="content" name="content" 
+											style="width: 100%; height: 40px;font-size:0.6em;">
+						   
+						 
+								</textarea>
+									</div>
+
+								</div>
+
+								<div class="card-body" style="height: 385px; overflow: auto;">
+
+
+
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 42px;">
+
+											<input type="radio" name="chk_info" value="1"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">1.</label>
+											<textarea rows="2" cols="50" style="width: 94%;font-size:0.6em;">
+											오답이라고 합니다.!
+											</textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 42px;">
+											<input type="radio" name="chk_info" value="2"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">2.</label>
+											<textarea rows="2" cols="50" style="width: 94%;text-align:left;font-size:0.6em;">
+											오답이라고 합니다.!
+											</textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 42px;">
+											<input type="radio" name="chk_info" value="3"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">3.</label>
+											<textarea rows="2" cols="50" style="width: 94%;font-size:0.6em;">
+											오답이라고 합니다.!
+											</textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 42px;">
+											<input type="radio" name="chk_info" value="4"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">4.</label>
+											<textarea rows="2" cols="50" style="width: 94%;font-size:0.6em;">
+											오답이라고 합니다.!
+											</textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 42px;">
+											<input type="radio" name="chk_info" value="5"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">5.</label>
+											<textarea rows="2" cols="50" style="width: 94%;font-size:0.6em;">
+											답이라고 합니다!!
+											</textarea>
+										</div>
+									</div>
+
+
+								</div>
+								<div class="card-footer">
+									<div class="form-group" style="height: 155px;">
+
+										<textarea id="content" name="content"
+											style="width: 100%; height: 100%;font-size:0.6em;">
+								나는 이 답을 알지 못하겠다 왜냐하면 이것은
+										너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을
+										알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을 알기위해 답을 찾아 나선다. 나는 이 답을 알지
+										못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려 주면 안될까? 나는 이 답을
+										알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을 알기위해 답을 찾아 나선다. 나는
+										이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려 주면 안될까?
+										나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을 알기위해 답을 찾아
+										나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려
+										주면 안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을
+										알기위해 답을 찾아 나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시 이답을
+										안다면 나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을
+										모르겠다 난 답을 알기위해 답을 찾아 나선다. 너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려 주면
+										안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을 알기위해
+										답을 찾아 나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시 이답을 안다면
+										나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난
+										답을 알기위해 답을 찾아 나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기 때문이다. 혹시
+										이답을 안다면 나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무 알고 싶은데
+										답을 모르겠다 난 답을 알기위해 답을 찾아 나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은 너무나도 어렵기
+										때문이다. 혹시 이답을 안다면 나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을 알고싶어서 미치겠다 너무
+										알고 싶은데 답을 모르겠다 난 답을 알기위해 답을 찾아 나선다. 나는 이 답을 알지 못하겠다 왜냐하면 이것은
+										너무나도 어렵기 때문이다. 혹시 이답을 안다면 나에게 알려 주면 안될까? 나는 이 답을 알고 싶다 답을
+										알고싶어서 미치겠다 너무 알고 싶은데 답을 모르겠다 난 답을 알기위해 답을 찾아 나선다.
+								</textarea>
+									</div>
+
+								</div>
+								
+							</div>
+							
+							
+						</div>
+						<div class="col-sm-6">
+							<div class="card" style="height: 700px;">
+								<div class="card-body" style="height: 680px;">
+									<div class="card" style="height: 660px;">
+										<div class="card-body" style="overflow: auto;">
+											호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+											호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+											호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="card-footer">
+
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0">
+							<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+			<!-- 		카드닫히기 -->
+		</div>
+		<!-- 		col닫히기 -->
+
+
+	</div>
+	<!-- 		row닫히기 -->
+</body>
+</html>

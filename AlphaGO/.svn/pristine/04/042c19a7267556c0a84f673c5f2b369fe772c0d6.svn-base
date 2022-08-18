@@ -1,0 +1,30 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dao.TeacherDAO;
+import kr.or.ddit.dto.MemberVO;
+
+
+
+public class TeacherServiceImpl implements TeacherService{
+	 private TeacherDAO teacherDAO;
+	    public void setTeacherDAO(TeacherDAO teacherDAO) {
+			this.teacherDAO = teacherDAO;
+		}
+	@Override
+	public List<String> processSearch(String id)throws SQLException {
+		List<String>processList=null;
+		processList=teacherDAO. processSearch(id);
+		return processList;
+	}
+	@Override
+	public List<MemberVO>processStudentList(String processName,Criteria cri)throws SQLException{
+		List<MemberVO>processList=null;
+		processList=teacherDAO.processStudentList(processName,cri);
+		return processList;
+	}
+  
+}

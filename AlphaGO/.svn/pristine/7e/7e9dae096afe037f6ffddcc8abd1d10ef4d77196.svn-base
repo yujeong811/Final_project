@@ -1,0 +1,189 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+@SuppressWarnings("serial")
+public class ProblemVO implements Serializable{
+int problemCode     ;
+int sano             ;
+String problemContent  ;
+String lproblem         ;
+String problemAnswer   ;
+String problemSolution ;
+int grade  ;
+int subjectProccess;
+int schoolCode;
+int examCode;
+
+
+
+
+
+public int getProblemCode() {
+	return problemCode;
+}
+
+
+
+
+
+public void setProblemCode(int problemCode) {
+	this.problemCode = problemCode;
+}
+
+
+
+
+
+public int getSano() {
+	return sano;
+}
+
+
+
+
+
+public void setSano(int sano) {
+	this.sano = sano;
+}
+
+
+
+
+
+public String getProblemContent() {
+	return problemContent;
+}
+
+
+
+
+
+public void setProblemContent(String problemContent) {
+	this.problemContent = problemContent;
+}
+
+
+
+
+
+public String getLproblem() {
+	return lproblem;
+}
+
+
+
+
+
+public void setLproblem(String lproblem) {
+	this.lproblem = lproblem;
+}
+
+
+
+
+
+public String getProblemAnswer() {
+	return problemAnswer;
+}
+
+
+
+
+
+public void setProblemAnswer(String problemAnswer) {
+	this.problemAnswer = problemAnswer;
+}
+
+
+
+
+
+public String getProblemSolution() {
+	return problemSolution;
+}
+
+
+
+
+
+public void setProblemSolution(String problemSolution) {
+	this.problemSolution = problemSolution;
+}
+
+
+
+
+
+public int getGrade() {
+	return grade;
+}
+
+
+
+
+
+public void setGrade(int grade) {
+	this.grade = grade;
+}
+
+
+
+
+
+public int getSubjectProccess() {
+	return subjectProccess;
+}
+
+
+
+
+
+public void setSubjectProccess(int subjectProccess) {
+	this.subjectProccess = subjectProccess;
+}
+
+
+
+
+
+public int getSchoolCode() {
+	return schoolCode;
+}
+
+
+
+
+
+public void setSchoolCode(int schoolCode) {
+	this.schoolCode = schoolCode;
+}
+
+
+
+
+
+public int getExamCode() {
+	return examCode;
+}
+
+
+
+
+
+public void setExamCode(int examCode) {
+	this.examCode = examCode;
+}
+
+
+
+
+
+@Override
+public String toString(){
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+}
+}                       

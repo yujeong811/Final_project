@@ -1,0 +1,90 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class ApplyVO {
+	
+	 private int applyCode;
+	private String applyer;
+	private String applyerTel;
+	private String applyTitle;
+	private String applyContent;
+	private String applyUploadPath;
+	private Date regdate;
+	private String applyFilename;
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);
+	}
+
+	public int getApplyCode() {
+		return applyCode;
+	}
+
+	public void setApplyCode(int applyCode) {
+		this.applyCode = applyCode;
+	}
+
+	public String getApplyer() {
+		return applyer;
+	}
+
+	public void setApplyer(String applyer) {
+		this.applyer = applyer;
+	}
+
+	public String getApplyerTel() {
+		return applyerTel;
+	}
+
+	public void setApplyerTel(String applyerTel) {
+		this.applyerTel = applyerTel;
+	}
+
+	public String getApplyTitle() {
+		return applyTitle;
+	}
+
+	public void setApplyTitle(String applyTitle) {
+		this.applyTitle = applyTitle;
+	}
+
+	public String getApplyContent() {
+		return applyContent;
+	}
+
+	public void setApplyContent(String applyContent) {
+		this.applyContent = applyContent;
+	}
+
+	public String getApplyUploadPath() {
+		return applyUploadPath;
+	}
+
+	public void setApplyUploadPath(String applyUploadPath) {
+		this.applyUploadPath = applyUploadPath;
+	}
+
+	public Date getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+
+	public String getApplyFilename() {
+		return applyFilename;
+	}
+
+	public void setApplyFilename(String applyFilename) {
+		this.applyFilename = applyFilename;
+	}
+
+	
+	
+}

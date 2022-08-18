@@ -1,0 +1,27 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.CareerVO;
+import kr.or.ddit.dto.MemberVO;
+
+public interface TMyPageDAO {
+	
+	/**
+	 * 멤버VO 불러온다
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	MemberVO selectInfoForMypage(String id) throws SQLException;
+	
+	/**
+	 * 커리어VO 불러온다
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	List<CareerVO> selectTeacherCareerList(String id)throws SQLException;
+	
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Apply-Mapper">
+	<sql id="search">
+	<if test="searchType == 'tcw'.toString()">
+			and applyer like '%'||#{keyword}||'%'
+			
+			or applyer_tel like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 't'.toString()">
+			and applyer like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and applyer_tel like '%'||#{keyword}||'%'
+		</if>
+		
+	</sql>
+
+
+	<select id="selectApplyList" resultType="apply">
+		select
+		*
+		from
+		apply
+		order by regdate desc
+	</select>
+	
+	<select id="selectApplyListCount" resultType="int">
+		select 
+		count(*)
+		from
+		apply
+		order by regdate desc	
+	</select>
+
+	<select id="selectSearchApplyList" resultType="apply">
+		select
+		* 
+		from apply
+		 where apply_code is not null 
+		 
+		<include refid="search" />
+		order by regdate desc	
+	</select>
+	
+	<select id="selectSearchApplyListCount" resultType="int">
+		select
+		count(*) 
+		from apply
+		where apply_code is not null 
+	    
+		<include refid="search" />
+	</select>
+	
+	
+
+
+	
+	
+	
+	
+</mapper>
+

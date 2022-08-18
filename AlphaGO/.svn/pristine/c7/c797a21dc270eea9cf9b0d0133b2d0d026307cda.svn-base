@@ -1,0 +1,44 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+@SuppressWarnings("serial")
+public class WeekPlanVO implements Serializable {
+	private int wpno;
+	private int cpno;
+	private int week;
+	private String content;
+	
+	public int getWpno() {
+		return wpno;
+	}
+	public void setWpno(int wpno) {
+		this.wpno = wpno;
+	}
+	public int getCpno() {
+		return cpno;
+	}
+	public void setCpno(int cpno) {
+		this.cpno = cpno;
+	}
+	public int getWeek() {
+		return week;
+	}
+	public void setWeek(int week) {
+		this.week = week;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+}

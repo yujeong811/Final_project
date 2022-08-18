@@ -1,0 +1,23 @@
+package kr.or.ddit.service;
+
+import kr.or.ddit.dao.ResumeDAO;
+import kr.or.ddit.dto.ResumeVO;
+
+public class ResumeSerivceImpl implements ResumeService{
+	
+	private ResumeDAO resumeDAO;
+	public void setResumeDAO(ResumeDAO resumeDAO) {
+		this.resumeDAO = resumeDAO;
+	}
+	@Override
+	public int regist(ResumeVO resume) throws Exception {
+		int resumeCode=resumeDAO.selectResumeSequenceNextValue();
+		
+		resume.setResumeCode(resumeCode);
+		
+		int abc=resumeDAO.insertResume(resume);
+		
+		return abc;
+	}
+
+}

@@ -1,0 +1,114 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-4" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<h5 style="margin-bottom: 15px; font-weight: bold;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>수업 리스트
+					</h5>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+					<button type="button" class="btn btn-outline-secondary mb-2"
+						style="width: 100%;">길동쌤과 함께하는 신나는 화작</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="card bg-soft-purple" style="margin-bottom: 5px;">
+				<div class="card-body"
+					style="font-weight: bold; text-align: center;">시험 리스트</div>
+			</div>
+
+			<div class="card" style="margin-bottom: 5px;">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span
+							class="badge rounded-pill bg-secondary"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px;">응시
+							완료</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>3월
+						국어 모의고사 예상문제
+					</button>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 5px;">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span class="badge rounded-pill bg-secondary"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px; width: 64px;">응시 완료</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>6월
+						국어 모의고사 예상문제
+					</button>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 5px;">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span
+							class="badge rounded-pill bg-secondary"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px; width: 64px;">응시
+							완료</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>9월
+						국어 모의고사 예상문제
+					</button>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 5px;">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span
+							class="badge rounded-pill bg-secondary"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px; width: 64px;">응시
+							완료</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>모의고사
+						예상문제
+					</button>
+				</div>
+			</div>
+			<div class="card" style="margin-bottom: 5px;">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span class="badge rounded-pill bg-success"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px; width: 64px;">미응시</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>모의고사
+						예상문제
+					</button>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body">
+					<p style="color: purple; margin-bottom: 0px;">
+						1주차 [06월 27일 ~ 07월 6일]<span class="badge rounded-pill bg-success"
+							style="font-size: 0.7em; padding: 10px; margin-left: 15px; width: 64px;">미응시</span>
+					</p>
+					<button type="button" class="btn" style="font-weight: bold;">
+						<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>모의고사
+						예상문제
+					</button>
+				</div>
+			</div>
+		</div>
+		<!-- end card body -->
+	</div>
+</body>

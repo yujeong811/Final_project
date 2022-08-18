@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeacherMas-Mapper">
+	<sql id="search">
+
+		<if test="searchType == 'tcw'.toString()">
+			and name like '%'||#{keyword}||'%'
+
+			or subject like
+			'%'||#{keyword}||'%'
+
+			or phone like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 't'.toString()">
+			and name like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'w'.toString()">
+			and subject like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and phone like '%'||#{keyword}||'%'
+		</if>
+
+	</sql>
+
+
+	<select id="selectTeacherList" resultType="teachermas">
+		select
+		*
+		from
+		member
+		where authority='ROLE_TEACHER'
+		order by subject asc
+	</select>
+
+	<select id="selectTeacherListCount" resultType="int">
+		select
+		count(*)
+		from
+		member
+		where authority='ROLE_TEACHER'
+		order by subject asc
+	</select>
+
+	<select id="selectSearchTeacherList" resultType="teachermas">
+		select
+		*
+		from member
+		where id is not null
+		and authority='ROLE_TEACHER'
+		<include refid="search" />
+		order by subject asc
+	</select>
+
+	<select id="selectSearchTeacherListCount" resultType="int">
+		select
+		count(*)
+		from member
+		where id is not null
+		and
+		authority='ROLE_TEACHER'
+		<include refid="search" />
+	</select>
+
+	<update id="insertTeacher" parameterType="teachermas">
+		insert into
+		member(picture,id,name,subject,authority,phone,attend_time,out_times,regDate)
+		values(#{picture},#{id},#{name},#{subject},#{authority},#{phone},#{attendTime},#{outTimes},#{regDate})
+	</update>
+
+
+	<select id="selectTeacherById" parameterType="str"
+		resultType="teachermas">
+		select
+		*
+		from member
+		where id=#{id}
+	</select>
+
+	<!-- <select id="selectTeacherByPicture" parameterType="str" resultType="teachermas"> -->
+	<!-- select -->
+	<!-- * -->
+	<!-- from member -->
+	<!-- where picture=#{picture} -->
+	<!-- </select> -->
+
+	<update id="deleteTeacher" parameterType="str">
+		delete
+		from member
+		where
+		id=#{id}
+	</update>
+
+	<select id="selectTeacherSequenceNextValue" resultType="str">
+		select
+		teacher_seq.nextval from dual
+	</select>
+
+	<select id="selectScoreBySubjectName" parameterType="str"
+		resultType="teachermas">
+		select
+		AVG ( a.myscore )
+		from school_score a ,
+		member b ,
+		subject c
+		where
+		a.id=b.id
+		and c.subject_code=a.subject_code
+		and a.regdate LIKE '2022/07%'
+		and c.subject_name=#{subjectName}
+	</select>
+
+
+	<select id="selectTeacherByPicture" parameterType="str"
+		resultType="teachermas">
+		select
+		*
+		from member
+		where picture=#{picture}
+	</select>
+
+
+
+
+
+	<sql id="search4">
+
+		<if test="searchType == 'tcw'.toString()">
+			and name like '%'||#{keyword}||'%'
+
+			or phone like'%'||#{keyword}||'%'
+
+			
+		</if>
+		<if test="searchType == 't'.toString()">
+			and name like '%'||#{keyword}||'%'
+		</if>
+		
+		<if test="searchType == 'c'.toString()">
+			and phone like '%'||#{keyword}||'%'
+		</if>
+
+	</sql>
+
+
+	<select id="selectTeacherAttendList" resultType="teachermas">
+		SELECT
+
+		a.name
+		,a.phone
+		,a.attend_time
+		,a.out_times
+		,b.ATTENDANCE_STATUS
+		,b.id
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+		and TO_CHAR(b.regDate, 'yyyy-mm-dd') = TO_CHAR(to_date(sysdate),
+		'yyyy-mm-dd')
+		and b.id=a.id
+	</select>
+
+	<select id="selectTeacherAttendListCount" resultType="int">
+	
+		SELECT
+			
+		count(a.name)
+		,a.phone
+		,a.attend_time
+		,a.out_times
+		,b.ATTENDANCE_STATUS
+		,b.id
+	
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+		and TO_CHAR(b.regDate, 'yyyy-mm-dd') = TO_CHAR(to_date(sysdate),
+		'yyyy-mm-dd')
+		and b.id=a.id
+		group by a.phone,a.attend_time,a.out_times,b.attendance_status,b.id
+		</select>
+
+	<select id="selectSearchTeacherAttendList" resultType="teachermas">
+		SELECT
+
+		a.name
+		,a.phone
+		,a.attend_time
+		,a.out_times
+		,b.ATTENDANCE_STATUS
+		,b.id
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+		and TO_CHAR(b.regDate, 'yyyy-mm-dd') = TO_CHAR(to_date(sysdate),
+		'yyyy-mm-dd')
+		and b.id=a.id
+		<include refid="search" />
+		
+	</select>
+
+	<select id="selectSearchTeacherAttendListCount" resultType="int">
+	
+		
+			SELECT
+		count(a.name)
+		,a.phone
+		,a.attend_time
+		,a.out_times
+		,b.ATTENDANCE_STATUS
+		,b.id
+		
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+		and TO_CHAR(b.regDate, 'yyyy-mm-dd') = TO_CHAR(to_date(sysdate),
+		'yyyy-mm-dd')
+		and b.id=a.id
+		group by a.phone,a.attend_time,a.out_times,b.attendance_status,b.id
+		<include refid="search" />
+	</select>
+	
+	<select id="selectAllAttendTeacherById" resultType="teachermas">
+	    SELECT
+
+		b.regdate
+		,b.in_time
+		,b.out_time
+		,b.ATTENDANCE_STATUS
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+        and b.id=a.id
+        and b.id=#{id}
+        order by b.regdate asc
+	
+	</select>
+	
+	<select id="selectAllAttendTeacherAttendByIdListCount" resultType="int">
+	
+	  SELECT
+
+	count(b.regdate)
+		,b.in_time
+		,b.out_time
+		,b.ATTENDANCE_STATUS
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+        and b.id=a.id
+        and b.id=#{id}
+         
+        order by b.regdate asc
+		 group by b.in_time,b.out_time,b.attendance_status
+		</select>
+
+	<select id="selectSearchAllAttendTeacherByIdList" resultType="teachermas">
+	  SELECT
+
+		b.regdate
+		,b.in_time
+		,b.out_time
+		,b.ATTENDANCE_STATUS
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+        and b.id=a.id
+        and b.id=#{id}
+        order by b.regdate asc
+		<include refid="search" />
+		
+	</select>
+
+	<select id="selectSearchAllAttendTeacherByIdListCount" resultType="int">
+	
+		  SELECT
+		count(b.regdate)
+		,b.in_time
+		,b.out_time
+		,b.ATTENDANCE_STATUS
+		FROM
+		member a,
+		attendance b
+		where a.authority='ROLE_TEACHER'
+        and b.id=a.id
+        and b.id=#{id}
+       
+        order by b.regdate asc
+        group by b.in_time,b.out_time,b.attendance_status 
+	
+		<include refid="search" />
+	</select>
+
+
+</mapper>

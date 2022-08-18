@@ -1,0 +1,47 @@
+package kr.or.ddit.dto;
+
+public class ClassroomVO {
+	private String capacity;
+	private String room_code;
+	private String room_floor;
+	private String room_no;
+	private String use_purpose;
+	
+	public String getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+	public String getRoom_code() {
+		return room_code;
+	}
+	public void setRoom_code(String room_code) {
+		this.room_code = room_code;
+	}
+	public String getRoom_floor() {
+		return room_floor;
+	}
+	public void setRoom_floor(String room_floor) {
+		this.room_floor = room_floor;
+	}
+	public String getRoom_no() {
+		return room_no;
+	}
+	public void setRoom_no(String room_no) {
+		this.room_no = room_no;
+	}
+	public String getUse_purpose() {
+		return use_purpose;
+	}
+	public void setUse_purpose(String use_purpose) {
+		this.use_purpose = use_purpose;
+	}
+	@Override
+	public String toString() {
+		return "ClassroomVO [capacity=" + capacity + ", room_code=" + room_code + ", room_floor=" + room_floor
+				+ ", room_no=" + room_no + ", use_purpose=" + use_purpose + "]";
+	}
+	
+	
+}

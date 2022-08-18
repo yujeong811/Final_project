@@ -1,0 +1,178 @@
+package kr.or.ddit.controller.rest;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import kr.or.ddit.command.CalenderListCommand;
+import kr.or.ddit.command.MakeFileName;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.MenuVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+import kr.or.ddit.service.StudentService;
+import kr.or.ddit.service.TeacherMasService;
+
+@RestController
+@RequestMapping("/master")
+public class StudentRestController {
+
+	
+	@Autowired 
+	private StudentService studentService;
+	
+	@Autowired
+	private TeacherMasService teacherMasService;
+	
+	@Resource(name = "picturePath")
+	
+	   private String picturePath;
+	   
+	   public String savePicture(String oldPicture, MultipartFile multi)throws Exception{
+	      String fileName = null;
+	      
+	      /* 파일저장폴더설정 */
+	      String uploadPath = picturePath;
+	      
+	      /* 파일유무확인 */
+	      if(!(multi == null || multi.isEmpty() || multi.getSize() > 1024 * 1024 * 1)) {
+	         fileName = MakeFileName.toUUIDFileName(multi.getOriginalFilename(), "$$");
+	         File storeFile = new File(uploadPath, fileName);
+	         
+	         // 파일경로 생성
+	         storeFile.mkdirs();
+	         
+	         //local HDD에 저장
+	         multi.transferTo(storeFile);
+	      }
+	      
+	      // 기존파일 삭제
+	      if(oldPicture != null && !oldPicture.isEmpty()) {
+	         File oldFile = new File(uploadPath, oldPicture);
+	         if(oldFile.exists()) {
+	            oldFile.delete();
+	         }
+	      }
+	      return fileName;
+	   }
+	   
+	   @RequestMapping(value = "/picture", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+	   public ResponseEntity<String> picture(@RequestParam("pictureFile")MultipartFile multi, String oldPicture)throws Exception{
+	      
+	      ResponseEntity<String> entity = null;
+	      String result = "";
+	      HttpStatus status = null;
+	      
+	      /* 파일저장확인 */
+	      if((result = savePicture(oldPicture, multi)) == null) {
+	         result = "업로드 실패했습니다.!";
+	         status = HttpStatus.BAD_REQUEST;
+	      }else {
+	         status = HttpStatus.OK;
+	      }
+	      
+	      entity = new ResponseEntity<String>(result, status);
+	      return entity;
+	      
+	   }
+	   
+	   @RequestMapping(value = "/getPicture", produces = "text/plain;charset=utf-8")
+	   public ResponseEntity<byte[]> getPicture(String id)throws Exception{
+		   
+		   System.out.println(id);
+		   
+	      
+	      String picture = studentService.getStudent(id).getPicture();
+	      InputStream in = null;
+	      ResponseEntity<byte[]> entity = null;
+	      String imgPath = this.picturePath;
+	      
+	      try {
+	         in = new FileInputStream(new File(imgPath, picture));
+	         
+	         entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), HttpStatus.CREATED);
+	      }finally {
+	         if(in!=null) in.close();
+	      }
+	      return entity;
+	   }
+	
+	  @RequestMapping("/idCheck")
+	   public ResponseEntity<String> idCheck(String id)throws Exception{
+	      ResponseEntity<String> entity = null;
+	      
+	     
+	      StudentVO student=studentService.getStudent(id);
+	      
+	      if(student != null) {
+	         entity = new ResponseEntity<String>("duplicated", HttpStatus.OK);
+	      }else {
+	         entity = new ResponseEntity<String>("", HttpStatus.OK);
+	      }
+	      
+	      return entity;
+	   }
+	  
+	   
+	   @RequestMapping(value = "/studetail",method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	   public ResponseEntity<StudentVO> studetail(@RequestParam(value="id") String id)throws Exception{
+		   
+		     ResponseEntity<StudentVO>entity=null;
+		     
+		    
+		     
+		     
+		     StudentVO studentVO=null;
+		     try {
+		    	 studentVO= studentService.getStudent(id);
+		    	
+				entity = new ResponseEntity<StudentVO>(studentVO, HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<StudentVO>(HttpStatus.INTERNAL_SERVER_ERROR);
+				e.printStackTrace();
+			}
+			return entity;
+			
+			
+	   }
+	   
+	   
+	   @RequestMapping(value ="/teadetail",method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	   public ResponseEntity<TeachermasVO> teadetail(@RequestParam(value="id") String id)throws Exception{
+		   
+		     ResponseEntity<TeachermasVO>entity=null;
+		     
+		    System.out.println(id);
+		     
+		     TeachermasVO teamasVO=null;
+		   
+		     try {
+		    	 teamasVO= teacherMasService.getTeacher(id);
+		    	
+				entity = new ResponseEntity<TeachermasVO>(teamasVO, HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<TeachermasVO>(HttpStatus.INTERNAL_SERVER_ERROR);
+				e.printStackTrace();
+			}
+			return entity;
+			
+			
+	   }
+	   
+	   
+}

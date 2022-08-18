@@ -1,0 +1,108 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+public class CounseltVO {
+
+
+	private int counCode;
+	private Date regDate;
+	private Date meetDate;
+	private String content;
+	private String result;
+	private String purpose;
+	private String status;
+	private String counselor;
+	private String clinet;
+	private String conStart;
+	private String conEnd;
+	private String title;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getCounCode() {
+		return counCode;
+	}
+	public void setCounCode(int counCode) {
+		this.counCode = counCode;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public Date getMeetDate() {
+		return meetDate;
+	}
+	public void setMeetDate(Date meetDate) {
+		this.meetDate = meetDate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getCounselor() {
+		return counselor;
+	}
+	public void setCounselor(String counselor) {
+		this.counselor = counselor;
+	}
+	public String getClinet() {
+		return clinet;
+	}
+	public void setClinet(String clinet) {
+		this.clinet = clinet;
+	}
+	public String getConStart() {
+		return conStart;
+	}
+	public void setConStart(String conStart) {
+		this.conStart = conStart;
+	}
+	public String getConEnd() {
+		return conEnd;
+	}
+	public void setConEnd(String conEnd) {
+		this.conEnd = conEnd;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	@Override
+	   public String toString() {
+	      return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	   }
+}

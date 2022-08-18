@@ -1,0 +1,262 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSessionException;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.JimoonProblemCommand;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.TeacherDAO;
+import kr.or.ddit.dto.ClassProgVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.ProblemVO;
+import kr.or.ddit.dto.School_scoreVO;
+
+
+
+public class TeacherServiceImpl implements TeacherService{
+	 private TeacherDAO teacherDAO;
+	    public void setTeacherDAO(TeacherDAO teacherDAO) {
+			this.teacherDAO = teacherDAO;
+		}
+	    
+	@Override
+	public List<String> processSearch(String id)throws SQLException {
+		List<String>processList=null;
+		processList=teacherDAO.processSearch(id);
+		return processList;
+	}
+	@Override
+	public Map<String, Object> processStudentList(String processName,Criteria cri)throws SQLException{
+		 int class_code= teacherDAO.classCode(processName);
+        // System.out.println(class_code);
+		 
+		 Map<String, Object> dataMap=null;
+		
+		try {
+			 dataMap = new HashMap<String, Object>();
+
+			// 현재 page 번호에 맞는 리스트를 perPageNum 개수 만큼 가져오기.
+			List<MemberVO> processStudentList = teacherDAO.processStudentList(processName,cri);
+
+			// 전체 board 개수
+			int totalCount = teacherDAO.selectprocessStudentlistCount(class_code, cri);
+
+			// PageMaker 생성.
+	    	PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(totalCount);
+
+			dataMap.put("processStudentList", processStudentList);
+			dataMap.put("pageMaker", pageMaker);
+
+			
+		}catch(SQLException e) {}
+		
+		
+		return dataMap;
+		//return null;
+	}
+
+	@Override
+	public List<String> getclassList(String id) {
+		// TODO Auto-generated method stub
+		return teacherDAO.searchClass(id);
+	}
+
+	@Override
+	public MemberVO teacherstudentDetail(String id) throws SQLException {
+		// TODO Auto-generated method stub
+		return teacherDAO.teacherstudentDetail(id);
+	}
+
+	@Override
+	public Map<String, Object> teacherstudenttotalList(String id,SearchCriteria cri) throws SQLException {
+		if(cri.getSearchType()==null) {
+			cri.setSearchType("");
+		}
+		if(cri.getKeyword()==null) {
+			cri.setKeyword("");
+		}
+		int totalCount = teacherDAO.teacherstudenttotalListcount(id,cri);
+		
+		List<MemberVO>studentTotalList=teacherDAO.teacherstudenttotalList(id,cri);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		 Map<String, Object> dataMap=new HashMap<String, Object>();
+;
+		dataMap.put("studentTotalList", studentTotalList);
+		dataMap.put("pageMaker", pageMaker);
+
+		
+		
+		return dataMap;
+	}
+
+	@Override
+	public Map<String,String> idSearchName(String id) throws SQLException {
+		Map<String,String>dt=new HashMap<String,String>();
+		dt.put("name",teacherDAO.idSearchName(id));
+		dt.put("subject",teacherDAO.idSearchSubject(id));
+		return dt;
+	}
+
+	@Override
+	public List<ProblemVO> problemList(String id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<School_scoreVO> schoolGrade(String id) throws SQLException {
+		List<School_scoreVO> schoolScoreList=teacherDAO.schoolGrade(id);
+		
+		return schoolScoreList;
+	}
+
+	@Override
+	public Map<String, Object> createGdata(String id) throws SQLException {
+		
+		//로그인한 선생님의 과목 코드 불러오기
+		String subjectCode=teacherDAO.idSearchSubjectCode(id);
+		System.out.println("subjectCode:"+subjectCode);
+		
+		//과목코드로 세부과목 검색하기
+		List<Map<String,Object>>subjectDetail=teacherDAO.subjectCodeSearchDetailName(subjectCode);
+		System.out.println("subjectDetail:"+subjectDetail);
+		
+		//유형 검색하기
+		List<Map<String,String>>subareaList=null;
+		if(subjectDetail.size()!=0) {
+			Map<String,Object>dd=subjectDetail.get(0);
+			System.out.println("dd:"+dd);
+			
+			if(dd==null) {
+				
+			}else {
+				String subcode=String.valueOf(dd.get("SUBDETAIL_CODE"));
+				System.out.println(subcode);
+				subareaList=teacherDAO.detailCodeSearchSarea(subcode);
+				System.out.println("subareaList:"+subareaList);
+			}
+			
+		}
+	
+	
+		
+	
+		Map<String,Object>data=new HashMap<String,Object>();
+		
+		List<String>subDetailNameList=new ArrayList<String>();
+		
+		List<String>subAreaList=new ArrayList<String>();
+		
+		if(subjectDetail!=null&&subjectDetail.size()>0) {
+			for(Map<String,Object>ss:subjectDetail) {
+				System.out.println(ss);
+				subDetailNameList.add(String.valueOf(ss.get("SUBDETAIL_NAME")));
+			}
+		}
+		
+		if(subareaList!=null&&subareaList.size()>0) {
+			for(Map<String,String>ss:subareaList) {
+				subAreaList.add(ss.get("saname"));
+			}
+		}
+		System.out.println(subjectDetail);
+		System.out.println("subAreaList"+subAreaList);
+		System.out.println("subDetailNameList:"+subDetailNameList);
+		data.put("subAreaList",subAreaList);
+		data.put("subnamecode",subjectDetail);
+		return data;
+	}
+
+	@Override
+	public List<ClassProgVO> danSearch(String name) throws SQLException {
+		
+		List<ClassProgVO> danList=teacherDAO.danSearch(name);
+		System.out.println("danList:"+danList);
+		return danList;
+	}
+	
+	//문제 등록 메서드
+	@Override
+	public int insertProblem(ProblemVO problem) throws SQLException {
+		  int cnt=0;
+		  int proC=teacherDAO.problemSequence();
+		  problem.setProblemCode(proC);
+		  problem.setSano(1);
+		  problem.setSchoolCode(1);
+		  problem.setSubjectProccess(1);
+		  cnt=teacherDAO.insertProblem(problem);
+		return cnt;
+	}
+
+	@Override
+	public int insertJProblem(JimoonProblemCommand problem) throws SQLException {
+		  int cnt=0;
+		  int proC1=teacherDAO.problemSequence();
+		  ProblemVO pro1=problem.toproblem1();
+		  pro1.setProblemCode(proC1);
+		  pro1.setSano(1);
+		  pro1.setSchoolCode(1);
+		  pro1.setSubjectProccess(1);
+		  if(teacherDAO.insertProblem(pro1)<=0) {
+			  return 0;
+		  }
+		  int proC2=teacherDAO.problemSequence();
+		  ProblemVO pro2=problem.toproblem2();
+		  pro2.setProblemCode(proC2);
+		  pro2.setSano(1);
+		  pro2.setSchoolCode(1);
+		  pro2.setSubjectProccess(1);
+		  if(teacherDAO.insertProblem(pro2)<=0) {
+			  return 0;
+		  }
+		  int proC3=teacherDAO.problemSequence();
+		  ProblemVO pro3=problem.toproblem3();
+		  pro3.setProblemCode(proC3);
+		  pro3.setSano(1);
+		  pro3.setSchoolCode(1);
+		  pro3.setSubjectProccess(1);
+		  if(teacherDAO.insertProblem(pro3)<=0) {
+			  return 0;
+		  }
+		  int proC4=teacherDAO.problemSequence();
+		  ProblemVO pro4=problem.toproblem1();
+		  pro4.setProblemCode(proC4);
+		  pro4.setSano(1);
+		  pro4.setSchoolCode(1);
+		  pro4.setSubjectProccess(1);
+		  if(teacherDAO.insertProblem(pro4)<=0) {
+			  return 0;
+		  }
+		  int jimoonNum=teacherDAO.jimoonSequece();
+		  if(teacherDAO.insertjimoonProblem(jimoonNum,proC1,problem.getProblemPrint())<=0) {
+			  return 0;
+		  }
+		  if(teacherDAO.insertjimoonProblem(jimoonNum,proC2,problem.getProblemPrint())<=0) {
+			  return 0;
+		  }
+		  if(teacherDAO.insertjimoonProblem(jimoonNum,proC3,problem.getProblemPrint())<=0) {
+			  return 0;
+		  }
+		  if(teacherDAO.insertjimoonProblem(jimoonNum,proC4,problem.getProblemPrint())<=0) {
+			  return 0;
+		  }
+		  
+		return cnt;
+	}
+
+
+
+	
+  
+}

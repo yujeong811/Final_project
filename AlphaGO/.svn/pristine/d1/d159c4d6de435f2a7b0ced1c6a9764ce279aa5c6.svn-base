@@ -1,0 +1,34 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.MStudyPlanDAO;
+import kr.or.ddit.dto.ClassVO;
+
+public class MStudyPlanServiceImpl implements MStudyPlanService {
+
+	private MStudyPlanDAO mStudyPlanDAO;
+	public void setmStudyPlanDAO(MStudyPlanDAO mStudyPlanDAO) {
+		this.mStudyPlanDAO = mStudyPlanDAO;
+	}
+	
+	@Override
+	public List<ClassVO> selectClassListByCpcheck(String cpcheck) throws SQLException {
+		List<ClassVO> classList = null;
+		classList = mStudyPlanDAO.selectClassListByCpcheck(cpcheck);
+		if(classList!=null&&classList.size()>0)
+			for(ClassVO classVO : classList) {
+				String startDate = classVO.getStartDate();
+				String endDate = classVO.getEndDate();
+
+				String newStartDate = startDate.substring(0, 11);
+				String newEndDate = endDate.substring(0, 11);
+				
+				classVO.setStartDate(newStartDate);
+				classVO.setEndDate(newEndDate);
+			}
+		return classList;
+	}
+
+}

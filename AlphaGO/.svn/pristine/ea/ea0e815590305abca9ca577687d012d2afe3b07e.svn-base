@@ -1,0 +1,375 @@
+package kr.or.ddit.controller.view;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ddit.command.JimoonProblemCommand;
+import kr.or.ddit.command.ProblemSearchCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.ProblemVO;
+import kr.or.ddit.service.TeacherService;
+
+@Controller
+@RequestMapping("/teacher")
+public class TeacherController {
+	  @Autowired
+	  TeacherService service;
+	
+	
+	   @RequestMapping("/home")
+			public String home() throws Exception {
+				String url = "teacher/home";
+				return url;
+			}
+	   @RequestMapping("/attend")
+		public String atten() throws Exception {
+			String url = "teacher/attend";
+			return url;
+		}
+	   @RequestMapping("/mypage")
+		public String mypage() throws Exception {
+			String url = "teacher/mypage";
+			return url;
+		}
+	   @RequestMapping("/modify")
+		public String modify() throws Exception {
+			String url = "teacher/modify";
+			return url;
+		}
+	   @RequestMapping("/mypagePass")
+	   public String mypagePass() throws Exception {
+		   String url = "teacher/mypagePass";
+		   return url;
+	   }
+	   
+	   
+	   
+	   
+	   @RequestMapping("/studentmanage_home")
+	   public String detail(HttpServletRequest request,Model md) throws Exception {
+		   HttpSession session=request.getSession();
+		   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		
+		   String id=(String)loginUser.getId();
+		  System.out.println("id:"+id);
+		   List<String>classList=service.getclassList(id);
+		  
+		   md.addAttribute("classList",classList);
+		   String url = "teacher/studentmanage_home";
+		   return url;
+	   }
+	   
+	   @RequestMapping("/studentmanage_exam")
+		public String exam() throws Exception {
+			String url = "teacher/studentmanage_exam";
+			return url;
+		}
+	   @RequestMapping("/studentmanage_attendance")
+	 		public String attendance() throws Exception {
+	 			String url = "teacher/studentmanage_attendance";
+	 			return url;
+	 		}
+	   @RequestMapping("/studentmanage_school")
+		public String schooltest(SearchCriteria cri,Model md) throws Exception {
+		//   HttpSession session=request.getSession();
+			//   MemberVO loginUser=(MemberVO)session.getAttribute("LoginUser");
+			   String id="titi";
+			  Map<String,String> dt=service.idSearchName(id);
+			  Map<String,Object>dataMap= service.teacherstudenttotalList(id,cri);
+			  dataMap.put("name",dt.get("name"));
+			  dataMap.put("subject",dt.get("subject"));
+			  System.out.println(dataMap);
+			  md.addAttribute("dataMap",dataMap);
+			 // System.out.println("?");
+			 // System.out.println(dataMap.get("studentTotalList"));
+			String url = "teacher/studentmanage_school";
+			return url;
+		}
+	   @RequestMapping("/studentmanage_acardemy")
+			public String acardemytest() throws Exception {
+				String url = "teacher/studentmanage_acardemy";
+				return url;
+			}
+	   @RequestMapping("/exammanage")
+		public String exammange(HttpServletRequest request,Model md) throws Exception {
+		   HttpSession session=request.getSession();
+		   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		 
+		   String id=(String)loginUser.getId();
+		   
+		   List<Map<String,Object>>data=service.getProcess(id);
+		   
+		   md.addAttribute("data",data);
+		  
+
+			
+			String url = "teacher/exammanage";
+			return url;
+		}
+	   
+	   @RequestMapping("/exammanage2")
+			public String exammange2() throws Exception {
+				String url = "teacher/exammanage2";
+				return url;
+			}
+	   @RequestMapping("/submitproblem")
+			public String submitproblem(String endDate,String processName,String examName,String startDan,String endDan,String startDate,String pc,Model md) throws Exception {
+		           System.out.println(endDate);
+		           System.out.println(startDate);
+		           System.out.println(processName);
+		           System.out.println(examName);
+		           System.out.println(startDan);
+		           System.out.println(endDan);
+		           System.out.println(pc);
+		         
+		       Map<String,Object>data=new HashMap<String,Object>();
+		       data.put("endDate",endDate);
+		       data.put("processCode",processName);
+		       data.put("examName",examName);
+		       data.put("startDan",startDan);
+		       data.put("endDan",endDan);
+		       data.put("startDate",startDate);
+		       data.put("probCount",pc);
+		       md.addAttribute("data",data);
+				String url = "teacher/submitproblem";
+				return url;
+			}
+	   @RequestMapping("/problemmanage")
+			public String problemmanage(ProblemSearchCommand cri,Model md) throws Exception {
+			//   HttpSession session=request.getSession();
+			//   MemberVO loginUser=(MemberVO)session.getAttribute("LoginUser");
+			   String id="titi";
+			   Map<String,Object>dataMap=service.problemList(id,cri);
+			   md.addAttribute("dataMap",dataMap);
+		   
+					String url = "teacher/problemmanage";
+					return url;
+				}
+	   @RequestMapping("/problemDetail")
+		public String problemDetail(int prC,Model md,HttpServletRequest request) throws Exception {
+		   HttpSession session=request.getSession();
+		   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		   String id=loginUser.getId();
+		
+		
+		  
+		   Map<String,Object> problem=service.getProblem(prC);
+		    ProblemVO pr=(ProblemVO)problem.get("problem");
+		    System.out.println(pr.getProblemSolution());
+		  	System.out.println("만든사람:"+pr.getMaker());
+		  	System.out.println(problem.get("jimoon"));
+		   problem.put("id",id);
+		   	md.addAttribute("dataMap",problem);
+				String url = "teacher/problemDetail";
+				return url;
+			} 
+	   
+	   
+	   
+	   
+	   
+	   @RequestMapping("/problemModify")
+	          public String problemmodify(int prC,Model md,HttpServletRequest request)throws Exception{
+		   String url="";
+		   HttpSession session=request.getSession();
+			   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+			   String id=loginUser.getId();
+			   System.out.println("==================================");
+			   System.out.println("id:"+id);
+			   System.out.println("==================================");
+		   Map<String,Object> problem=service.getProblem(prC);
+		
+		   Map<String,Object>data=service.createGdata(id);
+		  // String danwon=service.danwonSearch(prC);
+		   String danwon="크크크";
+		   String detailSubj=service.detailSubjecSearch(prC);
+		   System.out.println(prC);
+		   System.out.println("단운명:"+danwon);
+		   System.out.println("과목디테일명:"+detailSubj);
+		   data.put("subject",service.idSearchName(id).get("subject"));
+		   data.put("dan",danwon);
+		   data.put("detailSubj",detailSubj);
+		   md.addAttribute("dataMap",problem);
+		   md.addAttribute("data", data);
+		  ProblemVO pr=(ProblemVO)problem.get("problem");
+		  String jimoon=String.valueOf(problem.get("jimoon"));
+		  System.out.println("지문:"+jimoon);
+		  System.out.println("문제형식:"+pr.getLproblem());
+		 
+	
+		  if(pr.getLproblem().equals("객관식")&&jimoon.equals("null")) {
+			  System.out.println("마 이거뭐냥 어 뭐냐고");
+			  url="teacher/problemModify2";
+		  }
+		  if(pr.getLproblem().equals("주관식")&&jimoon.equals("null")) {
+			  url="teacher/problemModify3";
+		  }
+		  if(!jimoon.equals("null")) {
+			  url="teacher/problemModify4";
+		  }
+		    
+		   return url;
+	   }
+	   @RequestMapping("/problemcreateG")
+       public String problemcreateG(HttpServletRequest request,Model md)throws Exception{
+		//   HttpSession session=request.getSession();
+					//   MemberVO loginUser=(MemberVO)session.getAttribute("LoginUser");
+					   String id="titi";
+					   
+					   //객관식 문제만들기 화면 전처리 데이터들 받는 서비스
+					   Map<String,Object>data=service.createGdata(id);
+					  data.put("subject",service.idSearchName(id).get("subject"));
+		   md.addAttribute("data", data);
+		   
+		   
+		   
+	   String url="teacher/problemcreateG";
+	   return url;
+}
+	   @RequestMapping("/problemcreateJ")
+       public String problemcreateJ(HttpServletRequest request,Model md)throws Exception{
+		   String id="titi";
+		   
+		   //객관식 문제만들기 화면 전처리 데이터들 받는 서비스
+		   Map<String,Object>data=service.createGdata(id);
+		   data.put("subject",service.idSearchName(id).get("subject"));
+           md.addAttribute("data", data);
+
+	   String url="teacher/problemcreateJ";
+	   return url;
+}
+	   @RequestMapping("/problemjcreateG")
+       public String problemjcreateG(HttpServletRequest request,Model md)throws Exception{
+			   HttpSession session=request.getSession();
+			   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+			   String id=loginUser.getId();
+			   
+			   //객관식 문제만들기 화면 전처리 데이터들 받는 서비스
+			   Map<String,Object>data=service.createGdata(id);
+			  data.put("subject",service.idSearchName(id).get("subject"));
+              md.addAttribute("data", data);
+		   
+	   String url="teacher/problemjcreateG";
+	   return url;
+}
+	   
+	   @RequestMapping("/problemjcreateJ")
+       public String problemjcreateJ()throws Exception{
+	   String url="teacher/problemjcreateJ";
+	   return url;
+}
+	   
+	   @RequestMapping("/wrongnote")
+       public String wrongnote()throws Exception{
+	   String url="teacher/wrongnote";
+	   return url;
+}
+	   @RequestMapping("/teacherconsult")
+       public String teacherconsult()throws Exception{
+	   String url="teacher/teacherconsult";
+	   return url;
+}
+	   @RequestMapping("/teacherconsultdetail")
+       public String teacherconsultdetail()throws Exception{
+	   String url="teacher/teacherconsultdetail";
+	   return url;
+}
+	   @RequestMapping("/teacherconsultend")
+       public String teacherconsultend()throws Exception{
+	   String url="teacher/teacherconsultend";
+	   return url;
+}
+	   
+	
+	   @RequestMapping("/teacherconsultcancel")
+       public String teacherconsultcancel()throws Exception{
+	   String url="teacher/teacherconsultcancel";
+	   return url;
+}
+	   @RequestMapping("/teacheranalysis")
+       public String teacheranalysis()throws Exception{
+	   String url="teacher/teacheranalysis";
+	   return url;
+}
+	   
+	   @RequestMapping(value="/problemCreatego", method = RequestMethod.POST)
+       public String problemCreatego(ProblemVO problem,HttpServletRequest request)throws Exception{
+		   System.out.println(problem);
+		   String url="";
+		  int cnt=0;
+		  HttpSession session=request.getSession();
+		  MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		  problem.setMaker(loginUser.getId());
+		  cnt=service.insertProblem(problem);
+		  if(problem.getLproblem().equals("객관식")) {
+			  url="redirect:problemcreateG.go";
+		  }else {
+			  url="redirect:problemcreateJ.go";
+		  }
+	 
+	   return url;
+}
+	   @RequestMapping(value="/problemjCreatego", method = RequestMethod.POST)
+       public String problemjCreatego(JimoonProblemCommand problem,HttpServletRequest request)throws Exception{
+		   System.out.println(problem);
+		   HttpSession session=request.getSession();
+			  MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		   problem.setMaker(loginUser.getId());
+		   String url="redirect:problemjcreateG.go";
+		   int cnt=0;
+		 //service.insertProblem(problem);
+		cnt=service.insertJProblem(problem);
+	
+	   return url;
+}
+	   
+	   @RequestMapping(value="/problemModifygo", method = RequestMethod.POST)
+       public String problemModifygo(ProblemVO problem)throws Exception{
+		   System.out.println(problem);
+		   int prC=problem.getProblemCode();
+		   System.out.println(problem.getPicture());
+		   String url="redirect:problemDetail.go?prC="+prC;
+		   int cnt=0;
+		 //service.insertProblem(problem);
+		cnt=service.modifyProblem(problem);
+	
+	   return url;
+} 
+	   
+	   @RequestMapping(value="/problemjModify", method = RequestMethod.POST)
+       public String problemjModify(JimoonProblemCommand problem,HttpServletRequest request)throws Exception{
+		   HttpSession session=request.getSession();
+		   MemberVO loginUser=(MemberVO)session.getAttribute("loginUser");
+		   String id=loginUser.getId();
+		   	
+		   //객관식 문제만들기 화면 전처리 데이터들 받는 서비스
+		   int cnt=0;
+			
+			cnt=service.updateJProblem(problem);
+			System.out.println("??????????????????????????");
+			String url="redirect:problemjcreateG.go";
+	   return url;
+} 
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+}

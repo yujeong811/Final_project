@@ -1,0 +1,16 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.CalendarVO;
+
+public interface CalendarService {
+
+	public List<CalendarVO> getAllCalendar() throws SQLException;
+	
+	public void registCalendar(CalendarVO calendarVO) throws SQLException;
+	
+	public void resetCalendar() throws SQLException;
+
+}

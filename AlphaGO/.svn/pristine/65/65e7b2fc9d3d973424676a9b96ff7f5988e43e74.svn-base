@@ -1,0 +1,503 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<head>
+	<script>
+	$("#FXT_01").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_01').is(":checked")){
+				$("#fx1").val('Y');
+			}else{
+				$("#fx1").val('N');
+			}
+		}		
+	)
+	$("#FXT_02").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_02').is(":checked")){
+				$("#fx2").val('Y');
+			}else{
+				$("#fx2").val('N');
+			}
+		}		
+	)
+	$("#FXT_03").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_03').is(":checked")){
+				$("#fx3").val('Y');
+			}else{
+				$("#fx3").val('N');
+			}
+		}		
+	)
+	$("#FXT_04").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_04').is(":checked")){
+				$("#fx4").val('Y');
+			}else{
+				$("#fx4").val('N');
+			}
+		}		
+	)
+	
+	$("#FXT_05").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_05').is(":checked")){
+				$("#fx5").val('Y');
+			}else{
+				$("#fx5").val('N');
+			}
+		}		
+	)
+	$("#FXT_06").change(
+		function(){
+			//체크박스 값에따라 히든값 변경
+			if($('#FXT_06').is(":checked")){
+				$("#fx6").val('Y');
+			}else{
+				$("#fx6").val('N');
+			}
+		}		
+	)
+	</script>
+	<script>
+		$('#roomRegistBtn').on('click', function(){
+			var sendForm = $("#sendForm");
+			sendForm.submit();
+		})
+	</script>	
+	
+	<script>
+	function clickModal(tr){
+		var rno = tr.querySelector('#rno').innerText;
+		var usepose = tr.querySelector('#usepose').innerText;
+		var cap = tr.querySelector('#cap').innerText;
+		
+		var inputrno = document.querySelector('input[id="room_no"]');
+		var use_purpose = document.querySelector('input[id="use_purpose"]');
+		var capacity = document.querySelector('input[id="capacity"]');
+
+		var rcode = document.querySelector('input[id="room_code"]').value;
+		var room_code = document.querySelector('input[name="room_code"]');
+
+		inputrno.setAttribute('value', rno);
+		use_purpose.setAttribute('value', usepose);
+		capacity.setAttribute('value', cap);
+		room_code.setAttribute('value', rcode);
+		console.log(inputrno);
+		console.log(use_purpose);
+		console.log(capacity);
+		
+	}
+	</script>
+	
+	<script>
+	function remove_go(){
+		var formObj = $("form[role='form']");
+		var answer = confirm("정말 삭제하시겠습니까?");
+		if(answer){		
+			formObj.attr("action", "classRemove.go");
+			formObj.attr("method", "post");
+			formObj.submit();
+		}
+	}
+	</script>
+	<script>
+	$('#roomCloseBtn').on('click', function(){
+		var inputrno = document.querySelector('input[id="room_no"]');
+		var use_purpose = document.querySelector('input[id="use_purpose"]');
+		var capacity = document.querySelector('input[id="capacity"]');
+		var room_code = document.querySelector('input[name="room_code"]');
+		
+		inputrno.setAttribute('value', '');
+		use_purpose.setAttribute('value', '');
+		capacity.setAttribute('value', '');
+		room_code.setAttribute('value', '');
+	})
+	</script>
+</head>
+
+<body>
+
+	<c:set var="pageMaker" value="${dataMap.pageMaker }"></c:set>
+	<c:set var="classroomList" value="${dataMap.classroomList }"></c:set>
+	<c:set var="useFixList" value="${dataMap.useFixList }"></c:set>
+	<c:set var="cri" value="${pageMaker.cri }"></c:set>
+
+	<!-- row 시작 -->
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- card 시작 -->
+			<div class="card" style="margin-bottom:3px;">
+				<!-- cardheader 시작 -->
+				<div class="card-header col-md-12">강의실 관리</div>
+				<!-- cardheader 끝 -->
+				<div class="card-body">
+					<div class="col-md-12"
+						style="text-align: center; padding-left: 50px; padding-right: 50px;">
+						<h5 style="font-weight: bold;">강의실 관리</h5>
+					</div>
+					<!-- 검색 -->
+					<div class="col-md-12">
+						<div class="col-md-4">
+							<button type="button" id="registBtn" data-bs-toggle="modal"
+								data-bs-target="#staticBackdrop" class="btn btn-soft-primary"
+								style="float: left; margin-left: 50px; width: 20%;">등록</button>
+						</div>
+						<div class="col-sm-8"
+							style="float: right; margin-top: 10px; padding-right: 50px;">
+							<div class="col-sm-6" style="float: left;">
+								<select class="form-select" style="float: right; width: 40%;"
+									aria-label="Default select example" name="searchType"
+									id="searchType" onchange="">
+									<option value="np">전체</option>
+									<option value="n">호수</option>
+									<option value="p">목적</option>
+								</select>
+							</div>
+							<!-- keyword -->
+							<div class="col-sm-6" style="float: right;">
+								<input class="form-control col-sm-6" type="text" name="keyword"
+									placeholder="검색어를 입력하세요." value=""
+									style="width: 80%; display: inline;"> <span
+									class="input-group-append">
+									<button class="btn btn-soft-primary" type="button"
+										id="searchBtn" style="float: right; width: 20%;"
+										data-card-widget="search" onclick="list_go(1);">
+										<i class="fa fa-fw fa-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding-top: 0;">
+					<div class="bd-example"
+						style="padding-left: 50px; padding-right: 50px;">
+						<table class="table table-hover" style="text-align: center;">
+							<thead style="background-color: #86a8d9; color: white;">
+								<tr>
+									<th scope="col">호수</th>
+									<th scope="col">비품</th>
+									<th scope="col">사용 목적</th>
+									<th scope="col">수용 인원</th>
+									<th scope="col">사용 여부</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach var="classroom" items="${classroomList }">
+								<input type="hidden" id="room_code" value="${classroom.room_code}">
+								<tr data-bs-toggle="modal"
+								data-bs-target="#staticBackdrop" onclick="clickModal(this);">
+									<th id="rno" scope="row">${classroom.room_no }</th>
+									<td id="fixt" class="pb-3" data-bs-toggle="modal"
+										data-bs-target="#icon_info_modal">
+									<c:forEach var="fixt" items="${useFixList }">
+										<c:if test="${fixt.room_code == classroom.room_code}" >
+											<span title="" class="drr-313 equi-icon-small active">
+												<i class="${fixt.fxticon }"></i>
+											</span> 
+										</c:if>
+										
+									</c:forEach>
+									</td>
+									<td id="usepose">${classroom.use_purpose }</td>
+									<td id="cap">${classroom.capacity }</td>
+									<td id="usecase"><span class="badge badge-soft-primary">사용 가능</span></td>
+								</tr>
+							</c:forEach>
+							</tbody>
+
+						</table>
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+				</div>
+
+				<!-- card-body 끝 -->
+				<!-- 비품 Modal 시작 -->
+				<div class="modal fade" id="icon_info_modal" tabindex="-1"
+					aria-labelledby="icon_info_label" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="icon_info_label">비품 아이콘 설명</h5>
+<!-- 								<button type="button" class="close" data-dismiss="modal" -->
+<!-- 									aria-label="Close"> -->
+<!-- 									<span aria-hidden="true"></span> -->
+<!-- 								</button> -->
+							</div>
+							<div class="modal-body">
+								<div class="row no-gutters">
+									<div class="col-12">
+										<label class="mx-3 mb-3"><i class="fas fa-chair"></i>
+											의자</label> <label class="mx-3 mb-3"><i class="fas fa-inbox"></i>
+											책상</label> <label class="mx-3 mb-3"><i class="fas fa-video"></i>
+											프로젝터</label> <label class="mx-3 mb-3"><i
+											class="fas fa-chalkboard"></i> 화이트보드</label> <label class="mx-3 mb-3"><i
+											class="fas fa-chalkboard-teacher"></i> 스크린</label> <label
+											class="mx-3 mb-3"><i class="fas fa-fire-extinguisher"></i>
+											소화기</label>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 비품 Modal 끝 -->
+
+			<!-- 등록 Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+				data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">강의실 등록</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<!-- Modal-body 시작! -->
+						<!-- 강의실 등록 -->
+						<div class="modal-body">
+							<form role='form' action="roomregist.go" method="post" id="sendForm" enctype="application/json">
+								<input type="hidden" id="" name="room_code" value="">
+								<div class="row mb-3">
+									<label for="room_no" class="col-sm-2 col-form-label">호수</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="room_no"
+											name="room_no">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="use_purpose" class="col-sm-2 col-form-label">사용목적</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="use_purpose"
+											name="use_purpose">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="capacity" class="col-sm-2 col-form-label">수용인원</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="capacity"
+											name="capacity">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="capacity" class="col-sm-2 col-form-label">비품</label>
+									<div style="margin-left: 40px;">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_01" id="FXT_01"> <label
+												class="form-check-label" for="FXT_01"> 의자</label>
+											<input type="hidden" id="fx1" name="fx1" value="N">
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_02" id="FXT_02"> <label
+												class="form-check-label" for="FXT_02"> 책상 </label>
+											<input type="hidden" id="fx2" name="fx2" value="N">
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_03" id="FXT_03"> <label
+												class="form-check-label" for="FXT_03"> 프로젝터</label>
+											<input type="hidden" id="fx3" name="fx3" value="N">
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_04" id="FXT_04"> <label
+												class="form-check-label" for="FXT_04"> 화이트보드 </label>
+											<input type="hidden" id="fx4" name="fx4" value="N">
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_05" id="FXT_05"> <label
+												class="form-check-label" for="FXT_05"> 스크린</label>
+											<input type="hidden" id="fx5" name="fx5" value="N">
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value=""
+												name="FXT_06" id="FXT_06"> <label
+												class="form-check-label" for="FXT_06"> 소화기</label>
+											<input type="hidden" id="fx6" name="fx6" value="N">
+										</div>
+									</div>
+								</div>
+								<!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
+							</form>
+						</div>
+						<!-- Modal-body 끝! -->
+
+						<div class="modal-footer">
+							<button type="button" id="roomCloseBtn" class="btn btn-secondary"
+								data-bs-dismiss="modal">Close</button>
+							<button type="button" onclick="remove_go();" id="roomDeleteBtn" class="btn btn-danger">Delete</button>
+							<button type="button" id="roomRegistBtn" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 등록 모달 끝 -->
+
+			<div class="card">
+				<!-- start card body -->
+				<div class="card-body">
+					<!-- 아이콘 wrapper 시작 -->
+					<div class="col-sm-12"
+						style="padding-left: 50px; padding-right: 50px;">
+						<div
+							style="margin-left: 100px; margin-right: 100px; border: 1px solid skyblue; padding: 10px; padding-left: 100px;">
+							<div class="d-flex align-items-center col-sm-3"
+								style="float: left;">
+								<div class="flex-shrink-0 me-3">
+									<div class="avatar-sm">
+										<div
+											class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+											<i class="uil uil-users-alt"></i>
+										</div>
+									</div>
+								</div>
+								
+								<c:set var="capacity" value="0"></c:set>
+								<c:forEach items="${classroomList }" var="rList">
+									<c:set var= "capTotal" value="${capacity + rList.capacity}"/>
+								</c:forEach>
+								<div class="flex-grow-1 overflow-hidden">
+									<p class="mb-1 text-truncate text-muted">Capacity</p>
+									<h5 class="font-size-16 mb-0"><c:out value="${capTotal}"/></h5>
+								</div>
+							</div>
+
+							<div class="d-flex align-items-center col-sm-3"
+								style="float: left;">
+								<div class="flex-shrink-0 me-3">
+									<div class="avatar-sm">
+										<div
+											class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+											<i class="bx bx-user-x"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-grow-1 overflow-hidden">
+									<p class="mb-1 text-truncate text-muted">Empty</p>
+									<h5 class="font-size-16 mb-0">3</h5>
+								</div>
+							</div>
+
+							<div class="d-flex align-items-center col-sm-3"
+								style="float: left;">
+								<div class="flex-shrink-0 me-3">
+									<div class="avatar-sm">
+										<div
+											class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+											<i class="bx bx-user-check"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-grow-1 overflow-hidden">
+									<p class="mb-1 text-truncate text-muted">In use</p>
+									<h5 class="font-size-16 mb-0">2</h5>
+								</div>
+							</div>
+
+							<div class="d-flex align-items-center col-sm-3">
+								<div class="flex-shrink-0 me-3">
+									<div class="avatar-sm">
+										<div
+											class="avatar-title bg-soft-primary text-primary rounded-circle font-size-18">
+											<i class="uil-signal-alt-3"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-grow-1 overflow-hidden">
+									<p class="mb-1 text-truncate text-muted">Floor</p>
+									<h5 class="font-size-16 mb-0">2</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 아이콘 wrapper 끝 -->
+
+					<!-- 빈강의실 table 시작 -->
+					<div class="bd-example"
+						style="margin-top: 30px; padding-left: 50px; padding-right: 50px;">
+						<div class="col-md-12" style="text-align: center; margin: 10px;">
+							<span class="badge badge-soft-primary" style="font-size: 1.0em;">
+								사용 가능한 강의실 </span>
+						</div>
+						<table class="table" style="text-align: center;">
+							<thead style="background-color: #86a8d9; color: white;">
+								<tr>
+									<th scope="col">호수</th>
+									<th scope="col">사용 목적</th>
+									<th scope="col">수용 인원</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">203</th>
+									<td>강의실</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<th scope="row">301</th>
+									<td>회의실</td>
+									<td>10</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- 빈강의실 table 끝 -->
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+					<!-- end card body -->
+				</div>
+				<!-- card 끝 -->
+			</div>
+		</div>
+	</div>
+	<!-- row 끝 -->
+	<c:if test="${from eq 'regist' }">
+		<script>
+			alert("등록이 성공했습니다.");
+			window.location.reload();
+		</script>
+	</c:if>
+	<c:if test="${from eq 'remove' }">
+		<script>
+			alert("삭제를 성공했습니다.");
+			window.location.reload();
+		</script>
+	</c:if>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

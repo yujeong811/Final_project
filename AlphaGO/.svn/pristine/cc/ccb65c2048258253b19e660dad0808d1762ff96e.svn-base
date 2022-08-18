@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Pacounselt-Mapper">
+   <sql id="search">
+      <if test="searchType == 'tcw'.toString()">
+         and name like '%'||#{keyword}||'%'
+
+         or purpose like '%'||#{keyword}||'%'
+
+      </if>
+      <if test="searchType == 't'.toString()">
+         and name like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'w'.toString()">
+         and purpose like '%'||#{keyword}||'%'
+      </if>
+
+   </sql>
+   
+   <sql id="search1">
+      <if test="searchType == 'a'.toString()">
+         and purpose like '%'||#{keyword}||'%'
+
+         or name like '%'||#{keyword}||'%'
+         
+         or meetdate like '%'||#{keyword}||'%'
+
+      </if>
+      <if test="searchType == 'b'.toString()">
+         and purpose like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'c'.toString()">
+         and name like '%'||#{keyword}||'%'
+      </if>
+      
+      <if test="searchType == 'd'.toString()">
+         and meetdate like '%'||#{keyword}||'%'
+      </if>
+
+   </sql>
+
+
+   <select id="selectCounseltList" resultType="pacounselt">
+
+      select
+      pc_code
+      ,counselor
+      ,client
+      ,regdate
+      ,meetdate
+      ,content
+      ,result
+      ,purpose
+      ,status
+      ,fu_code
+      ,su_code
+      ,tu_code
+      ,pc_start
+      ,pc_end
+      ,title
+      from
+      pacounselt
+      where
+      status='0'
+      order by meetdate
+      desc
+
+   </select>
+
+   <select id="selectCounseltListCount" resultType="int">
+      select
+      count(*)
+      from
+      pacounselt
+      where status='0'
+      order by meetdate desc
+   </select>
+
+   <select id="selectSearchCounseltList" resultType="pacounselt">
+      select
+      *
+      from pacounselt
+      where pc_code is not null
+      and status='0'
+      <include refid="search" />
+      order by meetdate desc
+   </select>
+
+   <select id="selectSearchCounseltListCount" resultType="int">
+      select
+      count(*)
+      from pacounselt
+      where pc_code is not null
+      and status='0'
+      <include refid="search" />
+   </select>
+   <select id="selectName" resultType="str">
+      select b.name
+      from
+      pacounselt a,
+      member b
+      where a.client=b.id
+      and
+      a.pc_code=#{pcCode}
+   </select>
+
+
+
+   <select id="selectCounseltEndList" resultType="pacounselt">
+   
+      select
+      pc_code
+      ,counselor
+      ,client
+      ,regdate
+      ,meetdate
+      ,content
+      ,result
+      ,purpose
+      ,status
+      ,fu_code
+      ,su_code
+      ,tu_code
+      ,pc_start
+      ,pc_end
+      ,title
+      FROM
+      pacounselt
+    where<![CDATA[meetdate <sysdate]]>
+      order by meetdate desc
+      </select>   
+
+
+
+   <select id="selectCounseltEndListCount" resultType="int">
+      select
+      count(*)
+      from
+      pacounselt
+        where<![CDATA[meetdate<sysdate]]>
+      order by meetdate desc
+   </select>
+
+   <select id="selectSearchCounseltEndList" resultType="pacounselt">
+      select
+      *
+      from pacounselt
+      where pc_code is not null
+      and <![CDATA[meetdate<sysdate]]>
+      <include refid="search" />
+      order by meetdate desc
+   </select>
+
+   <select id="selectSearchCounseltEndListCount" resultType="int">
+      select
+      count(*)
+      from pacounselt
+      where pc_code is not null
+      and <![CDATA[meetdate<sysdate]]>
+      <include refid="search" />
+   </select>
+   
+   <select id="selectCounseltByPcCode" parameterType="int" resultType="pacounselt">
+      select a.purpose,a.pc_start,a.pc_end,a.meetdate, b.name,b.phone,b.grade,b.school_name,b.parent_phone
+      from
+      pacounselt a,
+      member b
+      where a.client=b.id
+      and a.pc_code=#{pcCode}
+   </select>
+
+<update id="updateCounseltDetailList" parameterType="pacounselt">
+   update pacounselt
+     set content =#{content},
+         result =#{result}
+     WHERE pc_code =#{pcCode}
+  </update>
+</mapper>

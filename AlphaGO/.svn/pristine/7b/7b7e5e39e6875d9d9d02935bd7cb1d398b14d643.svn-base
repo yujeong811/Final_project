@@ -1,0 +1,108 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.PacounseltDAO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public class PacounseltServiceImpl implements PacounseltService{
+	
+	private PacounseltDAO counseltDAO;
+	public void setCounseltDAO(PacounseltDAO counseltDAO) {
+		this.counseltDAO = counseltDAO;
+	}
+
+	@Override
+	public Map<String, Object> getCounseltList(Criteria cri,Integer pcCode) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(counseltDAO.selectCounseltListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<PacounseltVO> counseltList =counseltDAO.selectSearchCounseltList(searchCri);
+		for(PacounseltVO counselt:counseltList) {
+			try {
+				String name=counseltDAO.selectName(counselt.getPcCode());
+				//String name=counseltDAO.selectName(counselt.getCounCode());
+				counselt.setPcCode(pcCode);
+				//counselt.setCounCode(counCode);
+				counselt.setName(name);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		dataMap.put("counseltList",counseltList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> getCounseltEndList(Criteria cri, Integer pcCode) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(counseltDAO.selectCounseltEndListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<PacounseltVO> counseltEndList =counseltDAO.selectSearchCounseltEndList(searchCri);
+		for(PacounseltVO counselt:counseltEndList) {
+			try {
+				String name=counseltDAO.selectName(counselt.getPcCode());
+			
+				
+				//String name=counseltDAO.selectName(counselt.getCounCode());
+				
+				//counselt.setPcCode(pcCode);
+				//counselt.setCounCode(counCode);
+				counselt.setName(name);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		dataMap.put("counseltEndList",counseltEndList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public PacounseltVO getCounseltEnd(int pcCode) throws Exception {
+		PacounseltVO counselt=counseltDAO.selectCounseltByPcCode(pcCode);
+		return counselt;
+	}
+
+	
+	@Override
+	public void updateCounseltDetailList(PacounseltVO pacoun) throws SQLException {
+		counseltDAO.updateCounseltDetailList(pacoun);
+	}
+
+	
+}
+
+

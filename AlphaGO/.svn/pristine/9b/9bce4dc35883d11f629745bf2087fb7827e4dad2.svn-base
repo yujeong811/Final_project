@@ -1,0 +1,47 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.NoticeVO;
+
+public class NoticeDAOImpl implements NoticeDAO{
+    private SqlSession session;
+    
+     public void setSession(SqlSession session) {
+		this.session = session;
+	}
+    
+	
+
+	@Override
+	public List<NoticeVO> selectSearchNoticeList( Criteria cri) throws SQLException {
+		int startRow = cri.getStartRowNum();
+		int endRow = startRow+cri.getPerPageNum()-1;
+
+		SearchCriteria searchCri = (SearchCriteria)cri;
+		
+		Map<String, Object> dataParam = new HashMap<String, Object>();
+		dataParam.put("startRow", startRow);
+		dataParam.put("endRow", endRow);
+		dataParam.put("searchType", searchCri.getSearchType());
+		dataParam.put("keyword", searchCri.getKeyword());
+
+		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectSearchNoticeList", dataParam);
+
+		return noticeList;
+	}
+
+	@Override
+	public int selectSearchNoticeListCount( Criteria cri) throws SQLException {
+		int count = session.selectOne("Notice-Mapper.selectSearchNoticeListCount", cri);
+		return count;
+	}
+
+}

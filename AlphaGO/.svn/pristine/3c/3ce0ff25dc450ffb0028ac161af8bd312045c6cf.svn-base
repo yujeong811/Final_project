@@ -1,0 +1,14 @@
+package kr.or.ddit.dto;
+
+public class ProblemVO {
+int problem_code     ;
+int sano             ;
+String problem_content  ;
+String lproblem         ;
+String problem_answer   ;
+String problem_solution ;
+int grade  ;
+int subject_proccess;
+int school_code;
+int exam_code;
+}                       

@@ -1,0 +1,443 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+<head>
+<script>
+function addRow() {
+	  // table element 찾기
+	  const table = document.getElementById('plus2');
+	  
+	  // 새 행(Row) 추가
+	  const newRow = table.insertRow();
+	  
+	  // 새 행(Row)에 Cell 추가
+	  const newCell1 = newRow.insertCell(0);
+	  const newCell2 = newRow.insertCell(1);
+	  
+	  // Cell에 텍스트 추가
+	  newCell1.innerText = '새 과일';
+	  newCell2.innerText = 'New Fruit';
+	}
+</script>
+</head>
+
+<title>수업계획서</title>
+
+<body>
+	 <!-- Main content -->
+<!-- 	<section class="content-header"> -->
+<!-- 	  	<div class="container-fluid"> -->
+<!-- 	  		<div class="row md-2"> -->
+<!-- 	  		</div> -->
+<!-- 	  	</div> -->
+<!-- 	</section> -->
+	 <!-- Main content -->
+		<div class="card">
+			<section class="content-header">
+	  	<div class="container-fluid">
+	  		<div class="row md-2">
+	  			<div class="col-sm-6">
+	  				<h2 style="margin:20px;">수업계획서관리</h2>  				
+	  			</div>
+	  			<div  class="col-sm-6">
+	  				<ol style="float:right; margin:20px;" class="breadcrumb float-sm-right">
+			        <li class="breadcrumb-item">
+			        	<a href="list.go">
+				        	<i class="fa fa-dashboard"></i>수업관리
+				        </a>
+			        </li>
+			        <li class="breadcrumb-item active">
+			        	수업계획서관리
+			        </li>		        
+	    	  </ol>
+	  			</div>
+	  		</div>
+	  	</div>
+	</section>
+	<hr>
+	  		<div id="keyword" class="card-tools" style="">
+				<div class="col-md-3" style="float:left;">
+					<span style="margin:20px 0px 0px 20px; font-size: 15px;" class="badge bg-success">진행중인 수업목록</span>
+				</div>
+				<div class="col-md-9" style="float:right;" >
+				
+				<span style="float:right;" class="input-group-append">
+					<button style="margin-right:20px;"style="margin-left:20px;" class="btn btn-primary" type="button" onclick="list_go(1);" data-card-widget="search">
+						<i class="fa fa-fw fa-search"></i>
+					</button>
+				</span>
+				<input  class="form-control col-sm-6" style="width:150px; float:right;" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${param.keyword }"/>
+				</div>
+			</div>
+			<div class="card-body" style="overflow: auto; padding-top:5px;">
+				<table class="table table-bordered text-center" >					
+					<tr style="font-weight:bold; background-color: #8BDDA8;">
+						<th style="width:10%; font-weight:bold;">번 호</th>
+						<th style="width:10%; font-weight:bold;">과목</th>
+						<th style="width:45%; font-weight:bold;">수업명</th>
+						<th style="width:10%; font-weight:bold;">강의실</th>
+						<th style="width:10%; font-weight:bold;">시작일</th>
+						<th style="width:10%; font-weight:bold;">종료일</th>
+					</tr>				
+								
+						<tr data-bs-toggle="modal" data-bs-target="#classTr" style='font-size:0.85em;cursor:pointer;'>
+							<td>1</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							수학
+							</td>			
+							<td>	
+							수학1 개념완성[기본+심화]					
+							</td>
+							<td>304호</td>
+							<td>2022-06-15</td>		
+							<td>2022-07-15</td>		
+						</tr>
+						<tr data-bs-toggle="modal" data-bs-target="#classTr" style='font-size:0.85em;cursor:pointer;'>
+							<td>1</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							수학
+							</td>			
+							<td>	
+							수학1 개념완성[기본+심화]					
+							</td>
+							<td>304호</td>
+							<td>2022-06-15</td>		
+							<td>2022-07-15</td>		
+						</tr>
+						<tr data-bs-toggle="modal" data-bs-target="#classTr" style='font-size:0.85em;cursor:pointer;'>
+							<td>1</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							수학
+							</td>			
+							<td>	
+							수학1 개념완성[기본+심화]					
+							</td>
+							<td>304호</td>
+							<td>2022-06-15</td>		
+							<td>2022-07-15</td>		
+						</tr>
+						<tr data-bs-toggle="modal" data-bs-target="#classTr" style='font-size:0.85em;cursor:pointer;' onclick="OpenWindow('detail.do?from=list&nno=${notice.nno }','상세보기',800,700);">
+							<td>1</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							수학
+							</td>			
+							<td>	
+							수학1 개념완성[기본+심화]					
+							</td>
+							<td>304호</td>
+							<td>2022-06-15</td>		
+							<td>2022-07-15</td>		
+						</tr>
+				</table>				
+			</div>
+			<hr>
+			<div id="keyword" class="card-tools" style="">
+				<div class="col-md-3" style="float:left;">
+					<span style="margin:20px 0px 0px 20px; font-size: 15px;" class="badge bg-success">미등록 수업목록</span>
+				</div>
+				<div class="col-md-9" style="float:right;" >
+				
+				<span style="float:right;" class="input-group-append">
+					<button style="margin-right:20px;"style="margin-left:20px;" class="btn btn-primary" type="button" onclick="list_go(1);" data-card-widget="search">
+						<i class="fa fa-fw fa-search"></i>
+					</button>
+				</span>
+				<input  class="form-control col-sm-6" style="width:150px; float:right;" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${param.keyword }"/>
+				</div>
+			</div>
+			<div class="card-body" style="padding-top:5px;">
+				<table class="table table-bordered text-center" >					
+					<tr style="background-color: #8BDDA8;">
+						<th style="width:10%; font-weight:bold;">과목</th>
+						<th style="width:45%; font-weight:bold;">수업명</th>
+						<th style="width:10%; font-weight:bold;">강의실</th>
+						<th style="width:10%; font-weight:bold;">시작일</th>
+						<th style="width:10%; font-weight:bold;">종료일</th>
+						<th style="width:10%; font-weight:bold;">수업계획서</th>
+					</tr>				
+								
+						<tr  style='font-size:0.85em;cursor:pointer;' >
+							<td>수학</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							미분과 적분 개념완성[기본+심화]
+							</td>	
+							<td>306호</td>		
+							<td>2022-07-15</td>
+							<td>2022-08-15</td>
+							<td><button style="height:20px; line-height:0px;" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#insertBtn">등록</button></td>		
+						</tr>
+						<tr style='font-size:0.85em;cursor:pointer;'>
+							<td>수학</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							미분과 적분 개념완성[기본+심화]
+							</td>	
+							<td>306호</td>		
+							<td>2022-07-15</td>
+							<td>2022-08-15</td>
+							<td><button style="height:20px; line-height:0px;" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#insertBtn">등록</button></td>		
+						</tr>
+						<tr style='font-size:0.85em;cursor:pointer;'>
+							<td>수학</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							미분과 적분 개념완성[기본+심화]
+							</td>	
+							<td>306호</td>		
+							<td>2022-07-15</td>
+							<td>2022-08-15</td>
+							<td><button style="height:20px; line-height:0px;" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#insertBtn">등록</button></td>		
+						</tr>
+						<tr style='font-size:0.85em;cursor:pointer;' onclick="OpenWindow('detail.do?from=list&nno=${notice.nno }','상세보기',800,700);">
+							<td>수학</td>
+							<td id="boardTitle" style="text-align:center;max-width: 100px; overflow: hidden; 
+												white-space: nowrap; text-overflow: ellipsis;">
+							미분과 적분 개념완성[기본+심화]
+							</td>	
+							<td>306호</td>		
+							<td>2022-07-15</td>
+							<td>2022-08-15</td>
+							<td><button style="height:20px; line-height:0px;" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#insertBtn">등록</button></td>		
+						</tr>
+				</table>				
+			</div>
+			<div class="card-footer">
+<%-- 				<%@ include file="/WEB-INF/views/common/pagination.jsp" %> --%>
+			</div>
+		
+		</div>
+		
+<!-- Modal 수업계획서 수정-->
+<div class="modal fade" id="classTr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">수업계획서</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<table style="height:10px;" class="table table-bordered text-center" >	
+      		<tr>
+     			<th style="background-color: #8BDDA8; font-weight:bold;">과목명</th>
+     			<td>수학</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">수업시수</td>
+     			<td>30H</td>
+      		</tr>
+      		<tr>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">수업명</td>
+     			<td>수학1 개념완성</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">강사명</td>
+     			<td>신승범</td>
+      		</tr>
+      		<tr>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">시작일</td>
+     			<td>2022-06-01</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">종료일</td>
+     			<td>2022-07-01</td>
+      		</tr>
+      	</table>
+      	<table class="table table-bordered text-center">
+      		<tr>
+      			<td style="width:20%; background-color: #8BDDA8; font-weight:bold;">수업시간</td>
+      			<td style="height: 40px;">15:00~18:00(수)<br>16:00~19:00(금)</td>
+      			<td style="width:15%; background-color: #8BDDA8; font-weight:bold;">강의실</td>
+      			<td style="width:15%;">304호</td>
+      		</tr>
+      		<tr>
+      			<td style="background-color: #8BDDA8; font-weight:bold;">교재</td>
+      			<td colspan="3"><input style="text-align:center; width:60%;" type="text" value="수학의정석 수학1(저자:홍성대)"></td>
+      		</tr>
+      		<tr>
+      			<td style="background-color: #8BDDA8; font-weight:bold;">수업개요</td>
+      			<td style="text-align:left;" colspan="3">
+      			<textarea rows="5" cols="85%">자세한 개념설명과 예제, 기출문제가 수록된 강의편으로 가장 기초적인 교과 개념과 수능 실전 개념이 자세하게 서술되어 있습니다. 교재에 있는 모든 개념과 예제, 기출 문제들은 강의에서 한번 더 꼼꼼하게 설명하는 수업 입니다.</textarea>
+      			</td>
+      		</tr>
+      	</table>
+      	<table style="height:20px;" class="table table-bordered text-center">
+      		<tr style="height:20px;">
+      			<th style="width:10%; background-color: #8BDDA8; font-weight:bold;">주차</th>
+      			<th style="width:90%; background-color: #8BDDA8; font-weight:bold;">수업계획
+      			<button style="float:right; height:25px; line-height:0px; text-align:center;" class="btn btn-secondary">-</button> 
+      			<button style="float:right; height:25px; line-height:0px; text-align:center; margin-right:5px;" class="btn btn-secondary">+</button></th>
+      		</tr>
+      		<tr>
+      			<td>1</td>
+      			<td><textarea rows="1" cols="90%">삼각함수의 정의/삼각함수의 그래프</textarea></td>
+      		</tr>
+      		<tr>
+      			<td>2</td>
+      			<td><textarea rows="1" cols="90%">삼각함수의 정의/삼각함수의 그래프</textarea></td>
+      		</tr>
+      		<tr>
+      			<td>3</td>
+      			<td><textarea rows="1" cols="90%">삼각함수의 정의/삼각함수의 그래프</textarea></td>
+      		</tr>
+      		<tr>
+      			<td>4</td>
+      			<td><textarea rows="1" cols="90%">삼각함수의 정의/삼각함수의 그래프</textarea></td>
+      		</tr>
+      		<tr>
+      			<td>5</td>
+      			<td><textarea rows="1" cols="90%">삼각함수의 정의/삼각함수의 그래프</textarea></td>
+      		</tr>
+      	</table>
+      	<table class="table table-bordered text-center">
+      		<tr>
+      			<th style="width:10%; background-color: #8BDDA8; font-weight:bold;">No</th>
+      			<th style="width:90%; background-color: #8BDDA8; font-weight:bold;">과제계획
+      			<button style="float:right; height:25px; line-height:0px; text-align:center;" class="btn btn-secondary">-</button> 
+      			<button style="float:right; height:25px; line-height:0px; text-align:center; margin-right:5px;" class="btn btn-secondary">+</button></th>
+      		</tr>
+      		<tr>
+      			<td>1</td>
+      			<td><textarea rows="1" cols="90%">p.20 행렬 문제풀이 </textarea></td>
+      		</tr>
+      		<tr>
+      			<td>2</td>
+      			<td><textarea rows="1" cols="90%">p.20 행렬 문제풀이</textarea></td>
+      		</tr>
+      		<tr>
+      			<td>3</td>
+      			<td><textarea rows="1" cols="90%">p.20 행렬 문제풀이</textarea></td>
+      		</tr>
+      	</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 수업계획서 등록 -->
+<div class="modal fade" id="insertBtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">수업계획서</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<table style="height:10px;" class="table table-bordered text-center" >	
+      		<tr>
+     			<th style="background-color: #8BDDA8; font-weight:bold;">과목명</th>
+     			<td>수학</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">수업시수</td>
+     			<td>30H</td>
+      		</tr>
+      		<tr>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">수업명</td>
+     			<td>수학1 개념완성</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">강사명</td>
+     			<td>신승범</td>
+      		</tr>
+      		<tr>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">시작일</td>
+     			<td>2022-06-01</td>
+     			<td style="background-color: #8BDDA8; font-weight:bold;">종료일</td>
+     			<td>2022-07-01</td>
+      		</tr>
+      	</table>
+      	<table class="table table-bordered text-center">
+      		<tr>
+      			<td style="width:20%; background-color: #8BDDA8; font-weight:bold;">수업시간</td>
+      			<td style="height: 40px;">15:00~18:00(수)<br>16:00~19:00(금)</td>
+      			<td style="width:15%; background-color: #8BDDA8; font-weight:bold;">강의실</td>
+      			<td style="width:15%;">304호</td>
+      		</tr>
+      		<tr>
+      			<td style="background-color: #8BDDA8; font-weight:bold;">교재</td>
+      			<td colspan="3"><input style="text-align:center; width:60%;" type="text" value=""></td>
+      		</tr>
+      		<tr>
+      			<td style="background-color: #8BDDA8; font-weight:bold;">수업개요</td>
+      			<td style="text-align:left;" colspan="3">
+      			<textarea rows="5" cols="85%"></textarea>
+      			</td>
+      		</tr>
+      	</table>
+      	<table style="height:20px;" class="table table-bordered text-center">
+      		<tr style="height:20px;">
+      			<th style="width:10%; background-color: #8BDDA8; font-weight:bold;">주차</th>
+      			<th style="width:90%; background-color: #8BDDA8; font-weight:bold;">수업계획
+      			<button style="float:right; height:25px; line-height:0px; text-align:center;" class="btn btn-secondary">-</button> 
+      			<button id="plusClass" style="float:right; height:25px; line-height:0px; text-align:center; margin-right:5px;" class="btn btn-secondary">+</button></th>
+      		</tr>
+      		<tr>
+      			<td>1</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      		<tr>
+      			<td>2</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      		<tr>
+      			<td>3</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      		<tr>
+      			<td>4</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      		<tr>
+      			<td>5</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      	</table>
+      	<table class="table table-bordered text-center">
+      		<tr>
+      			<th style="width:10%; background-color: #8BDDA8; font-weight:bold;">No</th>
+      			<th style="width:90%; background-color: #8BDDA8; font-weight:bold;">과제계획
+      			<button style="float:right; height:25px; line-height:0px; text-align:center;" class="btn btn-secondary">-</button> 
+      			<button id="plusHomework" style="float:right; height:25px; line-height:0px; text-align:center; margin-right:5px;" class="btn btn-secondary">+</button></th>
+      		</tr>
+      		<tr>
+      			<td>1</td>
+      			<td><textarea rows="1" cols="90%"> </textarea></td>
+      		</tr>
+      		<tr>
+      			<td>2</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      		<tr>
+      			<td>3</td>
+      			<td><textarea rows="1" cols="90%"></textarea></td>
+      		</tr>
+      	</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">등록</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<c:if test="${from eq 'regist' }">
+<script>
+	alert("건의글 등록이 성공했습니다.");
+	window.opener.location.reload();
+	window.close();
+</script>
+</c:if>    
+    
+</body>
+    
+    
+    
+    
+    
+    
+    

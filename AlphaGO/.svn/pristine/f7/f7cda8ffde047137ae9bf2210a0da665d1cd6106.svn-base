@@ -1,0 +1,17 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/master")
+public class DJ_MasterController {
+
+	@RequestMapping("/home")
+	public String home() {
+		String url = "master/home";
+		
+		return url;
+	}
+	
+}

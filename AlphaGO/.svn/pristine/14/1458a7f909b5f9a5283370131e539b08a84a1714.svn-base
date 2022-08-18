@@ -1,0 +1,118 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+@SuppressWarnings("serial")
+public class SchoolScoreVO implements Serializable {
+	int sscode;
+	String id;
+	int myscore;
+	String mygrade;
+	int standardScore;
+	int schoolYear;
+	int schoolTerm;
+	int subjectCode;
+	Date regdate;
+	String achievement;
+	int rank;
+	int stucnt;
+	int perfectScore;
+	String testName;
+
+
+	public int getSscode() {
+		return sscode;
+	}
+	public void setSscode(int sscode) {
+		this.sscode = sscode;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getMyscore() {
+		return myscore;
+	}
+	public void setMyscore(int myscore) {
+		this.myscore = myscore;
+	}
+	public String getMygrade() {
+		return mygrade;
+	}
+	public void setMygrade(String mygrade) {
+		this.mygrade = mygrade;
+	}
+	public int getStandardScore() {
+		return standardScore;
+	}
+	public void setStandardScore(int standardScore) {
+		this.standardScore = standardScore;
+	}
+	public int getSchoolYear() {
+		return schoolYear;
+	}
+	public void setSchoolYear(int schoolYear) {
+		this.schoolYear = schoolYear;
+	}
+	public int getSchoolTerm() {
+		return schoolTerm;
+	}
+	public void setSchoolTerm(int schoolTerm) {
+		this.schoolTerm = schoolTerm;
+	}
+	public int getSubjectCode() {
+		return subjectCode;
+	}
+	public void setSubjectCode(int subjectCode) {
+		this.subjectCode = subjectCode;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+	public String getAchievement() {
+		return achievement;
+	}
+	public void setAchievement(String achievement) {
+		this.achievement = achievement;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public int getStucnt() {
+		return stucnt;
+	}
+	public void setStucnt(int stucnt) {
+		this.stucnt = stucnt;
+	}
+	public int getPerfectScore() {
+		return perfectScore;
+	}
+	public void setPerfectScore(int perfectScore) {
+		this.perfectScore = perfectScore;
+	}
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+
+	@Override
+	public String toString(){
+			return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+
+
+}

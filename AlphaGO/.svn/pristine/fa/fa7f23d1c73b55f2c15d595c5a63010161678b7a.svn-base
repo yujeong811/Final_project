@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
+
+  
+
+
+	<!-- jQuery -->
+	<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
+
+	<!-- 이전 js들 -->
+	<script src="<%=request.getContextPath() %>/resources/js/common.js"></script>
+
+	<!-- JAVASCRIPT -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/metismenujs/metismenujs.min.js"></script>
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/simplebar/simplebar.min.js"></script>
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/feather-icons/feather.min.js"></script>
+
+
+	<!-- apexcharts -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+	<!-- Vector map-->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/jsvectormap/maps/world-merc.js"></script>
+
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/js/pages/dashboard-sales.init.js"></script>
+
+	<script src="<%=request.getContextPath() %>/resources/assets/js/app.js"></script>
+
+	<!--summernote  -->
+	<script
+		src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+
+	<!-- wizard form -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/js/pages/form-wizard.init.js"></script>
+
+	<!-- kakaoMap -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	920b14d2add732f9bc7f785681c1a295&libraries=services"></script>
+
+	<!-- barcharts init -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/js/pages/apexcharts-bar.init.js"></script>
+
+	<!-- grid JS -->
+	<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+
+	<!-- fullcalendar -->
+	<script src="<%=request.getContextPath() %>/resources/js/main.min.js"></script>
+	<script src="<%=request.getContextPath() %>/resources/js/ko.js"></script>
+	<script src="<%=request.getContextPath() %>/resources/js/hd_calender.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/counsert_calender.js"></script>
+
+	<!-- ckeditor -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+
+	<!-- rater-js plugin -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/rater-js/index.js"></script>
+
+	<!-- dropzone js -->
+	<script
+		src="<%=request.getContextPath() %>/resources/assets/libs/dropzone/min/dropzone.min.js"></script>
+	<!-- chart js 파일 -->
+	<script src="<%=request.getContextPath()%>/resources/js/common-chart.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/dj_master.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/hd_linechart.js"></script>
+	
+	<decorator:head />
+</body>
+</html>

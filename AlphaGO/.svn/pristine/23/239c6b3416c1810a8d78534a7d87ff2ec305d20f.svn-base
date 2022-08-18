@@ -1,0 +1,304 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+@SuppressWarnings("serial")
+public class ProblemVO implements Serializable{
+int problemCode     ;
+int sano             ;
+String problemContent  ;
+String lproblem         ;
+String problemAnswer   ;
+String problemSolution ;
+int grade  ;
+int subjectProccess;
+int schoolCode;
+
+
+String picture;
+String none;
+String ntwo;
+String ntree;
+String nfour;
+String nfive;
+String plevel;
+
+
+
+
+
+public String getNfive() {
+	return nfive;
+}
+
+
+
+
+
+public void setNfive(String nfive) {
+	this.nfive = nfive;
+}
+
+
+
+
+
+public String getPlevel() {
+	return plevel;
+}
+
+
+
+
+
+public void setPlevel(String plevel) {
+	this.plevel = plevel;
+}
+
+
+
+
+
+public String getPicture() {
+	return picture;
+}
+
+
+
+
+
+public void setPicture(String picture) {
+	this.picture = picture;
+}
+
+
+
+
+
+public String getNone() {
+	return none;
+}
+
+
+
+
+
+public void setNone(String none) {
+	this.none = none;
+}
+
+
+
+
+
+public String getNtwo() {
+	return ntwo;
+}
+
+
+
+
+
+public void setNtwo(String ntwo) {
+	this.ntwo = ntwo;
+}
+
+
+
+
+
+public String getNtree() {
+	return ntree;
+}
+
+
+
+
+
+public void setNtree(String ntree) {
+	this.ntree = ntree;
+}
+
+
+
+
+
+public String getNfour() {
+	return nfour;
+}
+
+
+
+
+
+public void setNfour(String nfour) {
+	this.nfour = nfour;
+}
+
+
+
+
+
+
+
+
+
+
+
+public int getProblemCode() {
+	return problemCode;
+}
+
+
+
+
+
+public void setProblemCode(int problemCode) {
+	this.problemCode = problemCode;
+}
+
+
+
+
+
+public int getSano() {
+	return sano;
+}
+
+
+
+
+
+public void setSano(int sano) {
+	this.sano = sano;
+}
+
+
+
+
+
+public String getProblemContent() {
+	return problemContent;
+}
+
+
+
+
+
+public void setProblemContent(String problemContent) {
+	this.problemContent = problemContent;
+}
+
+
+
+
+
+public String getLproblem() {
+	return lproblem;
+}
+
+
+
+
+
+public void setLproblem(String lproblem) {
+	this.lproblem = lproblem;
+}
+
+
+
+
+
+public String getProblemAnswer() {
+	return problemAnswer;
+}
+
+
+
+
+
+public void setProblemAnswer(String problemAnswer) {
+	this.problemAnswer = problemAnswer;
+}
+
+
+
+
+
+public String getProblemSolution() {
+	return problemSolution;
+}
+
+
+
+
+
+public void setProblemSolution(String problemSolution) {
+	this.problemSolution = problemSolution;
+}
+
+
+
+
+
+public int getGrade() {
+	return grade;
+}
+
+
+
+
+
+public void setGrade(int grade) {
+	this.grade = grade;
+}
+
+
+
+
+
+public int getSubjectProccess() {
+	return subjectProccess;
+}
+
+
+
+
+
+public void setSubjectProccess(int subjectProccess) {
+	this.subjectProccess = subjectProccess;
+}
+
+
+
+
+
+public int getSchoolCode() {
+	return schoolCode;
+}
+
+
+
+
+
+public void setSchoolCode(int schoolCode) {
+	this.schoolCode = schoolCode;
+}
+
+
+
+
+
+
+
+
+
+
+@Override
+public String toString(){
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+}
+}                       

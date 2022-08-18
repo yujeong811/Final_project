@@ -1,0 +1,45 @@
+package kr.or.ddit.controller.view;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+//작성자 : 예현의
+//작성일 : 2022-07-01
+//쪽지함 Controller
+
+
+@Controller
+public class NoteController {
+
+	private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
+	
+	@RequestMapping("/note/sendList")
+	public String noteSendList() {
+		String url = "note/sendList";
+		logger.info("note sendList 컨트롤러 출력");
+		return url;
+	}
+	@RequestMapping("/note/reciveList")
+	public String noteReciveList() {
+		String url = "note/reciveList";
+		logger.info("note sendList 컨트롤러 출력");
+		return url;
+	}
+	
+	@RequestMapping("/note/detail")
+	public String noteDetail() {
+		String url = "note/detail";
+		logger.info("note datail 컨트롤러 출력");
+		return url;
+	}
+	
+	@RequestMapping("/note/regist")
+	public String noteInsert() {
+		String url = "note/regist";
+		logger.info("note regist 컨트롤러 출력");
+		return url;
+	}
+	
+}

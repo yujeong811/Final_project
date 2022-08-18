@@ -1,0 +1,29 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+// 작성자 : 예현의
+// 작성일  : 2022-07-06
+// 원생 성적관리 메뉴의 Controller
+
+@Controller
+public class ScoreController {
+
+	// 학교 성적 상세보기
+	@RequestMapping(value = "/sscore/detail")
+	public String sscore() {
+		String url = "score/school_detail";
+		
+		return url;
+	}
+	
+	// 학원 성적 상세보기
+	@RequestMapping(value = "/ascore/detail")
+	public String ascore() {
+		String url = "score/academy_detail";
+		
+		return url;
+	}
+	
+}

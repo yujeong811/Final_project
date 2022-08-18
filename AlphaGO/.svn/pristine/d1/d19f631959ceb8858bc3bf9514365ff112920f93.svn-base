@@ -1,0 +1,33 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public interface TeacherMasDAO {
+	
+	List<TeachermasVO> selectTeacherList()throws Exception; 
+	List<TeachermasVO> selectTeacherList(Criteria cri)throws Exception;
+	
+	int selectTeacherListCount(SearchCriteria cri) throws Exception;
+	// 검색 결과의 전체 리스트 개수
+	int selectSearchTeacherListCount(SearchCriteria cri) throws Exception;
+	
+	List<TeachermasVO> selectSearchTeacherList(SearchCriteria cri) 
+			throws SQLException;
+
+	
+	public void insertTeacher(TeachermasVO teamas) throws SQLException;
+//	
+	TeachermasVO selectTeacherById(String id) throws SQLException;
+//	
+//	TeachermasVO selectTeacherByPicture(String picture) throws SQLException;
+//	
+	public void deleteTeacher(String id) throws SQLException;
+
+	 String selectTeacherSequenceNextValue() throws SQLException;
+}

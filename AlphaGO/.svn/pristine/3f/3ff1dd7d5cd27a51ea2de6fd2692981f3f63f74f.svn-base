@@ -1,0 +1,25 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.SuggestVO;
+
+public interface SuggestDAO {
+	
+	List<SuggestVO> selectSearchSuggestList(SearchCriteria cri) throws SQLException;
+	
+	int selectSearchSuggestListCount(SearchCriteria cri) throws SQLException;
+	
+	SuggestVO selectSuggestByLcode(int lcode) throws SQLException;
+	
+	void increaseViewCount(int lcode) throws SQLException;
+	
+	void insertSuggest(SuggestVO Suggest) throws SQLException;
+	
+	void updateSuggest(SuggestVO Suggest) throws SQLException;
+	
+	void deleteSuggest(int lcode) throws SQLException;
+	
+}

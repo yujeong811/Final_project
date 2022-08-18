@@ -1,0 +1,79 @@
+package kr.or.ddit.controller.view;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.SubDetailVO;
+import kr.or.ddit.dto.SubdetailClassingVO;
+import kr.or.ddit.dto.SubjectVO;
+import kr.or.ddit.service.ClassService;
+import kr.or.ddit.service.MemberService;
+
+
+@Controller
+@RequestMapping("/class")
+public class ClassController {
+
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private ClassService classService;
+
+
+   // 수강신청
+   @RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String classList(HttpSession session, Model model) throws Exception{
+		String url = "class/list";
+
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+
+		List<ClassVO> classList = classService.getApplicationClassList(member.getId());
+		for(ClassVO vo : classList) {
+			//수업명
+			String name = memberService.getMember(vo.getId()).getName();
+			vo.setName(name);
+
+			//과목 코드
+			SubjectVO sub = classService.selectSubjectBySubdetail(Integer.parseInt(vo.getSubdetailCode()));
+			vo.setSubjectCode(sub.getSubjectCode());
+		}
+
+		model.addAttribute("classList", classList);
+
+		return url;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

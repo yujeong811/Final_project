@@ -1,0 +1,18 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.RoomCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassroomVO;
+
+public interface ClassroomService {
+	public Map<String, Object> getAllClassroom(SearchCriteria cri) throws SQLException;
+	
+	public void registClassroom(RoomCommand roomCommand) throws SQLException;
+	
+	public int getClassroomSeq() throws SQLException;
+	
+	public void removeClassroom(int roomCode) throws SQLException;
+}

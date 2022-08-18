@@ -1,0 +1,72 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.CalendarVO;
+
+public class CalendarDAOImpl implements CalendarDAO {
+	
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<CalendarVO> selectAllCalender() throws SQLException {
+		
+		List<Map<String, Object>> calenderList = session.selectList("Calender-Mapper.getAllCalender");
+		List<CalendarVO> voList = new ArrayList<CalendarVO>();
+		
+		if(calenderList!=null && calenderList.size()>0) {
+			for(int i = 0; i < calenderList.size(); i++) {
+				CalendarVO vo = new CalendarVO();
+				vo.setId(calenderList.get(i).get("SCHEDULE_NO").toString());
+				vo.setTitle((String)calenderList.get(i).get("TITLE"));
+				boolean allDay = true;
+				String allday = (String)calenderList.get(i).get("ALLDAY");
+				
+				if(allday.equals("true")) allDay = true;
+				else allDay = false;
+				
+				vo.setAllDay(allDay);
+
+				//날짜..
+//				Calendar calendar = Calendar.getInstance();
+//				Date date = calendar.getTime();
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000'Z'");
+				sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+				// "2018-01-19T20:34:46.177+09:00"
+				
+				String start = sdf.format(calenderList.get(i).get("START_DATE"));
+				String end = sdf.format(calenderList.get(i).get("END_DATE"));
+				
+				vo.setStart(start);
+				vo.setEnd(end);
+				
+				voList.add(vo);
+				
+			}
+			
+		}
+		return voList;
+	}
+
+	@Override
+	public void insertCalender(CalendarVO calendarVO) throws SQLException {
+		session.update("Calender-Mapper.insertCalender", calendarVO);
+	}
+
+	@Override
+	public void deleteCalender() throws SQLException {
+		session.update("Calender-Mapper.deleteCalender");
+	}
+
+}

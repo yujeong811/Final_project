@@ -1,0 +1,68 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ApplyVO;
+import kr.or.ddit.dto.StudentVO;
+
+public class ApplyDAOImpl implements ApplyDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	@Override
+	public List<ApplyVO> selectApplyList() throws Exception {
+		List<ApplyVO>applyList=null;
+		
+		try {
+			applyList=session.selectList("Apply-Mapper.selectApplyList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return applyList;
+	}
+
+	@Override
+	public List<ApplyVO> selectApplyList (Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<ApplyVO> applyList
+		= session.selectList("Apply-Mapper.selectApplyList",null,rowBounds);
+		
+		return applyList;
+	}
+
+	@Override
+	public int selectApplyListCount(SearchCriteria cri) throws Exception {
+	    return session.selectOne("Apply-Mapper.selectSearchApplyListCount", cri);
+	}
+
+	@Override
+	public int selectSearchApplyListCount(SearchCriteria cri) throws Exception {
+		int totalCount = session.selectOne("Apply-Mapper.selectSearchApplyListCount", cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<ApplyVO> selectSearchApplyList( SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<ApplyVO> applyList = session.selectList("Apply-Mapper.selectSearchApplyList", cri, rowBounds);
+
+		return applyList;
+	}
+
+
+}

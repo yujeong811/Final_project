@@ -1,0 +1,13 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dto.MemberVO;
+
+public interface TeacherService {
+	 public List<String> processSearch(String id) throws SQLException;
+	 public List<MemberVO>processStudentList(String processName,Criteria cri)throws SQLException;
+	 
+}

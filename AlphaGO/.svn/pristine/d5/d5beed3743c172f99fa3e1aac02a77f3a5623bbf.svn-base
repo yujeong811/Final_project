@@ -1,0 +1,21 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.ProblemVO;
+
+public interface TeacherService {
+	 public List<String> processSearch(String id) throws SQLException;
+	 public Map<String,  Object> processStudentList(String processName,Criteria cri)throws SQLException;
+	public List<String> getclassList(String id)throws SQLException;
+	 public MemberVO teacherstudentDetail(String id) throws SQLException;
+	// public void insertProblemG(ProblemVO problem)throws SQLException;
+	public Map<String, Object> teacherstudenttotalList(String id, SearchCriteria cri) throws SQLException;
+	public Map<String,String> idSearchName(String id) throws SQLException;
+	public List<ProblemVO> problemList(String id) throws SQLException;
+}

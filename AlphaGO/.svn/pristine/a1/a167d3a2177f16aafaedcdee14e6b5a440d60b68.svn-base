@@ -1,0 +1,471 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+
+<body>
+	<!-- 첫줄 row 시작 -->
+		<div class="row">
+			<div class=""></div>
+			<!-- 왼쪽 wrapper 시작 -->
+			<div class="col-md-6" style="padding-left: 0px; padding-right: 3px;">
+				<!-- 원생수 카드 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+				<div id="counsert-calendar"	style="padding: 5px; background-color: white;"></div>
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">수업시간표</span>
+					</div>
+					<!-- chart 시작 -->
+					<div id="counsert-calendar"></div>
+					<!-- chart 끝 -->
+				</div>
+			<!-- 원생수 카드 끝 -->
+			
+			<!-- 출결조회 시작 -->
+			
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div>
+					<div class="col-md-5" style="float:left;">
+					<span style="margin:3px;" class="badge bg-success">출결조회</span>
+					</div>
+					<div class="col-md-6" style="float:left;">
+					<span style="margin:3px;" class="badge bg-success">오늘의 일정</span>
+					</div>
+					</div>
+					<div>
+					<div class="col-md-5" style="float:left;">
+					<div class="card-body" style="position: relative; padding:0px;">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                            </div>
+    
+                                            <div class="flex-shrink-0">
+                                                <div class="dropdown">
+                                                    <a class="font-size-16 text-muted dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    </a>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="chart-donut" onclick="OpenWindow('attend.go','근태조회',800,700);" class="apex-charts" dir="ltr" style="min-height: 212.7px; cursor:pointer;">
+                                        <div id="apexchartst33s6s9" class="apexcharts-canvas apexchartst33s6s9 apexcharts-theme-light" style="width: 192px; height: 212.7px;">
+                                        <svg id="SvgjsSvg1206" width="192" height="212.7" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;">
+                                        <foreignObject x="0" y="0" width="192" height="212.7" >
+                                        <div class="apexcharts-legend apexcharts-align-center position-bottom" xmlns="http://www.w3.org/1999/xhtml" style="inset: auto 0px 1px 20px; position: absolute; max-height: 122.5px;"><div class="apexcharts-legend-series" rel="1" seriesname="Social" data:collapsed="false" style="margin: 2px 5px;">
+                                        <span class="apexcharts-legend-marker" rel="1" data:collapsed="false" style="background: rgb(3, 142, 220) !important; color: rgb(3, 142, 220); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span>
+                                        <span class="apexcharts-legend-text" rel="1" i="0" data:default-text="Social" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 14px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">출근</span>
+                                        </div>
+                                        <div class="apexcharts-legend-series" rel="2" seriesname="Direct" data:collapsed="false" style="margin: 2px 5px;">
+                                        <span class="apexcharts-legend-marker" rel="2" data:collapsed="false" style="background: rgb(245, 246, 248) !important; color: rgb(245, 246, 248); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span>
+                                        <span class="apexcharts-legend-text" rel="2" i="1" data:default-text="Direct" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 14px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">결근</span>
+                                        </div>
+                                        <div class="apexcharts-legend-series" rel="3" seriesname="Others" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="3" data:collapsed="false" style="background: rgb(95, 208, 243) !important; color: rgb(95, 208, 243); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span>
+                                        <span class="apexcharts-legend-text" rel="3" i="2" data:default-text="Others" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 14px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">지각</span>
+                                        </div>
+                                        </div>
+                                        <style type="text/css">	
+    	
+      .apexcharts-legend {	
+        display: flex;	
+        overflow: auto;	
+        padding: 0 10px;	
+      }	
+      .apexcharts-legend.position-bottom, .apexcharts-legend.position-top {	
+        flex-wrap: wrap	
+      }	
+      .apexcharts-legend.position-right, .apexcharts-legend.position-left {	
+        flex-direction: column;	
+        bottom: 0;	
+      }	
+      .apexcharts-legend.position-bottom.apexcharts-align-left, .apexcharts-legend.position-top.apexcharts-align-left, .apexcharts-legend.position-right, .apexcharts-legend.position-left {	
+        justify-content: flex-start;	
+      }	
+      .apexcharts-legend.position-bottom.apexcharts-align-center, .apexcharts-legend.position-top.apexcharts-align-center {	
+        justify-content: center;  	
+      }	
+      .apexcharts-legend.position-bottom.apexcharts-align-right, .apexcharts-legend.position-top.apexcharts-align-right {	
+        justify-content: flex-end;	
+      }	
+      .apexcharts-legend-series {	
+        cursor: pointer;	
+        line-height: normal;	
+      }	
+      .apexcharts-legend.position-bottom .apexcharts-legend-series, .apexcharts-legend.position-top .apexcharts-legend-series{	
+        display: flex;	
+        align-items: center;	
+      }	
+      .apexcharts-legend-text {	
+        position: relative;	
+        font-size: 14px;	
+      }	
+      .apexcharts-legend-text *, .apexcharts-legend-marker * {	
+        pointer-events: none;	
+      }	
+      .apexcharts-legend-marker {	
+        position: relative;	
+        display: inline-block;	
+        cursor: pointer;	
+        margin-right: 3px;	
+        border-style: solid;
+      }	
+      	
+      .apexcharts-legend.apexcharts-align-right .apexcharts-legend-series, .apexcharts-legend.apexcharts-align-left .apexcharts-legend-series{	
+        display: inline-block;	
+      }	
+      .apexcharts-legend-series.apexcharts-no-click {	
+        cursor: auto;	
+      }	
+      .apexcharts-legend .apexcharts-hidden-zero-series, .apexcharts-legend .apexcharts-hidden-null-series {	
+        display: none !important;	
+      }	
+      .apexcharts-inactive-legend {	
+        opacity: 0.45;	
+      }</style></foreignObject><g id="SvgjsG1208" class="apexcharts-inner apexcharts-graphical" transform="translate(12, 0)"><defs id="SvgjsDefs1207"><clipPath id="gridRectMaskt33s6s9"><rect id="SvgjsRect1210" width="176" height="160" x="-3" y="-1" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectMarkerMaskt33s6s9"><rect id="SvgjsRect1211" width="174" height="162" x="-2" y="-2" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath></defs><g id="SvgjsG1212" class="apexcharts-pie"><g id="SvgjsG1213" transform="translate(0, 0) scale(1)"><circle id="SvgjsCircle1214" r="49.75121951219512" cx="85" cy="79" fill="transparent"></circle><g id="SvgjsG1215" class="apexcharts-slices"><g id="SvgjsG1216" class="apexcharts-series apexcharts-pie-series" seriesName="Social" rel="1" data:realIndex="0"><path id="SvgjsPath1217" d="M 85 7.926829268292678 A 71.07317073170732 71.07317073170732 0 0 1 85 150.0731707317073 L 85 128.75121951219512 A 49.75121951219512 49.75121951219512 0 0 0 85 29.24878048780488 L 85 7.926829268292678 z" fill="rgba(3,142,220,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-donut-slice-0" index="0" j="0" data:angle="180" data:startAngle="0" data:strokeWidth="2" data:value="44" data:pathOrig="M 85 7.926829268292678 A 71.07317073170732 71.07317073170732 0 0 1 85 150.0731707317073 L 85 128.75121951219512 A 49.75121951219512 49.75121951219512 0 0 0 85 29.24878048780488 L 85 7.926829268292678 z" stroke="#ffffff"></path></g><g id="SvgjsG1218" class="apexcharts-series apexcharts-pie-series" seriesName="Direct" rel="2" data:realIndex="1"><path id="SvgjsPath1219" d="M 85 150.0731707317073 A 71.07317073170732 71.07317073170732 0 0 1 15.551073964879052 63.8923108839665 L 36.385751775415336 68.42461761877655 A 49.75121951219512 49.75121951219512 0 0 0 85 128.75121951219512 L 85 150.0731707317073 z" fill="rgba(245,246,248,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-donut-slice-1" index="0" j="1" data:angle="102.27272727272725" data:startAngle="180" data:strokeWidth="2" data:value="25" data:pathOrig="M 85 150.0731707317073 A 71.07317073170732 71.07317073170732 0 0 1 15.551073964879052 63.8923108839665 L 36.385751775415336 68.42461761877655 A 49.75121951219512 49.75121951219512 0 0 0 85 128.75121951219512 L 85 150.0731707317073 z" stroke="#ffffff"></path></g><g id="SvgjsG1220" class="apexcharts-series apexcharts-pie-series" seriesName="Others" rel="3" data:realIndex="2"><path id="SvgjsPath1221" d="M 15.551073964879052 63.8923108839665 A 71.07317073170732 71.07317073170732 0 0 1 84.98759539167196 7.926830350798966 L 84.99131677417037 29.24878124555928 A 49.75121951219512 49.75121951219512 0 0 0 36.385751775415336 68.42461761877655 L 15.551073964879052 63.8923108839665 z" fill="rgba(95,208,243,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-donut-slice-2" index="0" j="2" data:angle="77.72727272727275" data:startAngle="282.27272727272725" data:strokeWidth="2" data:value="19" data:pathOrig="M 15.551073964879052 63.8923108839665 A 71.07317073170732 71.07317073170732 0 0 1 84.98759539167196 7.926830350798966 L 84.99131677417037 29.24878124555928 A 49.75121951219512 49.75121951219512 0 0 0 36.385751775415336 68.42461761877655 L 15.551073964879052 63.8923108839665 z" stroke="#ffffff"></path></g></g></g></g><line id="SvgjsLine1222" x1="0" y1="0" x2="170" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1223" x1="0" y1="0" x2="170" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line></g><g id="SvgjsG1209" class="apexcharts-annotations"></g></svg><div class="apexcharts-tooltip apexcharts-theme-dark" style="left: 120.977px; top: 42.0781px;"><div class="apexcharts-tooltip-series-group apexcharts-active" style="order: 1; display: flex; background-color: rgb(3, 142, 220);"><span class="apexcharts-tooltip-marker" style="background-color: rgb(3, 142, 220); display: none;"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label">Social: </span><span class="apexcharts-tooltip-text-y-value">44</span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div><div class="apexcharts-tooltip-series-group" style="order: 2; display: none; background-color: rgb(3, 142, 220);"><span class="apexcharts-tooltip-marker" style="background-color: rgb(3, 142, 220); display: none;"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label">Social: </span><span class="apexcharts-tooltip-text-y-value">44</span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div><div class="apexcharts-tooltip-series-group" style="order: 3; display: none; background-color: rgb(3, 142, 220);"><span class="apexcharts-tooltip-marker" style="background-color: rgb(3, 142, 220); display: none;"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label">Social: </span><span class="apexcharts-tooltip-text-y-value">44</span></div><div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div></div></div></div>
+                                    <div class="resize-triggers"><div class="expand-trigger"><div style="width: 279px; height: 297px;"></div></div><div class="contract-trigger"></div></div></div>
+                                    
+        <table style="margin-left:40px; width:200px;" class="table table-bordered text-center">
+                		<tr style="height:10px;">
+                			<td style="background-color: #8BDDA8; padding: 5px; font-weight:bold;">Today</td>
+                			<td style="padding: 5px;">2022-06-24</td>
+                		</tr>
+                		<tr>
+                			<td style="background-color: #8BDDA8; padding: 5px; font-weight:bold;">출근시간</td>
+                			<td style="padding: 5px;"></td>
+                		</tr>
+                		<tr>
+                			<td style="background-color: #8BDDA8; padding: 5px; font-weight:bold;">퇴근시간</td>
+                			<td style="padding: 5px;"></td>
+                		</tr>
+        </table>                            
+   			   </div>  
+<!--                 	<table class="table table-bordered text-center"> -->
+<!--                 		<tr> -->
+<!--                 			<td>출근</td> -->
+<!--                 			<td>결근</td> -->
+<!--                 			<td>조퇴</td> -->
+<!--                 			<td>지각</td> -->
+<!--                 			<td>외출</td> -->
+<!--                 			<td>출석율</td> -->
+<!--                 		</tr> -->
+<!--                 		<tr> -->
+<!--                 			<td>100일</td> -->
+<!--                 			<td>1일</td> -->
+<!--                 			<td>2일</td> -->
+<!--                 			<td>2일</td> -->
+<!--                 			<td>3일</td> -->
+<!--                 			<td>88.5%</td> -->
+<!--                 		</tr> -->
+<!--                 	</table> -->
+					<div class="col-md-7" style="float:left; overflow: auto;">
+						<div class="bg-light mb-2" style="border-radius: 5px; padding: 15px; width:95%; height: 320px;">
+							<p style="font-size: 0.75em; color:blue; float:right;">2022-06-27(화)<p>
+							<ul  style="line-height: 30px;">
+						      <li>[과제]미분 문제풀이 과제 확인</li>
+						      <li>[수업]수학1 개념완성 - 2단원(삼각함수와 그래프)</li>
+						      <li>[수업]미분과 적분 - 3단원(수열의 극한)</li>
+						      <li>[상담]19:00시 상담</li>
+						    </ul>
+						</div>
+                	</div>  
+                	</div>                
+				</div>
+				
+			<!-- 출결조회 끝 -->
+			
+			
+			
+			
+			<!-- 질문리스트 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">질문리스트</span>
+					<button style="float:right; border-color: lightgray; border:none;">
+					<i class="uil-plus" onclick="location.href='../qna/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<table class="table table-hover" style="text-align: center;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:30%; padding: 5px; font-weight:bold;">수업명</th>
+			    				<th style="width:45%; padding: 5px; font-weight:bold;">제목</th>
+			    				<th style="width:15%; padding: 5px; font-weight:bold;">작성자</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">김질문</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">손흥민</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">박지성</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">미분과 적분 파이널</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">황희찬</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">미분과 적분 파이널</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">황의조</td>
+	           		  	</tr>	
+		            </table>					
+				</div>
+			<!-- 질문리스트  끝 -->
+			</div>
+			<!-- 왼쪽 wrapper 끝  -->
+			
+			<div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+				<!-- 수업진도현황 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div>
+					<div style="float:left;" class="col-lg-12">
+					<span style="margin:3px;" class="badge bg-success">수업진도현황</span>
+					
+					</div>
+<!-- 					<div style="float:left;" class="col-lg-4">ㅇㅇ</div> -->
+					</div>
+					<div>
+					<div style="float: left;" class="col-md-9">
+						<select style="float:left; margin-left: 3px;" class="form-select">
+							<option value="none">수업명</option>
+							<option>수학1 개념완성[기본+심화]</option>
+							<option>수학2 개념완성[기본+심화]</option>
+							<option>미분과 적분 개념완성[기본+심화]</option>
+						</select>
+					</div>
+					<div style="float: right; margin-right:20px;" class="col-md-2">
+						<button class="btn btn-primary" style="font-size: 0.9em;" data-bs-toggle="modal" data-bs-target="#step">상세보기</button>
+					</div>			
+					</div>
+					<br>
+					<label style="width: 47%; font-size: 0.8em; font-weight: bold; margin-left:6px;">진도율</label>
+					<div style="width:98%; height:15px; margin:0px auto;" class="progress">
+					  <div class="progress-bar bg-success" role="progressbar" style="width:55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55%</div>
+					</div>
+					<br>
+				</div>
+				<!-- 수업진도현황 끝 -->
+				
+				<!-- 과제 제출 현황 리스트 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">과제제출현황</span>
+					<button style="float:right; border-color: lightgray; border:none;">
+					<i class="uil-plus" onclick="location.href='../tclass/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<div style="overflow: auto; height:300px;">
+					<table class="table table-hover" style="text-align: center;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:15%; padding: 5px; font-weight:bold;">학생</th>
+			    				<th style="width:40%; padding: 5px; font-weight:bold;">과제명</th>
+			                	<th style="width:25%; padding: 5px; font-weight:bold;">만기일</th>
+			                	<th style="width:20%; padding: 5px; font-weight:bold;">제출현황</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer; background-color:#ec556f;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px; background-color:red; font-size: 0.8em;" class="btn btn-primary">미제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer; background-color:#ec556f;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px; background-color:red; font-size: 0.8em;" class="btn btn-primary">미제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+		            </table>	
+		            </div>				
+				</div>
+				<!-- 과제 제출 현황 리스트   끝 -->
+				
+				<!-- 최근 공지 리스트 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">공지사항</span>
+					<button style="float:right; border-color: lightgray; border:none;">
+					<i class="uil-plus" onclick="location.href='../notice/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<table class="table table-hover" style="text-align: center; height:10px;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:75%; padding: 5px; font-weight:bold;">제목</th>
+			    				<th style="width:25%; padding: 5px; font-weight:bold;">작성일</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 11일 공지사항입니다..</td>
+		              		<td style="padding: 5px;">2022-06-11</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 9일 공지사항입니다..2</td>
+		              		<td style="padding: 5px;">2022-06-09</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 9일 공지사항입니다..</td>
+		              		<td style="padding: 5px;">2022-06-09</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 8일 공지사항2입니다.</td>
+		              		<td style="padding: 5px;">2022-06-08</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 8일 공지사항입니다.</td>
+		              		<td style="padding: 5px;">2022-06-08</td>
+	           		  	</tr>	
+		            </table>					
+				</div>
+				<!-- 최근 공지 리스트  끝-->
+				
+				
+			</div>
+			
+		</div>
+		<!-- row 끝 -->
+
+<!-- modal -->
+<div class="modal fade bs-example-modal-center" tabindex="-1"
+		role="dialog" id="step" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="badge rounded-pill bg-warning"
+						style="font-size: 0.8em; padding: 8px; height: 25px; width: 60px;">수학</span>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="text-align: center; padding: 15px;">
+					<p style="font-weight: bold; font-size: 1.2em;">수학1 개념완성[기본+심화]</p>
+					<p>김선생</p>
+					<div class="row">
+						<div class="col-3" style="margin-left: 23px; margin-right: -44px;">
+							<div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 35px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 63px; left: 10px;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 95px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 128px; left: 10px;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 160px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 191px; left: 10px;"></div>
+								<div class="bg-secondary"
+									style="width: 10px; height: 40px; position: absolute; top: 230px; left: 25px;"></div>
+								<div class="bg-secondary"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 255px; left: 10px;"></div>
+								<div class="bg-secondary"
+									style="width: 10px; height: 40px; position: absolute; top: 287px; left: 25px;"></div>
+								<div class="bg-secondary"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 319px; left: 10px;"></div>
+							</div>
+						</div>
+						<div class="col-9 mb-3">
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; margin-bottom: 10px; line-height: 39px;">1단원.
+								지수함수와 로그함수</div>
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">2단원.
+								삼각함수와 삼각함수의 그래프</div>
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">3단원.
+								삼각함수의 활용</div>
+							<div
+								style="width: 0px; height: 0px; border-right: 10px solid #564AB1; border-top: 10px solid transparent; border-bottom: 10px solid transparent; position: absolute; top: 201px; left: 1px;"></div>
+							<div class="bg-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; color: white; line-height: 39px;">4단원.
+								등차수열과 등비수열</div>
+							<div class="bg-soft-secondary mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">5단원.
+								수열의 합</div>
+							<div class="bg-soft-secondary"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">6단원.
+								수학적 귀납법</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+</body>

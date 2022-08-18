@@ -1,0 +1,515 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<head>
+
+<script src="<%=request.getContextPath() %>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+<c:set var="clist" value="${classList}" />
+
+
+
+
+
+
+
+<script type="text/javascript">
+function selectAll(selectAll)  {
+  const checkboxes
+       = document.getElementsByName('test');
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked;
+  })
+}
+
+// 분석 chart
+// 1) 선 그래프
+
+var options = {
+    series: [
+        {
+            name: 'Total Visit',
+            data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 54]
+        }
+    ],
+    chart: {
+        id: 'area-datetime',
+        type: 'area',
+        height: 230,
+        dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 4,
+            opacity: 0.075
+        },
+        zoom: {
+            autoScaleYaxis: true
+        },
+        toolbar: {
+            show: false,
+        }
+    },
+
+    dataLabels: {
+        enabled: false
+    },
+    markers: {
+        size: 3,
+        strokeWidth: 3,
+
+        hover: {
+            size: 6,
+        }
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        width: 3,
+        dashArray: 0,
+    },
+    xaxis: {
+        categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan', '10 Jan', '11 Jan', '12 Jan'],
+    },
+    yaxis: {
+        labels: {
+            show: false,
+        }
+    },
+    tooltip: {
+        x: {
+            format: 'dd MMM yyyy'
+        }
+    },
+    grid: {
+        show: true,
+        xaxis: {
+            lines: {
+                show: true,
+            }
+        },
+        yaxis: {
+            lines: {
+                show: false,
+            }
+        }
+    },
+    colors: ["#038edc"],
+    fill: {
+        opacity: 0.05,
+        colors: ["#038edc"],
+        type: 'solid',
+    },
+};
+
+var chart = new ApexCharts(document.querySelector("#acd_score_chart"), options);
+chart.render();
+
+
+// 2) 방사형 그래프
+var options = {
+  series: [{
+	  name: 'Series 1',
+	  data: [80, 50, 30, 40, 100],
+  }],
+  chart: {
+	  height: 250,
+	  width: 340,
+	  type: 'radar',
+  },
+  xaxis: {
+	  categories: ['January', 'February', 'March', 'April', 'May']
+  }
+};
+
+var chart = new ApexCharts(document.querySelector("#acd_score_area_chart"), options);
+chart.render();
+</script>
+
+<script>
+var page2=1;
+var searchtype="";
+var keyword="";
+var processname="";	
+
+</script>
+
+
+
+<script>
+$('#processSelect').on('change',function(){
+	 processname=$('#processSelect option:selected').val();
+	 
+	 pslistgo();
+})
+
+</script>
+
+
+<script>
+$(function(){
+	 processname=$('#processSelect option:selected').val();
+		
+	 pslistgo();
+})
+
+</script>
+
+<script>
+
+
+function pslistgo(){
+	
+	
+	
+	$.ajax({
+		url : '../rteacher/pslist',
+		type : 'get',
+		data : {'page' : page2,
+	        'searchtype' : searchtype,
+	        'keyword' : keyword,
+	        'processname':processname},
+	    success : function(res){
+			str="";
+		
+		   
+			    		$.each(res.processStudentList,function(i,v){                 
+			    		str+="<tr id='"+v.id+"'onclick='stuSgo(this);'>";
+			    		str+="<td>"+v.id+"</td>";
+			    		str+="<td>"+v.name+"</td>";
+			    		str+="<td>"+v.schoolName+"</td>";
+			    		str+="<td>"+v.grade+"</td>";
+			    		str+="</tr>"	
+			    		})
+			    		
+			    		$('#studentlist').html(str);
+			    		
+			    	
+			    		 startPage=res.pageMaker.startPage;
+			    		 endPage=res.pageMaker.endPage;
+			    	    var pg=res.pageMaker.cri.page;
+			    	    var pre=res.pageMaker.prev;
+			    	    var next=res.pageMaker.next;
+			    	 
+			    	    page="";
+			    	 
+			    	    
+			    	    
+			    page+='	<ul class="pagination justify-content-center m-0">';
+			    page+='	<li class="page-item">';
+			    page+='		<a class="page-link">';
+			    page+='			<i class="fas fa-angle-double-left"></i>';
+			    page+='		</a>';
+			    page+='	<li class="page-item">';
+			    page+='		<a class="page-link prev" href="#">';
+			    page+='			<i class="fas fa-angle-left"></i>';
+			    page+='		</a>						                                    ';
+			    page+='	</li>                                                                                   ';
+			    
+			    for(let i=startPage;i<=endPage;i++){
+			    	if(pg==i){
+			    		  page+='		<li class="page-item active pager">';     
+			    	}else{
+			    		  page+='		<li class="page-item pager">'; 
+			    	}
+			    	                      
+					    page+='			<a class="page-link pnum" href="#" >'+i+'</a>  ';
+					    page+='		</li>';
+			    }
+			    
+			    
+			
+			    page+='	                                                                                        ';
+			    page+='	                                                                                        ';
+			    page+='	<li class="page-item">                                                                  ';
+			    page+='		<a class="page-link next">                                                       ';
+			    page+='			<i class="fas fa-angle-right"></i>                                              ';
+			    page+='		</a>						                                                        ';
+			    page+='	</li>                                                                                   ';
+			    page+='	<li class="page-item">                                                                  ';
+			    page+='		<a class="page-link">                                                       ';
+			    page+='			<i class="fas fa-angle-double-right"></i>                                       ';
+			    page+='		</a>						                                                        ';
+			    page+='	</li>                                                                                   ';
+			    page+='</ul>	                                                                                    ';
+			    		
+			    		$('#pagegogo').html(page);
+			    		$('#pname').html(processname);
+			    		
+		},
+		error : function(xhr){
+			//alert("상태 : " + xhr.status + " 체크");
+		},
+		dataType : 'json'
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+</script>
+
+
+<script>
+function stuSgo(t){
+	var idim=$(t).attr("id");
+	
+	
+	$.ajax({
+		url : '<%=request.getContextPath()%>/rteacher/acdemyScoreGet',
+		type : 'get',
+		data : {'id' :idim,"processname":processname},
+	    success : function(res){
+			
+			    
+			
+			
+			    		
+		},
+		error : function(xhr){
+			//alert("상태 : " + xhr.status + " 체크");
+		},
+		dataType : 'json'
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+</script>
+
+
+
+
+
+</head>
+<body>
+	<div class="row" >
+		<div class="col-sm-4">
+			<div class="card">
+				<div class="card-header">
+					<div class="justify-content-between d-flex align-items-center" >
+			           <h4 class="card-title">학원성적</h4>
+			           <a href="<%=request.getContextPath() %>/teacher/studentmanage_school.go" class="btn btn-sm btn-soft-secondary">학교성적 보기&nbsp;&nbsp;<i class="mdi mdi-arrow-right align-middle"></i></a>
+			        </div>
+
+					<hr>
+					<div class="row mb-3 text-center">
+                       <label for="class_title" class="col-sm-3 col-form-label font-size-16"><i class="bx bx-book-bookmark"></i>&nbsp;수업명</label>
+                       <div class="col-sm-9">
+												<select class="form-select col-md-3" 
+										id="processSelect" >
+							           <c:forEach items="${clist}" var="class2">
+							           <option value="${ class2}">${ class2}</option>
+<%-- 										<option value="${process}" ${process eq selecprocess ? 'selected':'' }>${process}</option> --%>
+<%-- 									        <option value="${class}"> --%>
+									
+									</c:forEach> 
+									
+									</select> 
+                       </div>
+                    </div>
+
+					<div class="row">
+					  <div class="col-4">
+						<select class="form-select col-md-3" name="searchType"
+										id="searchType">
+										<option value="ns">전체</option>
+										<option value="n" >학생명</option>
+										<option value="s">학교명</option>
+									</select> 
+					  </div>
+					  <div class="col-8">
+						<input class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }" />
+					  </div>
+					</div>
+				</div>
+				<div class="card-body" style="height:600px;">
+					<table class="table table-hover text-center">
+					  <thead>
+						<tr style="background: #8BDDA8;">
+							<th style="font-weight: bold;">아이디</th>
+							<th style="font-weight: bold;">이름</th>
+							<th style="font-weight: bold;">학교</th>
+							<th style="font-weight: bold;">학년</th>
+						</tr>
+					  </thead>
+					  <tbody style="cursor: pointer;" id="studentlist">
+						
+					  </tbody>
+
+
+					</table>
+
+
+				</div>
+				<div class="card-footer">
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0" id="pagegogo">
+							
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-8" >
+			<div class="card">
+			  <div class="card-header">
+			  	<div class="hstack gap-3">
+                  <div class="p-1 px-2" style="vertical-align: middle;">
+                    <span style="font-weight: bold; font-size: 1.2em;">
+                      <i class="uil uil-user me-2"></i>이수민
+                    </span>
+                  </div>
+                  <div class="ms-auto">
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-soft-warning"><i class="uil uil-analytics font-size-16"></i> 분석하기</button>
+                  </div>
+               </div>
+			  </div>
+
+			  <div class="card-body" style="padding: 10px;">
+			    <span class="badge bg-secondary font-size-16 mb-2" id="pname"></span>
+
+			    <table class="table table-hover text-center">
+				  <thead>
+					<tr style="background:#8BDDA8;">
+						<th scope="row">
+						  <input type="checkbox" name='test' value='selectall' onclick='selectAll(this)'>
+						</th>
+						<th style="font-weight: bold;">일자</th>
+						<th style="font-weight: bold;">시험명</th>
+						<th style="font-weight: bold;">영역1</th>
+						<th style="font-weight: bold;">영역2</th>
+						<th style="font-weight: bold;">영역3</th>
+						<th style="font-weight: bold;">영역4</th>
+						<th style="font-weight: bold;">점수</th>
+						<th style="font-weight: bold;">성취도</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+						<td><input type="checkbox" name='test' value="1"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name='test' value="2"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name='test' value="3"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name='test' value="4"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name='test' value="5"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name='test' value="6"></td>
+						<td>2022.01.02</td>
+						<td>고1진단평가</td>
+						<td>15/24</td>
+						<td>13/20</td>
+						<td>15/20</td>
+						<td>12/34</td>
+						<td>상</td>
+						<td>상</td>
+					</tr>
+				  </tbody>
+				</table>
+
+				 <hr>
+
+				 <div class="card">
+				   <div class="card-body" style="height: 100px;">
+				          분석내용이 나오는 곳이다.
+				   </div>
+				 </div>
+
+				 <div class="card">
+					<div class="card-body">
+					  <div class="row" style="height:200px;">
+					    <div class="col-sm-6">
+					     <div id="chart-area"></div>
+						  <div id="acd_score_chart" class="apex-charts"></div>
+					    </div>
+					    <div class="col-sm-6" >
+					      <div id="acd_score_area_chart" class="apex-charts"></div>
+					    </div>
+					  </div><!-- row 끝 -->
+					</div><!-- card-body 끝 -->
+				</div><!-- card 끝 -->
+
+			</div><!-- card-body 끝 -->
+
+
+		</div><!-- card 끝 -->
+	</div><!-- col 끝 -->
+  </div><!-- row 끝 -->
+
+
+</body>

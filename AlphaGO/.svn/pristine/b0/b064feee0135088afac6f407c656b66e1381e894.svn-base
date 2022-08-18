@@ -1,0 +1,287 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.TclassDAO;
+import kr.or.ddit.dto.ClassPlanVO;
+import kr.or.ddit.dto.ClassTimeVO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.HomeworkPlanVO;
+import kr.or.ddit.dto.WeekPlanVO;
+
+public class TclassServiceImpl implements TclassService{
+
+	private TclassDAO tclassDAO;
+	public void setTclassDAO(TclassDAO tclassDAO) {
+		this.tclassDAO = tclassDAO;
+	}
+	@Override
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClassVO> classList = null;
+		
+		classList = tclassDAO.selectSearchClassList(cri);
+		dataMap.put("classList", classList);
+		dataMap.put("cri", cri);
+		return dataMap;
+	}
+	@Override
+	public Map<String, Object> unregisteredClassList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClassVO> unregisteredClassList = null;
+		
+		unregisteredClassList = tclassDAO.selectSearchUnregisteredClassList(cri);
+		
+		dataMap.put("unregisteredClassList", unregisteredClassList);
+		dataMap.put("cri", cri);
+		return dataMap;
+	}
+	@Override
+	public Map<String, Object> selectUnregisteredClassForModal(int classCode) throws SQLException {
+		
+		ClassVO dataVO = new ClassVO();
+		Map<String, Object> ctMap = new HashMap<String, Object>();
+		
+		dataVO = tclassDAO.selectClassForModal(classCode);
+		List<ClassTimeVO> timetable = tclassDAO.selectClassTime(classCode);
+		for(int i=0; i<timetable.size(); i++) {
+			ClassTimeVO ctvo = timetable.get(i);
+			System.out.println(ctvo.getClassday());
+			if(ctvo.getClassday().equals("0")) {
+				ctvo.setClassday("일");
+			}
+			if(ctvo.getClassday().equals("1")) {
+				ctvo.setClassday("월");
+			}
+			if(ctvo.getClassday().equals("2")) {
+				ctvo.setClassday("화");
+			}
+			if(ctvo.getClassday().equals("3")) {
+				ctvo.setClassday("수");
+			}
+			if(ctvo.getClassday().equals("4")) {
+				ctvo.setClassday("목");
+			}
+			if(ctvo.getClassday().equals("5")) {
+				ctvo.setClassday("금");
+			}
+			if(ctvo.getClassday().equals("6")) {
+				ctvo.setClassday("토");
+			}
+		}
+		
+		ctMap.put("dataVO", dataVO);
+		ctMap.put("timetable", timetable);
+		
+		return ctMap;
+	}
+	
+	@Override
+	public Map<String, Object> selectRegisteredClassForModal(int classCode) throws SQLException {
+		System.out.println("----------------------------------");
+		ClassVO dataVO = new ClassVO();
+		Map<String, Object> ctMap = new HashMap<String, Object>();
+		
+		dataVO = tclassDAO.selectClassForModal(classCode);
+		List<ClassTimeVO> timetable = tclassDAO.selectClassTime(classCode);
+		for(int i=0; i<timetable.size(); i++) {
+			ClassTimeVO ctvo = timetable.get(i);
+			System.out.println(ctvo.getClassday());
+			if(ctvo.getClassday().equals("0")) {
+				ctvo.setClassday("일");
+			}
+			if(ctvo.getClassday().equals("1")) {
+				ctvo.setClassday("월");
+			}
+			if(ctvo.getClassday().equals("2")) {
+				ctvo.setClassday("화");
+			}
+			if(ctvo.getClassday().equals("3")) {
+				ctvo.setClassday("수");
+			}
+			if(ctvo.getClassday().equals("4")) {
+				ctvo.setClassday("목");
+			}
+			if(ctvo.getClassday().equals("5")) {
+				ctvo.setClassday("금");
+			}
+			if(ctvo.getClassday().equals("6")) {
+				ctvo.setClassday("토");
+			}
+		}
+		ClassPlanVO classPlanVO = tclassDAO.selectCPNOandTextbook(classCode);
+		List<WeekPlanVO> weekPlan = tclassDAO.selectWeekPlan(classCode);
+		List<HomeworkPlanVO> homeworkPlan = tclassDAO.selectHomeworkPlan(classCode);
+		
+		System.out.println("serviceImpl에서 weekPlanList : " + weekPlan);
+		
+		ctMap.put("dataVO", dataVO);
+		ctMap.put("timetable", timetable);
+		ctMap.put("classPlanVO", classPlanVO);
+		ctMap.put("weekPlan", weekPlan);
+		ctMap.put("homeworkPlan", homeworkPlan);
+		
+		return ctMap;
+	}
+	
+	@Override
+	public void registClassPlan(Map<String,Object> map) throws SQLException {
+		int cpno = tclassDAO.selectClassPlanSeqNextValue();
+		
+		String cphd = (String)map.get("cphd");
+		String textbook = (String)map.get("textbook");
+		int subCode = (int)map.get("subCode");
+		String[] weeks = (String[])map.get("weeks");
+		String[] cps = (String[])map.get("cps");
+		String[] hwnos = (String[])map.get("hwnos");
+		String[] hwPlans = (String[])map.get("hwPlans");
+		String classCode = (String)map.get("classCode");
+		
+		System.out.println("------tclassService56----------");
+		System.out.println("cphd : " + cphd);
+		System.out.println("classCode : " + classCode);
+		System.out.println("textbook : " + textbook);
+		System.out.println("subCode : " + subCode);
+		System.out.println("weeks[0] : " + weeks[0]);
+		System.out.println("cps[1] : " + cps[1]);
+		System.out.println("hwPlans[1] : " + hwPlans[1]);
+		System.out.println("hwnos[1] : " + hwnos[1]);
+		
+		ClassPlanVO classPlan = new ClassPlanVO();
+		WeekPlanVO wkPlan = new WeekPlanVO();
+		HomeworkPlanVO hwPlanVO = new HomeworkPlanVO();
+		ClassVO classVO = new ClassVO();
+		
+		classPlan.setCpno(cpno);
+		classPlan.setCphead(cphd);
+		classPlan.setSubject_code(subCode);
+		classPlan.setTextbook(textbook);
+		
+		tclassDAO.insertClassPlan(classPlan);
+
+		for(int i=0; i<weeks.length; i++) {
+			int wpno = tclassDAO.selectWeekPlanSeqNextValue();
+			wkPlan.setWpno(wpno);
+			wkPlan.setWeek(Integer.parseInt(weeks[i]));
+			wkPlan.setContent(cps[i]);
+			wkPlan.setCpno(cpno);
+			tclassDAO.insertWeekPlan(wkPlan);
+		}
+		
+		for(int i=0; i<hwnos.length; i++) {
+			int homework = tclassDAO.selectHomeworkPlanSeqNextValue();
+			hwPlanVO.setHomeworkplan(homework);
+			hwPlanVO.setCpno(cpno);
+			hwPlanVO.setNo(Integer.parseInt(hwnos[i]));
+			hwPlanVO.setContent(hwPlans[i]);
+			tclassDAO.insertHomeworkPlan(hwPlanVO);
+		}
+		
+		classVO.setClassCode(classCode);
+		classVO.setCpno(Integer.toString(cpno));
+		
+		tclassDAO.updateClassToRegisterClassPlan(classVO);
+		
+	}
+	@Override
+	public void deleteClassPlan(int wpno) throws SQLException {
+		tclassDAO.deleteClassPlan(wpno);
+	}
+	@Override
+	public void deleteHomeworkPlan(int homeworkplan) throws SQLException {
+		tclassDAO.deleteHomeworkPlan(homeworkplan);
+	}
+	@Override
+	public void registWeekPlan(Map<String, Object> map) throws SQLException {
+		String cpnoStr = String.valueOf(map.get("cpno"));
+		int cpno = Integer.parseInt(cpnoStr);
+		String[] inputArr = (String[])map.get("inputArr");
+		String[] taArr = (String[])map.get("taArr");
+		
+		WeekPlanVO weekPlanVO = new WeekPlanVO();
+		
+		for(int i=0; i<inputArr.length; i++) {
+			int wpno = tclassDAO.selectWeekPlanSeqNextValue();
+			weekPlanVO.setWpno(wpno);
+			weekPlanVO.setCpno(cpno);
+			weekPlanVO.setWeek(Integer.parseInt(inputArr[i]));
+			weekPlanVO.setContent(taArr[i]);
+			tclassDAO.insertWeekPlan(weekPlanVO);
+		}
+		
+	}
+	
+	@Override
+	public void registHomeworkPlan(Map<String, Object> map) throws SQLException {
+		String cpnoStr = String.valueOf(map.get("cpno"));
+		int cpno = Integer.parseInt(cpnoStr);
+		String[] inputArr = (String[])map.get("inputArr");
+		String[] taArr = (String[])map.get("taArr");
+		
+		HomeworkPlanVO homeworkPlanVO = new HomeworkPlanVO();
+		
+		for(int i=0; i<inputArr.length; i++) {
+			int homeworkplan = tclassDAO.selectHomeworkPlanSeqNextValue();
+			homeworkPlanVO.setHomeworkplan(homeworkplan);
+			homeworkPlanVO.setCpno(cpno);
+			homeworkPlanVO.setNo(Integer.parseInt(inputArr[i]));
+			homeworkPlanVO.setContent(taArr[i]);
+			tclassDAO.insertHomeworkPlan(homeworkPlanVO);
+		}
+	}
+	
+	
+	@Override
+	public void updateWeekPlan(Map<String, Object> map) throws SQLException {
+		String[] inputArr = (String[])map.get("inputArr");
+		String[] taArr = (String[])map.get("taArr");
+		String[] wpnoArr = (String[])map.get("wpnoArr");
+		
+		WeekPlanVO weekPlanVO = new WeekPlanVO();
+		
+		for(int i=0; i<inputArr.length; i++) {
+			weekPlanVO.setWeek(Integer.parseInt(inputArr[i]));
+			weekPlanVO.setWpno(Integer.parseInt(wpnoArr[i]));
+			weekPlanVO.setContent(taArr[i]);
+			tclassDAO.updateWeekPlan(weekPlanVO);
+		}
+	}
+	@Override
+	public void updateHomeworkPlan(Map<String,Object> map) throws SQLException {
+		String[] inputArr = (String[])map.get("inputArr");
+		String[] taArr = (String[])map.get("taArr");
+		String[] homeworkplanArr = (String[])map.get("homeworkplanArr");
+		
+		HomeworkPlanVO homeworkPlanVO = new HomeworkPlanVO();
+		
+		for(int i=0; i<inputArr.length; i++) {
+			homeworkPlanVO.setNo(Integer.parseInt(inputArr[i]));
+			homeworkPlanVO.setHomeworkplan(Integer.parseInt(homeworkplanArr[i]));
+			homeworkPlanVO.setContent(taArr[i]);
+			tclassDAO.updateHomeworkPlan(homeworkPlanVO);
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

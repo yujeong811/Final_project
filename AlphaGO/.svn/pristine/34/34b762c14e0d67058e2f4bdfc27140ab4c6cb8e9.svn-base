@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Pds-Mapper">
+	<select id="selectAllPdsList" resultType="pds">
+		select
+		    lcode
+		   ,title
+		   ,content
+		   ,viewcnt
+		   ,regdate
+		   ,updatedate
+		   ,writer
+		from
+		    pds
+	</select>
+
+	<select id="selectPdsByLCode" resultType="pds">
+		select *
+		from pds
+		where lcode=#{lCode}
+	</select>
+
+	<update id="increaseViewCnt" parameterType="int">
+		update
+		pds
+		set
+		viewcnt=viewcnt+1
+		where lcode=#{lCode}
+	</update>
+
+	<update id="deletePds" parameterType="int">
+		delete
+		from pds
+		where lCode=#{lCode}
+	</update>
+</mapper>

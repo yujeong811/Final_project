@@ -1,0 +1,18 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/master")
+public class HdMasterController {
+	
+
+	@RequestMapping("/studentlist")
+	public String studentlist() throws Exception {
+		String url = "master/studentlist";
+		return url;
+	}
+
+
+}

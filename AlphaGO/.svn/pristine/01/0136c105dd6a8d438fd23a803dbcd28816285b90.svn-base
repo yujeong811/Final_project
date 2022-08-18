@@ -1,0 +1,33 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.AcademyScoreVO;
+import kr.or.ddit.dto.ExamVO;
+import kr.or.ddit.dto.SHUnivVO;
+import kr.or.ddit.dto.SchoolScoreVO;
+
+public interface ScoreDAO {
+	public List<SchoolScoreVO> selectSchoolScoreListByTestName(SchoolScoreVO score) throws SQLException;
+
+	public void deleteScoreData(int sscode) throws SQLException;
+
+	public void insertScore(SchoolScoreVO score) throws SQLException;
+
+	public int selectNextSeq() throws SQLException;
+
+	public void modifyScore(SchoolScoreVO score) throws SQLException;
+
+	public List<SchoolScoreVO> selectAllScoreList(String id) throws SQLException;
+
+	public List<AcademyScoreVO> selectAcademyScoreListByClassCode(String id, int classCode) throws SQLException;
+
+	public String selectExamName(int code) throws SQLException;
+
+	public double selectAvgByCode(int examCode) throws SQLException;
+
+	public List<Map<String, String>> selectExamScoreBySubjectCode(String id, int subjectCode) throws SQLException;
+
+}

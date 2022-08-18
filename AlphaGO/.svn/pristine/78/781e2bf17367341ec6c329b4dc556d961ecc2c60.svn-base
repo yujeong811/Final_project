@@ -1,0 +1,173 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<script>
+
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-12">
+		
+			<div class="card">
+				<div class="car-header">
+				<button type="button" class="btn btn-warning btn-sm"
+						style="float: right; margin-right: 20px;">지문+</button>
+						<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">일반+</button>
+				</div>
+				<div class="card-body">
+			<div class="row">
+			 <div class="col-sm-6">
+			 <div class="card">
+			  <div class="card-header">
+							<div style="text-aling:center;">
+						<select>
+							<option>상</option>
+							<option>중</option>
+							<option>하</option>
+						</select>
+						<select>
+							<option>계산</option>
+							<option>문제해결</option>
+							<option>추론및논리</option>
+						</select>
+						
+					
+						
+						<button type="button" class="btn btn-success btn-sm"
+						style="float: right; ">완료</button>
+						  </div>
+						  <br>
+						  	<div class="form-group"style="height:100px;">
+								
+								<textarea id="content" name="content" style="width:100%;height:100%;">
+								 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+								</textarea>
+							</div>
+						
+						 </div>
+						 
+						 <div class="card-body">
+						 
+						 
+						 
+							<div class="form-group"style="height:100px;">
+						 		<textarea id="content" name="content" style="width:100%;height:100%;">
+							1.문제가 문제다
+							2.문제가 문제요
+							3.문제가 정말 문제요
+							4.문제가 문제입니다.
+							5.문제라구요
+								</textarea>
+						
+						</div>
+						 
+						 
+						 </div>
+			 </div>
+			  <div class="card">
+			  
+						 
+						 <div class="card-body" style="height:200px;">
+					  	<div class="form-group"style="height:100px;">
+								
+								<textarea id="content" name="content" style="width:100%;height:100%;">
+								답안을 잘 맞춰보세요
+								</textarea>
+							</div>
+						 
+						 </div>
+			 </div>
+			 </div>
+			  <div class="col-sm-6">
+			  <div class="card"style="height:780px;">
+			  	<div class="card-body"style="height:740px;">
+						<div class="card"style="height:740px;">
+							<div class="card-body" style="overflow:auto;">
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							</div>
+						</div>
+						
+					</div>
+					</div>
+			  
+			 </div>
+			</div>
+			
+			</div>
+			
+			
+			<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp" %>	
+					</ul>
+				</nav>
+			
+			
+			</div>	<!-- 		카드닫히기 -->
+		</div>	<!-- 		col닫히기 -->
+	
+
+	</div>	<!-- 		row닫히기 -->
+</body>
+</html>

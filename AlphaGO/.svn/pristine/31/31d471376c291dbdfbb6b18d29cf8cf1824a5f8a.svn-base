@@ -1,0 +1,35 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.School_scoreVO;
+
+public interface TeacherDAO {
+
+
+	List<String> processSearch(String id)throws SQLException;
+
+	List<MemberVO> processStudentList(String processName,Criteria cri)throws SQLException;
+    
+	int classCode(String processName)throws SQLException;
+	
+	int selectprocessStudentlistCount(int class_code,Criteria cri);
+	
+	MemberVO teacherstudentDetail(String id)throws SQLException;
+
+	List<String> searchClass(String id);
+
+	List<MemberVO> teacherstudenttotalList(String id, SearchCriteria cri) throws SQLException;
+
+	int teacherstudenttotalListcount(String id, SearchCriteria cri)throws SQLException;
+
+	String idSearchName(String id) throws SQLException;
+	String idSearchSubject(String id)throws SQLException;
+
+	List<School_scoreVO> schoolGrade(String id)throws SQLException;
+}

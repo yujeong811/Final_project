@@ -1,0 +1,48 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSessionException;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.JimoonProblemCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassProgVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.ProblemVO;
+import kr.or.ddit.dto.School_scoreVO;
+
+public interface TeacherService {
+	 //id로 강의명 조회
+	 public List<String> processSearch(String id) throws SQLException;
+	 
+	 //강의명으로 강의 듣는 학생 조회
+	 public Map<String,  Object> processStudentList(String processName,Criteria cri)throws SQLException;
+	
+	 //선생님의 개설 강의 리스트
+	 public List<String> getclassList(String id)throws SQLException;
+	 
+	//선생님의 학생 조회
+	public MemberVO teacherstudentDetail(String id) throws SQLException;
+	// public void insertProblemG(ProblemVO problem)throws SQLException;
+	public Map<String, Object> teacherstudenttotalList(String id, SearchCriteria cri) throws SQLException;
+	
+	//id로 이름 검색&과목검색
+	public Map<String,String> idSearchName(String id) throws SQLException;
+	
+	//문제리스트
+	public List<ProblemVO> problemList(String id) throws SQLException;
+	
+	//학교 성적
+	public List<School_scoreVO> schoolGrade(String id) throws SQLException;
+
+	public Map<String, Object> createGdata(String id) throws SQLException;
+
+	public List<ClassProgVO> danSearch(String name) throws SQLException;
+
+	public int insertProblem(ProblemVO problem) throws SQLException;
+
+	public int insertJProblem(JimoonProblemCommand problem)throws SQLException;
+}

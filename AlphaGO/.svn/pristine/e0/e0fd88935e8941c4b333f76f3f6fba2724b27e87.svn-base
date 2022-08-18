@@ -1,0 +1,225 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<body>
+
+	<div class="row">
+		<!-- 왼쪽 div 시작 -->
+		<div class="col-lg-5">
+			<!-- 왼쪽 card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header" style="padding: 5px;">
+					<h5 style="margin: auto; font-weight: bold;">
+						<i class="bx bxs-pin" style="margin-right: 10px;"></i>학습계획표
+					</h5>
+				</div>
+				<!-- card-header 끝 -->
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<h6>
+						<i class="uil-clock-three"></i> 일정
+					</h6>
+					<!-- 일정 테이블 시작 -->
+					<table class="table table-hover" style="text-align: center;">
+						<thead class="table-light">
+							<tr class="table-danger">
+								<th>날짜</th>
+								<th>목록</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2022.07.20</td>
+								<td>비문학 시험</td>
+							</tr>
+							<tr>
+								<td>2022.08.10</td>
+								<td>프로젝트 마무리</td>
+							</tr>
+							<tr>
+								<td>2022.08.22</td>
+								<td>수료</td>
+							</tr>
+							<tr>
+								<td>2022.09.10</td>
+								<td>영어 시험</td>
+							</tr>
+							<tr>
+								<td>2022.10.01</td>
+								<td>과학 중간고사</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- pagination -->
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					<!-- 일정 테이블 끝 -->
+				</div>
+				<!-- card-body 끝 -->
+
+				<!-- 두번쨰 card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<h6>
+						<i class="bx bxs-graduation"></i> 학교 성적
+					</h6>
+					<div id="studychart"></div>
+				</div>
+				<!-- 두번쨰 card-body 끝 -->
+			</div>
+			<!-- 왼쪽 card 끝 -->
+		</div>
+		<!-- 왼쪽 div 끝 -->
+
+		<!-- 오른쪽 div 시작 -->
+		<div class="col-lg-7">
+			<!-- 오른쪽 card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header" style="padding:5px;">
+					<div class="row">
+						<div class="col-sm-4">
+							<button type="button" class="btn btn-soft-secondary" onclick="">
+								<i class="uil uil-angle-left-b"></i>
+							</button>
+						</div>
+
+						<div class="col-sm-4" style="text-align: center;">
+							<h5 id="" style="line-height: 2.3;margin:auto;">2022.07.05</h5>
+						</div>
+
+						<div class="col-sm-4">
+							<button type="button" class="btn btn-soft-secondary" 
+									onclick="" style="float:right;">
+								<i class="uil uil-angle-right-b"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- card-header 끝 -->
+				
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<div>
+						<h6 style="float:left;">* 최대 5개</h6>
+						<button type="button" onclick="" class="btn btn-soft-purple" style="float:right;margin:3px;">
+						저장</button>
+					</div>
+					
+					<table class="table table-hover" style="text-align: center;">
+						<thead>
+							<tr class="table-danger">
+								<th>과목</th>
+								<th>학습 계획</th>
+								<th>학습결과</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="padding:2px;">
+									<select class="form-control choices__input" style="text-align: center;">
+										<option>선택</option>
+										<option value="k">국어</option>
+										<option value="e">영어</option>
+										<option value="m">수학</option>
+										<option value="so">사회</option>
+										<option value="si">과학</option>
+									</select>
+								</td>
+								<td>
+									화법과 작문 풀기
+								</td>
+								<td>
+									<input class="form-check-input" type="checkbox" id="formCheck1">
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:2px;">
+									<select class="form-control choices__input" style="text-align: center;">
+										<option>선택</option>
+										<option value="k">국어</option>
+										<option value="e">영어</option>
+										<option value="m">수학</option>
+										<option value="so">사회</option>
+										<option value="si">과학</option>
+									</select>
+								</td>
+								<td>
+									화법과 작문 풀기
+								</td>
+								<td>
+									<input class="form-check-input" type="checkbox" id="formCheck1">
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:2px;">
+									<select class="form-control choices__input" style="text-align: center;">
+										<option>선택</option>
+										<option value="k">국어</option>
+										<option value="e">영어</option>
+										<option value="m">수학</option>
+										<option value="so">사회</option>
+										<option value="si">과학</option>
+									</select>
+								</td>
+								<td>
+									화법과 작문 풀기
+								</td>
+								<td>
+									<input class="form-check-input" type="checkbox" id="formCheck1">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3" style="padding:2px;">
+									<button type="button" class="btn btn-soft-purple" style="width:100%;">
+										<i class="uil-plus"></i>
+									</button>
+								</td>
+							</tr>
+							<tr></tr>
+						</tbody>
+					</table>				
+				</div>
+				<!-- card-body 끝 -->
+			</div>
+			
+			<div class="card">
+				<table class="table" style="text-align: center;">
+					<tr class="table-danger">
+						<td>공부시간</td>
+						<td>달성률</td>
+					</tr>
+					<tr>
+						<td>
+						<div class="col-md-10">
+								<input class="form-control" type="time" value="13:45:00"
+									id="example-time-input" style="width:70%;margin:0 auto;">
+							</div>
+						</td>
+						<td><span id="">30</span>%</td>
+					</tr>
+					<tr class="table-danger">
+						<td colspan="2">자기평가</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input class="form-control" type="text" id="" name="" placeholder="내용을 입력하세요.">
+						</td>
+					</tr>
+				</table>	
+			</div>			
+			<!-- 오른쪽 card 끝 -->
+		</div>
+		<!-- 오른쪽 div 끝 -->
+	</div>
+
+</body>
+
+
+
+
+
+
+
+
+
+

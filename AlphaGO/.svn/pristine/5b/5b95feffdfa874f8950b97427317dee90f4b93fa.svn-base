@@ -1,0 +1,73 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.AttendanceVO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public interface TeacherMasDAO {
+	
+	List<TeachermasVO> selectTeacherList()throws Exception; 
+	List<TeachermasVO> selectTeacherList(Criteria cri)throws Exception;
+	
+	int selectTeacherListCount(SearchCriteria cri) throws Exception;
+	// 검색 결과의 전체 리스트 개수
+	int selectSearchTeacherListCount(SearchCriteria cri) throws Exception;
+	
+	List<TeachermasVO> selectSearchTeacherList(SearchCriteria cri) 
+			throws SQLException;
+
+	
+	public void insertTeacher(TeachermasVO teamas) throws SQLException;
+//	
+	TeachermasVO selectTeacherById(String id) throws SQLException;
+	
+	TeachermasVO selectTeacherByPicture(String picture) throws SQLException;
+	
+//	
+//	TeachermasVO selectTeacherByPicture(String picture) throws SQLException;
+//	
+	public void deleteTeacher(String id) throws SQLException;
+
+	 String selectTeacherSequenceNextValue() throws SQLException;
+	 
+		public TeachermasVO selectScoreBySubjectName(String subjectName) throws SQLException;
+		
+		
+		
+		//선생출석조회
+		List<TeachermasVO> selectTeacherAttendList()throws Exception; 
+		List<TeachermasVO> selectTeacherAttendList(Criteria cri)throws Exception;
+		
+		int selectTeacherAttendListCount(SearchCriteria cri) throws Exception;
+		// 검색 결과의 전체 리스트 개수
+		int selectSearchTeacherAttendListCount(SearchCriteria cri) throws Exception;
+		
+		List<TeachermasVO> selectSearchTeacherAttendList(SearchCriteria cri) 
+				throws SQLException;
+		
+		
+		//출결상세 
+		public List<TeachermasVO> selectAllAttendTeacherById(String id,Criteria cri) throws SQLException;
+		
+		//도넛차트활용 테이s
+		public List<TeachermasVO> selectAllAttendTeacherByChartId(String id) throws SQLException;
+	int selectSearchAllAttendTeacherByIdListCount(String id) throws Exception;
+	
+	
+	
+	//1학기중간
+	public TeachermasVO selectFinalTestBykor(String subject) throws SQLException;
+	//1학기기말
+	public TeachermasVO selectFinalTestByFisrtFinal(String subject) throws SQLException;
+	//2학기중간
+	public TeachermasVO selectFinalTestBySecondMiddle(String subject) throws SQLException;
+	//2학기기말
+	public TeachermasVO selectFinalTestBySecondFinal(String subject) throws SQLException;
+		
+}

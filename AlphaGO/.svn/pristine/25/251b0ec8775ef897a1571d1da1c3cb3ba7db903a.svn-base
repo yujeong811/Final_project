@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<body>
+	<div class="col-lg-6">
+		<div class="card">
+			<div
+				class="card-header justify-content-between d-flex align-items-center bg-soft-info">
+				<h4 class="card-title" style="">강동주 강사의 수강을 듣는 학생의 성적 증감률</h4>
+
+			</div>
+
+			<div class="tab-pane fade show active col-sm-12" id="pills-home"
+				role="tabpanel" aria-labelledby="pills-home-tab">
+				<div id="allcnt_chart" class="col-sm-12"></div>
+			</div>
+
+
+
+			<!-- end card header -->
+		</div>
+	</div>
+</body>

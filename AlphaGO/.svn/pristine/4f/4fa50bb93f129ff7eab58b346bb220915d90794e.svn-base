@@ -1,0 +1,318 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+<head>
+  <script src="<%=request.getContextPath() %>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+  <script type="text/javascript">
+//------------------------원생 학습계획표 차트---------------------
+  var options = {
+       series: [{
+       name: '평균점수',
+       data: [44, 55, 41, 67, 22]
+     }],
+       annotations: {
+       points: [{
+         x: '사회',
+         seriesIndex: 0,
+         label: {
+           borderColor: '#775DD0',
+           offsetY: 0,
+           style: {
+             color: '#fff',
+             background: '#f2b6ed',
+           },
+           text: '사회 is good',
+         }
+       }]
+     },
+     chart: {
+       width: '100%',
+       height: 350,
+       type: 'bar',
+     },
+     plotOptions: {
+       bar: {
+         borderRadius: 10,
+         columnWidth: '50%',
+       }
+     },
+     dataLabels: {
+       enabled: false
+     },
+     stroke: {
+       width: 2
+     },
+
+     grid: {
+       row: {
+         colors: ['#fff', '#f2f2f2']
+       }
+     },
+     xaxis: {
+       labels: {
+         rotate: -45
+       },
+       categories: ['국어', '영어', '수학', '사회', '과학'],
+       tickPlacement: 'on'
+     },
+     yaxis: {
+       title: {
+         text: '점수',
+       },
+     },
+     fill: {
+       type: 'gradient',
+       gradient: {
+         shade: 'light',
+         type: "horizontal",
+         shadeIntensity: 0.25,
+         gradientToColors: undefined,
+         inverseColors: true,
+         opacityFrom: 0.85,
+         opacityTo: 0.85,
+         stops: [50, 0, 100]
+       },
+     }
+     };
+
+     var chart = new ApexCharts(document.querySelector("#studychart"), options);
+     chart.render();
+    //------------------------원생 학습계획표 차트---------------------
+
+  </script>
+
+  <script type="text/javascript">
+
+  achive_rate();
+
+  function modify(){
+	  var date = $('#date').text();
+	  location.href='modifyForm.go?date=' + date;
+  }
+
+  function chk(box, code){
+	  $.ajax({
+			type: "POST", //요청 메소드 방식
+			url:"<%=request.getContextPath() %>/studyplan/check.go",
+			data : {
+				"code" : code
+			}
+		});
+	  achive_rate()
+  }
+
+  function achive_rate(){
+	  var boxCnt = $('input[type="checkbox"]').length;
+	  var checked = $('input[type="checkbox"]:checked').length;
+	  var rate = checked / boxCnt * 100;
+	  $('#achive-rate').text(Math.round(rate * 10) / 10);
+  }
+  </script>
+</head>
+
+<body>
+
+<style type="text/css">
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+	background: #564ab1;
+}
+
+thead, #tb-p{
+    color: #564ab1;
+    background-color: rgba(86,74,177,.1);
+    border-color: transparent;
+}
+</style>
+
+	<div class="row">
+		<!-- 왼쪽 div 시작 -->
+		<div class="col-lg-5">
+			<!-- 왼쪽 card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header" style="padding: 5px;">
+					<h5 style="margin: auto; font-weight: bold;">
+						<i class="bx bxs-pin" style="margin-right: 10px;"></i>학습계획표
+					</h5>
+				</div>
+				<!-- card-header 끝 -->
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<h6>
+						<i class="uil-clock-three"></i> 일정
+					</h6>
+					<!-- 일정 테이블 시작 -->
+					<table class="table table-hover" style="text-align: center;">
+						<thead>
+							<tr>
+								<th>날짜</th>
+								<th>목록</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2022.07.20</td>
+								<td>비문학 시험</td>
+							</tr>
+							<tr>
+								<td>2022.08.10</td>
+								<td>프로젝트 마무리</td>
+							</tr>
+							<tr>
+								<td>2022.08.22</td>
+								<td>수료</td>
+							</tr>
+							<tr>
+								<td>2022.09.10</td>
+								<td>영어 시험</td>
+							</tr>
+							<tr>
+								<td>2022.10.01</td>
+								<td>과학 중간고사</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- pagination -->
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					<!-- 일정 테이블 끝 -->
+				</div>
+				<!-- card-body 끝 -->
+
+				<!-- 두번쨰 card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<h6>
+						<i class="bx bxs-graduation"></i> 학교 성적
+					</h6>
+					<div id="studychart"></div>
+				</div>
+				<!-- 두번쨰 card-body 끝 -->
+			</div>
+			<!-- 왼쪽 card 끝 -->
+		</div>
+		<!-- 왼쪽 div 끝 -->
+
+		<!-- 오른쪽 div 시작 -->
+		<div class="col-lg-7">
+			<!-- 오른쪽 card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header" style="padding:5px;">
+					<div class="row">
+						<div class="col-sm-4">
+							<!-- <button type="button" class="btn btn-soft-secondary" onclick="">
+								<i class="uil uil-angle-left-b"></i>
+							</button> -->
+						</div>
+
+						<div class="col-sm-4" style="text-align: center;">
+						  <h5 id="date" style="line-height: 2.3;margin:auto;">${date}</h5>
+						</div>
+
+						<div class="col-sm-4">
+							<!-- <button type="button" class="btn btn-soft-secondary"
+									onclick="" style="float:right;">
+								<i class="uil uil-angle-right-b"></i>
+							</button> -->
+						</div>
+					</div>
+				</div>
+				<!-- card-header 끝 -->
+
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding:5px;">
+					<div>
+						<h6 style="float:left;"></h6>
+						<button type="button" onclick="modify()" class="btn btn-soft-purple" style="float:right;margin:3px;">
+						수정</button>
+					</div>
+
+					<table class="table table-hover" style="text-align: center;">
+						<thead>
+							<tr>
+								<th style="width: 110px;">과목</th>
+								<th>학습 계획</th>
+								<th style="width: 110px;">학습결과</th>
+							</tr>
+						</thead>
+						<tbody style="vertical-align: middle;">
+						  <c:forEach items="${planList }" var="plan">
+							<tr>
+								<td>
+								  <c:if test="${plan.subjectCode eq 1 }">
+   									 <span class="badge bg-danger font-size-16" >국어</span>
+								  </c:if>
+								  <c:if test="${plan.subjectCode eq 2 }">
+   									 <span class="badge bg-warning font-size-16" >수학</span>
+								  </c:if>
+								  <c:if test="${plan.subjectCode eq 3 }">
+   									 <span class="badge bg-success font-size-16" >사회</span>
+								  </c:if>
+								  <c:if test="${plan.subjectCode eq 4 }">
+   									 <span class="badge bg-primary font-size-16" >과학</span>
+								  </c:if>
+								  <c:if test="${plan.subjectCode eq 5 }">
+   									 <span class="badge bg-purple font-size-16" >영어</span>
+								  </c:if>
+								</td>
+								<td>
+									${plan.studyPlan }
+								</td>
+								<td>
+								  <input ${plan.studyResult eq 0 ? "" : "checked" }
+									  onclick="chk(this, ${plan.planCode })" class="form-check-input" type="checkbox" style="width: 25px; height: 25px;">
+								</td>
+							</tr>
+						  </c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<!-- card-body 끝 -->
+			</div>
+
+			<div class="card">
+				<table class="table" style="text-align: center;">
+				  <thead>
+					<tr>
+						<td>공부시간</td>
+						<td>달성률</td>
+					</tr>
+				  </thead>
+					<tr>
+					  <td>
+						<div class="col-md-10">
+						 ${planer.studyTime }&nbsp;&nbsp;H
+						</div>
+					  </td>
+					  <td style="vertical-align: middle;">
+					    <span id="achive-rate">0</span>%
+					  </td>
+					</tr>
+					<tr id="tb-p">
+						<td colspan="2">자기평가</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						  ${planer.feedback }
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- 오른쪽 card 끝 -->
+		</div>
+		<!-- 오른쪽 div 끝 -->
+	</div>
+
+</body>
+
+
+
+
+
+
+
+
+
+

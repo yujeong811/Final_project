@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="problem" value="${dataMap.problem }" />
+<c:set var="jimoon" value="${dataMap.jimoon }" />
+<c:set var="pno" value="${dataMap.pno }" />
+</head>
+<body>
+<div class="row" style="height:600px;">
+	<div class="col-sm-6">
+	
+<!-- 	주관식 -->
+	<c:if test="${problem.lproblem=='주관식' }">
+	
+	</c:if>
+<!-- 	객관식 -->
+	<c:if test="${problem.lproblem=='객관식' }">
+	
+	<div style="font-weight: bold;">[문제]</div>
+							<div>${pno}.${problem.problemContent}</div>
+							<c:if test="${!empty problem.picture }">
+							<div class="view${problem.problemCode}" id="pictureView2"
+							style="border: 1px solid green; height: 150px; width: 70%; margin: 0 auto; margin-bottom: 10px;">
+										</div>
+							</c:if>
+							<p style="margin-left: 10px;">
+								①${problem.none }<br>② ${problem.ntwo }<br>③
+								${problem.ntree }<br> ④ ${problem.four }<br> <span
+									style="font-weight: bold">⑤ ${problem.nfive }</span><br>
+							</p>
+							<div style="font-weight: bold;">[답]</div>
+							<div style="margin-bottom: 15px;">
+								<span style="font-weight: bold; color: red;">
+								<c:if test="${problem.problemAnswer}">
+								④ 질문하고 답하는
+									방식을 사용하여 발표 내용
+									</c:if>
+									
+									</span>
+							</div>
+							<div style="font-weight: bold;">[해설]</div>
+							<div style="margin-bottom: 10px;">첫해 배치 에는 두 가지 문제가 있었는데요,
+								우선 작물의 키를 고려하지 않았다는 점이에요. 해는 동쪽에서 떠서 한낮에 남쪽을 지나 서쪽으로 지고 해가 떠 있는
+								반대 방향으로 그림자가 생기죠. 작물은 광합성이 많이 이루어지는 오전부터 한낮까지 그림자의 영향을 최소한으로 받아야
+								잘 자랄 수 있어요. 이를 고려해 키가 작은 작물을 동쪽과 남쪽에 배치해야 해요. 해는 동쪽에서 떠서 한낮에 남쪽을
+								지나 서쪽으로 지고 해가 떠 있는 반대 방향으로 그림자가 생기죠. 작물은 광합성이 많이 이루어지는 오전부터 한낮까지
+								그림자의 영향을 최소한으로 받아야 잘 자랄 수 있어요. 이를 고려해 키가 작은 작물을 동쪽과 남쪽에 배치해야 해요.</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</c:if>
+	</div>
+	<div class="col-sm-6">
+	
+	
+	</div>
+
+</div>
+</body>
+</html>

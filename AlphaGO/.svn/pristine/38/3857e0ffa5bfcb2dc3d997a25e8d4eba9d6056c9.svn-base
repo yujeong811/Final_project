@@ -1,0 +1,24 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.ClassroomVO;
+import kr.or.ddit.dto.FixtureVO;
+
+public interface ClassroomDAO {
+
+	
+	public List<ClassroomVO> getAllClassroom(Map<String, Object> dataParam) throws SQLException;
+	
+	public int getClassroomSeq() throws SQLException;
+	
+	public void registClassroom(ClassroomVO roomVO) throws SQLException;
+
+	public void removeClassroom(int roomCode) throws SQLException;
+	
+	public List<ClassroomVO> getClassroom() throws SQLException;
+	
+	public ClassroomVO getOneClassroom(String roomCode) throws SQLException;
+}

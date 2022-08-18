@@ -1,0 +1,18 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.ClassVO;
+
+public interface MStudyPlanDAO {
+
+	/**
+	 * 수업계획서 제출 상태에 따른 수업 정보 리스트를 가져오는 DAO
+	 * @param cpcheck
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassVO> selectClassListByCpcheck(String cpcheck) throws SQLException; 
+	
+}

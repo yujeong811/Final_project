@@ -1,0 +1,86 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassPlanVO;
+import kr.or.ddit.dto.ClassTimeVO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.HomeworkPlanVO;
+import kr.or.ddit.dto.WeekPlanVO;
+
+public interface TclassService {
+	
+	/**
+	 * 수업계획서가 등록되어 진행중인 수업목록
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 수업계획서가 등록되어 있지 않은 수업목록
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> unregisteredClassList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 수업계획서 미등록된 Class 정보 조회
+	 * 수업계획서에 수업 시간표 출력
+	 * @param classCode
+	 * @return
+	 * @throws SQLException
+	 */
+	Map<String, Object> selectUnregisteredClassForModal(int classCode) throws SQLException;
+	
+	/**
+	 * 수업계획서 등록된 Class 정보 조회
+	 * @param classCode
+	 * @return
+	 * @throws SQLException
+	 */
+	Map<String, Object> selectRegisteredClassForModal(int classCode) throws SQLException;
+	
+	/**
+	 * 수업계획서 등록
+	 * @param classPlan
+	 * @throws SQLException
+	 */
+	void registClassPlan(Map<String,Object> map) throws SQLException; 
+	
+	/**
+	 * 해당 주차의 weekplan 삭제
+	 * @param wpno
+	 * @throws SQLException
+	 */
+	void deleteClassPlan(int wpno) throws SQLException;
+	
+	/**
+	 * 해당 번호의 homeworkplan 삭제
+	 * @param homework
+	 * @throws SQLException
+	 */
+	void deleteHomeworkPlan(int homework) throws SQLException;
+	
+	/**
+	 * 주자 계획 등록
+	 * @param map
+	 * @throws SQLException
+	 */
+	void registWeekPlan(Map<String,Object> map) throws SQLException;
+	
+	/**
+	 * 과제계획 등록
+	 * @param map
+	 * @throws SQLException
+	 */
+	void registHomeworkPlan(Map<String,Object> map) throws SQLException;
+	
+	
+	
+
+}

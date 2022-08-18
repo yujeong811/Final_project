@@ -1,0 +1,29 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dto.NoticeVO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public interface PacounseltService {
+	
+	Map<String, Object> getCounseltList(Criteria cri,Integer pcCode) throws SQLException;
+	//Map<String, Object> getCounseltList(Criteria cri,int counCode) throws SQLException;
+	
+	
+	//상담 완료 리스트
+	
+	Map<String, Object> getCounseltEndList(Criteria cri,Integer pcCode) throws SQLException;
+	
+	//상세
+	public PacounseltVO getCounseltEnd(int pcCode) throws Exception;
+	
+	//결과,후속처리 업데이트
+	//public void updateCounseltDetailList(int paco) throws SQLException;
+
+
+	int updateCounseltDetailList(PacounseltVO paco) throws SQLException;
+}

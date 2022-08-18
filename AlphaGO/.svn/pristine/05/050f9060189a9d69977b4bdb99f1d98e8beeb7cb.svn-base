@@ -1,0 +1,25 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dto.ClassReviewVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public interface ReviewService {
+	/**
+	 * 과목 조회
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<SubjectVO> selectSub() throws SQLException;
+	
+	/**
+	 * 모든 수업 후기 조회
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassReviewVO> selectReviewAll(int classCode) throws SQLException;
+}

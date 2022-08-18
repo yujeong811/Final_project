@@ -1,0 +1,123 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.ClassDAO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.PdsVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public class ClassServiceImpl implements ClassService {
+
+	private ClassDAO classDAO;
+	public void setClassDAO(ClassDAO classDAO) {
+		this.classDAO = classDAO;
+	}
+	
+	@Override
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClassVO> classList = null;
+		List<SubjectVO> subjectList = null;
+		
+		int startRow = cri.getStartRowNum();
+		int endRow = startRow+cri.getPerPageNum()-1;
+		Map<String, Object> dataParam = new HashMap<String, Object>();
+		dataParam.put("startRow", startRow);
+		dataParam.put("endRow", endRow);
+		dataParam.put("searchType", cri.getSearchType());
+		dataParam.put("keyword", cri.getKeyword());
+		
+		classList = classDAO.getAllClass(dataParam);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		dataMap.put("classList", classList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+	@Override
+	public List<SubjectVO> getSubDetail(int subcode) throws SQLException {
+		List<SubjectVO> subList = null;
+		subList = classDAO.getSubDetail(subcode);
+		return subList;
+	}
+
+	/**
+	 * 수업 상세 정보 받기
+	 */
+	@Override
+	public Map<String, Object> getClassDetail(int class_code) throws SQLException {
+		Map<String, Object> classDetailMap = new HashMap<String, Object>(); 
+		
+		ClassVO classvo = classDAO.getClassDetail(class_code);
+		
+//		System.out.println(classvo.getSubject_code());
+		int subjectCode = Integer.parseInt(classvo.getSubject_code());
+		List<SubjectVO> subDetailList = classDAO.getSubDetail(subjectCode);
+		
+		if(classvo!=null && subDetailList!=null) {
+			classDetailMap.put("classvo", classvo);
+			classDetailMap.put("subDetailList", subDetailList);
+		}
+		return classDetailMap;
+	}
+
+	@Override
+	public void registClass(ClassVO classVO) throws SQLException {
+//		System.out.println("class from Service : " + classVO);
+		int classSeq = classDAO.getClassCode();
+		System.out.println(classSeq);
+		System.out.println(classVO.getClass_code());
+		String class_code = String.valueOf(classSeq);
+		classVO.setClass_code(class_code);
+		
+		classDAO.registClass(classVO);
+	}
+
+	@Override
+	public void removeClass(ClassVO classVO) throws SQLException {
+
+		ClassVO getClass = classDAO.getClassDetail(Integer.parseInt(classVO.getClass_code()));
+		
+		classDAO.removeClass(getClass);
+	}
+
+	@Override
+	public Map<String, Object> getSearchClassList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(classDAO.selectSearchClassListCount(cri));
+
+		List<ClassVO> classList = classDAO.selectSearchClassList(cri);
+
+		dataMap.put("classList", classList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<div style="text-align: right;">
+						<div class="row">
+							
+
+							<div class="col-sm-11">
+							
+								<select class="form-select" style="width: 150px; float: right;">
+
+									<option>추론</option>
+									<option>문제해결</option>
+									<option>실생활응용</option>
+								</select> 
+								<select class="form-select" style="width: 100px; float: right;">
+
+									<option>상</option>
+									<option>중</option>
+									<option>하</option>
+								</select> 
+								<select class="form-select" style="width: 120px; float: right;"
+									onchange="if(this.value) location.href=(this.value);">
+									<option value="#" selected="selected">객관식</option>
+									<option value="problemcreateJ.go">주관식</option>
+								</select> 
+								<select class="form-select" style="width: 180px; float: right;"
+									onchange="if(this.value) location.href=(this.value);">
+									<option value="#" selected="selected">과목을 선택하시오</option>
+
+								</select> 
+								<select class="form-select" style="width: 180px; float: right;">
+									<option value="#">수1</option>
+									<option value="#">수2</option>
+									<option value="#">고등수학1</option>
+									<option value="#">고등수학2</option>
+								</select>
+							</div>
+							<div class="col-sm-1">
+								<button type="button" class="btn btn-primary btn-sm"
+									style="float: right; margin-right: 10px; magin-left: 10px;">등록</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="card-body">
+					<label
+						style="border: 1px solid gray; width: 45px; height: 25px; text-align: center; background: lightgreen;">수학</label>
+					<div class="card">
+
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-5">
+									<div class="card" style="height: 700px;">
+										<div class="card-header">
+											<div class="form-group">
+
+												<textarea class="form-control" name="content" id="content"
+													rows="15" placeholder="문제를 작성해 주세요"></textarea>
+											</div>
+
+
+										</div>
+										<div class="card-body" style="overflow: auto;">
+											<div class="row">
+												<div class="col-sm-12" style="overflow: auto; height: 55px;">
+
+													<input type="radio" name="chk_info" value="1"
+														style="float: left; margin-top: 6px; margin-right: 3px;">
+												<label style="width:20px;float:left;font-size:1.1em;font-weight:800;">1.</label>
+													<textarea rows="2" cols="35"></textarea>
+												</div>
+											</div>
+											<hr>
+											<div class="row">
+												<div class="col-sm-12" style="overflow: auto; height: 55px;">
+													<input type="radio" name="chk_info" value="2"
+														style="float: left; margin-top: 6px; margin-right: 3px;">
+													<label style="width:20px;float:left;font-size:1.1em;font-weight:800;">2.</label>
+													<textarea rows="2" cols="35"></textarea>
+												</div>
+											</div>
+											<hr>
+											<div class="row">
+												<div class="col-sm-12" style="overflow: auto; height: 55px;">
+													<input type="radio" name="chk_info" value="3"
+														style="float: left; margin-top: 6px; margin-right: 3px;">
+													<label style="width:20px;float:left;font-size:1.1em;font-weight:800;">3.</label>
+													<textarea rows="2" cols="35"></textarea>
+												</div>
+											</div>
+											<hr>
+											<div class="row">
+												<div class="col-sm-12" style="overflow: auto; height: 55px;">
+													<input type="radio" name="chk_info" value="4"
+														style="float: left; margin-top: 6px; margin-right: 3px;">
+													<label style="width:20px;float:left;font-size:1.1em;font-weight:800;">4.</label>
+													<textarea rows="2" cols="35"></textarea>
+												</div>
+											</div>
+											<hr>
+											<div class="row">
+												<div class="col-sm-12" style="overflow: auto; height: 55px;">
+													<input type="radio" name="chk_info" value="5"
+														style="float: left; margin-top: 6px; margin-right: 3px;">
+													<label style="width:20px;float:left;font-size:1.1em;font-weight:800;">5.</label>
+													<textarea rows="2" cols="35"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="card" style="height: 700px;">
+										<div class="card-body" style="text-align:center;">
+											<label style="background: yellow; font-size: 1.4em;">해설</label>
+											<hr>
+											<textarea rows="33" cols="42" style="font-size: 0.8em;"placeholder="해설을 작성해주세요."></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="row">
+		<div class="col-sm-8">
+
+			<div class="card" style="height:860px;">
+				<div class="card-body">
+				<div class="row">
+				<div class="col-sm-6" style="text-aling:center;">
+					<div class="card">
+						<div style="text-aling:center;float:right;">
+						 <label style="background:yellow;" >문항코드:123</label>
+						 <label style="background:lightgreen;">난이도:중</label>
+						  <label style="background:lightgray;" >유형:계산</label>
+						  </div>
+						 <div class="card-header">
+						
+						 <div style="overflow:auto;height:100px;border:1px solid black;">
+						 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						 </div>
+						 </div>
+						 
+						 <div class="card-body">
+						 <div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						
+						 </div>
+						 
+						 </div>
+						</div>
+
+				<div class="card">
+						<div style="text-aling:center;float:right;">
+						 <label style="background:yellow;" >문항코드:123</label>
+						 <label style="background:lightgreen;">난이도:중</label>
+						  <label style="background:lightgray;" >유형:계산</label>
+						  </div>
+						 <div class="card-header">
+						
+						 <div style="overflow:auto;height:100px;border:1px solid black;">
+						 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						 </div>
+						 </div>
+						 
+						 <div class="card-body">
+						 <div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						
+						 </div>
+						 
+						 </div>
+						</div>
+				</div>
+				
+				
+					<div class="col-sm-6"style="text-aling:center;">
+					<div class="card" style="height:780px;">
+					
+					<div class="card-body"style="height:760px;">
+						<div class="card"style="height:760px;">
+							<div class="card-body" style="overflow:auto;">
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							</div>
+						</div>
+						
+					
+					</div>
+					
+					</div>
+					
+					</div>
+				
+				</div><!-- 				안쪽row끝 -->
+		<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp" %>	
+					</ul>
+				</nav>
+		
+				
+				</div>
+		
+			
+			
+				
+			</div>
+
+		</div>
+
+		<div class="col-sm-4">
+			<div class="card">
+				
+				<div class="card-header">
+				<input type="text" value="출제수:10/24" readonly="readonly">
+				<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">완료</button>
+				</div>
+				
+				<div class="card-body" style="height:780px;overflow: auto" >
+				 
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="font-size: 0.6em;">
+							<th style="">문항</th>
+							<th style="">문제코드</th>
+							<th style="">단원</th>
+							<th style="">난이도</th>
+							<th style="">유형</th>
+							<th style=""></th>
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="text-align:center;">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+						<tr>
+
+							<td style="">1</td>
+							<td style="">123</td>
+							<td style="">유리수</td>
+							<td style="">상</td>
+							<td style="">문제해결</td>
+							<td style="">
+							<i class="uil-times"></i>
+							</td>
+
+
+
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

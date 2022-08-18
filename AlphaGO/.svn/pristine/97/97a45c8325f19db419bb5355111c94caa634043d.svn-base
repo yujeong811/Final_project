@@ -1,0 +1,67 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+// 학원성적
+@SuppressWarnings("serial")
+public class AcademyScoreVO implements Serializable{
+	private int ascode;
+	private int academyScore;
+	private int examCode;
+	private String id;
+	private String regdate;
+	private int perfectScore;
+	private String achievement;
+	
+	public int getAscode() {
+		return ascode;
+	}
+	public void setAscode(int ascode) {
+		this.ascode = ascode;
+	}
+	public int getAcademyScore() {
+		return academyScore;
+	}
+	public void setAcademyScore(int academyScore) {
+		this.academyScore = academyScore;
+	}
+	public int getExamCode() {
+		return examCode;
+	}
+	public void setExamCode(int examCode) {
+		this.examCode = examCode;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public int getPerfectScore() {
+		return perfectScore;
+	}
+	public void setPerfectScore(int perfectScore) {
+		this.perfectScore = perfectScore;
+	}
+	public String getAchievement() {
+		return achievement;
+	}
+	public void setAchievement(String achievement) {
+		this.achievement = achievement;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+	
+}

@@ -1,0 +1,69 @@
+package kr.or.ddit.dto;
+
+import java.io.Serializable;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+// 오답노트
+@SuppressWarnings("serial")
+public class WrongVO implements Serializable{
+
+	private int wno;
+	private String id;
+	private String content;
+	private String updatedate;
+	private int examCode;
+	private int problemCode;
+	private String wrong;
+	
+	
+	public String getWrong() {
+		return wrong;
+	}
+	public void setWrong(String wrong) {
+		this.wrong = wrong;
+	}
+	public int getWno() {
+		return wno;
+	}
+	public void setWno(int wno) {
+		this.wno = wno;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getUpdatedate() {
+		return updatedate;
+	}
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+	public int getExamCode() {
+		return examCode;
+	}
+	public void setExamCode(int examCode) {
+		this.examCode = examCode;
+	}
+	public int getProblemCode() {
+		return problemCode;
+	}
+	public void setProblemCode(int problemCode) {
+		this.problemCode = problemCode;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
+	
+}

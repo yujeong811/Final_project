@@ -1,0 +1,37 @@
+package kr.or.ddit.controller.view;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+@Controller
+@RequestMapping("/suggest")
+public class SuggestController {
+
+	@RequestMapping("/list")
+	public String list(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "suggest/list";
+		
+		
+		return url;
+	}
+	
+	@RequestMapping("/detail")
+	public String detail(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "suggest/detail";
+		
+		
+		return url;
+	}
+	
+	@RequestMapping("/regist")
+	public String regist(kr.or.ddit.command.SearchCriteria cri, Model model) throws Exception{
+		String url = "suggest/regist";
+		
+		
+		return url;
+	}
+}

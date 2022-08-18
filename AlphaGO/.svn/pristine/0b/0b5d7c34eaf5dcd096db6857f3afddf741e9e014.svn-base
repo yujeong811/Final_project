@@ -1,0 +1,37 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.CalenderListCommand;
+import kr.or.ddit.dao.CalendarDAO;
+import kr.or.ddit.dto.CalendarVO;
+
+public class CalendarServiceImpl implements CalendarService {
+
+	public CalendarDAO calendarDAO;
+	public void setCalenderDAO(CalendarDAO calendarDAO) {
+		this.calendarDAO = calendarDAO;
+	}
+
+	@Override
+	public List<CalenderListCommand> getAllCalendar() throws SQLException {
+		List<CalenderListCommand> calenders = null;
+			calenders = calendarDAO.selectAllCalender();
+		return calenders;
+	}
+
+	@Override
+	public void registCalendar(CalendarVO calendarVO) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resetCalendar() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+}

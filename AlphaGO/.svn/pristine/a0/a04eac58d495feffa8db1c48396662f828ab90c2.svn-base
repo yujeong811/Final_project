@@ -1,0 +1,82 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class TeachermasVO {
+   
+
+	private String id;
+	private String name;
+	private Date regDate;
+	
+	private String picture;
+	private String phone;
+	private String attend_time;
+	private String out_time;
+	private String birthday;
+	private String subject;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAttend_time() {
+		return attend_time;
+	}
+	public void setAttend_time(String attend_time) {
+		this.attend_time = attend_time;
+	}
+	public String getOut_time() {
+		return out_time;
+	}
+	public void setOut_time(String out_time) {
+		this.out_time = out_time;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	@Override
+	public String toString() {
+		return "TeacherVO [id=" + id + ", name=" + name + ", regDate=" + regDate + ", picture=" + picture + ", phone="
+				+ phone + ", attend_time=" + attend_time + ", out_time=" + out_time + ", birthday=" + birthday
+				+ ", subject=" + subject + "]";
+	}
+	
+	
+	
+
+}

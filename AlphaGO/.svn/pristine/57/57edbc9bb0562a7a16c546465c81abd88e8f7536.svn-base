@@ -1,0 +1,156 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+
+
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+
+public class TeacherDAOImpl implements TeacherDAO{
+	   private SqlSession session;
+	    
+	     public void setSession(SqlSession session) {
+			this.session = session;
+		}
+	     
+	     //id로 과정검색
+		@Override
+		public List<String> processSearch(String id)throws SQLException{
+			List<String>processList=null;
+			processList=session.selectList("Teacher-Mapper.processSearch",id);
+			return processList;
+		}
+
+		
+		//강의코드로 학생 리스트 가져오기
+		@Override
+		public List<MemberVO> processStudentList(String processName,Criteria cri) throws SQLException {
+			List<MemberVO>processStudentlist=null;
+			int classCode=-1;
+		     classCode=classCode(processName);
+		     int startRow = cri.getStartRowNum();
+				int endRow = startRow+cri.getPerPageNum()-1;
+
+				SearchCriteria searchCri = (SearchCriteria)cri;
+				
+				Map<String, Object> dataParam = new HashMap<String, Object>();
+				dataParam.put("startRow", startRow);
+				dataParam.put("endRow", endRow);
+				dataParam.put("searchType", searchCri.getSearchType());
+				dataParam.put("keyword", searchCri.getKeyword());
+				dataParam.put("classCode",classCode);
+				
+			 
+			  
+				processStudentlist=session.selectList("Teacher-Mapper.processStudentlist",dataParam);
+			
+			return processStudentlist;
+		}
+
+	
+		//강의코드로 학생수 조회하기
+		@Override
+		public int selectprocessStudentlistCount(int class_code,Criteria cri) {
+		
+		     int startRow = cri.getStartRowNum();
+				int endRow = startRow+cri.getPerPageNum()-1;
+
+				SearchCriteria searchCri = (SearchCriteria)cri;
+				
+				Map<String, Object> dataParam = new HashMap<String, Object>();
+				dataParam.put("startRow", startRow);
+				dataParam.put("endRow", endRow);
+			
+				dataParam.put("searchType", searchCri.getSearchType());
+				dataParam.put("keyword", searchCri.getKeyword());
+				dataParam.put("classCode",class_code);
+		System.out.println(dataParam);
+			return session.selectOne("Teacher-Mapper.processStudentlistCount",dataParam);
+		}
+	    
+		
+		//학생 아이디를 통한 학생 상세 조회
+		@Override
+		public MemberVO teacherstudentDetail(String id) throws SQLException {
+			
+			return session.selectOne("Teacher-Mapper.teacherstudentDetail",id);
+		}
+		
+		//강의 이름으로 강의 코드찾기
+		@Override
+		public int classCode(String processName) throws SQLException {
+			//System.out.println(processName);
+			
+			return  session.selectOne("Teacher-Mapper.classCode",processName);
+		}
+
+		//로그인한 선생님의 강의 리스트
+		@Override
+		public List<String> searchClass(String id) {
+			
+			return session.selectList("Teacher-Mapper.searchClass",id);
+		}
+		
+		//선생님 강의듣는 학생 리스트 
+		@Override
+		public List<MemberVO> teacherstudenttotalList(String id,SearchCriteria cri) throws SQLException {
+			 int startRow = cri.getStartRowNum();
+				int endRow = startRow+cri.getPerPageNum()-1;
+
+				SearchCriteria searchCri = (SearchCriteria)cri;
+				
+				Map<String, Object> dataParam = new HashMap<String, Object>();
+				dataParam.put("startRow", startRow);
+				dataParam.put("endRow", endRow);
+				dataParam.put("searchType", searchCri.getSearchType());
+				dataParam.put("keyword", searchCri.getKeyword());
+				dataParam.put("id",id);
+			
+			return session.selectList("Teacher-Mapper.teacherstudenttotalList",dataParam);
+		}
+
+		//선생님 강의듣는 학생 리스트 수세기
+		@Override
+		public int teacherstudenttotalListcount(String id, SearchCriteria cri) throws SQLException {
+			   int startRow = cri.getStartRowNum();
+				int endRow = startRow+cri.getPerPageNum()-1;
+
+				
+				Map<String, Object> dataParam = new HashMap<String, Object>();
+				dataParam.put("startRow", startRow);
+				dataParam.put("endRow", endRow);
+			
+				dataParam.put("searchType", cri.getSearchType());
+				dataParam.put("keyword", cri.getKeyword());
+				
+				dataParam.put("id",id);
+				System.out.println(dataParam);
+				if(session.selectOne("Teacher-Mapper.teacherstudenttotalListcount",dataParam)==null) {
+					return 0;
+				}
+				return session.selectOne("Teacher-Mapper.teacherstudenttotalListcount",dataParam); 
+		}
+
+		//id로 이름검색
+		@Override
+		public String idSearchName(String id) throws SQLException {
+			// TODO Auto-generated method stub
+			return session.selectOne("Teacher-Mapper.idSearchName", id);
+		}
+		
+		//id로 과목검색
+		@Override
+		public String idSearchSubject(String id) throws SQLException {
+			
+			return session.selectOne("Teacher-Mapper.idSearchSubject",id);
+		}
+	
+}

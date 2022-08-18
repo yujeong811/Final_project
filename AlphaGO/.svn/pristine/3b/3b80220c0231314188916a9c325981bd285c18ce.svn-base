@@ -1,0 +1,10 @@
+pds.upload=d:/AlphaGO/upload/pds/file/upload
+member.picture.upload=d:/AlphaGO/upload/member/picture/upload
+error.log=d:AlphaGO/upload/error_log/
+summernote.img=d:AlphaGO/upload/board/img/
+popup.upload=d:/AlphaGO/upload/popup/file/upload
+login.user.log=d:AlphaGO/upload/log/loginUser/
+qr.upload=d:AlphaGO/upload/QR/img/
+classroom.upload=d:/AlphaGO/upload/classroom/picture/upload
+apply.upload=d:/AlphaGO/upload/apply/file/upload
+resume.upload=d:/AlphaGO/src/AlphaGO/src/main/webapp/html

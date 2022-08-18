@@ -1,0 +1,46 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.AttendanceVO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public interface TeacherMasService {
+	
+	
+	Map<String, Object> getTeacherList(Criteria cri) throws SQLException;
+	
+	public void regist(TeachermasVO teamas) throws Exception;
+	
+	public TeachermasVO getTeacher(String id) throws Exception;
+	
+	public void remove(String id)throws Exception;
+	
+
+	public TeachermasVO selectScoreBySubjectName(String subjectName) throws SQLException;
+	
+	
+	Map<String, Object> getTeacherAttendList(Criteria cri) throws SQLException;
+
+	
+	Map<String,Object> getTeacherAllAttendList(String id,Criteria cri) throws SQLException;
+	
+	
+	List<TeachermasVO> selectAllAttendTeacherByChartId(String id,Criteria cri) throws SQLException;
+
+	
+	
+	public TeachermasVO selectFinalTestBykor(String subject) throws SQLException;
+	
+	public TeachermasVO selectFinalTestByFisrtFinal(String subject) throws SQLException;
+	
+	public TeachermasVO selectFinalTestBySecondMiddle(String subject) throws SQLException;
+	
+	public TeachermasVO selectFinalTestBySecondFinal(String subject) throws SQLException;
+}

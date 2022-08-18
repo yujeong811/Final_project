@@ -1,0 +1,201 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="noticeList" value="${dataMap.noticeList }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+
+<head>
+<style>
+table th, td {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="card" style="padding: 10px;">
+
+			<h5 style="margin: 10px 0px 15px 10px; font-weight: bold">
+				<i class="uil-bell" style="margin-right: 10px;"></i>공지사항
+			</h5>
+
+			<div class="d-flex">
+				<div class="w-100" style="width: 95% !important;">
+					<div id="keyword" class="card-tools" style="width: 400px;">
+						<div class="input-group">
+							<select class="form-control col-md-3" name="searchType"
+								id="searchType" style="margin-left: 10px;">
+								<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>제목</option>
+								<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>내용</option>
+								<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>작성자</option>
+
+							</select> <input class="form-control" type="text" style="width: 130px;"
+								name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }" />
+							<span class="input-group-append">
+								<button class="btn btn-soft-primary" style="float: right;"
+									type="button" id="searchBtn" data-card-widget="search"
+									onclick="list_go(1);">
+									<i class="fa fa-fw fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="flex-shrink-1">
+					<button type="button" class="btn btn-soft-primary" id="registBtn"
+						onclick="OpenWindow('registForm.go','상세보기',800,700);">등록</button>
+				</div>
+			</div>
+
+			<div
+				style="padding-left: 10px; padding-right: 10px; margin-top: 20px;">
+				<ul class="nav nav-pills nav-justified bg-light" role="tablist">
+					<li class="nav-item"><a class="nav-link active"
+						data-bs-toggle="tab" href="#all" role="tab" aria-selected="true">
+							<span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+							<span class="d-none d-sm-block">전체</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#class" role="tab" aria-selected="false"> <span
+							class="d-block d-sm-none"><i class="fas fa-home"></i></span> <span
+							class="d-none d-sm-block">수업</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link " data-bs-toggle="tab"
+						href="#academy" role="tab" aria-selected="false"> <span
+							class="d-block d-sm-none"><i class="far fa-user"></i></span> <span
+							class="d-none d-sm-block">학원</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#" role="tab" aria-selected="false"> <span
+							class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+							<span class="d-none d-sm-block">입시</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#etc" role="tab" aria-selected="false"> <span
+							class="d-block d-sm-none"><i class="fas fa-cog"></i></span> <span
+							class="d-none d-sm-block">기타</span>
+					</a></li>
+				</ul>
+			</div>
+			<div class="card-body" style="padding-top: 0px;">
+				<div class="tab-content text-muted">
+					<div class="tab-pane" id="all" role="tabpanel">
+						<table class="table text-center"
+							style="border-top: 3px solid lightblue;">
+							<tr style="font-size: 0.95em;">
+								<th style="width: 9%;">No.</th>
+								<th style="width: 10%;">Cate</th>
+								<th style="width: 35%;">제목</th>
+								<th style="width: 10%;">작성자</th>
+								<th style="width: 15%;">작성일</th>
+								<th>첨부파일</th>
+								<th style="width: 8%;">조회수</th>
+							</tr>
+							<c:forEach items="${noticeList }" var="notice">
+								<tr style='font-size: 0.85em; cursor: pointer;'
+									onclick="location.href='detail.go?from=list&lcode=${notice.lcode}'">
+									<td>${notice.lcode }</td>
+									<td>[${notice.category }]</td>
+									<td style="text-align: left;">${notice.title }</td>
+									<td>${notice.writer}</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${notice.regDate}" /></td>
+									<td><c:if test="${!empty lcode.attachList }">
+											<i class="nav-icon fas fa-file"></i>
+										</c:if> <c:if test="${empty lcode.attachList }">
+											<span>-</span>
+										</c:if></td>
+									<td>${notice.viewcnt}</td>
+								</tr>
+							</c:forEach>
+						</table>
+
+					</div>
+					<!-- end tab pane -->
+					<div class="tab-pane" id="class" role="tabpanel">
+						<table class="table text-center"
+							style="border-top: 3px solid lightblue;">
+							<tr style="font-size: 0.95em;">
+								<th style="width: 9%;">No.</th>
+								<th style="width: 10%;">Cate</th>
+								<th style="width: 35%;">제목</th>
+								<th style="width: 10%;">작성자</th>
+								<th style="width: 15%;">작성일</th>
+								<th>첨부파일</th>
+								<th style="width: 8%;">조회수</th>
+							</tr>
+							<c:forEach items="${noticeList }" var="notice">
+								<tr style='font-size: 0.85em; cursor: pointer;'
+									onclick="location.href='detail.go?from=list&lcode=${notice.lcode}'">
+									<td>${notice.lcode }</td>
+									<td>[${notice.category }]</td>
+									<td style="text-align: left;">${notice.title }</td>
+									<td>${notice.writer}</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${notice.regDate}" /></td>
+									<td><c:if test="${!empty lcode.attachList }">
+											<i class="nav-icon fas fa-file"></i>
+										</c:if> <c:if test="${empty lcode.attachList }">
+											<span>-</span>
+										</c:if></td>
+									<td>${notice.viewcnt}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+					<!-- end tab pane -->
+					<div class="tab-pane active" id="academy" role="tabpanel">
+						<p class="mb-0">Etsy mixtape wayfarers, ethical wes anderson
+							tofu before they sold out mcsweeney's organic lomo retro fanny
+							pack lo-fi farm-to-table readymade. Messenger bag gentrify
+							pitchfork tattooed craft beer, iphone skateboard locavore carles
+							etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+							Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh
+							mi whatever gluten-free.</p>
+					</div>
+					<!-- end tab pane -->
+					<div class="tab-pane" id="etc" role="tabpanel">
+						<p class="mb-0">Trust fund seitan letterpress, keytar raw
+							denim keffiyeh etsy art party before they sold out master cleanse
+							gluten-frsweater. Fanny pack portland seitan DIY, art party
+							locavore wolf cliche high life echo park Austin. Cred vinyl
+							keffiyeh DIY salvia PBR, banh mi bag before banksy hoodie
+							helvetica they sold out farm-to-table.</p>
+					</div>
+					<!-- end tab pane -->
+				</div>
+			</div>
+			<div class="card-footer">
+				<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<c:if test="${from eq 'regist' }">
+		<script>
+			alert("등록되었습니다.");
+			window.close();
+			window.opener.location.reload();
+		</script>
+	</c:if>
+
+
+</body>
+
+
+
+
+
+

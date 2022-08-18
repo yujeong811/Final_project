@@ -1,0 +1,226 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="row">
+    <div class="col-12">
+	    <div class="email-leftbar card">
+	          <button type="button" class="btn btn-soft-purple w-100 fw-semibold" onclick="javascript:location.href='regist.go'">
+	                         쪽지 보내기
+	          </button>
+	          <div class="mail-list mt-4">
+	              <a href="#" class="active" style="color:#564ab1; "><i class="bx bxs-inbox font-size-16 align-middle me-2"></i> 받은쪽지함 <span class="ms-1 float-end">(18)</span></a>
+	              <a href="sendList.go"><i class="bx bx-mail-send font-size-16 align-middle me-2"></i>보낸쪽지함</a>
+	          </div>
+	
+	
+	      </div>
+	      <!-- End Left sidebar -->
+        <div class="email-rightbar card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="card-title">쪽지 보내기</h4>
+                <a href="#" class="btn btn-sm w-lg btn-soft-purple">전송</a>
+            </div><!-- end card header -->
+            <div class="card-body">
+              <form class="row gx-3 gy-2 align-items-center">
+                    <div class="col-sm-11">
+                        <div class="form-floating mb-3">
+		                    <input type="email" class="form-control" id="floatingInput"
+		                        placeholder="name@example.com">
+		                    <label for="floatingInput">받는사람</label>
+		                </div>
+                    </div>
+                    <!-- end col -->
+                  
+               
+                    <div class="col">
+                        <button style="height: 60px; margin-bottom: 16px;" type="button" class="btn btn-soft-primary btn-lg" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center"><i class="uil uil-plus"></i></button>
+                        
+                        
+                        <!-- modal  -->
+                        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+                                        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">사용자 검색</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="row">                                                            
+                                           <div class="col-md-4">
+                                               <div class="mb-3">
+                                                   <select class="form-select">
+                                                   <option>전체</option>
+                                                   <option>원생</option>
+                                                   <option>강사</option>
+                                               </select>
+                                               </div>
+                                           </div><!-- end col -->
+                                           <div class="col-md-4">
+                                               <div class="mb-3">
+                                                   <div class="input-group">
+                                            <input type="text" class="form-control" id="specificSizeInputGroupUsername" placeholder="Username">
+                                            <button type="button" class="btn btn-primaty input-group-text"><i class="bx bx-search-alt-2  align-middle"></i> </button>
+                                          </div>
+                                               </div>
+                                           </div><!-- end col -->
+                                           <div class="col-md-2">
+                                               <div class="mb-1">
+                                                   <button type="button" class="btn btn-secondary">취소</button>
+                                               </div>
+                                           </div><!-- end col -->
+                                           <div class="col-md-2">
+                                               <div class="mb-1">
+                                                   <button type="submit" class="btn btn-primary">완료</button>
+                                               </div>
+                                           </div><!-- end col -->
+                                       </div><!-- end row -->
+
+ 									   <div class="row">
+ 									   <div class="col-md-5" style="overflow: auto; height: 300px;">
+ 									   <div class="card">
+                                                <div class="card-header border-bottom-0">
+                                                    <h5 class="card-title">주소록</h5>
+                                                </div>
+                                                <div>
+
+                                                    <div class="list-group list-group-flush mb-2">
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="<%=request.getContextPath() %>/resources/assets/images/users/avatar-2.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Esther James</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Frontend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-3.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Jacqueline Steve</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">UI/UX Designer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">George Whalen</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Backend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div><!-- end card body -->
+                                            </div><!-- end card -->
+ 									   
+ 									   
+ 									   </div>
+ 									   <div class="col-md-2">
+										<button style="height: 60px; margin-bottom: 16px;" type="button" class="btn btn-soft-primary btn-lg"><i class="uil-angle-double-right"></i></button>
+										<button style="height: 60px; margin-bottom: 16px;" type="button" class="btn btn-soft-primary btn-lg"><i class="uil-angle-right"></i></button>
+										<button style="height: 60px; margin-bottom: 16px;" type="button" class="btn btn-soft-primary btn-lg"><i class="uil-angle-left"></i></button>
+										<button style="height: 60px; margin-bottom: 16px;" type="button" class="btn btn-soft-primary btn-lg"><i class="uil-angle-double-left"></i></button>
+ 									   </div>
+ 									   <div class="col-md-5" style="overflow: auto; height: 300px;">
+ 									   
+ 									   	<div class="card">
+                                                <div class="card-header border-bottom-0">
+                                                    <h5 class="card-title">받은 사람 목록</h5>
+                                                </div>
+                                                <div>
+
+                                                    <div class="list-group list-group-flush mb-2">
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-2.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Esther James</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Frontend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-3.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">Jacqueline Steve</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">UI/UX Designer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="list-group-item list-group-item-action">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="img-thumbnail rounded-circle">
+                                                                </div>
+                                                                <div class="flex-grow-1">
+                                                                    <div>
+                                                                        <h5 class="font-size-14 mb-1">George Whalen</h5>
+                                                                        <p class="font-size-13 text-muted mb-0">Backend Developer</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div><!-- end card body -->
+                                            </div><!-- end card -->
+ 									   
+ 									   </div>
+                                     
+                                               
+ 						</div>         
+
+                                       
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <!-- end col -->
+                </form>
+                
+                
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingTitle"
+                        placeholder="제목">
+                    <label for="floatingTitle">제목</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                        style="height: 400px"></textarea>
+                    <label for="floatingTextarea2">내용</label>
+                </div>
+            </div><!-- end cardbody -->
+        </div><!-- end card -->
+    </div><!-- end col -->
+    
+</div><!-- end row -->

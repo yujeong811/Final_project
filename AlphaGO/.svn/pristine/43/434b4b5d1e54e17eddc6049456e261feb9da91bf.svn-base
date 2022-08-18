@@ -1,0 +1,135 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public class PacounseltDAOImpl implements PacounseltDAO{
+	
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<PacounseltVO> selectCounseltList() throws Exception {
+		
+		
+		List<PacounseltVO>counseltList=null;
+		
+		
+		try {
+			counseltList=session.selectList("Pacounselt-Mapper.selectCounseltList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return counseltList;
+	}
+	
+
+	@Override
+	public List<PacounseltVO> selectCounseltList(Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<PacounseltVO>counseltList
+		= session.selectList("Pacounselt-Mapper.selectCounseltList",null,rowBounds);
+		
+		return counseltList;
+	}
+
+	@Override
+	public int selectCounseltListCount(SearchCriteria cri) throws Exception {
+		 return session.selectOne("Pacounselt-Mapper.selectSearchCounseltListCount", cri);
+	}
+
+	@Override
+	public int selectSearchCounseltListCount(SearchCriteria cri) throws Exception {
+		int totalCount=session.selectOne("Pacounselt-Mapper.selectSearchCounseltListCount",cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<PacounseltVO> selectSearchCounseltList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<PacounseltVO> counseltList = session.selectList("Pacounselt-Mapper.selectSearchCounseltList", cri, rowBounds);
+
+		return counseltList;
+	}
+
+	@Override
+	public String selectName(Integer pcCode) throws Exception {
+		return session.selectOne("Pacounselt-Mapper.selectName",pcCode);
+	}
+
+	@Override
+	public List<PacounseltVO> selectCounseltEndList() throws Exception {
+		List<PacounseltVO>counseltList=null;
+		
+		
+		try {
+			counseltList=session.selectList("Pacounselt-Mapper.selectCounseltEndList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return counseltList;
+	}
+
+	@Override
+	public List<PacounseltVO> selectCounseltEndList(Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<PacounseltVO>counseltList
+		= session.selectList("Pacounselt-Mapper.selectCounseltEndList",null,rowBounds);
+		
+		return counseltList;
+	}
+
+	@Override
+	public int selectCounseltEndListCount(SearchCriteria cri) throws Exception {
+		 return session.selectOne("Pacounselt-Mapper.selectSearchCounseltEndListCount", cri);
+	}
+
+	@Override
+	public int selectSearchCounseltEndListCount(SearchCriteria cri) throws Exception {
+		int totalCount=session.selectOne("Pacounselt-Mapper.selectSearchCounseltEndListCount",cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<PacounseltVO> selectSearchCounseltEndList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<PacounseltVO> counseltList = session.selectList("Pacounselt-Mapper.selectSearchCounseltEndList", cri, rowBounds);
+
+		return counseltList;
+	}
+
+	@Override
+	public PacounseltVO selectCounseltByPcCode(int pcCode) throws SQLException {
+		PacounseltVO pacounselt = session.selectOne("Pacounselt-Mapper.selectCounseltByPcCode",pcCode);
+		return pacounselt;
+	}
+
+	@Override
+	public void updateCounseltDetailList(int pcCode) {
+		session.update("Pacounselt-Mapper.updateCounseltDetailList",pcCode);
+		
+	}
+
+}

@@ -1,0 +1,92 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.or.ddit.command.PacounseltDateCommand;
+import kr.or.ddit.command.TeachermasCommand;
+import kr.or.ddit.dao.MHomeDAO;
+import kr.or.ddit.dao.PacounseltDAO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public class MHomeServiceImpl implements MHomeService {
+
+	private MHomeDAO mhomeDAO;
+	public void setMhomeDAO(MHomeDAO mhomeDAO) {
+		this.mhomeDAO = mhomeDAO;
+	}
+	
+	private PacounseltDAO counseltDAO;
+	public void setCounseltDAO(PacounseltDAO counseltDAO) {
+		this.counseltDAO = counseltDAO;
+	}
+	/**
+	 * 오늘의 강사 근태 리스트를 불러오는 서비스
+	 */
+	@Override
+	public List<TeachermasCommand> selectTeacherAttendList() throws SQLException {
+		List<TeachermasVO> teacherAttendList = mhomeDAO.selectTeacherAttendList();
+		List<TeachermasCommand> teacherCommandList = new ArrayList<TeachermasCommand>();
+		try {
+			for(TeachermasVO vo : teacherAttendList) {
+				TeachermasCommand command = new TeachermasCommand();
+				
+				command.setId(vo.getId());
+				command.setName(vo.getName());
+				command.setPhone(vo.getPhone());
+				command.setAttendanceStatus(String.valueOf(vo.getAttendanceStatus()));
+				
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+				if(vo.getInTime()!=null) {
+					String inTime = simpleDateFormat.format(vo.getInTime());
+					command.setInTime(inTime);
+				}
+				if(vo.getOutTime()!=null) {
+					String outTime = simpleDateFormat.format(vo.getOutTime());
+					command.setOutTime(outTime);
+				}
+				teacherCommandList.add(command);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return teacherCommandList;
+	}
+	/**
+	 * 원장에게 들어온 상담 신청 리스트
+	 */
+	@Override
+	public List<PacounseltDateCommand> selectCounseltList() throws SQLException {
+		List<PacounseltVO> counseltList = mhomeDAO.selectCounseltList();
+		List<PacounseltDateCommand> commandList = new ArrayList<PacounseltDateCommand>();
+		for (PacounseltVO counselt : counseltList) {
+			try {
+				PacounseltDateCommand command = new PacounseltDateCommand();
+				
+				String name = counseltDAO.selectName(counselt.getPcCode());
+				String id = counseltDAO.selectId(counselt.getPcCode());
+				command.setName(name);
+				command.setId(id);
+				
+				SimpleDateFormat hourDateFormat = new SimpleDateFormat("HH:mm");
+				SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+				String pcStart = hourDateFormat.format(counselt.getPcStart());
+				String pcEnd = hourDateFormat.format(counselt.getPcEnd());
+				String meetDate = yearDateFormat.format(counselt.getMeetDate());
+				command.setPcStart(pcStart);
+				command.setPcEnd(pcEnd);
+				command.setMeetDate(meetDate);
+				command.setPcCode(String.valueOf(counselt.getPcCode()));
+				
+				commandList.add(command);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return commandList;
+	}
+
+}

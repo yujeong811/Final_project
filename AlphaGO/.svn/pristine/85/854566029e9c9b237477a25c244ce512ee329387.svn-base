@@ -1,0 +1,76 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.CounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public class CounseltDAOImpl implements CounseltDAO{
+	
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<CounseltVO> selectCounseltList() throws Exception {
+		
+		
+		List<CounseltVO>counseltList=null;
+		
+		
+		try {
+			counseltList=session.selectList("Counselt-Mapper.selectCounseltList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return counseltList;
+	}
+	
+
+	@Override
+	public List<CounseltVO> selectCounseltList(Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<CounseltVO>counseltList
+		= session.selectList("Counselt-Mapper.selectCounseltList",null,rowBounds);
+		
+		return counseltList;
+	}
+
+	@Override
+	public int selectCounseltListCount(SearchCriteria cri) throws Exception {
+		 return session.selectOne("Counselt-Mapper.selectSearchCounseltListCount", cri);
+	}
+
+	@Override
+	public int selectSearchCounseltListCount(SearchCriteria cri) throws Exception {
+		int totalCount=session.selectOne("Counselt-Mapper.selectSearchCounseltListCount",cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<CounseltVO> selectSearchCounseltList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<CounseltVO> counseltList = session.selectList("Counselt-Mapper.selectSearchCounseltList", cri, rowBounds);
+
+		return counseltList;
+	}
+
+	@Override
+	public String selectName() throws Exception {
+		return session.selectOne("Counselt-Mapper.selectName");
+	}
+
+}

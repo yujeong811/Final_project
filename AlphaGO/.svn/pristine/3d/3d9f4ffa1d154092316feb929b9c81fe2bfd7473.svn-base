@@ -1,0 +1,160 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-5" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<h5 style="margin-bottom: 15px; font-weight: bold;">
+						<i class="uil-calender" style="margin-right: 10px;"></i>상담신청
+						<button type="button"
+							style="float: right; height: 30px; display: flex;"
+							class="btn btn-soft-secondary btn-rounded">상담내역></button>
+					</h5>
+					<p style="font-weight: bold;">구분</p>
+					<select class="form-select">
+						<option>성적 상담</option>
+						<option>진로 상담</option>
+
+					</select>
+					<hr>
+
+					<p style="font-weight: bold;">강사</p>
+
+					<input class="form-control" placeholder="강사를 검색하세요"
+						style="float: left;" type="text" list="list"
+						id="numbers" />
+					<datalist id="list">
+						<option value="김형돈" />
+						<option value="이종민" />
+						<option value="강동주" />
+						<option value="최혁진" />
+						<option value="이수민" />
+
+					</datalist>
+
+				
+
+				
+
+
+					<hr>
+					<hr>
+					<hr>
+					<hr>
+
+
+					<p style="font-weight: bold;">신청자
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예현의</p>
+
+
+					<hr>
+
+
+					<div class="col-sm-12">
+
+						<div class="col-4" style="font-weight: bold; float: left;">예약일</div>
+						<div class="col-4" style="font-weight: bold; float: right;">종료시간</div>
+						<div class="col-4" style="font-weight: bold; float: right;">시작시간</div>
+						<hr>
+						<hr>
+						<hr>
+
+
+						<div class="col-4" style="font-weight: bold; float: left;">
+							<input class="form-control" type="date"
+								style="width: 90%; font-size: 0.8em;" value="2022-07-05"
+								id="example-date-input">
+						</div>
+						<div class="col-4" style="font-weight: bold; float: right;">18:00</div>
+						<div class="col-4" style="font-weight: bold; float: right;">
+							<span style="margin-right: 5px;">17:00</span>
+						</div>
+
+
+
+					</div>
+
+					<hr>
+					<hr>
+					<hr>
+
+					<p style="font-weight: bold;">내용</p>
+					<textarea class="form-control" placeholder="내용을 입력하세요"
+						id="floatingTextarea2" style="height: 250px"></textarea>
+
+					<button class="btn btn-soft-purple"
+						style="float: right; margin-left: 7px;" type="button">신청하기</button>
+					<button class="btn btn-soft-secondary" style="float: right;"
+						type="button">초기화</button>
+
+
+
+				</div>
+			</div>
+		</div>
+		<div class="col-7">
+			<div class="card">
+				<div class="card-body">
+
+					<!-- 캘린더 -->
+					<div id="hd_calendar"></div>
+
+
+
+					<table class="table   table-bordered text-center">
+
+						<tr class="table-white" style="font-size: 0.95em;">
+							<th class="bg-soft-secondary" style="width: 1%;">09:00</th>
+							<th style="width: 3%;"><button type="button"
+									class="btn btn-soft-purple">예약 가능</button></th>
+							<th class="bg-soft-secondary" style="width: 1%;">10:00</th>
+							<th style="width: 3%;"><button type="button"
+									class="btn btn-soft-secondary">예약 불가</button></th>
+
+
+						</tr>
+						<tr class="table-white">
+							<th class="bg-soft-secondary">11:00</th>
+							<th><button type="button" class="btn btn-soft-purple">예약
+									가능</button></th>
+							<th class="bg-soft-secondary">13:00</th>
+							<th><button type="button" class="btn btn-soft-purple">예약
+									선택</button></th>
+
+
+						</tr>
+						<tr class="table-white">
+							<th class="bg-soft-secondary">14:00</th>
+							<th><button type="button" class="btn btn-soft-purple">예약
+									가능</button></th>
+							<th class="bg-soft-secondary">15:00</th>
+							<th><button type="button" class="btn btn-soft-secondary">예약
+									불가</button></th>
+
+
+						</tr>
+
+						<tr class="table-white">
+							<th class="bg-soft-secondary">16:00</th>
+							<th><button type="button" class="btn btn-soft-secondary">예약
+									불가</button></th>
+							<th class="bg-soft-secondary">17:00</th>
+							<th><button type="button" class="btn btn-soft-secondary">예약
+									불가</button></th>
+
+
+						</tr>
+
+					</table>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+
+</body>

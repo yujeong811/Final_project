@@ -1,0 +1,26 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public interface ClassService {
+
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException;
+	
+	public Map<String, Object> getSearchClassList(SearchCriteria cri) throws SQLException;
+	
+	public List<SubjectVO> getSubDetail(int subcode) throws SQLException;
+	
+	public Map<String, Object> getClassDetail(int class_code) throws SQLException;
+	
+	public void registClass(ClassVO classVO) throws SQLException;
+
+	public void removeClass(ClassVO classVO) throws SQLException;
+
+	public Map<String, Object> getClassing(String id) throws SQLException;
+}

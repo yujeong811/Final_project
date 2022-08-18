@@ -1,0 +1,63 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.AssignDAO;
+import kr.or.ddit.dto.AssignAttachVO;
+import kr.or.ddit.dto.AssignNameVO;
+import kr.or.ddit.dto.AssignVO;
+
+public class AssignServiceImpl implements AssignService {
+
+	private AssignDAO assignDAO;
+	public void setAssignDAO(AssignDAO assignDAO) {
+		this.assignDAO = assignDAO;
+	}
+	
+	@Override
+	public List<AssignNameVO> selectAssignName(Map<String, Object> map) throws SQLException {
+		List<AssignNameVO> assignNameList = assignDAO.selectAssignName(map);
+		
+		return assignNameList;
+	}
+
+	@Override
+	public AssignVO selectAssignDetail(int assignCode) throws SQLException {
+		AssignVO assignVO = assignDAO.selectAssignDetail(assignCode);
+		
+		return assignVO;
+	}
+
+	@Override
+	public AssignAttachVO selectAssignAttach(Map<String, Object> map) throws SQLException {
+		AssignAttachVO assignVO = assignDAO.selectAssignAttach(map);
+		
+		return assignVO;
+	}
+
+	@Override
+	public void insertAssignAttach(AssignAttachVO attachVO) throws SQLException {
+		assignDAO.insertAssignAttach(attachVO);		
+	}
+
+	@Override
+	public void updateAssignAttach(AssignAttachVO attachVO) throws SQLException {
+		assignDAO.updateAssignAttach(attachVO);	
+	}
+
+	@Override
+	public void deleteAssignAttach(Map<String, Object> map) throws SQLException {
+		assignDAO.deleteAssignAttach(map);
+		
+	}
+
+	@Override
+	public List<AssignNameVO> getAssign(String id) throws SQLException {
+		List<AssignNameVO> assignList = assignDAO.getAssign(id);
+		
+		return assignList;
+	}
+
+}

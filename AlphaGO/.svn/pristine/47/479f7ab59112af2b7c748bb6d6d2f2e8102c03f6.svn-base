@@ -1,0 +1,25 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dto.AssignAttachVO;
+import kr.or.ddit.dto.AssignNameVO;
+import kr.or.ddit.dto.AssignVO;
+
+public interface AssignService {
+	public List<AssignNameVO> selectAssignName(Map<String, Object> map) throws SQLException;
+	
+	public AssignVO selectAssignDetail(int assignCode) throws SQLException;
+	
+	public AssignAttachVO selectAssignAttach(Map<String, Object> map) throws SQLException;
+	
+	public void insertAssignAttach(AssignAttachVO attachVO) throws SQLException;
+	
+	public void updateAssignAttach(AssignAttachVO attachVO) throws SQLException;
+	
+	public void deleteAssignAttach(Map<String, Object> map) throws SQLException;
+	
+	public List<AssignNameVO> getAssign(String id) throws SQLException;
+}

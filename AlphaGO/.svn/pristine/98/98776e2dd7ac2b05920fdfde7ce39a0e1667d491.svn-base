@@ -1,0 +1,55 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassPlanVO;
+import kr.or.ddit.dto.ClassTimeVO;
+import kr.or.ddit.dto.ClassVO;
+
+public interface TclassService {
+	
+	/**
+	 * 수업계획서가 등록되어 진행중인 수업목록
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> classList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 수업계획서가 등록되어 있지 않은 수업목록
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, Object> unregisteredClassList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 수업계획서 미등록된 Class 정보 조회
+	 * 수업계획서에 수업 시간표 출력
+	 * @param classCode
+	 * @return
+	 * @throws SQLException
+	 */
+	Map<String, Object> selectUnregisteredClassForModal(int classCode) throws SQLException;
+	
+	/**
+	 * 수업계획서 등록된 Class 정보 조회
+	 * @param classCode
+	 * @return
+	 * @throws SQLException
+	 */
+	Map<String, Object> selectRegisteredClassForModal(int classCode) throws SQLException;
+	
+	/**
+	 * 수업계획서 등록
+	 * @param classPlan
+	 * @throws SQLException
+	 */
+	void registClassPlan(ClassPlanVO classPlan) throws SQLException; 
+	
+	
+
+}

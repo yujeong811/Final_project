@@ -1,0 +1,79 @@
+package kr.or.ddit.controller.view;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.SchoolScoreVO;
+import kr.or.ddit.service.MemberService;
+import kr.or.ddit.service.ScoreService;
+
+// 작성자 : 예현의
+// 작성일  : 2022-07-06
+// 원생 성적관리 메뉴의 Controller
+
+@Controller
+public class ScoreController {
+
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private ScoreService scoreService;
+
+	private static final Logger logger = LoggerFactory.getLogger(SchoolController.class);
+
+	// 학교 성적 상세보기
+	@RequestMapping(value = "/sscore/detail")
+	public String sscore(@RequestParam(defaultValue = "")String id, HttpSession session, Model model) throws Exception{
+		String url = "score/school_detail";
+		if(id.equals("")) {
+			id = ((MemberVO)session.getAttribute("loginUser")).getId();
+		}
+
+		MemberVO member = memberService.getMember(id);
+		model.addAttribute("member", member);
+
+		return url;
+	}
+
+	// 학원 성적 상세보기
+	@RequestMapping(value = "/ascore/detail")
+	public String ascore() {
+		String url = "score/academy_detail";
+
+		return url;
+	}
+
+	@ResponseBody
+	@RequestMapping("/sscore/getScoreList")
+	public List<SchoolScoreVO> getScoreList(SchoolScoreVO score) throws SQLException{
+		return scoreService.getScoreList(score);
+	}
+
+	@ResponseBody
+	@RequestMapping("/sscore/removeScoreData")
+	public void removeScoreData(int sscode) throws SQLException{
+		scoreService.deleteScoreDate(sscode);
+	}
+
+	@ResponseBody
+	@RequestMapping("/sscore/insertScoreData")
+	public void insertScoreData(SchoolScoreVO score) throws SQLException{
+		logger.info(score.toString());
+
+		scoreService.insertScore(score);
+	}
+
+}

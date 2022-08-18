@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="ID">
+<div style="width:1000px;height:700px;border:1px solid blue;">
+  gogogo
+</div>
+<div style="width:1000px;height:700px;border:1px solid blue;">
+  gogogo
+</div>
+
+오킹!!
+</div>
+<button id="g">gogo</button>
+<script type = "text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.js"></script>
+<script>
+$(function(){
+	$('#g').on('click',function(){
+		print();
+	})
+})
+function print() {
+    $("#ID").printThis({
+        debug: false,           
+        importCSS: true,   
+        printContainer: true,
+        loadCSS: "common.css",
+        pageTitle: "",
+        removeInline: false      
+    });
+}    
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+
+
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+
+public class TeacherDAOImpl implements TeacherDAO{
+	   private SqlSession session;
+	    
+	     public void setSession(SqlSession session) {
+			this.session = session;
+		}
+
+		@Override
+		public List<String> processSearch(String id)throws SQLException{
+			List<String>processList=null;
+			processList=session.selectList("Teacher-Mapper.processSearch",id);
+			return processList;
+		}
+
+		@Override
+		public List<MemberVO> processStudentList(String processName,Criteria cri) throws SQLException {
+			List<MemberVO>processStudentlist=null;
+			int classCode=-1;
+		     classCode=session.selectOne("Teacher-Mapper.classCode",processName);
+		     int startRow = cri.getStartRowNum();
+				int endRow = startRow+cri.getPerPageNum()-1;
+
+				SearchCriteria searchCri = (SearchCriteria)cri;
+				
+				Map<String, Object> dataParam = new HashMap<String, Object>();
+				dataParam.put("startRow", startRow);
+				dataParam.put("endRow", endRow);
+				dataParam.put("searchType", searchCri.getSearchType());
+				dataParam.put("keyword", searchCri.getKeyword());
+				dataParam.put("classCode",classCode);
+			
+		     
+				processStudentlist=session.selectList("Teacher-Mapper.processStudentlist",dataParam);
+			
+			return processStudentlist;
+		}
+
+		@Override
+		public MemberVO teacherstudentDetail(String id) throws SQLException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	    
+	
+	
+}

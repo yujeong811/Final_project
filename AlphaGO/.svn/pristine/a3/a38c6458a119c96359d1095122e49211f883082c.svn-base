@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="./html/viewer.html?file=compressed.tracemonkey-pldi-09.pdf">view</a>
+<br>
+<iframe src="./html/viewer.html?file=compressed.tracemonkey-pldi-09.pdf" style="width:500px; height:300px; border:1px solid #00c;"></iframe>
+
+</body>
+</html>

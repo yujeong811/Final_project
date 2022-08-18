@@ -1,0 +1,192 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<body>
+	<!-- row 시작 -->
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- card 시작 -->
+			<div class="card" style="padding-bottom: 10px;">
+			<div class="card-header">수업개설</div>
+			<div class="card-body">
+					<div class="col-md-12"
+						style="text-align: center; padding-left: 50px; padding-right: 50px;">
+						<h5 style="font-weight: bold;">
+							수업 등록</h5>
+					</div>
+					<!-- 검색 -->
+						<div class="col-md-12">
+							<div class="col-md-4" ></div>
+							<div class="col-sm-8"
+								style="float: right; margin-top: 30px; padding-right: 40px;">
+								<div class="col-sm-6" style="float: left;">
+									<select class="form-select" style="float: right; width: 40%;"
+										aria-label="Default select example" name="searchType"
+										id="searchType" onchange="list_go(1);">
+										<option value="">전체</option>
+										<option value="n">수업명</option>
+										<option value="s">과목</option>
+										<option value="w">대상</option>
+										<option value="t">시수</option>
+									</select>
+								</div>
+								<!-- keyword -->
+								<div class="col-sm-6" style="float: right;">
+									<input class="form-control col-sm-6" type="text" name="keyword"
+										placeholder="검색어를 입력하세요." value=""
+										style="width: 80%; display: inline;"> <span
+										class="input-group-append">
+										<button class="btn btn-soft-primary" type="button"
+											id="searchBtn" style="float: right; width: 20%;"
+											data-card-widget="search" onclick="list_go(1);">
+											<i class="fa fa-fw fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+			
+			
+			
+				<div class="col-md-12" style="padding-left: 50px; padding-right: 50px;">
+					<span class="badge badge-soft-primary" style="font-size: 1.0em;">
+						개설된 수업 목록</span>
+				</div>
+				<!-- 수업테이블 시작 -->
+				<div class="col-md-12"
+					style="margin-top: 10px; padding-left: 50px; padding-right: 50px;">
+					<table class="table table-hover" style="text-align: center;">
+						<thead class="">
+							<tr class="" style="background-color:#86a8d9;color:white;">
+								<th scope="col">과목</th>
+								<th scope="col">과목영역</th>
+								<th scope="col">수업명</th>
+								<th scope="col">금액</th>
+								<th scope="col">대상</th>
+								<th scope="col">시수</th>
+							</tr>
+						</thead>
+						<tbody style="">
+							<tr>
+								<th scope="row">수학</th>
+								<td>수1</td>
+								<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+								<td>500,000</td>
+								<td>고1</td>
+								<td>50시간</td>
+							</tr>
+							<tr>
+								<th scope="row">수학</th>
+								<td>수1</td>
+								<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+								<td>400,000</td>
+								<td>고1</td>
+								<td>50시간</td>
+							</tr>
+							<tr>
+								<th scope="row">수학</th>
+								<td>수1</td>
+								<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+								<td>400,000</td>
+								<td>고1</td>
+								<td>50시간</td>
+							</tr>
+							<tr>
+								<th scope="row">수학</th>
+								<td>수1</td>
+								<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+								<td>400,000</td>
+								<td>고1</td>
+								<td>50시간</td>
+							</tr>
+							<tr>
+								<th scope="row">수학</th>
+								<td>수1</td>
+								<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+								<td>400,000</td>
+								<td>고1</td>
+								<td>50시간</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- pagination -->
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+				</div>
+				<!-- 수업테이블 끝 -->
+			</div>
+			<div class="card">
+				<!-- 수업 상세 시작 -->
+				<div class="col-md-12" style="margin-top: 10px; padding-left: 50px; padding-right: 50px;">
+					<div class="col-sm-6" style="float:left;">
+						<span class="badge badge-soft-primary" style="font-size: 1.0em;">
+							수업 상세</span>
+					</div>
+					<div class="col-sm-6" style="float:right;text-align: right;padding-left:20px;">
+						<button type="button" class="btn btn-soft-primary">등록</button>
+						<button type="button" class="btn btn-soft-warning">수정</button>
+						<button type="button" class="btn btn-soft-danger">삭제</button>
+					</div>
+				</div>
+				<!-- 수업상세 테이블 시작 -->
+				<div class="col-md-12"
+					style=" padding-left: 50px; padding-right: 50px;">
+					<table class="table" style="text-align: center;">
+						<tr class="">
+							<td scope="col" style="background-color:#86a8d9;color:white;">수업명</td>
+							<td colspan=""><input type="text" id=""
+								style="width: 99%;text-align: right;" placeholder="수업명을 입력하세요."></td>
+							<td scope="col"style="background-color:#86a8d9;color:white;">학년</td>
+							<td colspan=""><select class="form-select" style="text-align: center;">
+									<option value="">학년</option>
+									<option value="1">1학년</option>
+									<option value="2">2학년</option>
+									<option value="3">3학년</option>
+							</select></td>								
+						</tr>
+						<tr class="">
+							<td scope="col" style="background-color:#86a8d9;color:white;">시수</td>
+							<td >
+								<div>
+								<input type="text" id="" style="width: 85%;text-align: right;"
+									placeholder="총시간을 입력하세요."> 시간
+								</div>
+							</td>
+							<td scope="col" style="background-color:#86a8d9;color:white;">금액</td>
+							<td colspan=""><div><input type="text" id="" style="width: 90%;text-align: right;"
+								placeholder="산정 금액을 입력하세요."> 원</div></td>
+							
+						</tr>
+						<tr class="">
+							<td style="background-color:#86a8d9;color:white;" scope="col">과목명</td>
+							<td >
+								<select class="form-select" style="text-align: center;">
+									<option value="">과목</option>
+									<option value="k">국어</option>
+									<option value="m">수학</option>
+									<option value="e">영어</option>
+									<option value="so">사회</option>
+									<option value="si">과학</option>
+								</select>
+							</td>
+							<td style="background-color:#86a8d9;color:white;" scope="col">과목영역</td>
+							<td >
+								<select class="form-select" style="text-align: center;">
+									<option value="">과목 영역</option>
+								</select>
+							</td>
+
+						</tr>
+
+					</table>
+				</div>
+				<!-- 수업상세 테이블 끝 -->
+				<!-- 수업 상세 끝 -->
+			</div>
+			<!-- card 끝 -->
+		</div>
+	</div>
+
+</body>

@@ -1,0 +1,58 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.PopupRegistCommand;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.PopAttachVO;
+import kr.or.ddit.dto.PopupVO;
+
+public interface PopupService {
+
+	/**
+	 * 검색 가능한 팝업리스트
+	 * @param cri
+	 * @return
+	 */
+	public Map<String, Object> selectSearchPopupList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 팝업 등록
+	 * @param popupVO
+	 * @throws SQLException
+	 */
+	public void registPopup(PopupVO popupVO) throws SQLException;
+	
+	/**
+	 * 팝업 상세와 팝업 첨부파일 가져오기
+	 * @param popcode
+	 * @return 팝업 상세 + 팝업 첨부파일 
+	 * @throws SQLException
+	 */
+	public PopupRegistCommand getPopup(String popcode) throws SQLException;
+	
+	/**
+	 * 팝업 수정
+	 * @param popupVO
+	 * @throws SQLException
+	 */
+	public void modifyPopup(PopupVO popupVO) throws SQLException;
+	
+	// 자료 가져오기
+	public PopAttachVO getAttachByAttachno(String attachno) throws SQLException;
+
+	// 자료 삭제
+	public void removeAttachByAttachno(String attachno) throws SQLException;
+}
+
+
+
+
+
+
+
+
+
+
+

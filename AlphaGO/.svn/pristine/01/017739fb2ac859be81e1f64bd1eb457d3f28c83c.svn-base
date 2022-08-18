@@ -1,0 +1,16 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.command.CalenderListCommand;
+import kr.or.ddit.dto.CalendarVO;
+
+public interface CalendarDAO {
+
+	public List<CalenderListCommand> selectAllCalender() throws SQLException;
+	
+	public void insertCalender(CalendarVO calendarVO) throws SQLException;
+	
+	public void deleteCalender() throws SQLException;
+}

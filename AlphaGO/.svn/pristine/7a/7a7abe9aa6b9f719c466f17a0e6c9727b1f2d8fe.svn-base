@@ -1,0 +1,30 @@
+package kr.or.ddit.controller.view;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.service.PopupService;
+
+@Controller
+@RequestMapping("/popup")
+public class PopupController {
+
+	@Autowired
+	PopupService popupService;
+	
+	@RequestMapping("/list")
+	public String list(Model model, SearchCriteria cri) throws Exception{
+		String url = "popup/list";
+		
+		Map<String, Object> dataMap = popupService.selectSearchPopupList(cri);
+		model.addAttribute("dataMap", dataMap);
+		
+		return url;
+	}
+	
+}

@@ -1,0 +1,379 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cri" value="${pageMaker.cri }" />
+<c:set var="classingList" value="${dataMap1.classingList }" />
+<c:set var="wrongList" value="${dataMap.wrongList }" />
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+
+<head>
+<script>
+$("#cateType").on("change", function(){
+		name = $("option:selected", this).text();
+		$.ajax({
+		    type : "POST",          
+		    url : "<%=request.getContextPath()%>/wrong/examList.go",
+					data : {
+						"name" : name							
+					}, // Json 형식의 데이터이다.
+					success : function(res) {		
+						str = "";
+						str += '<option value="전체" ${cri.cateType eq "전체" ? "selected":'' }>시험 선택</option>';
+						for (var i = 0; i < res.length; i++) {
+							var tit = res[i].examName;	
+							str += "<option value="+tit+" ${cri.cateType eq '수업' ? 'selected':'' }>"+tit+"</option>";									
+						}
+					$("#examType").html(str);
+					},
+					
+					error : function(error) { 
+						alert("에러 : " + error.status);
+					}
+		});
+});
+</script>
+<script>
+function detail(num) {
+	wno = num;
+	
+	$.ajax({
+	    type : "POST",          
+	    url : "<%=request.getContextPath()%>/wrong/wrongDetail.go",
+				data : {
+					"wno" : wno							
+				}, // Json 형식의 데이터이다.
+				success : function(res) {	
+					exam = res.examName;
+					cla = res.className;
+					sub = res.subdetailName;
+					str = "";
+					str += '<div>';
+					str += '<p class="flex-grow-1"><span style="font-size:1.2em;font-weight: bold;">' + exam + '</span> | ' + cla +'</p>';
+					str += '<span style="font-size:0.9em;margin-top: 10px;" class="badge rounded-pill bg-secondary">'+ sub +'</span>';
+					str += '<span style="font-size:0.9em;" class="badge rounded-pill bg-danger">오답률 50%</span>';
+					str += '<button type="button" class="btn btn-warning" style="float:right;margin-bottom: 10px;height: 30px;line-height: 5px;" data-bs-toggle="modal" data-bs-target="#question">질문하기</button>';
+					if(res.content != null) {
+						str += '<button type="button" class="btn btn-purple" style="float:right;margin-right: 5px;height: 30px;line-height: 5px;margin-bottom: 10px;" onclick="location.href=modify.go">해설수정</button>';		
+					} else {
+						str += '<button type="button" class="btn btn-purple" style="float:right;margin-right: 5px;height: 30px;line-height: 5px;margin-bottom: 10px;" onclick="location.href=regist.go">해설등록</button>';	
+					}
+					str += '</div>';
+					str += '<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">';
+					str += '<div class="carousel-inner">';
+					str += '<div class="carousel-item active">';
+					str += '<div class="bg-light" style="padding: 15px; border-radius: 10px;">';
+					str += '<span style="font-weight:bold">[' + res.lproblem + ']</span><br>';
+					str +=  res.pronum + '. ' + res.problemContent + "<br><br>"
+					str += '<p style="margin-left: 10px;margin-bottom: 0px;">';
+					if(res.lproblem == "객관식") {
+						str += '① ' + res.none + "<br>";
+						str += '② ' + res.ntwo + "<br>";
+						str += '③ ' + res.ntree + "<br>";
+						str += '④ ' + res.nfour + "<br>";
+						str += '⑤ ' + res.nfive;				
+					}
+					str += '</p>';
+					str += '</div>';
+					str += '<p style="font-weight: bold; margin-top: 15px;">해설 및 답</p>';
+					str += '<div class="bg-light" style="padding: 15px; border-radius: 10px;">';
+					if(res.lproblem == "객관식") {
+						if(res.problemAnswer == 1) {
+							str += '<p style="font-weight: bold;">정답<span style="color: red; margin-left: 15px;">① ' + res.none + '</span>';	
+						} else if(res.problemAnswer == 2) {
+							str += '<p style="font-weight: bold;">정답<span style="color: red; margin-left: 15px;">② ' + res.ntwo + '</span>';	
+						} else if(res.problemAnswer == 3) {
+							str += '<p style="font-weight: bold;">정답<span style="color: red; margin-left: 15px;">③ ' + res.ntree + '</span>';	
+						} else if(res.problemAnswer == 4) {
+							str += '<p style="font-weight: bold;">정답<span style="color: red; margin-left: 15px;">④ ' + res.nfour + '</span>';	
+						} else {
+							str += '<p style="font-weight: bold;">정답<span style="color: red; margin-left: 15px;">⑤ ' + res.nfive + '</span>';	
+						}				
+					} else {
+						str += '<p style="font-weight: bold;">정답<span style="color: red;margin-left: 15px;margin-bottom: 0px;"> ' + res.problemAnswer + '</span>';	
+					}
+					str += '<p style="font-weight: bold;margin-bottom: 0px;">해설<span style="margin-left: 15px;"> ' + res.problemSolution + '</span>';
+					str += '</div>';
+					str += '<p style="font-weight: bold; margin-top: 15px;">내 해설</p>';
+					if(res.content != null) {
+						str += '<div class="bg-light" style="padding: 15px;height: 160px;border-radius: 10px;">'+ res.content +'</div>';
+					} else {
+						str += '<div class="bg-light" style="text-align:center;padding: 15px;height: 160px;line-height: 124px;border-radius: 10px;">해설을 등록해주세요.</div>';						
+					}
+					str += '</div>';
+// 					str += '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" style="margin-bottom: 200px;">';
+// 					str += '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+// 					str += '<span class="visually-hidden">Previous</span>';
+// 					str += '</button>';
+// 					str += '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" style="margin-bottom: 200px;">';
+// 					str += '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+// 					str += '<span class="visually-hidden">Next</span>';
+// 					str += '</button>';
+					str += '</div>';
+					
+				$("#hello").html(str);
+				},
+				
+				error : function(error) { 
+					alert("에러 : " + error.status);
+				}
+	});
+}
+</script>
+</head>
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-6" style="float: left;">
+			<div class="card">
+				<div class="card-body" style="padding: 15px;">
+					<h5 style="font-weight: bold; margin-bottom: 15px;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>오답 리스트
+					</h5>
+					<div id="keyword" class="card-tools" style="margin-bottom: 6px;width: 320px;">
+						<div class="input-group">
+							<select class="form-select col-md-3" name="cateType" id="cateType" style="width: 40px;">
+								<c:forEach items="${classingList }" var="classing"> 
+										<option value="${classing.className }" ${cri.cateType eq '${classing.className}' ? 'selected':'' }>${classing.className }</option>
+								</c:forEach>
+							</select>
+							<select class="form-select col-md-3" name="examType" id="examType" style="width: 40px;">
+								<option value="전체" ${cri.examType eq '전체' ? 'selected':'' }>시험 선택</option>
+							</select>
+							<span class="input-group-append">
+								<button class="btn btn-soft-secondary" style="float: right;" type="button"
+									id="searchBtn" data-card-widget="search" onclick="list_go(1);">
+									<i class="fa fa-fw fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div>
+						<div id="table-pagination">
+							<div
+								style="width: 100%; text-align: center;">
+								<div style="height: auto;">
+									<table class="table text-center table-hover"
+										style="height: auto;">
+										<thead>
+											<tr>											
+												<th data-column-id="name" class="bg-soft-purple"
+													style="font-weight: bold;"><div
+														class="gridjs-th-content">시험명</div></th>
+												<th data-column-id="email" class="bg-soft-purple"
+													style="font-weight: bold;"><div
+														class="gridjs-th-content">문제번호</div></th>
+												<th data-column-id="position"
+													class="bg-soft-purple" style="font-weight: bold;"><div
+														class="gridjs-th-content">유형</div></th>
+												<th data-column-id="position"
+													class="bg-soft-purple" style="font-weight: bold;"><div
+														class="gridjs-th-content">오답률</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${wrongList }" var="wrong">
+												<tr style="cursor: pointer;" onclick="detail(${wrong.wno})">
+													<td data-column-id="email" style="text-align:left">${wrong.examName }</td>
+													<td data-column-id="company">${wrong.pronum }</td>
+													<td data-column-id="position"><span
+														class="badge rounded-pill bg-success"
+														style="font-size: 0.8em; padding: 7px; weight: 100px;">${wrong.subdetailName }</span></td>
+													<td data-column-id="company">상</td>
+												</tr>
+											</c:forEach>										
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<!-- pagination -->
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						
+
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="card">
+				<div class="card-body" id="hello" style="padding: 15px;min-height: 780px;">
+					<div class="d-flex">
+						<p class="flex-grow-1"><span style="font-size:1.2em;font-weight: bold;"></span></p>
+						<span style="font-size:0.9em;margin-top: 10px;" class="badge rounded-pill bg-secondary"></span>
+					    <span style="font-size:0.9em;" class="badge rounded-pill bg-danger"></span>
+					    <button type="button" class="btn btn-warning" style="float:right;margin-bottom: 10px;height: 30px;line-height: 5px;" data-bs-toggle="modal" data-bs-target="#question">질문하기</button>
+					    <button type="button" class="btn btn-purple" style="float:right;margin-right: 5px;height: 30px;line-height: 5px;margin-bottom: 10px;" onclick="location.href=modify.go">해설수정</button>
+<!-- 						<p style="font-weight: bold;" class="flex-grow-1">3월 모의고사</p> -->
+<!-- 						<button type="button" class="btn btn-soft-warning" -->
+<!-- 							style="margin-bottom: 10px; margin-right: 5px;" -->
+<!-- 							data-bs-toggle="modal" data-bs-target="#question">질문하기</button> -->
+<!-- 						<button type="button" class="btn btn-soft-purple" -->
+<!-- 							style="margin-bottom: 10px;" onclick="location.href='modify.go'">해설수정</button> -->
+					</div>
+					<div id="carouselExampleControls" class="carousel slide"
+						data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									01. 애국가(愛國歌)는 ‘나라를 사랑하는 노래’라는 뜻이에요. 우리나라는 애국가에 특별한 이름을 붙이지 않고
+									국가(國歌)로 사용하고 있어요. 오늘날 불리고 있는 애국가 노랫말은 우리나라가 외세의 침략으로 위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.<br>
+									<br>
+									<p style="margin-left: 10px;">
+										① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br>
+										④ 간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+									</p>
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">해설 및 답</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									<p>
+										정답<span
+											style="font-weight: bold; color: red; margin-left: 15px;">①
+											소지(所持)하여야</span>
+									</p>
+									위기에 처해있던 시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진
+									것으로 보여져요.
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">내 해설</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.</div>
+							</div>
+							<div class="carousel-item">
+
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									01. 애국가(愛國歌)는 ‘나라를 사랑하는 노래’라는 뜻이에요. 우리나라는 애국가에 특별한 이름을 붙이지 않고
+									국가(國歌)로 사용하고 있어요. 오늘날 불리고 있는 애국가 노랫말은 우리나라가 외세의 침략으로 위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.<br>
+									<br>
+									<p style="margin-left: 10px;">
+										① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br>
+										④ 간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+									</p>
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">해설 및 답</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									<p>
+										정답<span
+											style="font-weight: bold; color: red; margin-left: 15px;">①
+											소지(所持)하여야</span>
+									</p>
+									위기에 처해있던 시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진
+									것으로 보여져요.
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">내 해설</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.</div>
+							</div>
+							<div class="carousel-item">
+
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									01. 애국가(愛國歌)는 ‘나라를 사랑하는 노래’라는 뜻이에요. 우리나라는 애국가에 특별한 이름을 붙이지 않고
+									국가(國歌)로 사용하고 있어요. 오늘날 불리고 있는 애국가 노랫말은 우리나라가 외세의 침략으로 위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.<br>
+									<br>
+									<p style="margin-left: 10px;">
+										① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br>
+										④ 간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+									</p>
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">해설 및 답</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">
+									<p>
+										정답<span
+											style="font-weight: bold; color: red; margin-left: 15px;">①
+											소지(所持)하여야</span>
+									</p>
+									위기에 처해있던 시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진
+									것으로 보여져요.
+								</div>
+
+								<p style="font-weight: bold; margin-top: 15px;">내 해설</p>
+								<div class="bg-light"
+									style="padding: 20px; border-radius: 10px;">위기에 처해있던
+									시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="prev" style="margin-bottom: 338px;">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleControls" data-bs-slide="next" style="margin-bottom: 338px;">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade bs-example-modal-center" id="question"
+		tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">질문하기</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-floating mb-3" style="border-radius: 10px;">
+						<p style="font-weight: bold;">3월 국어 모의고사</p>
+						<div>
+							13. 애국가(愛國歌)는 ‘나라를 사랑하는 노래’라는 뜻이에요. 우리나라는 애국가에 특별한 이름을 붙이지 않고
+							국가(國歌)로 사용하고 있어요. 오늘날 불리고 있는 애국가 노랫말은 우리나라가 외세의 침략으로 위기에 처해있던
+							시기(1907년 전후)에 나라 사랑하는 마음과 우리 민족의 자주의식을 북돋우기 위해 만들어진 것으로 보여져요.<br>
+							<p>
+								① 소지(所持)하여야 <br>② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지
+						</div>
+					
+					</div>
+
+					<div class="row gx-1 gy-2 align-items-center">
+						<div class="form-floating mb-3 bg-light">
+							<input type="text" class="form-control bg-light text-dark"
+								id="floatingTitle" placeholder="title"> <label
+								for="floatingTitle" class="text-dark">제목</label>
+						</div>
+					</div>
+
+					<div class="row gx-1 gy-2 align-items-center">
+						<div class="form-floating">
+							<textarea class="form-control bg-light text-dark"
+								placeholder="Leave a comment here" id="floatingTextarea2"
+								style="height: 150px"></textarea>
+							<label for="floatingTextarea2" class="text-dark">내용</label>
+						</div>
+					</div>
+					<hr>
+					<button type="button" style="float: right;"
+						class="btn btn-outline-purple">질문등록</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</body>

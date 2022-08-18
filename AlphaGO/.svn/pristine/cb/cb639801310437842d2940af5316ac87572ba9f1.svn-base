@@ -1,0 +1,137 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<body>
+	<div class="d-flex">
+		<h5 class="flex-grow-1"
+			style="font-weight: bold; margin-bottom: 15px;">
+			<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>3월
+			국어 모의고사
+		</h5>
+		<p style="font-weight: bold; margin-right: 15px;">
+			<i class="uil-clock" style="padding: 5px; font-size: 1.2em;"></i>남은
+			시간 : 8분 30초
+		</p>
+		<button type="button" class="btn btn-purple" data-bs-toggle="modal"
+			data-bs-target="#submit"
+			style="width: 100px; height: 30px; padding-top: 3px;">제출하기</button>
+	</div>
+	<div class="row gx-3 gy-2">
+		<div class="col-9" style="float: left;">
+			<div class="card">
+				<div class="card-body">
+					<!-- pagenation -->
+					<ul class="pagination pagination-rounded">
+						<li class="page-item disabled" style="margin-right: 265px;"><span
+							class="page-link"><i class="mdi mdi-chevron-left"></i></span></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><span class="page-link">
+								2 <span class="sr-only">(current)</span>
+						</span></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item" style="margin-left: 240px;"><a
+							class="page-link" href="#"><i class="mdi mdi-chevron-right"></i></a></li>
+					</ul>
+					<!-- end -->
+					<div class="row gx-3 gy-2">
+						<div class="col-6" style="float: left;">
+							1. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							2. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							3. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							4. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+						<div class="col-6" style="float: left;">
+							5. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							6. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							7. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+							8. (가)와 (나)에 대한 설명으로 가장 적절한 것은?<br>
+							<p style="margin-left: 10px;">
+								① 소지(所持)하여야<br> ② 포착(捕捉)한다<br> ③ 귀결(歸結)되어도<br> ④
+								간주(看做)하면<br> ⑤ 결성(結成)되지<br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-3">
+			<div class="card" style="height: 675px;">
+				<div class="card-body" style="overflow: scroll; overflow-x: hidden;">
+					<p style="font-weight: bold; margin-right: 15px;">
+						<i class="uil-check-circle"
+							style="padding: 5px; font-size: 1.2em;"></i>답안지
+					</p>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						01. ① ② ③ ④ ⑤ <br> 02. ① ② ③ ④ ⑤ <br> 03. ① ② ③ ④ ⑤ <br>
+						04. ① ② ③ ④ ⑤ <br> 05. ① ② ③ ④ ⑤ <br> 06. ① ② ③ ④ ⑤ <br>
+						07. ① ② ③ ④ ⑤ <br> 08. ① ② ③ ④ ⑤ <br> 09. ① ② ③ ④ ⑤ <br>
+						10. ① ② ③ ④ ⑤ <br>
+					<hr>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						11. ① ② ③ ④ ⑤ <br> 12. ① ② ③ ④ ⑤ <br> 13. ① ② ③ ④ ⑤ <br>
+						14. ① ② ③ ④ ⑤ <br> 15. ① ② ③ ④ ⑤ <br> 16. ① ② ③ ④ ⑤ <br>
+						17. ① ② ③ ④ ⑤ <br> 18. ① ② ③ ④ ⑤ <br> 19. ① ② ③ ④ ⑤ <br>
+						20. ① ② ③ ④ ⑤ <br>
+					<hr>
+					<p style="font-size: 1.2em; margin-left: 10px;">
+						21. ① ② ③ ④ ⑤ <br> 22. ① ② ③ ④ ⑤ <br> 23. ① ② ③ ④ ⑤ <br>
+						24. ① ② ③ ④ ⑤ <br> 25. ① ② ③ ④ ⑤ <br>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade bs-example-modal-center" tabindex="-1"
+		role="dialog" id="submit" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">			
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<h5 style="text-align: center;">2022학기 중간 응용시험</h5>
+					<p>남은 시간 : 8분 30초</p>
+					<p style="color: red; font-size: 1.2em; font-weight: bold;">85점</p>
+					<p>
+						<i class="uil-gift" style="margin-right:10px;font-size: 1.2em;"></i>고생하셨습니다!!<i
+							class="uil-gift" style="margin-left : 10px;font-size: 1.2em;"></i>
+					</p>
+					<button type="button" class="btn btn-soft-secondary" style="margin-right:10px;">오답노트 확인하기</button>
+					<button type="button" class="btn btn-soft-purple">문제지 확인하기</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</body>

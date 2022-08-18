@@ -1,0 +1,70 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.ExamDAO;
+import kr.or.ddit.dto.ExamVO;
+import kr.or.ddit.dto.ProblemVO;
+
+public class ExamServiceImpl implements ExamService {
+
+	private ExamDAO examDAO;
+	public void setExamDAO(ExamDAO examDAO) {
+		this.examDAO = examDAO;
+	}
+	
+	/**
+	 * 강의 선택전 전체 미응시 시험 리스트
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	@Override
+	public List<ExamVO> getExam(String id) throws SQLException {
+		List<ExamVO> examList = examDAO.getExam(id);
+		
+		return examList;
+	}
+
+	/**
+	 * 강의 선택후 시험 리스트
+	 * @param map
+	 * @return
+	 * @throws SQLException
+	 */
+	@Override
+	public List<ExamVO> selectExamList(Map<String, Object> map) throws SQLException {
+		List<ExamVO> examList = examDAO.selectExamList(map);
+		
+		return examList;
+	}
+
+	/**
+	 * 시험응시(시험지)
+	 * @param examCode
+	 * @return
+	 * @throws SQLException
+	 */
+	@Override
+	public List<ProblemVO> getExamProblem(int examCode) throws SQLException {
+		List<ProblemVO> problemList = examDAO.getExamProblem(examCode);
+		
+		for(ProblemVO problem : problemList) {
+			if(problem.getProblemPrint() != null) {
+				String content = problem.getProblemPrint().replace("\n", " ");
+				String question = problem.getProblemContent().replace("\n", " ");
+						
+				problem.setProblemPrint(content);
+				problem.setProblemContent(question);				
+			} else {			
+				String question = problem.getProblemContent().replace("\n", " ");
+				problem.setProblemContent(question);	
+			}
+		}
+		
+		return problemList;
+	}
+
+}

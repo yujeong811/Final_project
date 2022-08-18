@@ -1,0 +1,677 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+</head>
+<body>
+	<h5 style="margin-bottom: 15px; font-weight: bold;">
+		<i class="uil-clipboard-alt" style="margin-right: 10px;"></i>오답 관리
+	</h5>
+	<script type="text/javascript">
+		
+	</script>
+	<div class="row">
+		<!--  강의 리스트 나오는 박스 시작 -->
+		<div class="col-sm-6" style="height: 400px;">
+			<div class="card" style="height: 380px;">
+				<div class="card-body">
+					<div style="background: yellow; margin-bottom: 10px; width: 300px;">강의리스트</div>
+
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="background: lightgray">
+							<th style="">강의명</th>
+							<th style="">기간</th>
+
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="">rsz5</td>
+							<td style="">이수민</td>
+
+
+
+
+
+						</tr>
+						<tr>
+
+
+							<td style="">rsz5</td>
+							<td style="">이수민</td>
+
+						</tr>
+
+
+					</table>
+				</div>
+				<div class="card-footer">
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0">
+							<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+		</div>
+		<!--  강의 리스트 나오는 박스 끝 -->
+
+		<!--  시험 리스트나오는 박스 -->
+		<div class="col-sm-6" style="height: 400px;">
+			<div class="card" style="height: 380px;">
+				<div class="card-body">
+					<div style="background: yellow; margin-bottom: 10px; width: 300px;">시험지리스트</div>
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="font-size: 0.6em; background: lightgray">
+							<th style="">시험지 명</th>
+							<th style="">평균</th>
+
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="">수1 기본 평가</td>
+							<td style="">75.28</td>
+
+
+
+
+
+						</tr>
+						<tr>
+
+
+							<td style="">수1 극한을 극한으로 평가</td>
+							<td style="">68</td>
+
+						</tr>
+
+
+					</table>
+
+				</div>
+				<div class="card-footer">
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0">
+							<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!--  강의 리스트 나오는 박스 시작 -->
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6" style="height: 400px;">
+			<div class="card" style="height: 380px;">
+				<div class="card-body">
+					<div style="background: yellow; margin-bottom: 10px; width: 100px;">응시자
+						리스트</div>
+
+
+					<div style="height: 300px; overflow: auto;">
+						<table class="table table-bordered text-center"
+							style="width: 100%;">
+							<tr style="font-size: 0.6em; background: lightgray;">
+								<th style="">아이디</th>
+								<th style="">이름</th>
+
+							</tr>
+
+
+
+
+							<tr>
+
+								<td style="">rsz5</td>
+								<td style="">이수민</td>
+
+
+
+
+
+							</tr>
+							<tr>
+
+
+								<td style="">rsz5</td>
+								<td style="">이수민</td>
+
+							</tr>
+							<tr>
+
+
+								<td style="">rsz5</td>
+								<td style="">이수민</td>
+
+							</tr>
+							<tr>
+
+
+								<td style="">rsz5</td>
+								<td style="">이수민</td>
+
+							</tr>
+							<tr>
+
+
+								<td style="">rsz5</td>
+								<td style="">이수민</td>
+
+							</tr>
+
+
+						</table>
+					</div>
+
+				</div>
+				<div class="card-footer">
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0">
+							<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-sm-6" style="height: 400px;">
+
+			<div class="card" style="height: 380px;">
+				<div class="card-body">
+					<div style="background: yellow; margin-bottom: 10px; width: 300px;">수1-중간대비
+						이수민 답안지</div>
+					<div style="overflow: auto;">
+						<table class="table table-bordered text-center"
+							style="width: 100%;">
+							<tr style="height: 54.22px;">
+								<td style="width: 111.16;"><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">1.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style="width: 111.16;"><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">6.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style="width: 111.16;"><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">11.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style="width: 111.16;"><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">16.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+							</tr>
+
+
+
+
+							<tr style="height: 54.22px;">
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">2.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">7.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">12.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">17.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+
+
+
+
+
+							</tr>
+							<tr style="height: 54.22px;">
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">3.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">8.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">13.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div></td>
+								<td style="">
+									<div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px; background: red; color: white;">18.
+											<i class="uil-times"></i>
+										</span>
+									</div>
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;" id="btn" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop4">답변</button>
+								</td>
+
+							</tr>
+							<tr style="height: 54.22px;">
+								<td style="">
+									<div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px; background: red; color: white;">4.
+											<i class="uil-times"></i>
+										</span>
+									</div>
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;" id="btn" onclick="proc()" )>답변</button>
+								</td>
+
+
+
+
+								<td style=""><div
+										style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+										<span style="margin-top: 5px;">9.</span>
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-circle">
+											<circle cx="12" cy="12" r="10"></circle></svg>
+									</div>
+
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;">답변</button></td>
+								<td data-bs-toggle="modal" data-bs-target="#staticBackdrop2">14.0
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop3">답변</button>
+								</td>
+								<td style="" onclick="proc()">19.0
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;" onclick="proc2()">답변</button>
+								</td>
+
+
+							</tr>
+							<td style=""><div
+									style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+									<span style="margin-top: 5px;">5.</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-circle">
+										<circle cx="12" cy="12" r="10"></circle></svg>
+								</div></td>
+							<td style=""><div
+									style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+									<span style="margin-top: 5px;">10.</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-circle">
+										<circle cx="12" cy="12" r="10"></circle></svg>
+								</div></td>
+							<td style=""><div
+									style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+									<span style="margin-top: 5px;">15.</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-circle">
+										<circle cx="12" cy="12" r="10"></circle></svg>
+								</div></td>
+							<td style=""><div
+									style="font-weight: 600; font-size: 13px; em; float: left; margin-top: 6px;">
+									<span style="margin-top: 5px;">20.</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-circle">
+										<circle cx="12" cy="12" r="10"></circle></svg>
+								</div></td>
+
+							</tr>
+
+
+						</table>
+					</div>
+					<div
+						style="float: right; border: 1px solid lightgray; width: 80px; text-align: center;">점수:80</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Button trigger modal -->
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					문제보기
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+
+
+				<div class="modal-body">
+					<div class="card">
+						<div class="card-header">
+							<div
+								style="overflow: auto; height: 100px; border: 1px solid black;">
+								이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은
+								문제라오문제문제 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제</div>
+						</div>
+						<div class="card-body">
+							<div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div
+									style="height: 35px; pont-size: 0.4em overflow: auto; background: red; color: white;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					문제보기
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+
+
+				<div class="modal-body">
+					<div class="card">
+						<div class="card-header">
+							<div
+								style="overflow: auto; height: 100px; border: 1px solid black;">
+								이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은
+								문제라오문제문제 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제</div>
+						</div>
+						<div class="card-body">
+							<div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+								<div
+									style="height: 35px; pont-size: 0.4em overflow: auto; background: red; color: white;">1.문제가문제다</div>
+								<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다</div>
+
+							</div>
+							<div class="card">
+								<div class="card-body">이거 어케 하는거누 알려주삼!! 아무리 풀어봐도 잘 모르겠습니다
+									선생님 어케 하는걸까요 제가 못푸는걸까요?ㅠㅠㅠㅠ</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<textarea rows="10" cols="72" style="font-size: 0.8em;"></textarea>
+							<button type="button" class="btn btn-primary btn-sm"
+								style="float: right; margin-right: 2px;" onclick="proc2()">완료</button>
+
+						</div>
+					</div>
+
+
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					문제보기
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card" style="height: 740px;">
+								<div class="card-body" style="overflow: auto;">
+									호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+									호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="col-sm-6">
+							<div class="card" style="margin-top: 15 0px;">
+								<div class="card-header">
+									<div
+										style="overflow: auto; height: 100px; border: 1px solid black;">
+										이거 어케하는거누?</div>
+								</div>
+								<div class="card-body">
+									<div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div
+											style="height: 35px; pont-size: 0.4em overflow: auto; background: red; color: white;">1.문제가문제다</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+		data-bs-target="#staticBackdrop3" id="mymodal" style="display: none;">
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					답변하기
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card" style="height: 740px;">
+								<div class="card-body" style="overflow: auto;">
+									호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+									호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히 호호롤ㅇ로이롱링뢍랗아히
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+									호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br> 호호롤ㅇ로이롱링뢍랗아히<br>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="col-sm-6">
+							<div class="card" style="margin-top: 15 0px;">
+								<div class="card-header">
+									<div
+										style="overflow: auto; height: 100px; border: 1px solid black;">
+										이거 어케하는거누?</div>
+								</div>
+								<div class="card-body">
+									<div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+										<div
+											style="height: 35px; pont-size: 0.4em overflow: auto; background: red; color: white;">1.문제가문제다</div>
+										<div style="height: 35px; pont-size: 0.4em overflow: auto;">1.문제가문제다2</div>
+
+									</div>
+									<hr>
+									<div class="card">
+										<div class="card-body">이거 어케 하는거누 알려주삼!! 아무리 풀어봐도 잘
+											모르겠습니다 선생님 어케 하는걸까요 제가 못푸는걸까요?ㅠㅠㅠㅠ</div>
+									</div>
+
+
+								</div>
+								<div class="card-footer">
+
+									<textarea rows="10" cols="55" style="font-size: 0.8em;"></textarea>
+									<button type="button" class="btn btn-primary btn-sm"
+										style="float: right;">완료</button>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

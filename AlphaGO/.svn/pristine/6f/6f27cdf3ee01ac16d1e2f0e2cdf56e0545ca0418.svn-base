@@ -1,0 +1,23 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public interface MHomeDAO {
+
+	/**
+	 * 강사의 근태 리스트를 불러온다
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<TeachermasVO> selectTeacherAttendList() throws SQLException;
+	/**
+	 * 원장에게 들어온 상담 신청 목록 반환
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<PacounseltVO> selectCounseltList() throws SQLException;
+}

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Classroom-Mapper">
+  <sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and room_no like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and use_purpose like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and capacity like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'npc'.toString()">
+			and (
+			room_no like '%'||#{keyword}||'%'
+			or
+			use_purpose like '%'||#{keyword}||'%'						
+			or
+			capacity like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  
+  
+	  <select id="getAllClassroom" resultType="room">
+	    	select * 
+			from classroom
+			where room_code is not null
+			<include refid="search" />	
+			order by room_no			
+	  </select>
+	  
+	  <select id="getNoSearchClassroom" resultType="room">
+	  	select * from classroom
+	  	order by room_no
+	  </select>
+	  
+	  <select id="selectClassroomListCount" resultType="int">
+		select
+		count(*)
+		from
+		classroom
+		where room_code is not null  			  	
+		<include refid="search" />
+	</select>
+	  
+	  <select id="getClassroom" resultType="room">
+		select
+		    room_code
+		   ,room_no
+		   ,room_floor
+		   ,capacity
+		   ,use_purpose
+		from
+		    classroom  
+	  </select>
+
+	  <select id="getOneClassroom" resultType="room">
+		select
+		    room_code
+		   ,room_no
+		   ,room_floor
+		   ,capacity
+		   ,use_purpose
+		from
+		    classroom  
+		where
+			room_code = #{roomCode}
+	  </select>
+	  
+	  <select id="getClassroomSeq" resultType="int">
+	  	select room_no_seq.nextval from dual
+	  </select>
+	  
+	  <select id="getUseFixtSeq" resultType="int">
+	  	select usefixture_seq.nextval from dual
+	  </select>
+	  
+	  <select id="getAllFixture" resultType="fixture">
+	  	select fxtcode, fxtname, fxticon from fixture
+	  </select>
+	  
+	  <update id="insertClassroom">
+			insert into classroom (
+			room_code
+			,room_no
+			,room_floor
+			,capacity
+			,use_purpose
+			)
+			values (
+			#{roomCode}
+			,#{roomNo}
+			,#{roomFloor}
+			,#{capacity}
+			,#{usePurpose}
+			)
+	  </update>
+
+	<update id="removeClassroom">
+		DELETE FROM classroom
+		WHERE
+		room_code = #{roomCode}
+	</update>
+
+	<update id="removeUseFixt">
+		delete from usefixt
+		where room_code = #{roomCode}
+	</update>
+	
+	<update id="insertUseFixt">
+		insert into usefixt (
+		fixuseno
+		,room_code
+		,fxtcode
+		) values (
+		#{fixuseno}
+		,#{roomCode}
+		,#{fxtcode}
+		)
+	</update>
+	
+	<select id="getUseFixture" resultType="useFixt">
+		select a.fixuseno, a.room_code, a.fxtcode, b.fxticon
+		from usefixt a, fixture b
+		where a.fxtcode = b.fxtcode
+	</select>
+	
+	<select id="getAllUseRoom" resultType="room">
+		select
+			a.room_code
+			,a.room_no
+			,b.time_code
+			, b.classday
+			, b.ctperiod
+			, c.class_code
+			, c.start_date
+			, c.end_date
+			, b.start_time
+			, b.end_time
+		 from classroom a, time_detail b, class c
+		where a.room_code = b.room_code
+		  and b.class_code = c.class_code
+		order by a.room_no
+	</select>
+	
+  </mapper>
+  
+  
+  

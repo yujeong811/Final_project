@@ -1,0 +1,73 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-3" style="text-align: center;">
+			<div class="card">
+				<div class="card-body">
+					<table class="table table-bordered text-center"
+						style="width: 100%;">
+						<tr style="font-size: 0.6em;">
+							<th style="" colspan="2">강의명</th>
+
+						</tr>
+
+
+
+
+						<tr>
+
+							<td style="">수1 미치도록 잘해버리기</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+
+						</tr>
+						<tr>
+
+
+							<td style="">수1 미치도록 잘해버리기</td>
+
+							<td><input type="radio" name="chk_info"
+								value="수1 미치도록 잘해버리기">
+								</td>
+
+
+						</tr>
+
+
+					</table>
+
+				</div>
+
+				<div class="card-footer">
+					<nav aria-label="pds list Navigation">
+						<ul class="pagination justify-content-center m-0">
+							<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+		</div>
+   <div class="col-row"
+
+
+
+	</div>
+	<!-- 		row끝 -->
+
+
+
+
+</body>
+</html>

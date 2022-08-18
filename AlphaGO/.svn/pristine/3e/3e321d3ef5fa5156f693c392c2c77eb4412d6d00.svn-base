@@ -1,0 +1,79 @@
+/*
+ * 작성자 : 예현의
+ * 작성일 : 2022-07-07
+ * 쪽지함 구현을 위한 쪽지 VO객체 class
+ */
+
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class DmVO {
+	
+	private int dm_code;
+	private String dm_div;
+	private String dm_title;
+	private String dm_content;
+	private Date dm_date;
+	private String dm_sender;
+	private String dm_receiver;
+	private String dm_status;
+	
+	public int getDm_code() {
+		return dm_code;
+	}
+	public void setDm_code(int dm_code) {
+		this.dm_code = dm_code;
+	}
+	public String getDm_div() {
+		return dm_div;
+	}
+	public void setDm_div(String dm_div) {
+		this.dm_div = dm_div;
+	}
+	public String getDm_title() {
+		return dm_title;
+	}
+	public void setDm_title(String dm_title) {
+		this.dm_title = dm_title;
+	}
+	public String getDm_content() {
+		return dm_content;
+	}
+	public void setDm_content(String dm_content) {
+		this.dm_content = dm_content;
+	}
+	public Date getDm_date() {
+		return dm_date;
+	}
+	public void setDm_date(Date dm_date) {
+		this.dm_date = dm_date;
+	}
+	public String getDm_sender() {
+		return dm_sender;
+	}
+	public void setDm_sender(String dm_sender) {
+		this.dm_sender = dm_sender;
+	}
+	public String getDm_receiver() {
+		return dm_receiver;
+	}
+	public void setDm_receiver(String dm_receiver) {
+		this.dm_receiver = dm_receiver;
+	}
+	public String getDm_status() {
+		return dm_status;
+	}
+	public void setDm_status(String dm_status) {
+		this.dm_status = dm_status;
+	}
+	
+	@Override
+	public String toString() {
+		return "DmVO [dm_code=" + dm_code + ", dm_div=" + dm_div + ", dm_title=" + dm_title + ", dm_content="
+				+ dm_content + ", dm_date=" + dm_date + ", dm_sender=" + dm_sender + ", dm_receiver=" + dm_receiver
+				+ ", dm_status=" + dm_status + "]";
+	}
+	
+	
+}

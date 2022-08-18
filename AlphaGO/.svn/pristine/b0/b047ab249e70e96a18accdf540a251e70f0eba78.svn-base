@@ -1,0 +1,63 @@
+package kr.or.ddit.dto;
+
+public class UniversityVO {
+	private String univCode;
+	private String universityName;
+	private int universityKor;
+	private int universityEng;
+	private int universityMath;
+	private int universitySocial;
+	private int universityScience;
+
+	public String getUnivCode() {
+		return univCode;
+	}
+	public void setUnivCode(String univCode) {
+		this.univCode = univCode;
+	}
+	public String getUniversityName() {
+		return universityName;
+	}
+	public void setUniversityName(String universityName) {
+		this.universityName = universityName;
+	}
+	public int getUniversityKor() {
+		return universityKor;
+	}
+	public void setUniversityKor(int universityKor) {
+		this.universityKor = universityKor;
+	}
+	public int getUniversityEng() {
+		return universityEng;
+	}
+	public void setUniversityEng(int universityEng) {
+		this.universityEng = universityEng;
+	}
+	public int getUniversityMath() {
+		return universityMath;
+	}
+	public void setUniversityMath(int universityMath) {
+		this.universityMath = universityMath;
+	}
+	public int getUniversitySocial() {
+		return universitySocial;
+	}
+	public void setUniversitySocial(int universitySocial) {
+		this.universitySocial = universitySocial;
+	}
+	public int getUniversityScience() {
+		return universityScience;
+	}
+	public void setUniversityScience(int universityScience) {
+		this.universityScience = universityScience;
+	}
+
+	@Override
+	public String toString() {
+		return "UniversityVO [univCode=" + univCode + ", universityName=" + universityName + ", universityKor="
+				+ universityKor + ", universityEng=" + universityEng + ", universityMath=" + universityMath
+				+ ", universitySocial=" + universitySocial + ", universityScience=" + universityScience + "]";
+	}
+
+
+}

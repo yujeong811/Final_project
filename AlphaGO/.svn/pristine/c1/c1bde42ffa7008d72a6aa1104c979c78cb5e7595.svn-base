@@ -1,0 +1,59 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassroomVO;
+
+public class ClassroomDAOImpl implements ClassroomDAO {
+
+	
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	/**
+	 * 강의실 테이블 목록 전체 불러오기
+	 */
+	@Override
+	public List<ClassroomVO> getAllClassroom(Map<String, Object> dataParam) throws SQLException {
+		List<ClassroomVO> list = null;
+		list = session.selectList("Classroom-Mapper.getAllClassroom", dataParam);
+		return list;
+	}
+	
+	
+
+	@Override
+	public int getClassroomSeq() throws SQLException {
+		int roomCode = session.selectOne("Classroom-Mapper.getClassroomSeq");
+		return roomCode;
+	}
+
+	@Override
+	public void registClassroom(ClassroomVO roomVO) throws SQLException {
+		session.update("Classroom-Mapper.insertClassroom", roomVO);
+	}
+
+	@Override
+	public void removeClassroom(int roomCode) throws SQLException {
+		session.update("Classroom-Mapper.removeClassroom", roomCode);
+	}
+
+	@Override
+	public List<ClassroomVO> getClassroom() throws SQLException {
+		return session.selectList("Classroom-Mapper.getClassroom");
+	}
+
+	@Override
+	public ClassroomVO getOneClassroom(String roomCode) throws SQLException {
+		return session.selectOne("Classroom-Mapper.getOneClassroom", roomCode);
+	}
+
+	
+}

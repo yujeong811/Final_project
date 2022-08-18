@@ -1,0 +1,133 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+.setHover{
+	  opacity: 0.9;
+}
+.setHover:hover {
+  opacity: 2.0;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+</head>
+<body>
+	<div class="row">
+			<div class="col-sm-2">
+				<div onclick="selectClassList('3');" class="card bg-primary text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-primary text-white" style="padding:10px;">승인</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">수업 승인이<br>완료된 수업</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div onclick="selectClassList('2');" class="card bg-danger text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-danger text-white" style="padding:10px;">반려</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">수업계획서가<br>반려된 수업</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div onclick="selectClassList('1');" class="card bg-success text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-success text-white" style="padding:10px;">제출</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">수업계획서가<br>제출된 수업</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div onclick="selectClassList('0');" class="card bg-secondary text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-secondary text-white" style="padding:10px;">미제출</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">수업계획서가<br>미제출된 수업</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div onclick="" class="card bg-purple text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-purple text-white" style="padding:10px;">인기 수업</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">후기 평점이<br>높은 수업</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div onclick="" class="card bg-dark text-white-50 setHover" style="text-align: center;">
+					<h5 class="card-header bg-dark text-white" style="padding:10px;">비인기 수업</h5>
+					<div class="card-body">
+						<p class="card-text" style="color: white;">후기 평점이<br>낮은 수업</p>
+					</div>
+				</div>
+		</div>
+		
+		<div class="col-md-12" id="handleTarget"></div>
+	</div>
+<head>
+<script>
+	window.onload = function(){
+		selectClassList('3');
+	}
+</script>
+<script>
+	function selectClassList(cpcheck){
+		console.log(cpcheck);
+		$.ajax({
+			url:'<%=request.getContextPath()%>/mStudyPlan/selectClassListByCpcheck.go',
+			data:{"cpcheck":cpcheck},
+			success:function(data){
+				console.log(data);
+				printData(data,$('#handleTarget'),$('#class-list-template'));
+			},
+			error:function(error){
+				alert("error : " + error.status);
+			},
+			dataType:"json"
+		});
+	}
+</script>
+<script>
+Handlebars.registerHelper('setPriceComma', (price) => {
+	 return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+});
+</script>
+<script type="text/x-handlebars-template"  id="class-list-template" >
+<table class="table table-hover" style="text-align:center;">
+	<thead>
+		<tr style="background-color: #feefee">
+			<th>과목명</th>
+			<th>영역</th>
+			<th>수업명</th>
+			<th>강사명</th>
+			<th>수업기간</th>
+			<th>수준</th>
+			<th>수업료</th>
+			<th>시수</th>
+		</tr>
+	</thead>
+{{#each .}}
+	<tr onclick="detail_go(this);">
+		<td style="display: none;">{{classCode}}</td>
+		<td style="">{{subjectName}}</td>
+		<td style="">{{subdetailName}}</td>
+		<td style="text-align: left;">{{className}}</td>
+		<td style="">{{name}}</td>
+		<td style="">{{startDate}} ~ {{endDate}}</td>
+		<td style="">{{classRank}}</td>
+		<td style="">{{setPriceComma classPrice}}</td>
+		<td style="">{{totalTime}}</td>
+	</tr>
+{{/each}}
+</table>
+</script>	
+<script type="text/x-handlebars-template"  id="none-template" >
+		<tr>
+			<td colspan="7" style="text-align:center;">수업 목록이 없습니다</td>
+		</tr>
+</script>	
+</head>
+</body>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Classroom-Mapper">
+  <sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and room_no like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and use_purpose like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'np'.toString()">
+			and (
+			room_no like '%'||#{keyword}||'%'
+			or
+			use_purpose like '%'||#{keyword}||'%'						
+			)			
+		</if>
+	</sql>
+  
+  
+	  <select id="getAllClassroom" resultType="room">
+		select *
+		from(
+		    select rownum as rnum,SearchClassroomResult.*
+		    from ( 
+		    	select * 
+				from classroom
+				where room_code is not null
+				<include refid="search" />				
+		    )  SearchClassroomResult
+		    <![CDATA[
+		    where rownum <= #{endRow}
+		    ]]>
+		)
+		 <![CDATA[
+		where rnum > #{startRow}		
+		 ]]>
+	  </select>
+	  
+	  <select id="getClassroomSeq" resultType="int">
+	  	select room_no_seq.nextval from dual
+	  </select>
+	  
+	  <select id="getUseFixtSeq" resultType="int">
+	  	select usefixture_seq.nextval from dual
+	  </select>
+	  
+	  <select id="getAllFixture" resultType="fixture">
+	  	select fxtcode, fxtname, fxticon from fixture
+	  </select>
+	  
+	  <update id="insertClassroom">
+			insert into classroom (
+			room_code
+			,room_no
+			,room_floor
+			,capacity
+			,use_purpose
+			)
+			values (
+			#{room_code}
+			,#{room_no}
+			,#{room_floor}
+			,#{capacity}
+			,#{use_purpose}
+			)
+	  </update>
+
+	<update id="removeClassroom">
+		DELETE FROM classroom
+		WHERE
+		room_code = #{room_code}
+	</update>
+
+	<update id="removeUseFixt">
+		delete from usefixt
+		where room_code = #{room_code}
+	</update>
+	
+	<update id="insertUseFixt">
+		insert into usefixt (
+		fixuseno
+		,room_code
+		,fxtcode
+		) values (
+		#{fixuseno}
+		,#{room_code}
+		,#{fxtcode}
+		)
+	</update>
+	
+	<select id="getUseFixture" resultType="useFixt">
+		select a.fixuseno, a.room_code, a.fxtcode, b.fxticon
+		from usefixt a, fixture b
+		where a.fxtcode = b.fxtcode
+	</select>
+	
+  </mapper>
+  
+  
+  

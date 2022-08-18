@@ -1,0 +1,26 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.AssignVO;
+
+public class AssignDAOImpl implements AssignDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	@Override
+	public List<AssignVO> selectAssign() throws SQLException {
+		List<AssignVO> assignList = null;
+		
+		assignList = session.selectList("Assign-Mapper.selectAssignList");
+		
+		return assignList;
+	}
+
+}

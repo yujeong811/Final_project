@@ -1,0 +1,963 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<head>
+	<script src="<%=request.getContextPath() %>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+	<script>
+
+	// 학교성적 chart list
+	// 국어
+	 var options = {
+	    series: [{
+	    data: [21, 22, 10]
+	  }],
+	    chart: {
+	    height: 250,
+	    width: 340,
+	    type: 'bar',
+	    events: {
+	      click: function(chart, w, e) {
+	        // console.log(chart, w, e)
+	      }
+	    }
+	  },
+	  plotOptions: {
+	    bar: {
+	      columnWidth: '45%',
+	      distributed: true,
+	    }
+	  },
+	  dataLabels: {
+	    enabled: false
+	  },
+	  legend: {
+	    show: false
+	  },
+	  xaxis: {
+	    categories: [
+	      ['John'],
+	      ['Joe'],
+	      ['Jake']
+	    ],
+	    labels: {
+	      style: {
+	        fontSize: '12px'
+	      }
+	    }
+	  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#kor_chart"), options);
+	  chart.render();
+
+
+	// 국어 성적 추이
+	var options = {
+	    series: [{
+	      name: "홍길동",
+	      data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+	  }],
+	    chart: {
+	    height: 250,
+	    width: 340,
+	    type: 'line',
+	    zoom: {
+	      enabled: false
+	    }
+	  },
+	  dataLabels: {
+	    enabled: false
+	  },
+	  stroke: {
+	    curve: 'straight'
+	  },
+	  title: {
+	    text: '국어 성적 추이',
+	    align: 'left'
+	  },
+	  grid: {
+	    row: {
+	      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	      opacity: 0.5
+	    },
+	  },
+	  xaxis: {
+	    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+	  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#kor_line_chart"), options);
+	  chart.render();
+
+
+	// 영어
+	  var options = {
+	    series: [{
+	    data: [21, 22, 10]
+	  }],
+	    chart: {
+	    height: 250,
+	    width: 340,
+	    type: 'bar',
+	    events: {
+	      click: function(chart, w, e) {
+	        // console.log(chart, w, e)
+	      }
+	    }
+	  },
+	  plotOptions: {
+	    bar: {
+	      columnWidth: '45%',
+	      distributed: true,
+	    }
+	  },
+	  dataLabels: {
+	    enabled: false
+	  },
+	  legend: {
+	    show: false
+	  },
+	  xaxis: {
+	    categories: [
+	      ['John'],
+	      ['Joe'],
+	      ['Jake']
+	    ],
+	    labels: {
+	      style: {
+	        fontSize: '12px'
+	      }
+	    }
+	  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#eng_chart"), options);
+	  chart.render();
+
+
+	// 영어 성적 추이
+	  var options = {
+			  series: [{
+				  name: "홍길동",
+				  data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'line',
+				  zoom: {
+					  enabled: false
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  stroke: {
+				  curve: 'straight'
+			  },
+			  title: {
+				  text: '영어 성적 추이',
+				  align: 'left'
+			  },
+			  grid: {
+				  row: {
+					  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+					  opacity: 0.5
+				  },
+			  },
+			  xaxis: {
+				  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#eng_line_chart"), options);
+	  chart.render();
+
+	// 수학
+	  var options = {
+			  series: [{
+				  data: [21, 22, 10]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'bar',
+				  events: {
+					  click: function(chart, w, e) {
+						  // console.log(chart, w, e)
+					  }
+				  }
+			  },
+			  plotOptions: {
+				  bar: {
+					  columnWidth: '45%',
+					  distributed: true,
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  legend: {
+				  show: false
+			  },
+			  xaxis: {
+				  categories: [
+					  ['John'],
+					  ['Joe'],
+					  ['Jake']
+					  ],
+					  labels: {
+						  style: {
+							  fontSize: '12px'
+						  }
+					  }
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#math_chart"), options);
+	  chart.render();
+
+
+	// 수학 성적 추이
+	  var options = {
+			  series: [{
+				  name: "홍길동",
+				  data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'line',
+				  zoom: {
+					  enabled: false
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  stroke: {
+				  curve: 'straight'
+			  },
+			  title: {
+				  text: '수학 성적 추이',
+				  align: 'left'
+			  },
+			  grid: {
+				  row: {
+					  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+					  opacity: 0.5
+				  },
+			  },
+			  xaxis: {
+				  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#math_line_chart"), options);
+	  chart.render();
+
+	// 사회
+	  var options = {
+			  series: [{
+				  data: [21, 22, 10]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'bar',
+				  events: {
+					  click: function(chart, w, e) {
+						  // console.log(chart, w, e)
+					  }
+				  }
+			  },
+			  plotOptions: {
+				  bar: {
+					  columnWidth: '45%',
+					  distributed: true,
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  legend: {
+				  show: false
+			  },
+			  xaxis: {
+				  categories: [
+					  ['John'],
+					  ['Joe'],
+					  ['Jake']
+					  ],
+					  labels: {
+						  style: {
+							  fontSize: '12px'
+						  }
+					  }
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#social_chart"), options);
+	  chart.render();
+
+
+	// 사회 성적 추이
+	  var options = {
+			  series: [{
+				  name: "홍길동",
+				  data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'line',
+				  zoom: {
+					  enabled: false
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  stroke: {
+				  curve: 'straight'
+			  },
+			  title: {
+				  text: '사회 성적 추이',
+				  align: 'left'
+			  },
+			  grid: {
+				  row: {
+					  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+					  opacity: 0.5
+				  },
+			  },
+			  xaxis: {
+				  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#social_line_chart"), options);
+	  chart.render();
+
+	// 과학
+	  var options = {
+			  series: [{
+				  data: [21, 22, 10]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'bar',
+				  events: {
+					  click: function(chart, w, e) {
+						  // console.log(chart, w, e)
+					  }
+				  }
+			  },
+			  plotOptions: {
+				  bar: {
+					  columnWidth: '45%',
+					  distributed: true,
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  legend: {
+				  show: false
+			  },
+			  xaxis: {
+				  categories: [
+					  ['John'],
+					  ['Joe'],
+					  ['Jake']
+					  ],
+					  labels: {
+						  style: {
+							  fontSize: '12px'
+						  }
+					  }
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#science_chart"), options);
+	  chart.render();
+
+
+	// 과학 성적 추이
+	  var options = {
+			  series: [{
+				  name: "홍길동",
+				  data: [10, 41, 35, 51, 49, 62, 69, 91, 100]
+			  }],
+			  chart: {
+				  height: 250,
+				  width: 340,
+				  type: 'line',
+				  zoom: {
+					  enabled: false
+				  }
+			  },
+			  dataLabels: {
+				  enabled: false
+			  },
+			  stroke: {
+				  curve: 'straight'
+			  },
+			  title: {
+				  text: '과학 성적 추이',
+				  align: 'left'
+			  },
+			  grid: {
+				  row: {
+					  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+					  opacity: 0.5
+				  },
+			  },
+			  xaxis: {
+				  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+			  }
+	  };
+
+	  var chart = new ApexCharts(document.querySelector("#science_line_chart"), options);
+	  chart.render();
+	</script>
+</head>
+
+<style type="text/css">
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+	background: #564ab1;
+}
+
+thead{
+    color: #564ab1;
+    background-color: rgba(86,74,177,.1);
+    border-color: transparent;
+}
+</style>
+
+
+   <div class="card">
+     <div class="card-header justify-content-between d-flex align-items-center">
+         <h4 class="card-title">학교성적</h4>
+         <a href="<%=request.getContextPath() %>/ascore/detail.go" class="btn btn-sm btn-soft-secondary">학원성적 보기&nbsp;&nbsp;<i class="mdi mdi-arrow-right align-middle"></i></a>
+     </div><!-- end card header -->
+     <div class="card-body">
+
+
+      <div class="row">
+        <div class="col-5">
+           <h5 class="mb-0"><i class="mdi mdi-school me-1"></i> 희망 대학</h5>
+           <p style="font-size: 10px; color: gray;">* 버튼 클릭시 모의지원 가능</p>
+
+           <div class="mb-3 row">
+              <label for="example-text-input" class="col-md-2 col-form-label">1지망</label>
+              <div class="col-md-8">
+                  <input class="form-control" type="text" value="서울대학교" id="example-text-input" disabled>
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-soft-purple rounded-circle" data-bs-toggle="modal" data-bs-target=".analysis-modal"><i class="uil-angle-right-b font-size-13"></i></button>
+              </div>
+           </div>
+           <div class="mb-3 row">
+              <label for="example-text-input" class="col-md-2 col-form-label">2지망</label>
+              <div class="col-md-8">
+                  <input class="form-control" type="text" value="연세대학교" id="example-text-input" disabled>
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-soft-purple rounded-circle"><i class="uil-angle-right-b font-size-13"></i></button>
+              </div>
+           </div>
+           <div class="mb-3 row">
+              <label for="example-text-input" class="col-md-2 col-form-label">3지망</label>
+              <div class="col-md-8">
+                  <input class="form-control" type="text" value="고려대학교" id="example-text-input" disabled>
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-soft-purple rounded-circle"><i class="uil-angle-right-b font-size-13"></i></button>
+              </div>
+           </div>
+
+        </div>
+        <div class="col-7">
+           <h5 class="mb-0"><i class="uil uil-file-search-alt me-1"></i> 합격 예측</h5>
+           <p style="font-size: 10px; color: gray;">* 학교이름 클릭시 모의 지원 가능</p>
+
+        	<div class="table-responsive">
+              <table class="table mb-0" style="text-align: center;">
+                  <tbody>
+                      <tr>
+                          <th scope="row" style="width: 100px;"><span class="badge badge-outline-danger">상향<i class="uil uil-arrow-up-right"></i></span></th>
+                          <td>
+                          	<a href="#">충남대학교</a>
+                          	<a href="#">한밭대학교</a>
+                          	<a href="#">목원대학교</a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row"><span class="badge badge-outline-success">적정<i class="uil uil-arrow-right"></i></span></th>
+                          <td>
+                          	<a href="#">꽃동네대학교</a>
+                          	<a href="#">나사렛대학교</a>
+                          	<a href="#">백석대학교</a>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row"><span class="badge badge-outline-secondary">하향<i class="uil uil-arrow-down-right"></i></span></th>
+                          <td>
+                          	<a href="#">고구려대학교</a>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table><!-- end table -->
+          </div>
+
+
+
+        </div>
+      </div>
+
+       <!-- 모의지원 modal -->
+       <div class="modal fade analysis-modal" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+         <div class="modal-dialog modal-lg modal-dialog-centered">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="myLargeModalLabel"><i class="bx bxs-pie-chart-alt-2"></i>&nbsp;&nbsp;모의지원</h5>
+                     <div class="form-check form-switch form-switch-md mb-2">
+                        <input type="checkbox" id="switch" switch="none" checked/>
+                        <label for="switch" data-on-label="점수" data-off-label="등급" class="mb-0"></label>
+                    </div>
+                 </div>
+                 <div class="modal-body" style="text-align: center;">
+
+
+                   <div class="row" style="margin-bottom: 14px; padding: 0px 40px;" >
+                     <div class="col-5">
+                       	 홍길동 학생
+                     </div>
+                     <div class="col-2"></div>
+                     <div class="col-5">
+                                                서울대학교 합격자
+                     </div>
+                   </div>
+
+                   <div class="row" style="height: 250px; padding: 0px 40px;">
+                     <div class="col-5 rounded-3 shadow-sm ">
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-danger font-size-16">국어</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">90.6점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-warning font-size-16">영어</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">85.2점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-success font-size-16">수학</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">75점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-info font-size-16">사회</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">60.5점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-purple font-size-16">과학</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">80점</p>
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-2" style="height: 250px; text-align: center;">
+						<p style="height: 40px; margin-top: 13px;" class="text-primary"><i class="fas fa-check font-size-13"></i>&nbsp;&nbsp;적정</p>
+						<p style="height: 40px;" class="text-warning"><i class="fas fa-angle-up font-size-16"></i>&nbsp;&nbsp;주의</p>
+						<p style="height: 40px;" class="text-warning"><i class="fas fa-angle-up font-size-16"></i>&nbsp;&nbsp;주의</p>
+						<p style="height: 40px;" class="text-danger"><i class="fas fa-angle-double-up font-size-16"></i>&nbsp;&nbsp;경고</p>
+						<p style="height: 40px;" class="text-primary"><i class="fas fa-check font-size-13"></i>&nbsp;&nbsp;적정</p>
+
+                     </div>
+                     <div class="col-5 rounded-3 shadow-sm ">
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-danger font-size-16">국어</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">90점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-warning font-size-16">영어</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">90.2점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-success font-size-16">수학</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">85점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-info font-size-16">사회</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">90.5점</p>
+                         </div>
+                       </div>
+                       <div class="row mt-3">
+                         <div class="col-6">
+	                     	<span class="badge badge-soft-purple font-size-16">과학</span>
+                         </div>
+                         <div class="col-6">
+                         	<p style="text-align: left; font-weight: bold;">80점</p>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div style="margin-top: 40px; text-align : center!">
+                     <h4>이 대학교를 합격할 확률은 <span style="color: red; font-weight: bold; font-size: 1.2em;">64%</span>입니다.</h4>
+                   </div>
+
+
+                 </div>
+             </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+     </div>
+
+
+     <div class="row">
+       <div class="d-flex justify-content-between mb-3">
+          <select class="form-select" style="width : 300px;">
+              <option>2022학년도 1학기 중간고사</option>
+              <option>2022학년도 1학기 기말고사</option>
+              <option>2022학년도 2학기 중간고사</option>
+              <option>2022학년도 2학기 기말고사</option>
+          </select>
+
+          <button type="button" class="btn btn-soft-purple w-md" data-bs-toggle="modal" data-bs-target=".input-modal"><i class="uil uil-pen"></i>&nbsp;&nbsp;성적입력</button>
+          <!-- 성적 입력 modal-->
+          <div class="modal fade input-modal" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+	         <div class="modal-dialog modal-xl modal-dialog-centered">
+	             <div class="modal-content">
+	                 <div class="modal-header">
+	                     <h5 class="modal-title" id="myLargeModalLabel"><i class="uil uil-pen"></i>&nbsp;&nbsp;성적입력하기</h5>
+	                 </div>
+	                 <div class="modal-body" style="text-align: center;">
+						<select class="form-select">
+                          <option>2022학년도 1학기 중간고사</option>
+                          <option>2022학년도 1학기 기말고사</option>
+                          <option>2022학년도 2학기 중간고사</option>
+                        </select>
+                        <br>
+	                    <div class="table-responsive">
+                         <table class="table mb-0">
+
+                             <thead>
+                                 <tr>
+                                     <th>과목</th>
+                                     <th>만점</th>
+                                     <th>원점수</th>
+                                     <th>성취도</th>
+                                     <th>석차등급</th>
+                                     <th>석차/수강자수</th>
+                                     <th>과목평균</th>
+                                     <th></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>
+                                       <select class="form-select">
+				                          <option>국어</option>
+				                          <option>영어</option>
+				                          <option>수학</option>
+				                          <option>사회</option>
+				                          <option>과학</option>
+				                        </select>
+                                     </td>
+                                     <td>
+                                       <select class="form-select">
+				                         <option>100</option>
+				                         <option>50</option>
+				                       </select>
+                                     </td>
+                                     <td style="width: 150px;">
+                                       <input class="form-control" type="text" style="width: 100%;">
+                                     </td>
+                                     <td>
+                                       <select class="form-select">
+				                         <option>A</option>
+				                         <option>B</option>
+				                         <option>C</option>
+				                         <option>D</option>
+				                         <option>F</option>
+				                       </select>
+                                     </td>
+                                     <td>
+                                       <select class="form-select">
+				                         <option>1</option>
+				                         <option>2</option>
+				                         <option>3</option>
+				                         <option>4</option>
+				                         <option>5</option>
+				                         <option>6</option>
+				                         <option>7</option>
+				                         <option>8</option>
+				                         <option>9</option>
+				                       </select>
+                                     </td>
+                                     <td>
+                                       <div class="row">
+                                         <div class="col-5">
+	                                       <input type="text" class="form-control" style="width: 50px; margin-right: -30px;">
+                                         </div>
+                                         <div class="col-2" style="padding: 5px;">
+											/
+                                         </div>
+                                         <div class="col-5">
+	                                       <input type="text" class="form-control" style="width: 50px; margin-right: -30px;">
+                                         </div>
+                                       </div>
+                                     </td>
+                                     <td style="width: 150px;">
+                                       <input class="form-control" type="text" style="width: 100%; margin-right: -30px;">
+                                     </td>
+                                     <td style="width: 50px;">
+                                      <button class="btn btn-soft-danger"><i class="uil uil-trash-alt font-size-16"></i></button>
+                                     </td>
+                                 </tr>
+                             </tbody><!-- end tbody -->
+                         </table><!-- end table -->
+                         <button class="btn btn-soft-purple mt-4"><i class="uil uil-plus font-size-16"></i>&nbsp;&nbsp;추가하기</button>
+                        </div>
+
+	                 </div>
+	                 <div class="modal-footer">
+                         <button class="btn btn-soft-secondary mt-4">취소</button>
+                         <button class="btn btn-soft-primary mt-4">등록</button>
+	                 </div>
+	             </div><!-- /.modal-content -->
+	         </div><!-- /.modal-dialog -->
+	     </div>
+
+
+       </div>
+     </div>
+
+     <div class="table-responsive">
+        <table class="table table-hover mb-0" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>과목</th>
+                    <th>만점</th>
+                    <th>원점수</th>
+                    <th>성취도</th>
+                    <th>석차등급</th>
+                    <th>석차/수강자수</th>
+                    <th>과목평균</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>문학</td>
+                  <th>100.0</th>
+                  <th>87.5</th>
+                  <th>A</th>
+                  <th>2</th>
+                  <th>20/350</th>
+                  <th>70.0</th>
+              </tr>
+              <tr>
+                  <td>확률과 통계</td>
+                  <th>100.0</th>
+                  <th>70.0</th>
+                  <th>C</th>
+                  <th>3</th>
+                  <th>100/350</th>
+                  <th>73.0</th>
+              </tr>
+              <tr>
+                  <td>미적분Ⅰ</td>
+                  <th>100.0</th>
+                  <th>84.0</th>
+                  <th>B</th>
+                  <th>3</th>
+                  <th>80/350</th>
+                  <th>88.0</th>
+              </tr>
+              <tr>
+                  <td>실용영어Ⅱ </td>
+                  <th>100.0</th>
+                  <th>61.7</th>
+                  <th>D</th>
+                  <th>4</th>
+                  <th>240/350</th>
+                  <th>80.0</th>
+              </tr>
+              <tr>
+                  <td>지구과학Ⅱ</td>
+                  <th>50.0</th>
+                  <th>25.7</th>
+                  <th>B</th>
+                  <th>3</th>
+                  <th>190/350</th>
+                  <th>35.0</th>
+              </tr>
+
+
+            </tbody><!-- end tbody -->
+        </table><!-- end table -->
+      </div>
+
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="text-align: center;">
+            <a class="nav-link mb-2 active" id="kor-tab" data-bs-toggle="pill" href="#kor" role="tab" aria-controls="kor" aria-selected="true">국어</a>
+            <a class="nav-link mb-2" id="eng-tab" data-bs-toggle="pill" href="#eng" role="tab" aria-controls="eng" aria-selected="false">영어</a>
+            <a class="nav-link mb-2" id="math-tab" data-bs-toggle="pill" href="#math" role="tab" aria-controls="math" aria-selected="false">수학</a>
+            <a class="nav-link mb-2" id="social-tab" data-bs-toggle="pill" href="#social" role="tab" aria-controls="social" aria-selected="false">사회</a>
+            <a class="nav-link mb-2" id="science-tab" data-bs-toggle="pill" href="#science" role="tab" aria-controls="science" aria-selected="false">과학</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent" style="text-align: center;">
+                <div class="tab-pane fade show active" id="kor" role="tabpanel" aria-labelledby="kor-tab">
+                  <div class="row">
+                    <div class="col-4">원점수</div>
+                    <div class="col-4">등급</div>
+                    <div class="col-4">평균</div>
+                  </div>
+                  <div class="row" style="font-weight: bold;">
+                    <div class="col-4">85</div>
+                    <div class="col-4">3</div>
+                    <div class="col-4">70</div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-6">
+                      <div id="kor_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                    <div class="col-6">
+                      <div id="kor_line_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="tab-pane fade" id="eng" role="tabpanel" aria-labelledby="eng-tab">
+                   <div class="row">
+                    <div class="col-4">원점수</div>
+                    <div class="col-4">등급</div>
+                    <div class="col-4">평균</div>
+                  </div>
+                  <div class="row" style="font-weight: bold;">
+                    <div class="col-4">95</div>
+                    <div class="col-4">2</div>
+                    <div class="col-4">70</div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-6">
+                      <div id="eng_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                    <div class="col-6">
+                      <div id="eng_line_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="math" role="tabpanel" aria-labelledby="math-tab">
+                   <div class="row">
+                    <div class="col-4">원점수</div>
+                    <div class="col-4">등급</div>
+                    <div class="col-4">평균</div>
+                  </div>
+                  <div class="row" style="font-weight: bold;">
+                    <div class="col-4">85</div>
+                    <div class="col-4">3</div>
+                    <div class="col-4">70</div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-6">
+                      <div id="math_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                    <div class="col-6">
+                      <div id="math_line_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                    <div class="row">
+                    <div class="col-4">원점수</div>
+                    <div class="col-4">등급</div>
+                    <div class="col-4">평균</div>
+                  </div>
+                  <div class="row" style="font-weight: bold;">
+                    <div class="col-4">85</div>
+                    <div class="col-4">3</div>
+                    <div class="col-4">70</div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-6">
+                      <div id="social_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                    <div class="col-6">
+                      <div id="social_line_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="science" role="tabpanel" aria-labelledby="science-tab">
+                    <div class="row">
+                    <div class="col-4">원점수</div>
+                    <div class="col-4">등급</div>
+                    <div class="col-4">평균</div>
+                  </div>
+                  <div class="row" style="font-weight: bold;">
+                    <div class="col-4">85</div>
+                    <div class="col-4">3</div>
+                    <div class="col-4">70</div>
+                  </div>
+
+                  <div class="row mt-3">
+                    <div class="col-6">
+                      <div id="science_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                    <div class="col-6">
+                      <div id="science_line_chart" class="apex-chart pt-3" style="padding-left: 0px;"></div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+
+
+
+     </div><!-- end crad body -->
+ </div>
+
+
+

@@ -1,0 +1,16 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+
+public interface PopupService {
+
+	/**
+	 * 검색 가능한 팝업리스트
+	 * @param cri
+	 * @return
+	 */
+	public Map<String, Object> selectSearchPopupList(SearchCriteria cri) throws SQLException;
+}

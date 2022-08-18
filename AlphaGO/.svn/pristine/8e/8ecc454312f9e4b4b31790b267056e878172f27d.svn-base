@@ -1,0 +1,16 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/school")
+public class SchoolController {
+
+	@RequestMapping("/list")
+	public String schoolList() {
+		String url = "school/list";
+		
+		return url;
+	}
+}

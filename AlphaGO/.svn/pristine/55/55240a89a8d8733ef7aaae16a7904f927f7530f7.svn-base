@@ -1,0 +1,29 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.ClassReviewVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public class ReviewDAOImpl implements ReviewDAO {
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	@Override
+	public List<SubjectVO> selectSub() throws SQLException {
+		// TODO Auto-generated method stub
+		return session.selectList("Review-Mapper.selectSub");
+	}
+
+	@Override
+	public List<ClassReviewVO> selectReviewAll(int classCode) throws SQLException {
+		// TODO Auto-generated method stub
+		return session.selectList("Review-Mapper.reviewAll", classCode);
+	}
+
+}

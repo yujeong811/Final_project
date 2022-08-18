@@ -1,0 +1,204 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+</head>
+<body>
+
+	<!-- 	<section class=" content-header"> -->
+
+
+
+	<div class="card" style="height: 500px;">
+		<div class="card-header with-border">
+			<select class="form-control" style="width: 300px;">
+				<option value="밀크티">수1다지고두지고</option>
+				<option value="라떼">수2라면</option>
+				<option value="아아">고등수학1재미없음</option>
+			</select>
+
+
+		</div>
+		<div class="card-body" style="margin-top:18px;">
+			<div>
+				<table class="table table-bordered text-center" style="width: 100%;">
+					<tr style="font-size: 0.95em; background: #8BDDA8">
+						<th style="">날짜</th>
+						<th style="">범위</th>
+						<th style="">평균</th>
+					</tr>
+
+
+
+
+					<tr>
+
+						<td style="">22.04.02</td>
+						<td style="">고1수학 상 2~4</td>
+						<td style="">81.2</td>
+
+
+
+					</tr>
+					<tr>
+
+
+						<td style="">22.05.08</td>
+						<td style="">고1수학 상 4~5</td>
+						<td style="">88</td>
+
+
+					</tr>
+					<tr>
+
+
+						<td style="">22.06.21</td>
+						<td style="">고1수학 상 6~8</td>
+						<td style="">88</td>
+
+
+					</tr>
+					<tr>
+
+
+						<td style="">22.06.30</td>
+						<td style="">고1수학 상 4~5</td>
+						<td style="">75</td>
+
+
+					</tr>
+					<tr>
+
+
+						<td style="">22.07.03</td>
+						<td style="">고1수학 하 1~2</td>
+						<td style="">78</td>
+
+
+					</tr>
+
+				</table>
+			</div>
+		</div>
+		<div class="card-footer">
+			<nav aria-label="pds list Navigation">
+				<ul class="pagination justify-content-center m-0">
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
+
+
+
+	<!--해더 세션의 마무리 -->
+
+	<!--컨테이너 필드 마무리?-->
+	<!-- 	</section> -->
+	<!--해더 세션의 마무리 -->
+
+	<!--     강의의 최신시험 조회되는곳! -->
+
+
+
+	<!-- 	<section class="content"> -->
+
+	<div class="card" style="height: 500px;">
+		<div class="card-header with-border">
+			<label
+				style="margin-top: 10px; font-size: 1.2em; font-weight: 600; background: skyblue;">시험지보관함</label>
+			<button style="float: right;" class="btn btn-warning">생성하기</button>
+		</div>
+		<div class="card-body">
+			<table class="table table-bordered text-center" style="width: 100%;">
+				<tr style="font-size: 0.95em; background: #8BDDA8;">
+					<th style="width: 15%;">시험명</th>
+					<th style="width: 20%;">범위</th>
+					<th style="width: 25%;"></th>
+				</tr>
+
+
+
+
+				<tr>
+
+					<td style="width: 15%;">재미있는 수학1 시험</td>
+					<td style="width: 20%;">수1 2~4</td>
+					<td style="width: 25%;">
+						<button class="btn btn-success">보기</button>
+						<button class="btn btn-primary">출제하기</button>
+						<button class="btn btn-danger">pdf다운</button>
+					</td>
+
+
+
+				</tr>
+				<tr>
+
+
+					<td style="width: 9%;">수2 2차함수의 극한까지 활용한 문제</td>
+					<td style="width: 15%;">수2 2~4</td>
+					<td style="width: 30%; text-align: center;">
+						<button class="btn btn-success">보기</button>
+						<button class="btn btn-primary">출제하기</button>
+						<button class="btn btn-danger">pdf다운</button>
+					</td>
+
+
+				</tr>
+				<tr>
+
+
+					<td style="width: 9%;">수2 2차함수의 극한까지 활용한 문제</td>
+					<td style="width: 15%;">수2 2~4</td>
+					<td style="width: 30%; text-align: center;">
+						<button class="btn btn-success">보기</button>
+						<button class="btn btn-primary">출제하기</button>
+						<button class="btn btn-danger">pdf다운</button>
+					</td>
+
+
+				</tr>
+				<tr>
+
+
+					<td style="width: 9%;">수2 2차함수의 극한까지 활용한 문제</td>
+					<td style="width: 15%;">수2 2~4</td>
+					<td style="width: 30%; text-align: center;">
+						<button class="btn btn-success">보기</button>
+						<button class="btn btn-primary">출제하기</button>
+						<button class="btn btn-danger">pdf다운</button>
+					</td>
+
+
+				</tr>
+
+			</table>
+		</div>
+		<div class="card-footer">
+			<nav aria-label="pds list Navigation">
+				<ul class="pagination justify-content-center m-0">
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+	<!-- 	</section> -->
+
+
+
+
+
+
+
+
+</body>
+</html>

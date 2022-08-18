@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<head>
+<script
+	src="<%=request.getContextPath()%>/resources/assets/libs/dropzone/min/dropzone.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+window.onload=function(){
+	summernote_go($('#content'),'<%=request.getContextPath()%>');
+	}
+</script>
+</head>
+<body>
+	<div class="card">
+		<div class="card-body">
+			<h5 style="margin-bottom: 15px; font-weight: bold;">
+				<i class="uil-file-blank"
+					style="margin-right: 10px; font-size: 1.3em;"></i>${assign.title }
+			</h5>
+			<hr>
+			<p>${assign.content }</p>
+			<c:if test="${!empty assign.uploadpath }">
+				<div class="list-group-item py-3">
+					<div class="d-flex align-items-start">
+						<div class="flex-shrink-0 avatar-sm me-3">
+							<span
+								class="avatar-title bg-light text-primary rounded font-size-20">
+								<i class="uil uil-scenery"></i>
+							</span>
+						</div>
+						<div class="flex-grow-1 overflow-hidden">
+							<h5 class="font-size-13 text-truncate">
+								<a href="getFile.go?assignCode=${assign.assignCode}"
+									class="text-dark">${assign.filename }</a>
+							</h5>
+						</div>
+						<div class="flex-shrink-0 ms-2">
+							<ul class="list-inline mb-0">
+								<li class="list-inline-item"><a
+									href="getFile.go?assignCode=${assign.assignCode}"
+									class="text-muted font-size-20 px-2"> <i
+										class="uil uil-download-alt"></i>
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<div class="d-flex">
+				<h5 style="margin-bottom: 15px; font-weight: bold;"
+					class="flex-grow-1">
+					<i class="uil-file-alt"
+						style="margin-right: 10px; font-size: 1.3em;"></i>과제 제출
+				</h5>
+				<button type="button" class="btn btn-soft-secondary"
+					style="width: 90px; margin-right: 5px;" onclick="history.go(-1)">취소</button>
+				<button type="button" class="btn btn-soft-purple"
+					style="width: 90px;">제출하기</button>
+			</div>
+			<br>
+			<div id="content"></div>
+			<div>
+				<form action="#" class="dropzone">
+					<div class="fallback">
+						<input name="file" type="file" multiple="multiple">
+					</div>
+					<div class="dz-message needsclick">
+						<div class="mb-3">
+							<i class="display-4 text-muted uil uil-cloud-upload"></i>
+						</div>
+
+						<h5>파일을 업로드 해주세요</h5>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>

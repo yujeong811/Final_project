@@ -1,0 +1,309 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="pdsList" value="${dataMap.pdsList }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+
+<head>
+<style>
+table th, td {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+	<!-- Content Header (Page header) -->
+	<section class="content-header" style="">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-header with-border">
+
+							<div id="keyword" class="card-tools"
+								style="width: 450px; float: right;">
+								<div class="input-group">
+
+
+
+									<select class="form-select col-md-3" name="searchType"
+										id="searchType">
+										<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>전체</option>
+										<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>학생명</option>
+										<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>강의명</option>
+
+									</select> <input class="form-control" type="text" style="width: 130px;"
+										name="keyword" placeholder="검색어를 입력하세요."
+										value="${cri.keyword }" /> <span class="input-group-append">
+										<button class="btn btn-primary" style="float: right;"
+											type="button" id="searchBtn" data-card-widget="search"
+											onclick="list_go(1);">
+											<i class="fa fa-fw fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+							<table class="table table-bordered text-center"
+								style="width: 100%;">
+								<tr style="font-size: 0.95em;background:lightgray;">
+									<th style="width: 9%;">이름</th>
+									<th style="width: 15%;">학교</th>
+									<th style="width: 30%;">학년</th>
+									<th style="width: 10%;">전화번호</th>
+									<th style="width: 15%;">등록일</th>
+
+
+								</tr>
+
+								<td style="width: 9%;">이름</td>
+								<td style="width: 15%;">학교</td>
+								<td style="width: 30%;">학년</td>
+								<td style="width: 10%;">전화번호</td>
+								<td style="width: 15%;">등록일</td>
+
+
+								</tr>
+								</tr>
+
+								<td style="width: 9%;">이름</td>
+								<td style="width: 15%;">학교</td>
+								<td style="width: 30%;">학년</td>
+								<td style="width: 10%;">전화번호</td>
+								<td style="width: 15%;">등록일</td>
+
+
+								</tr>
+								</tr>
+
+								<td style="width: 9%;">이름</td>
+								<td style="width: 15%;">학교</td>
+								<td style="width: 30%;">학년</td>
+								<td style="width: 10%;">전화번호</td>
+								<td style="width: 15%;">등록일</td>
+
+
+								</tr>
+
+								<c:forEach items="${noticeList }" var="notice">
+									<tr style='font-size: 0.85em;'>
+										<td>1</td>
+										<td id="boardTitle"
+											style="text-align: left; max-width: 100px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+											<a
+											href="javascript:OpenWindow('detail.do?from=list&nno=${notice.nno }','상세보기',800,700);">
+												<span class="col-sm-12 ">탄방고 내년 2학기 중간고사</span>
+										</a>
+										</td>
+										<td><c:if test="${!empty nno.attachList }">
+												<i class="nav-icon fas fa-file"></i>
+											</c:if> <c:if test="${empty nno.attachList }">
+												<span>-</span>
+											</c:if></td>
+										<td>이수민</td>
+										<td>${notice.favorite}</td>
+										<td><fmt:formatDate value="2022-06-03"
+												pattern="yyyy-MM-dd" /></td>
+										<td><span class="badge bg-red">0</span></td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+
+						<div class="card-footer">
+							<nav aria-label="pds list Navigation">
+								<ul class="pagination justify-content-center m-0">
+									<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+								</ul>
+						</div>
+						<!-- 						학생리스트 끝 -->
+
+						<div class="card">
+
+							<div class="card-body">
+								<table class="table table-bordered text-center   ">
+
+
+
+									<tr class="table-white">
+										<th style="width: 15%" rowspan='4'>
+
+											<div>
+												<img src="assets/images/users/avatar-10.jpg" alt=""
+													class="rounded-circle avatar-xl">
+												<p class="mt-2 mb-lg-0"></p>
+											</div>
+
+										</th>
+										<th style="width: 19%; font-size: 0.7em;"
+											class="table-primary">아이디</th>
+										<th style="width: 8%"><input type="text" " value="rsz5"
+											readonly="readonly"
+											style="width: 40%; margin-right: 5px; text-align: center;">
+										</th>
+
+
+										<th style="width: 15%; font-size: 0.7em;"
+											class="table-primary">학교</th>
+										<th style="width: 8%"><input type="text" value="대덕고등학교"
+											readonly="readonly" style="text-align: center;"></th>
+										<th style="width: 15%; font-size: 0.7em;"
+											class="table-primary">등록일</th>
+										<th style="width: 8%"><input type="text"
+											value="2022-07-30" readonly="readonly"
+											style="text-align: center;"></th>
+										<th rowspan="4">
+
+											<table class="table table-bordered text-center"
+												style="width: 100%; margin-top:70px;">
+												<tr style="font-size: 0.6em;">
+													<th style="">날짜</th>
+													<th style="">출석</th>
+
+												</tr>
+
+
+
+
+												<tr>
+
+													<td style="">07-05</td>
+													<td style="">결석</td>
+
+
+
+
+												</tr>
+
+
+
+											</table>
+
+
+
+
+										</th>
+									</tr>
+									<tr class="table-white">
+
+										<th class="table-primary" style="font-size: 0.7em;">이름</th>
+										<th><input type="text" value="이수민" readonly="readonly"
+											style="text-align: center;"></th>
+										<th class="table-primary" style="font-size: 0.7em;">학년</th>
+										<th><input type="text" value="2" readonly="readonly"
+											style="text-align: center;"></th>
+										<th style="font-size: 0.7em; text-align: center;" colspan="2"
+											rowspan="3">
+
+											<table class="table table-bordered text-center"
+												style="width: 100%;">
+												<tr style="font-size: 0.6em;">
+
+
+													<th style=""></th>
+													<th style="">시험명</th>
+													<th style="">성취도</th>
+
+												</tr>
+
+
+
+
+												<tr>
+													<td style="">학교</td>
+													<td style="">1-1중간</td>
+													<td style="">중</td>
+
+
+
+
+
+												</tr>
+
+
+												<tr>
+													<td style="">학원</td>
+													<td style="">수1뽀개버리기</td>
+													<td style="">중</td>
+
+
+
+
+
+												</tr>
+											</table>
+											<div style="text-align: center;">성적이 반반하고 출석률은 나쁘지않네요</div>
+
+
+
+										</th>
+
+
+									</tr>
+									<tr class="table-white">
+										<th class="table-primary" style="font-size: 0.7em;">전화번호</th>
+										<th><input type="text" value="010-1234-5678"
+											readonly="readonly" style="text-align: center;"></th>
+										<th class="table-primary" style="font-size: 0.7em;">부모이름</th>
+										<th><input type="text" value="김사랑" readonly="readonly"
+											style="text-align: center;"></th>
+
+
+									</tr>
+
+									<tr class="table-white">
+										<th class="table-primary" style="font-size: 0.7em;">생년월일</th>
+										<th><input type="text" value="20020405"
+											readonly="readonly" style="text-align: center;"></th>
+										<th class="table-primary" style="font-size: 0.7em;">부모번호</th>
+										<th><input type="text" value="010-5555-4343"
+											readonly="readonly" style="text-align: center;"></th>
+
+
+									</tr>
+
+
+
+
+								</table>
+							</div>
+
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+	<c:if test="${from eq 'regist' }">
+		<script>
+		alert("등록되었습니다.");
+		window.close();
+		window.opener.location.reload();			
+	</script>
+	</c:if>
+
+
+</body>
+
+
+
+
+
+

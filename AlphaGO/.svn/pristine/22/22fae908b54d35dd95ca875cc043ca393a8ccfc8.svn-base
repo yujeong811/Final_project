@@ -1,0 +1,280 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="pdsList" value="${dataMap.pdsList }" />
+<c:set var="cri" value="${pageMaker.cri }" />
+
+<head>
+<style>
+table th, td {
+	text-align: center;
+}
+</style>
+
+<script src="<%=request.getContextPath() %>/resources/js/sm_chart.js"></script>
+</head>
+
+<body>
+
+	<!-- Content Header (Page header) -->
+
+
+	<!-- Main content -->
+
+	<div class="row">
+		<div class="card">
+
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 style="margin-top: 20px;">출결 조회</h1>
+						</div>
+
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right"
+								style="float: right; margin-top: 20px;">
+								<li class="breadcrumb-item"><a href="studentlist.go"><i
+										class="fa fa-dashboard"></i>강사 관리</a></li>
+								<li class="breadcrumb-item active">출결 조회</li>
+							</ol>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			<div class="card-header with-border">
+				<span class="badge badge-soft-primary" style="font-size: 1.2em;">출결상태</span>
+
+				<div id="keyword" class="card-tools"
+					style="width: 450px; float: right;">
+					<div class="input-group">
+
+						<select class="form-control col-md-3" name="perPageNum"
+							id="perPageNum">
+							<option value="10" ${cri.perPageNum==10 ? 'selected':'' }>정렬개수</option>
+							<option value="20" ${cri.perPageNum==20 ? 'selected':'' }>20개씩</option>
+							<option value="30" ${cri.perPageNum==30 ? 'selected':'' }>30개씩</option>
+							<option value="50" ${cri.perPageNum==50 ? 'selected':'' }>50개씩</option>
+
+						</select> <select class="form-control col-md-3" name="searchType"
+							id="searchType">
+							<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>전
+								체</option>
+							<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>이름</option>
+							<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>전화번호</option>
+
+
+						</select> <input class="form-control" type="text" style="width: 130px;"
+							name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }" />
+						<span class="input-group-append">
+							<button class="btn btn-soft-primary" style="float: right;"
+								type="button" id="searchBtn" data-card-widget="search"
+								onclick="list_go(1);">
+								<i class="fa fa-fw fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="card-body" style="padding:0px;">
+				<table class="table table-bordered text-center  table-hover ">
+
+					<thead>
+						<tr
+							style="font-size: 0.95em; background-color: #86a8d9; color: white;">
+							<th style="width: 3%;">이름</th>
+							<th style="width: 3%;">전화번호</th>
+							<th style="width: 3%;">출근시간</th>
+							<th style="width: 3%;">퇴근시간</th>
+							<th style="width: 5%;">출근/결근</th>
+
+						</tr>
+					</thead>
+					<%-- <c:forEach items="${pdsList }" var="pds">
+						<tr style='font-size:0.85em;'>
+							<td>1</td>
+							<td id="boardTitle" style="text-align:left;max-width: 100px; overflow: hidden;
+										 white-space: nowrap; text-overflow: ellipsis;">
+								<a href="javascript:OpenWindow('detail.do?from=list&pno=${pds.pno }','상세보기',800,700);">
+									<span class="col-sm-12 ">탄방고 내년 2학기 중간고사</span>
+								</a>
+							</td>
+							<td>
+								<c:if test="${!empty pds.attachList }">
+									<i class="nav-icon fas fa-file"></i>
+								</c:if>
+								<c:if test="${empty pds.attachList }">
+									<span>-</span>
+								</c:if>
+							</td>
+							<td>김형돈</td>
+							<td>${pds.favorite}</td>
+							<td>
+								<fmt:formatDate value="2022-06-03" pattern="yyyy-MM-dd"/>
+							</td>
+							<td><span class="badge bg-red">0</span></td>
+						</tr>
+					</c:forEach>	 --%>
+
+					<tr class="table-white">
+						<th>김형돈</th>
+						<th>010-2131-2132</th>
+						<th>09:00</th>
+						<th>18:00</th>
+						<th><button type="button" class="btn btn-soft-primary">출근</button></th>
+
+					</tr>
+					<tr class="table-white">
+						<th>강동주</th>
+						<th>010-2131-2132</th>
+						<th>10:00</th>
+						<th>19:00</th>
+						<th><button type="button" class="btn btn-soft-danger">결근</button></th>
+
+					</tr>
+					<tr class="table-white">
+						<th>이종민</th>
+						<th>010-2133-2132</th>
+						<th>09:00</th>
+						<th>17:00</th>
+						<th><button type="button" class="btn btn-soft-primary">출근</button></th>
+
+					</tr>
+
+				</table>
+
+
+			</div>
+			<div class="card-footer">
+				<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</ul>
+				</nav>
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div id="chart_donut" class="col-md-4"
+						style="width: 300px; height: 150px; float: left;"></div>
+					<div class="col-md-8" style="float: right;">
+						<span class="badge badge-soft-primary"
+							style="font-size: 1.2em; float: left;">출결상세</span>
+						<table class="table table-bordered text-center  table-hover ">
+							<thead>
+								<tr
+									style="font-size: 0.95em; background-color: #86a8d9; color: white;">
+									<th style="width: 5%;">출석일</th>
+									<th style="width: 5%;">결근일</th>
+									<th style="width: 5%;">지각일</th>
+									<th style="width: 5%;">조퇴일</th>
+									<th style="width: 5%;">외출일</th>
+									<th style="width: 5%;">출석율</th>
+
+								</tr>
+							</thead>
+
+							<tr class="table-white">
+								<th>117일</th>
+								<th>3일</th>
+								<th>1일</th>
+								<th>1일</th>
+								<th>1일</th>
+								<th>98.2%</th>
+
+
+							</tr>
+
+
+						</table>
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-md-12">
+
+				<span class="badge badge-soft-primary" style="font-size: 1.2em;">월별
+					출결</span> 
+					
+					<input class="form-control"  style="float: right; margin-left: 5px; width:20%;"type="month" value="2022-07" id="example-month-input">
+				<table class="table table-bordered text-center  table-hover ">
+					<thead>
+						<tr
+							style="font-size: 0.95em; background-color: #86a8d9; color: white;">
+
+							<th style="width: 5%;">일자</th>
+							<th style="width: 5%;">출근시간</th>
+							<th style="width: 5%;">퇴근시간</th>
+							<th style="width: 5%;">출결상태</th>
+							<th style="width: 8%;">출결</th>
+							<th style="width: 5%;">사유</th>
+
+
+						</tr>
+					</thead>
+
+
+					<tr class="table-white">
+						<th>2022-06-01</th>
+						<th>09:00</th>
+						<th>18:00</th>
+						<th>출근</th>
+						<th><button type="button" class="btn btn-soft-primary"
+								style="margin-right: 7px;">출근</button>
+							<button type="button" class="btn btn-soft-danger">결근</button></th>
+						<th><input type="text" placeholder="사유를 입력하세요"></th>
+					</tr>
+					<tr class="table-white">
+						<th>2022-06-02</th>
+						<th>09:00</th>
+						<th>18:00</th>
+						<th>출근</th>
+						<th><button type="button" class="btn btn-soft-primary"
+								style="margin-right: 7px;">출근</button>
+							<button type="button" class="btn btn-soft-danger">결근</button></th>
+						<th><input type="text" placeholder="사유를 입력하세요"></th>
+
+					</tr>
+					<tr class="table-white">
+						<th>2022-06-03</th>
+						<th>09:00</th>
+						<th>18:00</th>
+						<th>출근</th>
+						<th><button type="button" class="btn btn-soft-primary"
+								style="margin-right: 7px;">출근</button>
+							<button type="button" class="btn btn-soft-danger">결근</button></th>
+						<th><input type="text" placeholder="사유를 입력하세요"></th>
+					</tr>
+
+				</table>
+
+			</div>
+			<div class="card-footer">
+				<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</ul>
+				</nav>
+			</div>
+
+
+		</div>
+		
+		
+		
+	
+		
+
+		<!-- Main content -->
+</body>

@@ -1,0 +1,121 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public class TeacherMasDAOImpl implements TeacherMasDAO{
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	@Override
+	public List<TeachermasVO> selectTeacherList() throws Exception {
+		List<TeachermasVO> teacherList=null;
+		
+		try {
+			teacherList=session.selectList("TeacherMas-Mapper.selectTeacherList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return teacherList;
+	}
+
+	@Override
+	public List<TeachermasVO> selectTeacherList (Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<TeachermasVO> teacherList
+		= session.selectList("TeacherMas-Mapper.selectTeacherList",null,rowBounds);
+		
+		return teacherList;
+	}
+
+	@Override
+	public int selectTeacherListCount(SearchCriteria cri) throws Exception {
+		return session.selectOne("TeacherMas-Mapper.selectSearchTeacherListCount",cri);
+	}
+
+	@Override
+	public int selectSearchTeacherListCount(SearchCriteria cri) throws Exception {
+		int totalCount = session.selectOne("TeacherMas-Mapper.selectTeacherListCount", cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<TeachermasVO> selectSearchTeacherList(SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		List<TeachermasVO> teacherList = session.selectList("TeacherMas-Mapper.selectSearchTeacherList", cri, rowBounds);
+
+		return teacherList;
+	}
+
+	@Override
+	public void insertTeacher(TeachermasVO teamas) throws SQLException {
+		session.update("TeacherMas-Mapper.insertTeacher",teamas);
+	
+	}
+//
+//	@Override
+//	public StudentVO selectStudentById(String id) throws SQLException {
+//		StudentVO student = session.selectOne("Student-Mapper.selectStudentById",id);
+//		return student;
+//	}
+//
+//	@Override
+//	public StudentVO selectStudentByPicture(String picture) throws SQLException {
+//		StudentVO student = null;
+//		student = session.selectOne("Student-Mapper.selectStudentByPicture", picture);
+//		return student;
+//	}
+//
+	@Override
+	public void deleteTeacher(String id) throws SQLException {
+		session.update("TeacherMas-Mapper.deleteTeacher", id);
+	}
+
+	@Override
+	public TeachermasVO selectTeacherById(String id) throws SQLException {
+		TeachermasVO teamas=session.selectOne("TeacherMas-Mapper.selectTeacherById",id);
+		return teamas;
+	}
+
+	@Override
+	public String selectTeacherSequenceNextValue() throws SQLException {
+		String id=session.selectOne("TeacherMas-Mapper.selectTeacherSequenceNextValue");
+		return id;
+	}
+
+	@Override
+	public TeachermasVO selectScoreBySubjectName(String subjectName) throws SQLException {
+		TeachermasVO teamas = session.selectOne("TeacherMas-Mapper.selectScoreBySubjectName",subjectName);
+		return teamas;
+	}
+
+	@Override
+	public TeachermasVO selectTeacherByPicture(String picture) throws SQLException {
+		TeachermasVO teamas = null;
+		teamas= session.selectOne("TeacherMas-Mapper.selectTeacherByPicture", picture);
+		return teamas;
+	}
+
+	
+
+}

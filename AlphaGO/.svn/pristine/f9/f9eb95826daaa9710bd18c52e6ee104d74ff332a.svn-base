@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Review-Mapper">
+	<select id="reviewAll" resultType="classreview">
+		select a.*, b.class_name, c.name, d.subject_name
+		from class_review a, class b, member c, subject d, subdetail e
+		where a.class_code = b.class_code
+		and d.subject_code = e.subject_code
+		and e.subdetail_code = b.subdetail_code
+		and b.id = c.id
+	</select>
+
+	<select id="reviewAllCount" resultType="int">
+		select count(*)
+		from class_review a, class b, member c, subject d, subdetail e
+		where a.class_code = b.class_code
+		and d.subject_code = e.subject_code
+		and e.subdetail_code = b.subdetail_code
+		and b.id = c.id
+	</select>
+
+	<select id="classList" resultType="class" parameterType="String">
+		(select * from class)
+        minus
+        (select a.*
+        from class a, class_ing b
+        where a.class_code = b.class_code
+        and b.id = #{id})
+	</select>
+
+	<select id="reviewAvg" resultType="double" parameterType="String">
+		 select
+         avg(c.star_score) as avg5
+         from
+         class a,
+         member b,
+         class_review c
+         where c.class_code=a.class_code
+         and b.id=c.id
+         and a.class_name=#{className}
+	</select>
+
+	<select id="reviewClass" resultType="classreview" parameterType="String">
+		select a.*, b.class_name, c.name, d.subject_name
+		from class_review a, class b, member c, subject d, subdetail e
+		where a.class_code = b.class_code
+		and d.subject_code = e.subject_code
+		and e.subdetail_code = b.subdetail_code
+		and b.id = c.id
+        and b.class_name = #{className}
+	</select>
+</mapper>

@@ -1,0 +1,147 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.dao.AssignDAO;
+import kr.or.ddit.dto.AssignAttachVO;
+import kr.or.ddit.dto.AssignNameVO;
+import kr.or.ddit.dto.AssignVO;
+import kr.or.ddit.dto.AttachVO;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.MemberVO;
+
+public class AssignServiceImpl implements AssignService {
+
+	private AssignDAO assignDAO;
+	public void setAssignDAO(AssignDAO assignDAO) {
+		this.assignDAO = assignDAO;
+	}
+	
+	@Override
+	public List<AssignNameVO> selectAssignName(Map<String, Object> map) throws SQLException {
+		List<AssignNameVO> assignNameList = assignDAO.selectAssignName(map);
+		
+		return assignNameList;
+	}
+
+	@Override
+	public AssignVO selectAssignDetail(int assignCode) throws SQLException {
+		AssignVO assignVO = assignDAO.selectAssignDetail(assignCode);
+		
+		return assignVO;
+	}
+
+	@Override
+	public AssignAttachVO selectAssignAttach(Map<String, Object> map) throws SQLException {
+		AssignAttachVO assignVO = assignDAO.selectAssignAttach(map);
+		
+		return assignVO;
+	}
+
+	@Override
+	public void insertAssignAttach(AssignAttachVO attachVO) throws SQLException {
+		assignDAO.insertAssignAttach(attachVO);		
+	}
+
+	@Override
+	public void updateAssignAttach(AssignAttachVO attachVO) throws SQLException {
+		assignDAO.updateAssignAttach(attachVO);	
+	}
+
+	@Override
+	public void deleteAssignAttach(Map<String, Object> map) throws SQLException {
+		assignDAO.deleteAssignAttach(map);
+		
+	}
+
+	@Override
+	public List<AssignNameVO> getAssign(String id) throws SQLException {
+		List<AssignNameVO> assignList = assignDAO.getAssign(id);
+		
+		return assignList;
+	}
+
+	@Override
+	public Map<String,Object> selectAssignForTeacher(String id) throws SQLException {
+		List<AssignVO> assignList = assignDAO.selectAssignForTeacher(id);
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("assignList", assignList);
+		
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> selectStudentAndStatusList(Map<String, Object> map) throws SQLException {
+		List<AssignAttachVO> assignAttachList = assignDAO.selectStudentAndStatusList(map);
+		//System.out.println(assignAttachList);
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("assignAttachList", assignAttachList);
+		
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> selectRegisteredStudentAtClass(Map<String, Object> map) throws SQLException {
+		List<MemberVO> studentList = assignDAO.selectRegisteredStudentAtClass(map);
+		List<AssignAttachVO> submittingAssignStudentList = assignDAO.selectAssignAttachList(map);
+
+		for(int i=0; i<studentList.size(); i++) {
+			for(int j=0; j<submittingAssignStudentList.size(); j++) {
+				if(studentList.get(i).getId().equals(submittingAssignStudentList.get(j).getId())) {
+					studentList.get(i).setStatus("제출완료");
+				}
+			}
+		}
+		
+//		for(int i=0; i<studentList.size(); i++) {
+//			if(studentList.get(i).getStatus()==null||studentList.get(i).getStatus().equals("")) {
+//				studentList.get(i).setStatus("미제출");
+//			}
+//		}
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("studentList", studentList);
+		dataMap.put("submittingAssignStudentList", submittingAssignStudentList);
+		
+		return dataMap;
+	}
+
+	@Override
+	public Map<String, Object> selectClassListNotFinished(String id) throws SQLException {
+		
+		List<ClassVO> classVOList = assignDAO.selectClassListNotFinished(id);
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("classVOList", classVOList);
+		
+		return dataMap;
+	}
+
+	@Override
+	public void insertAssign(AssignVO assign) throws SQLException {
+		int assignCode = assignDAO.selectAssignSeqNextValue();
+		assign.setAssignCode(assignCode);
+		assignDAO.insertAssign(assign);
+	}
+
+	@Override
+	public void deleteFile(int assignCode) throws SQLException {
+		assignDAO.deleteFile(assignCode);
+	}
+
+	@Override
+	public void deleteAssign(int assignCode) throws SQLException {
+		assignDAO.deleteAssign(assignCode);
+	}
+
+	@Override
+	public void updateAssign(AssignVO assign) throws SQLException {
+		assignDAO.updateAssign(assign);
+	}
+
+}

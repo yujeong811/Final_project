@@ -1,0 +1,23 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import kr.or.ddit.dao.AssignDAO;
+import kr.or.ddit.dao.ReviewDAO;
+import kr.or.ddit.dto.SubjectVO;
+
+public class ReviewServiceImpl implements ReviewService {
+
+	private ReviewDAO reviewDAO;
+	public void setReviewDAO(ReviewDAO reviewDAO) {
+		this.reviewDAO = reviewDAO;
+	}
+	
+	@Override
+	public List<SubjectVO> selectSub() throws SQLException {
+		// TODO Auto-generated method stub
+		return reviewDAO.selectSub();
+	}
+
+}

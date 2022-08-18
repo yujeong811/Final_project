@@ -1,0 +1,37 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.or.ddit.dto.SchoolScoreVO;
+
+public class ScoreDAOImpl implements ScoreDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+
+	@Override
+	public List<SchoolScoreVO> selectSchoolScoreListByTestName(SchoolScoreVO score) throws SQLException {
+		return session.selectList("Score-Mapper.selectSchoolScoreListByTestName", score);
+	}
+
+	@Override
+	public void deleteScoreData(int sscode) throws SQLException {
+		session.update("Score-Mapper.deleteScoreData", sscode);
+	}
+
+	@Override
+	public void insertScore(SchoolScoreVO score) throws SQLException {
+		session.update("Score-Mapper.insertScore", score);
+	}
+
+	@Override
+	public int selectNextSeq() throws SQLException {
+		return session.selectOne("Score-Mapper.selectNextSeq");
+	}
+
+}

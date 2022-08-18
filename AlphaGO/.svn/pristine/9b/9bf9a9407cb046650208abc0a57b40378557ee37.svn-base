@@ -1,0 +1,69 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.SubjectVO;
+
+public interface ClassDAO {
+
+	/**
+	 * 전체 수업 리스트 
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassVO> getAllClass(Map<String, Object> dataParam) throws SQLException;
+	
+	/**
+	 * 수업 리스트 개수
+	 * @return
+	 * @throws SQLException
+	 */
+	public int selectSearchClassListCount(SearchCriteria cri) throws SQLException;
+
+	/**
+	 * 필터를 거친 리스트
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassVO> selectSearchClassList(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 수업 상세 정보
+	 * @param class_code
+	 * @return
+	 * @throws SQLException
+	 */
+	public ClassVO getClassDetail(int class_code) throws SQLException;
+	
+	/**
+	 * 과목 상세 리스트
+	 * @param subcode
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<SubjectVO> getSubDetail(int subcode) throws SQLException;
+	/**
+	 * 수업 기본키 시퀀스 가져오기
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getClassCode() throws SQLException;
+	/**
+	 * 수업개설
+	 * @throws SQLException
+	 */
+	public void registClass(ClassVO classVO) throws SQLException;
+	
+	/**
+	 * 수업 삭제
+	 * @param classVO
+	 * @throws SQLException
+	 */
+	public void removeClass(ClassVO classVO) throws SQLException;
+	
+}

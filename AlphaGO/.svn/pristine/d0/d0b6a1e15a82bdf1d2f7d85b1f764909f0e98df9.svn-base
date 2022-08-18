@@ -1,0 +1,148 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-sm-12">
+		
+			<div class="card">
+				<div class="car-header">
+				<button type="button" class="btn btn-warning btn-sm"
+						style="float: right; margin-right: 20px;">지문+</button>
+						<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 20px;">일반+</button>
+				</div>
+				<div class="card-body">
+			<div class="row">
+			 <div class="col-sm-6">
+			 <div class="card">
+			  <div class="card-header">
+							<div style="text-aling:center;">
+						 <label style="background:yellow;" >문항코드:123</label>
+						 <label style="background:lightgreen;">난이도:중</label>
+						  <label style="background:lightgray;" >유형:계산</label>
+					
+						<button type="button" class="btn btn-danger btn-sm"
+						style="float: right;">삭제하기</button>
+						<button type="button" class="btn btn-success btn-sm"
+						style="float: right; ">수정하기</button>
+						  </div>
+						 <div style="overflow:auto;height:100px;border:1px solid black;">
+						 이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제이것은 문제라오문제문제
+						 </div>
+						 </div>
+						 
+						 <div class="card-body">
+						 <div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						 <div style="height:35px;pont-size:0.4em overflow: auto;background:red;color:white;">1.문제가문제다</div>
+						   <div style="height:35px;pont-size:0.4em overflow: auto;">1.문제가문제다</div>
+						
+						 </div>
+						 
+						 </div>
+			 </div>
+			  <div class="card">
+			  
+						 
+						 <div class="card-body" style="height:200px;">
+						 <div style="text-align:center;">
+						답안이 무엇이게 잘 알아 맞춰보세요 ㅎㅎㅎㅎ
+						
+						 </div>
+						 
+						 </div>
+			 </div>
+			 </div>
+			  <div class="col-sm-6">
+			  <div class="card"style="height:780px;">
+			  	<div class="card-body"style="height:740px;">
+						<div class="card"style="height:740px;">
+							<div class="card-body" style="overflow:auto;">
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							호호롤ㅇ로이롱링뢍랗아히<br>
+							</div>
+						</div>
+						
+					</div>
+					</div>
+			  
+			 </div>
+			</div>
+			
+			</div>
+			
+			
+			<nav aria-label="pds list Navigation">
+					<ul class="pagination justify-content-center m-0">
+						<%@ include file="/WEB-INF/views/common/pagination.jsp" %>	
+					</ul>
+				</nav>
+			
+			
+			</div>	<!-- 		카드닫히기 -->
+		</div>	<!-- 		col닫히기 -->
+	
+
+	</div>	<!-- 		row닫히기 -->
+</body>
+</html>

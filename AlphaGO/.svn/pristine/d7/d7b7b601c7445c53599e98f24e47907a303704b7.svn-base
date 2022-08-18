@@ -1,0 +1,155 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-11" style="margin-bottom: 10px;">
+  <span style="margin-top:10px;float: left;height:38.84px;font-size:23px; " class="badge bg-success">수학</span>
+					<select class="form-select" style="width: 150px; float: right;">
+
+						<option>추론</option>
+						<option>문제해결</option>
+						<option>실생활응용</option>
+					</select> <select class="form-select" style="width: 100px; float: right;">
+
+						<option>상</option>
+						<option>중</option>
+						<option>하</option>
+					</select> <select class="form-select" style="width: 120px; float: right;"
+						onchange="if(this.value) location.href=(this.value);">
+						<option value="#" selected="selected">객관식</option>
+						<option value="problemcreateJ.go">주관식</option>
+					</select> <select class="form-select" style="width: 180px; float: right;"
+						onchange="if(this.value) location.href=(this.value);">
+						<option value="#" selected="selected">과목을 선택하시오</option>
+						<option value="#">1단원</option>
+						<option value="#">2단원</option>
+						<option value="#">3단원</option>
+						<option value="#">4단원</option>
+					</select> <select class="form-select" style="width: 140px; float: right;">
+						<option value="#">수1</option>
+						<option value="#">수2</option>
+						<option value="#">고등수학1</option>
+						<option value="#">고등수학2</option>
+					</select>
+				</div>
+				<div class="col-sm-1">
+					
+					<button type="button" class="btn btn-primary "
+						style="float: right; margin-right: 10px; magin-left: 10px;height:38.84;">등록</button>
+					<button type="button" class="btn btn-purple "
+						style="float: right; margin-right: 10px; magin-left: 10px;height:38.84;">추가</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group" style="overflow: auto;">
+
+						<textarea class="form-control" name="content" id="content"
+							rows="34" placeholder="	 작성해 주세요"></textarea>
+					</div>
+
+				</div>
+
+
+				<div class="col-sm-8">
+					<div class="row"
+						style="border: 3px solid lightgray; height: 750px; padding-top: 10px;">
+						<div class="col-sm-6">
+							<div class="card" style="height: 650px;">
+								<div class="card-header">
+									<div class="form-group">
+
+										<textarea class="form-control" name="content" id="content"
+											rows="15" placeholder="문제를 작성해 주세요"></textarea>
+									</div>
+
+
+								</div>
+								<div class="card-body" style="overflow: auto;">
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 55px;">
+
+											<input type="radio" name="chk_info" value="1"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">1.</label>
+											<textarea rows="2" cols="25"style="width:90%;"></textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 55px;">
+											<input type="radio" name="chk_info" value="2"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">2.</label>
+											<textarea rows="2" cols="25"style="width:90%;"></textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 55px;">
+											<input type="radio" name="chk_info" value="3"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">3.</label>
+											<textarea rows="2" cols="25"style="width:90%;"></textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 55px;">
+											<input type="radio" name="chk_info" value="4"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">4.</label>
+											<textarea rows="2" cols="25"style="width:90%;"></textarea>
+										</div>
+									</div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-12" style="overflow: auto; height: 55px;">
+											<input type="radio" name="chk_info" value="5"
+												style="float: left; margin-top: 6px; margin-right: 3px;">
+											<label
+												style="width: 20px; float: left; font-size: 1.1em; font-weight: 800;">5.</label>
+											<textarea rows="2" cols="25"style="width:90%;"></textarea>
+										</div>
+									</div>
+
+
+
+								</div>
+							</div>
+
+						</div>
+					<div class="col-sm-6">
+									<div class="card" style="height: 650px;padding-left:50px;">
+									<span style="margin:15px auto;float: left;height:40px;font-size:25px;width:100px;" class="badge bg-warning">해설</span>	
+		<textarea rows="33" cols="50" style="font-size: 0.8em;width:94%;height:86%;" placeholder="해설을 작성해주세요."></textarea>								
+										
+									</div>
+								</div>
+						<nav aria-label="pds list Navigation">
+							<ul class="pagination justify-content-center m-0">
+								<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+							</ul>
+						</nav>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

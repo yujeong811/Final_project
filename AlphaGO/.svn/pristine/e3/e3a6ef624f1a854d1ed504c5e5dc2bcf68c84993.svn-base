@@ -1,0 +1,252 @@
+//------------------------원생 학습계획표 차트--------------------- 
+     var options = {
+          series: [{
+          name: '평균점수',
+          data: [44, 55, 41, 67, 22]
+        }],
+          annotations: {
+          points: [{
+            x: '사회',
+            seriesIndex: 0,
+            label: {
+              borderColor: '#775DD0',
+              offsetY: 0,
+              style: {
+                color: '#fff',
+                background: '#f2b6ed',
+              },
+              text: '사회 is good',
+            }
+          }]
+        },
+        chart: {
+          width: '100%',
+          height: 350,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            columnWidth: '50%',
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 2
+        },
+        
+        grid: {
+          row: {
+            colors: ['#fff', '#f2f2f2']
+          }
+        },
+        xaxis: {
+          labels: {
+            rotate: -45
+          },
+          categories: ['국어', '영어', '수학', '사회', '과학'],
+          tickPlacement: 'on'
+        },
+        yaxis: {
+          title: {
+            text: '점수',
+          },
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'light',
+            type: "horizontal",
+            shadeIntensity: 0.25,
+            gradientToColors: undefined,
+            inverseColors: true,
+            opacityFrom: 0.85,
+            opacityTo: 0.85,
+            stops: [50, 0, 100]
+          },
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#studychart"), options);
+        chart.render();
+       //------------------------원생 학습계획표 차트--------------------- 
+       
+//----------전체 원생수 차트 시작--------------
+var options = {
+	series : [ {
+		name : "Desktops",
+		data : [ 10, 41, 35, 51, 49, 62, 69, 91, 148 ]
+	} ],
+	chart : {
+		width: 500,
+		height : 250,
+		type : 'line',
+		zoom : {
+			enabled : false
+		}
+	},
+	dataLabels : {
+		enabled : false
+	},
+	stroke : {
+		curve : 'straight'
+	},
+	title : {
+		text : 'Product Trends by Month',
+		align : 'left'
+	},
+	grid : {
+		row : {
+			colors : [ '#f3f3f3', 'transparent' ], // takes an array which will
+													// be repeated on columns
+			opacity : 0.5
+		},
+	},
+	xaxis : {
+		categories : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+				'Sep' ]
+	}
+};
+
+var chart = new ApexCharts(document.querySelector("#allcnt_chart"), options);
+chart.render();
+// ----------전체 원생수 차트 끝--------------
+
+// ----------과목별 원생수 차트 시작-----------
+var options = {
+        series: [25, 15, 44, 55, 41, 17],
+        chart: {
+        width: '100%',
+        height: 250,
+        type: 'pie',
+      },
+      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      theme: {
+        monochrome: {
+          enabled: true
+        }
+      },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            offset: -5
+          }
+        }
+      },
+      title: {
+        text: "Monochrome Pie"
+      },
+      dataLabels: {
+        formatter(val, opts) {
+          const name = opts.w.globals.labels[opts.seriesIndex]
+          return [name, val.toFixed(1) + '%']
+        }
+      },
+      legend: {
+        show: false
+      }
+      };
+
+var chart = new ApexCharts(document.querySelector("#subcnt_chart"), options);
+chart.render();
+// ----------과목별 원생수 차트 끝-----------
+
+//----------학교별 원생수 차트 시작-----------
+var options = {
+        series: [25, 15, 44, 55, 41, 17],
+        chart: {
+        width: '100%',
+        height: 250,
+        type: 'pie',
+      },
+      labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      theme: {
+        monochrome: {
+          enabled: true
+        }
+      },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            offset: -5
+          }
+        }
+      },
+      title: {
+        text: "Monochrome Pie"
+      },
+      dataLabels: {
+        formatter(val, opts) {
+          const name = opts.w.globals.labels[opts.seriesIndex]
+          return [name, val.toFixed(1) + '%']
+        }
+      },
+      legend: {
+        show: false
+      }
+      };
+
+var chart = new ApexCharts(document.querySelector("#schoolcnt_chart"), options);
+chart.render();
+// ----------학교별 원생수 차트 끝----------- 
+
+
+//-------------- 카카오맵 ----------------
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		level : 3
+	// 지도의 확대 레벨
+	};
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder
+			.addressSearch(
+					'제주특별자치도 제주시 첨단로 242',
+					function(result, status) {
+
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+
+							var coords = new kakao.maps.LatLng(result[0].y,
+									result[0].x);
+
+							// 결과값으로 받은 위치를 마커로 표시합니다
+							var marker = new kakao.maps.Marker({
+								map : map,
+								position : coords
+							});
+
+							// 인포윈도우로 장소에 대한 설명을 표시합니다
+							var infowindow = new kakao.maps.InfoWindow(
+									{
+										content : '<div style="width:100px;text-align:center;padding:6px 0;">노은고</div>'
+									});
+							infowindow.open(map, marker);
+
+							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							map.setCenter(coords);
+						}
+					});
+	//-----------------------------카카오맵 끝------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

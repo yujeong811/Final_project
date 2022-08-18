@@ -1,0 +1,86 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.StudentDAO;
+import kr.or.ddit.dao.TeacherMasDAO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+import kr.or.ddit.dto.TeachermasVO;
+
+public class TeacherMasServiceImpl implements TeacherMasService{
+
+	
+	private TeacherMasDAO teachermasDAO;
+	
+	public void setTeachermasDAO(TeacherMasDAO teachermasDAO) {
+		this.teachermasDAO = teachermasDAO;
+	}
+	
+	@Override
+	public Map<String, Object> getTeacherList(Criteria cri) throws SQLException {
+		SearchCriteria searchCri = (SearchCriteria) cri;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		try {
+			pageMaker.setTotalCount(teachermasDAO.selectTeacherListCount(searchCri));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		List<TeachermasVO> teacherList = teachermasDAO.selectSearchTeacherList(searchCri);
+
+		dataMap.put("teacherList",teacherList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+	@Override
+	public void regist(TeachermasVO teamas) throws Exception {
+		
+		String teaid =teachermasDAO.selectTeacherSequenceNextValue();
+		
+		if(teamas.getAuthority().equals("ROLE_STUDENT")) {
+			teamas.setId("S"+teaid);
+		}else if(teamas.getAuthority().equals("ROLE_TEACHER")) {
+			teamas.setId("T"+teaid);
+		}
+		
+		teachermasDAO.insertTeacher(teamas);
+		
+	}
+
+	@Override
+	public TeachermasVO getTeacher(String id) throws Exception {
+		
+		
+		TeachermasVO teamas=teachermasDAO.selectTeacherById(id);
+		
+		return teamas;
+	}
+
+	@Override
+	public void remove(String id) throws Exception {
+		teachermasDAO.deleteTeacher(id);
+		
+	}
+
+	@Override
+	public TeachermasVO selectScoreBySubjectName(String subjectName) throws SQLException {
+		TeachermasVO teamas=teachermasDAO.selectScoreBySubjectName(subjectName);
+
+		return teamas;
+	}
+	
+
+}

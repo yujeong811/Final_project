@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="card">
+
+		<div class="card-body">
+			<div class="row">
+				<div class="col-sm-11" style="margin-bottom: 10px;">
+
+					<select class="form-select" style="width: 150px; float: right;">
+
+						<option>추론</option>
+						<option>문제해결</option>
+						<option>실생활응용</option>
+					</select> <select class="form-select" style="width: 100px; float: right;">
+
+						<option>상</option>
+						<option>중</option>
+						<option>하</option>
+					</select> <select class="form-select" style="width: 120px; float: right;"
+						onchange="if(this.value) location.href=(this.value);">
+						<option value="#" selected="selected">객관식</option>
+						<option value="problemcreateJ.go">주관식</option>
+					</select> <select class="form-select" style="width: 180px; float: right;"
+						onchange="if(this.value) location.href=(this.value);">
+						<option value="#" selected="selected">과목을 선택하시오</option>
+						<option value="#">1단원</option>
+						<option value="#">2단원</option>
+						<option value="#">3단원</option>
+						<option value="#">4단원</option>
+					</select> <select class="form-select" style="width: 140px; float: right;">
+						<option value="#">수1</option>
+						<option value="#">수2</option>
+						<option value="#">고등수학1</option>
+						<option value="#">고등수학2</option>
+					</select>
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-primary btn-sm"
+						style="float: right; margin-right: 10px; magin-left: 10px;">등록</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group" style="overflow: auto;">
+
+						<textarea class="form-control" name="content" id="content"
+							rows="33" placeholder="지문을 작성해 주세요"></textarea>
+					</div>
+
+				</div>
+
+
+				<div class="col-sm-8">
+					<div class="row"
+						style="border: 3px solid lightgray;; height: 750px; padding-top: 10px;">
+						<div class="col-sm-6">
+							<div class="card" style="height: 650px;">
+								<div class="card-header">
+									<div class="form-group">
+
+										<textarea class="form-control" name="content" id="content"
+											rows="15" placeholder="문제를 작성해 주세요"></textarea>
+									</div>
+
+
+								</div>
+								<div class="card-body" style="overflow: auto;">
+									<div class="form-group">
+
+										<textarea class="form-control" name="content" id="content"
+											rows="10" placeholder="답을 작성해 주세요"></textarea>
+									</div>
+
+
+
+
+								</div>
+							</div>
+
+						</div>
+						<div class="col-sm-6">
+							<div class="card" style="height: 650px; text-align: center;">
+								<div class="card-body">
+									<label style="background: yellow; font-size: 1.4em;">해설</label>
+									<hr>
+									<textarea rows="30" cols="42" style="font-size: 0.8em;"></textarea>
+								</div>
+							</div>
+
+						</div>
+						<nav aria-label="pds list Navigation">
+							<ul class="pagination justify-content-center m-0">
+								<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+							</ul>
+						</nav>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

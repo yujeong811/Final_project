@@ -1,0 +1,57 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.dto.NoticeVO;
+import kr.or.ddit.dto.PacounseltVO;
+import kr.or.ddit.dto.StudentVO;
+
+public interface PacounseltService {
+	
+	Map<String, Object> getCounseltList(Criteria cri,Integer pcCode) throws SQLException;
+	//Map<String, Object> getCounseltList(Criteria cri,int counCode) throws SQLException;
+	
+	
+	//상담 완료 리스트
+	
+	Map<String, Object> getCounseltEndList(Criteria cri,Integer pcCode) throws SQLException;
+	
+	//상세
+	public PacounseltVO getCounseltEnd(int pcCode) throws SQLException;
+	
+	//결과,후속처리 업데이트
+	//public void updateCounseltDetailList(int paco) throws SQLException;
+
+	//결과,후속처리 업데이트
+	int updateCounseltDetailList(PacounseltVO paco) throws SQLException;
+	
+	
+	//희망 대학
+	//public PacounseltVO getFuUniv(int pcCode)throws SQLException;
+	
+	public PacounseltVO  selectPacounseltByPcCode(int pcCode) throws SQLException;
+	
+	public PacounseltVO  selectPacounseltByPcCode2(int pcCode) throws SQLException;
+	public PacounseltVO  selectPacounseltByPcCode3(int pcCode) throws SQLException;
+	public PacounseltVO  selectPacounseltByPcCode4(int pcCode) throws SQLException;
+	public PacounseltVO  selectPacounseltByPcCode5(int pcCode) throws SQLException;
+	public PacounseltVO  selectPacounseltByPcCode6(int pcCode) throws SQLException;
+	
+	
+	public PacounseltVO selectSchoolnaesin(int pcCode) throws SQLException;
+	public PacounseltVO selectSchoolnaesin2(int pcCode) throws SQLException;
+	public PacounseltVO selectSchoolnaesin3(int pcCode) throws SQLException;
+	public PacounseltVO selectSchoolnaesin4(int pcCode) throws SQLException;
+	public PacounseltVO selectSchoolnaesin5(int pcCode) throws SQLException;
+	public PacounseltVO selectSchoolnaesin6(int pcCode) throws SQLException;
+	
+	public PacounseltVO getPacounselt(int pcCode)throws SQLException;
+
+	
+	
+	
+	//원생성적
+	public PacounseltVO selectStudentGrade(int pcCode) throws SQLException;
+}

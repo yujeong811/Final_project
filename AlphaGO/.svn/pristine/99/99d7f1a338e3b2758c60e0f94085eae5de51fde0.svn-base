@@ -1,0 +1,42 @@
+package kr.or.ddit.dto;
+
+public class CalendarVO {
+
+	private String pc_code;
+	private String title;
+	private String start_date;
+	private String end_date;
+	private boolean allDay = false;
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public boolean isAllDay() {
+		return allDay;
+	}
+	public void setAllDay(boolean allDay) {
+		this.allDay = allDay;
+	}
+	public String getPc_code() {
+		return pc_code;
+	}
+	public void setPc_code(String pc_code) {
+		this.pc_code = pc_code;
+	}
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	
+}

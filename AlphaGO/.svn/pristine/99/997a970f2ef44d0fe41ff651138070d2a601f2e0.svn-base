@@ -1,0 +1,161 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<body>
+	<div class="card">
+		<div class="card-body">
+			<h5 style="font-weight: bold;">
+				<i class="uil-unlock-alt" style="margin-right: 10px;"></i>근태조회
+			</h5>
+			<div id="chart_donut" class="col-md-4"
+				style="width: 350px; height: 255px; float: left;"></div>
+
+			<div class="table-responsive mt-2 mb-2">
+				<table class="table mb-0" style="text-align: center;">
+
+					<thead class="table-light">
+						<tr>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">일시</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출근시간</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">퇴근시간</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출결상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">2022-07-06</th>
+							<td>10:00</td>
+							<td>-</td>
+							<td style="color: red;">결근</td>
+						</tr>
+					</tbody>
+					<!-- end tbody-->
+				</table>
+				<!-- end table-->
+			</div>
+			<div class="table-responsive">
+				<table class="table mb-0" style="text-align: center;">
+
+					<thead class="table-light">
+						<tr>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출근일</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">결근일</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">지각일</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">조퇴일</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">외출일</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출석률</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">108일</th>
+							<td>4일</td>
+							<td>1일</td>
+							<td>0일</td>
+							<td>0일</td>
+							<td>68.8%</td>
+						</tr>
+					</tbody>
+					<!-- end tbody-->
+				</table>
+				<!-- end table-->
+			</div>
+			<div style="font-size: 0.9em; margin-top: 5px;">
+				<span style="color: orange;">*</span> 지각,조퇴 또는 외출 3회시, 1일 결석으로 처리<br>
+				<span style="color: orange;">*</span> 예시)지각 & 조퇴 1회 + 외출 1회 = 결석 1회<br>
+				<span style="color: orange;">*</span> 100분의 50미만 출석한 경우 결석으로 처리<br>
+			</div>
+			<div class="dropdown" style="margin-bottom: 5px;">
+				<button class="btn btn-soft-secondary dropdown-toggle" type="button"
+					id="dropdownMenuButton1" data-bs-toggle="dropdown"
+					style="width: 130px;" aria-expanded="false">
+					기간 선택<i class="mdi mdi-chevron-down" style="margin-left: 10px;"></i>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li><a class="dropdown-item" href="#">전체</a></li>
+					<li><a class="dropdown-item" href="#">1개월</a></li>
+					<li><a class="dropdown-item" href="#">3개월</a></li>
+				</ul>
+			</div>
+			<div class="table-responsive mt-2">
+				<table class="table mb-1" style="text-align: center;">
+					<thead class="table-light">
+						<tr>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">일자</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출근시간</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">퇴근시간</th>
+							<th class="" style="font-weight: bold; background-color:#8BDDA8;">출결상태</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:51</td>
+							<td>17:50</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>10:00</td>
+							<td>18:50</td>
+							<td style="color: purple;">지각</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>09:05</td>
+							<td>17:30</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:51</td>
+							<td>13:00</td>
+							<td style="color: orange;">조퇴</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:52</td>
+							<td>17:55</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:53</td>
+							<td>17:57</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:54</td>
+							<td>19:50</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>-</td>
+							<td>-</td>
+							<td style="color: red;">결석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:31</td>
+							<td>19:50</td>
+							<td>출석</td>
+						</tr>
+						<tr>
+							<th scope="row">2022-06-24</th>
+							<td>08:51</td>
+							<td>17:50</td>
+							<td>출석</td>
+						</tr>
+					</tbody>
+					<!-- end tbody-->
+				</table>
+				<!-- end table-->
+			</div>
+			<!-- pagination -->
+			<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+		</div>
+
+	</div>
+</body>

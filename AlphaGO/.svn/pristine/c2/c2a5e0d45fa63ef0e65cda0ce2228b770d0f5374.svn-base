@@ -1,0 +1,101 @@
+package kr.or.ddit.service;
+
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dao.SchoolDAO;
+import kr.or.ddit.dto.SchoolVO;
+
+public class SchoolServiceImpl implements SchoolService {
+
+	private SchoolDAO schoolDAO;
+	public void setSchoolDAO(SchoolDAO schoolDAO) {
+		this.schoolDAO = schoolDAO;
+	}
+	
+	/**
+	 * 고등학교 목록을 반환하는 서비스
+	 */
+	@Override
+	public Map<String, Object> selectSearchSchoolList(SearchCriteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<SchoolVO> schoolList = schoolDAO.selectSearchSchoolList(cri);
+		int totalCount = schoolDAO.selectSearchSchoolListCount();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		//학원생 전체 수
+		int allStuCnt = schoolDAO.studentCnt();
+		
+		//학원 내 원생 학교 분포율 구하고 set하기
+		for(SchoolVO schoolVO : schoolList) {
+			String schoolCode = schoolVO.getSchoolCode();
+			int schoolCnt = schoolDAO.schoolCntStudent(schoolCode);
+			
+			//(원생 학교 인원수/전체 원생수)*100
+			double result = ((double)schoolCnt/allStuCnt)*100;
+			String schoolPercent = String.valueOf(result);
+			schoolVO.setSchoolPercent(schoolPercent);
+		}
+		Collections.sort(schoolList, new SortByDouble());
+		
+		dataMap.put("schoolList", schoolList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+	}
+
+	/**
+	 * 학교 상세정보를 처리하는 서비스
+	 */
+	@Override
+	public SchoolVO getSchoolDetail(String schoolCode) throws SQLException {
+		return schoolDAO.getSchoolDetail(schoolCode);
+	}
+
+	/**
+	 * 학교 정보를 삭제하는 서비스
+	 */
+	@Override
+	public int removeSchool(String schoolCode) throws SQLException {
+		return schoolDAO.removeSchool(schoolCode);
+	}
+
+	/**
+	 * 학교 등록 하는 서비스
+	 */
+	@Override
+	public int insertSchool(SchoolVO schoolVO) throws SQLException {
+		int seq = schoolDAO.getSchoolSeq();
+		String schoolCode = String.valueOf(seq);
+		schoolVO.setSchoolCode(schoolCode);
+		int result=schoolDAO.insertSchool(schoolVO);
+		return result;
+	}
+
+}
+
+//학교 분포율 기준으로 정렬
+class SortByDouble implements Comparator<SchoolVO> {
+    @Override
+    public int compare(SchoolVO o1, SchoolVO o2) {
+       return -(o1.getSchoolPercent()).compareTo((String)o2.getSchoolPercent());
+    }
+ }
+
+
+
+
+
+
+
+
+
+

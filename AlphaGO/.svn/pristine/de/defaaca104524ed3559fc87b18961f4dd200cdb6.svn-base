@@ -1,0 +1,279 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<body>
+	<div class="d-flex justify-content-between mb-2">
+		<h5 style="font-weight: bold;">
+			<i class="uil-unlock-alt" style="margin-right: 10px;"></i>개인정보 수정
+		</h5>
+		<div class="d-flex justify-content-end">
+			<button type="button" class="btn btn-soft-secondary"
+				style="height: 30px; line-height: 12px; margin-right: 5px;"
+				onclick="location.href='detail.go'">취소</button>
+			<button type="button" class="btn btn-soft-purple"
+				style="height: 30px; line-height: 12px;"
+				onclick="location.href='detail.go'">수정완료</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4">
+			<div class="card">
+				<div class="card-body">
+					<div style="text-align: center;">
+						<img alt=""
+							src="<%=request.getContextPath()%>/resources/images/member.jpg"
+							data-holder-rendered="true"
+							style="border-radius: 50%; width: 150px; height: 150px;">
+						<div class="d-flex align-items-start mt-3 mb-3">
+							<input class="form-control form-control-sm" id="formFileSm"
+								type="file" style="width: 215px; margin-left: 5px;">
+							<button type="button" class="btn btn-soft-purple"
+								style="height: 28px; line-height: 10px; width: 60px;">등록</button>
+						</div>
+					</div>
+					<div class="mt-3 mb-3">
+						<label class="form-label" for="gen-info-name-input"
+							style="font-weight: bold; margin-right: 35px;">이름</label>홍길동
+						<hr style="margin: 5px 0 0 0;">
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="gen-info-name-input"
+							style="font-weight: bold; margin-right: 21px;">아이디</label>asdc123
+						<hr style="margin: 5px 0 0 0;">
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="gen-info-name-input"
+							style="font-weight: bold; margin-right: 35px;">학교</label>대전둔산여자고등학교
+						<hr style="margin: 5px 0 0 0;">
+					</div>
+					<div class="mb-2">
+						<label class="form-label" for="gen-info-name-input"
+							style="font-weight: bold; margin-right: 35px;">학년</label>3학년
+						<hr style="margin: 5px 0 0 0;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="card">
+				<div class="card-body">
+					<div class="card">
+						<div class="card-header d-flex align-items-center">
+							<div class="flex-shrink-0 me-3">
+								<div class="avatar-sm">
+									<div
+										class="avatar-title rounded-circle bg-soft-purple text-purple">
+										01</div>
+								</div>
+							</div>
+							<div class="flex-grow-1">
+								<h5 class="card-title">General Info</h5>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="mb-2">
+								<div class="d-flex align-items-start"
+									style="text-align: center;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 3px; margin-right:87px;">비밀번호</label>
+										<input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 30%; height: 30px;">
+										<span style="color:red; font-size:0.7em;margin:5px 0px 0px 5px;">영문,숫자,특수문자가 포함되어야 합니다.</span>
+								</div>
+							</div>
+							<div>
+								<div class="d-flex align-items-start"
+									style="text-align: center;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 3px; margin-right: 53px;">비밀번호 확인</label>
+										<input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 30%; height: 30px;">
+									<span style="color:red; font-size:0.7em;margin:5px 0px 0px 5px;">비밀번호가 일치합니다.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header d-flex align-items-center">
+							<div class="flex-shrink-0 me-3">
+								<div class="avatar-sm">
+									<div
+										class="avatar-title rounded-circle bg-soft-purple text-purple">
+										02</div>
+								</div>
+							</div>
+							<div class="flex-grow-1">
+								<h5 class="card-title">Contact Info</h5>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="mb-2">
+								<div class="d-flex align-items-start"
+									style="text-align: center;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 5px; margin-right: 68px;">핸드폰
+										번호</label>
+									<select class="form-select" name='phone' style="height: 40px; width: 10%;">
+										<option value='' selected>010</option>
+										<option value='apple'>011</option>
+										<option value='banana'>070</option>
+									</select>
+									<span style="margin: 6px;">-</span>
+									<input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 10%; height: 40px;">
+									<span style="margin: 6px;">-</span>
+									<input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 10%; height: 40px;">
+								</div>
+							</div>
+							<div class="mb-2">
+								<div class="d-flex align-items-start"
+									style="text-align: center;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 3px; margin-right: 20px;">학부모
+										핸드폰 번호</label>
+									<select class="form-select" name='phone' style="height: 40px; width: 10%;">
+										<option value='' selected>010</option>
+										<option value='apple'>011</option>
+										<option value='banana'>070</option>
+									</select><span style="margin: 6px;">-</span><input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 10%; height: 40px;"><span
+										style="margin: 6px;">-</span><input type="text"
+										class="form-control" id="gen-info-name-input"
+										style="width: 10%; height: 40px;">
+								</div>
+							</div>
+							<div>
+								<div class="d-flex align-items-start"
+									style="text-align: center;margin-bottom: 3px;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 3px; margin-right: 68px;">이메일
+										주소</label><input type="text" class="form-control"
+										id="gen-info-name-input" style="width: 20%; height: 40px;">
+									<span style="margin: 6px;">@</span>
+									<select class="form-select" name='phone'
+										style="height: 40px; width: 20%; ">
+										<option value='' selected>직접입력</option>
+										<option value=''>naver.com</option>
+										<option value='apple'>daum.net</option>
+										<option value='banana'>gmail.com</option>
+										<option value='banana'>nate.com</option>
+									</select>
+								</div>
+								<span style="color:orange;s">*</span>
+								<span style="font-size:0.8em;">핸드폰번호 기재시 교육정보 및 학습관련 SMS 서비스를 제공합니다.</span>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header d-flex align-items-center">
+							<div class="flex-shrink-0 me-3">
+								<div class="avatar-sm">
+									<div
+										class="avatar-title rounded-circle bg-soft-purple text-purple">
+										03</div>
+								</div>
+							</div>
+							<div class="flex-grow-1">
+								<h5 class="card-title">Address Info</h5>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="mb-2">
+								<div class="d-flex align-items-start">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-right: 113px; margin-top: 4px;">주소</label>
+									<input class="form-control" type="text"
+										style="width: 210px; height: 30px;" name="keyword"
+										placeholder="주소 검색" value="${cri.keyword }" /> <span
+										class="input-group-append" style="height: 30px;">
+										<button class="btn btn-light"
+											style="float: left; height: 30px; line-height: 10px;"
+											type="button" id="searchBtn" data-card-widget="search"
+											onclick="list_go(1);">
+											<i class="fa fa-fw fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							<div>
+								<div class="d-flex align-items-start"
+									style="text-align: center;">
+									<label class="form-label" for="gen-info-name-input"
+										style="font-weight: bold; margin-top: 3px; margin-right: 77px;">상세
+										주소</label> <input type="text" class="form-control"
+										id="gen-info-name-input" style="width: 45%; height: 30px;">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header d-flex align-items-center">
+							<div class="flex-shrink-0 me-3">
+								<div class="avatar-sm">
+									<div
+										class="avatar-title rounded-circle bg-soft-purple text-purple">
+										04</div>
+								</div>
+							</div>
+							<div class="flex-grow-1">
+								<h5 class="card-title">School Info</h5>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="d-flex align-items-start mb-2">
+								<label class="form-label" for="gen-info-name-input"
+									style="font-weight: bold; margin-right: 102px; margin-top: 4px;">1지망</label>
+								<input class="form-control" type="text"
+									style="width: 210px; height: 30px;" name="keyword"
+									placeholder="학교 검색" value="${cri.keyword }" /> <span
+									class="input-group-append" style="height: 30px;">
+									<button class="btn btn-light"
+										style="float: left; height: 30px; line-height: 10px;"
+										type="button" id="searchBtn" data-card-widget="search"
+										onclick="list_go(1);">
+										<i class="fa fa-fw fa-search"></i>
+									</button>
+								</span>
+							</div>
+							<div class="d-flex align-items-start mb-2">
+								<label class="form-label" for="gen-info-name-input"
+									style="font-weight: bold; margin-right: 102px; margin-top: 4px;">2지망</label>
+								<input class="form-control" type="text"
+									style="width: 210px; height: 30px;" name="keyword"
+									placeholder="학교 검색" " /> <span class="input-group-append"
+									style="height: 30px;">
+									<button class="btn btn-light"
+										style="float: left; height: 30px; line-height: 10px;"
+										type="button" id="searchBtn" data-card-widget="search"
+										onclick="list_go(1);">
+										<i class="fa fa-fw fa-search"></i>
+									</button>
+								</span>
+							</div>
+							<div class="d-flex align-items-start">
+								<label class="form-label" for="gen-info-name-input"
+									style="font-weight: bold; margin-right: 102px; margin-top: 4px;">3지망</label>
+								<input class="form-control" type="text"
+									style="width: 210px; height: 30px;" name="keyword"
+									placeholder="학교 검색" /> <span class="input-group-append"
+									style="height: 30px;">
+									<button class="btn btn-light"
+										style="float: left; height: 30px; line-height: 10px;"
+										type="button" id="searchBtn" data-card-widget="search"
+										onclick="list_go(1);">
+										<i class="fa fa-fw fa-search"></i>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

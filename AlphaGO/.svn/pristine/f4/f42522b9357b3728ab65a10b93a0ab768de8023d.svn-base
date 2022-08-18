@@ -1,0 +1,546 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<head>
+<script src="<%=request.getContextPath() %>/resources/assets/libs/apexcharts/apexcharts.min.js"></script>
+<script type="text/javascript">
+	var options = {
+			  series: [90, 5, 5, 5, 10],
+			  chart: {
+			    height: 300,
+			    type: 'pie',
+			  },
+			  labels: ['출근', '결근', '지각', '조퇴', '외근'],
+			  legend: {
+			    position: 'bottom'
+			  },
+			  dataLabels: {
+			    dropShadow: {
+			      enabled: false,
+			    }
+			  },
+			  colors: ["#038edc", "#51d28c", "#f7cc53", "#f34e4e", "#564ab1"]
+			};
+
+			var chart = new ApexCharts(document.querySelector("#chart02"), options);
+			chart.render();
+</script>
+<script src="<%=request.getContextPath() %>/resources/js/t_calender.js"></script>
+</head>
+
+
+<body>
+	<!-- 첫줄 row 시작 -->
+		<div class="row">
+			<div class=""></div>
+			<!-- 왼쪽 wrapper 시작 -->
+			<div class="col-md-6" style="padding-left: 0px; padding-right: 3px;">
+				<!-- 원생수 카드 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px; margin-left:11px;" class="badge bg-success">수업시간표</span>
+					</div>
+<!-- 					<div id="counsert-calendar01"></div> -->
+					<div class="table-responsive">
+                       <table class="table table-bordered mb-0" style="text-align: center;">
+                           <thead>
+                               <tr style="background-color: #8BDDA8;">
+                                   <th style="width: 200px; padding: 0px;"><i class="bx bx-time-five font-size-16"></i></th>
+                                   <th style="width: 200px; padding: 0px;">월</th>
+                                   <th style="width: 200px; padding: 0px; border:2px solid #329632;">화</th>
+                                   <th style="width: 200px; padding: 0px;">수</th>
+                                   <th style="width: 200px; padding: 0px;">목</th>
+                                   <th style="width: 200px; padding: 0px;">금</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <th scope="row" style=" padding: 0px;">9:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">10:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-warning"> 김선생 영어 </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-warning"> 김선생영어 </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">11:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-warning"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-warning"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">12:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">12:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">13:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">14:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">15:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">16:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">17:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">18:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">19:00</th>
+                                   <td style=" padding: 0px;" class="table-danger"> 김선생 국어 </td>
+                                   <td style=" padding: 0px;" class="table-danger"> 김선생 국어 </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">20:00</th>
+                                   <td style=" padding: 0px;" class="table-danger"> </td>
+                                   <td style=" padding: 0px;" class="table-danger"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-success"> 김선생 수학 </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">21:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;" class="table-success">  </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               <tr>
+                                   <th style=" padding: 0px;" scope="row">22:00</th>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                                   <td style=" padding: 0px;"> </td>
+                               </tr>
+                               
+                           </tbody>
+                       </table><!-- end table -->
+                   </div>	
+				</div>
+			<!-- 원생수 카드 끝 -->
+			
+			
+			
+			
+			<!-- 출결조회 시작 -->
+			
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div>
+						<div class="col-md-6" style="float:left;">
+						<span style="margin:3px; margin-left:13px;" class="badge bg-success">출결조회</span>
+						</div>
+						<div class="col-md-6" style="float:left;">
+						<span style="margin:3px;" class="badge bg-success">오늘의 일정</span>
+						</div>
+					</div>
+					<div>
+						<div class="col-md-6" style="float:left;">
+						  <div class="card-body" style="position: relative; padding:0px;">
+                                <div id="chart02" onclick="OpenWindow('attend.go','상세보기',800,700);" style="cursor:pointer;">
+                                </div>           
+						        <div class="d-flex border-top p-2">
+	                                <div class="flex-grow-1">
+	                                    <div class="p-2 ps-3 text-danger">미출석</div>
+	                                </div>
+	                                <div class="flex-shrink-0">
+	                                    <button type="button" class="btn btn-soft-purple" data-bs-toggle="modal" data-bs-target=".QR-modal"><i class="mdi mdi-qrcode-scan me-1"></i> QR 출석체크</button>
+	                                </div>
+	                            </div>                           
+   			 			  </div>  
+						</div>
+
+						<div class="col-md-6" style="float:left; overflow: auto;">
+							<div class="bg-light mb-2" style="border-radius: 5px; padding: 15px; width:95%; height: 330px;">
+								<p style="font-size: 0.75em; color:blue; text-align: right;">2022-06-27(화)<p>
+								<ul style="line-height: 30px;">
+							      <li style="line-height: 20px;">[과제]미분 문제풀이 과제 확인</li>
+							      <li style="line-height: 20px;">[수업]수학1 개념완성 - 2단원(삼각함수와 그래프)</li>
+							      <li style="line-height: 20px;">[수업]미분과 적분 - 3단원(수열의 극한)</li>
+							      <li style="line-height: 20px;">[상담]19:00시 상담</li>
+							    </ul>
+							</div>
+	                	</div>  
+                	</div>                
+				</div>
+				
+			<!-- 출결조회 끝 -->
+			
+			<!-- 수업진도현황 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div>
+					<div style="float:left;" class="col-lg-12">
+					<span style="margin:3px; margin-left:12px;" class="badge bg-success">수업진도현황</span>
+					
+					</div>
+<!-- 					<div style="float:left;" class="col-lg-4">ㅇㅇ</div> -->
+					</div>
+					<div style="margin-bottom: 10px;">
+					<div style="float: left;" class="col-md-9">
+						<select style="float:left; margin-left: 3px; margin-left:13px;" class="form-select">
+							<option value="none">수업명</option>
+							<option>수학1 개념완성[기본+심화]</option>
+							<option>수학2 개념완성[기본+심화]</option>
+							<option>미분과 적분 개념완성[기본+심화]</option>
+						</select>
+					</div>
+					<div style="float: right; margin-right:20px;" class="col-md-2">
+						<button class="btn btn-primary" style="font-size: 0.9em;" data-bs-toggle="modal" data-bs-target="#step">상세보기</button>
+					</div>			
+					</div>
+					<label style="width: 47%; font-size: 0.8em; font-weight: bold; margin-left:6px; margin-left:15px;">진도율</label>
+					<div style="width:98%; height:15px; margin:0px auto;  margin-left:14px;" class="progress">
+					  <div class="progress-bar bg-success" role="progressbar" style="width:55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55%</div>
+					</div>
+					<br>
+				</div>
+				<!-- 수업진도현황 끝 -->
+			
+			
+			
+			
+			</div>
+			<!-- 왼쪽 wrapper 끝  -->
+			
+			<!-- 오른쪽 wrapper 시작 -->
+			<div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+				
+				<!-- 질문리스트 시작 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">질문리스트</span>
+					<button style="float:right; border-color: lightgray; border:none; margin-right:7px;">
+					<i class="uil-plus" onclick="location.href='../qna/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<table class="table table-hover" style="text-align: center;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:30%; padding: 5px; font-weight:bold;">수업명</th>
+			    				<th style="width:45%; padding: 5px; font-weight:bold;">제목</th>
+			    				<th style="width:15%; padding: 5px; font-weight:bold;">작성자</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">김질문</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">손흥민</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">수학1 개념완성[기본...</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">박지성</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">미분과 적분 파이널</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">황희찬</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">미분과 적분 파이널</td>
+		              		<td style="padding: 5px;">교재 p26 6번 문제 질문있습니다.</td>
+		              		<td style="padding: 5px;">황의조</td>
+	           		  	</tr>	
+		            </table>					
+				</div>
+			<!-- 질문리스트  끝 -->
+				
+				<!-- 과제 제출 현황 리스트 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">과제제출현황</span>
+					<button style="float:right; border-color: lightgray; border:none; margin-right:7px;">
+					<i class="uil-plus" onclick="location.href='../assignManage/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<div style="overflow: auto; height:300px;">
+					<table class="table table-hover" style="text-align: center;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:15%; padding: 5px; font-weight:bold;">학생</th>
+			    				<th style="width:40%; padding: 5px; font-weight:bold;">과제명</th>
+			                	<th style="width:22%; padding: 5px; font-weight:bold;">만기일</th>
+			                	<th style="width:20%; padding: 5px; font-weight:bold;">제출현황</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer; background-color:#FF9CBB;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px; background-color:red; font-size: 0.8em;" class="btn btn-primary">미제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer; background-color:#FF9CBB;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px; background-color:red; font-size: 0.8em;" class="btn btn-primary">미제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">김학생</td>
+		              		<td style="padding: 5px;">교재 p.25~36 문제풀이</td>
+		              		<td style="padding: 5px;">2022-06-05</td>
+		              		<td style="padding: 5px;">
+		              		<button style="height:20px; line-height:0px;" class="btn btn-primary">제출</button>
+		              		</td>
+	           		  	</tr>	
+		            </table>	
+		            </div>				
+				</div>
+				<!-- 과제 제출 현황 리스트   끝 -->
+				
+				<!-- 최근 공지 리스트 -->
+				<div class="card task-box col-lg-12" style="margin-bottom:5px;">
+					<div class="col-md-12">
+					<span style="margin:3px;" class="badge bg-success">공지사항</span>
+					<button style="float:right; border-color: lightgray; border:none; margin-right:7px;">
+					<i class="uil-plus" onclick="location.href='../notice/list.go'"></i>
+					</button>
+					<button style="background-color:white; float:right; border:none;">
+					<i class="uil-redo"></i>
+					</button>
+					</div>
+					<table class="table table-hover" style="text-align: center; height:10px;">
+			    		<thead class="">
+			    			<tr style="background-color:#8BDDA8;" class="table">
+			    				<th style="width:75%; padding: 5px; font-weight:bold;">제목</th>
+			    				<th style="width:25%; padding: 5px; font-weight:bold;">작성일</th>
+			               	</tr>
+					    </thead>
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 11일 공지사항입니다..</td>
+		              		<td style="padding: 5px;">2022-06-11</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 9일 공지사항입니다..2</td>
+		              		<td style="padding: 5px;">2022-06-09</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 9일 공지사항입니다..</td>
+		              		<td style="padding: 5px;">2022-06-09</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 8일 공지사항2입니다.</td>
+		              		<td style="padding: 5px;">2022-06-08</td>
+	           		  	</tr>	
+	    				<tr onclick="" style="cursor:pointer;">
+	           		  	   	<td style="padding: 5px;">6월 8일 공지사항입니다.</td>
+		              		<td style="padding: 5px;">2022-06-08</td>
+	           		  	</tr>	
+		            </table>					
+				</div>
+				<!-- 최근 공지 리스트  끝-->
+				
+				
+			</div>
+		</div>
+		<!-- row 끝 -->
+
+ <!--QR코드 MODAL -->
+<div class="modal fade QR-modal" tabindex="-1" aria-labelledby="mySmallModalLabel" style="display: none;" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title">QR 출석체크</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+               </button>
+           </div>
+           <div class="modal-body" style="text-align: center;">
+              <img alt="qr이미지" src="<%=request.getContextPath() %>/resources/images/QR_sample.JPG">
+           </div>
+       </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+
+<!-- modal -->
+<div class="modal fade bs-example-modal-center" tabindex="-1"
+		role="dialog" id="step" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="badge rounded-pill bg-warning"
+						style="font-size: 0.8em; padding: 8px; height: 25px; width: 60px;">수학</span>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="text-align: center; padding: 15px;">
+					<p style="font-weight: bold; font-size: 1.2em;">수학1 개념완성[기본+심화]</p>
+					<p>김선생</p>
+					<div class="row">
+						<div class="col-3" style="margin-left: 23px; margin-right: -44px;">
+							<div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 35px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 63px; left: 10px;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 95px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 128px; left: 10px;"></div>
+								<div class="bg-purple"
+									style="width: 10px; height: 40px; position: absolute; top: 160px; left: 25px;"></div>
+								<div class="bg-purple"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 191px; left: 10px;"></div>
+								<div class="bg-secondary"
+									style="width: 10px; height: 40px; position: absolute; top: 230px; left: 25px;"></div>
+								<div class="bg-secondary"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 255px; left: 10px;"></div>
+								<div class="bg-secondary"
+									style="width: 10px; height: 40px; position: absolute; top: 287px; left: 25px;"></div>
+								<div class="bg-secondary"
+									style="width: 40px; height: 40px; border-radius: 50%; position: absolute; top: 319px; left: 10px;"></div>
+							</div>
+						</div>
+						<div class="col-9 mb-3">
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; margin-bottom: 10px; line-height: 39px;">1단원.
+								지수함수와 로그함수</div>
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">2단원.
+								삼각함수와 삼각함수의 그래프</div>
+							<div class="bg-soft-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">3단원.
+								삼각함수의 활용</div>
+							<div
+								style="width: 0px; height: 0px; border-right: 10px solid #564AB1; border-top: 10px solid transparent; border-bottom: 10px solid transparent; position: absolute; top: 201px; left: 1px;"></div>
+							<div class="bg-purple mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; color: white; line-height: 39px;">4단원.
+								등차수열과 등비수열</div>
+							<div class="bg-soft-secondary mb-4"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">5단원.
+								수열의 합</div>
+							<div class="bg-soft-secondary"
+								style="border-radius: 5px; width: 100%; height: 40px; line-height: 39px;">6단원.
+								수학적 귀납법</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	
+
+</body>

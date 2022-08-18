@@ -1,0 +1,32 @@
+package kr.or.ddit.command;
+
+import kr.or.ddit.command.PopupRegistCommand;
+import kr.or.ddit.dto.PopupVO;
+
+@SuppressWarnings("serial")
+public class PopupModifyCommand extends PopupRegistCommand {
+
+	private String popcode;
+	private String[] deleteFile;
+	
+	public String getPopcode() {
+		return popcode;
+	}
+	public void setPopcode(String popcode) {
+		this.popcode = popcode;
+	}
+	public String[] getDeleteFile() {
+		return deleteFile;
+	}
+	public void setDeleteFile(String[] deleteFile) {
+		this.deleteFile = deleteFile;
+	}
+	
+	@Override
+	public PopupVO toPopupVO() {
+		PopupVO popup = super.toPopupVO();
+		popup.setPopcode(this.popcode);
+
+		return popup;
+	}
+}

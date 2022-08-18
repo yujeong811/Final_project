@@ -1,0 +1,78 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassroomVO;
+import kr.or.ddit.dto.FixtureVO;
+
+public interface ClassroomDAO {
+
+	/**
+	 * 페이징이 가능한 강의실 리스트
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassroomVO> getAllClassroom(SearchCriteria cri) throws SQLException;
+	/**
+	 * 강의실 개수
+	 * @param cri
+	 * @return
+	 * @throws SQLException
+	 */
+	public int selectClassroomListCount(SearchCriteria cri) throws SQLException;
+	
+	/**
+	 * 강의실 코드 시퀀스를 가져온다(등록에서 사용)
+	 * @return
+	 * @throws SQLException
+	 */
+	public int getClassroomSeq() throws SQLException;
+	
+	/**
+	 * 강의실 등록
+	 * @param roomVO
+	 * @throws SQLException
+	 */
+	public void registClassroom(ClassroomVO roomVO) throws SQLException;
+
+	/**
+	 * 강의실 삭제
+	 * @param roomCode
+	 * @throws SQLException
+	 */
+	public void removeClassroom(int roomCode) throws SQLException;
+	
+	public List<ClassroomVO> getClassroom() throws SQLException;
+	
+	/**
+	 * 하나의 강의실 정보
+	 * @param roomCode 강의실코드
+	 * @return 강의실 하나 정보
+	 * @throws SQLException
+	 */
+	public ClassroomVO getOneClassroom(String roomCode) throws SQLException;
+	
+	/**
+	 * 모든 강의실 정보
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassroomVO> getNoSearchClassroom() throws SQLException;
+	/**
+	 * 사용중인 강의실 정보 리스트
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassroomVO> getAllUseRoom() throws SQLException;
+	/**
+	 * 사용중인 하나의 강의실의 시간정보
+	 * @param roomCode
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<ClassroomVO> getUsedRoom(ClassroomVO roomVO) throws SQLException;
+}

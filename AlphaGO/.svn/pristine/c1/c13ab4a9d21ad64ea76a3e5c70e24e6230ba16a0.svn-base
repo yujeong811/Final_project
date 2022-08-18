@@ -1,0 +1,102 @@
+package kr.or.ddit.command;
+
+import java.util.Date;
+
+import kr.or.ddit.dto.TeachermasVO;
+
+public class TeacherRegistCommand {
+	
+	
+	
+	
+	private String id;
+	
+	private String picture;
+	
+	
+    private String subject;
+    
+    private String name;
+    
+    private String []phone;
+    
+    private String attend_time;
+    private String out_time;
+    
+    private String authority;
+    
+    
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String[] getPhone() {
+		return phone;
+	}
+	public void setPhone(String[] phone) {
+		this.phone = phone;
+	}
+	public String getAttend_time() {
+		return attend_time;
+	}
+	public void setAttend_time(String attend_time) {
+		this.attend_time = attend_time;
+	}
+	public String getOut_time() {
+		return out_time;
+	}
+	public void setOut_time(String out_time) {
+		this.out_time = out_time;
+	}
+    
+	
+	public TeachermasVO toTeachermasVO() {
+		
+		 String phone = "";
+			
+			for (String data : this.phone) {
+				phone += data;
+			}
+			
+			TeachermasVO teamas=new TeachermasVO();
+			
+			teamas.setId(id);
+			teamas.setPicture(picture);
+			teamas.setSubject(subject);
+			teamas.setName(name);
+			teamas.setPhone(phone);
+			teamas.setAttendTime(attend_time);
+			teamas.setOutTime(out_time);
+			teamas.setRegDate(new Date());
+			teamas.setAuthority(authority);
+			
+			return teamas;
+	}
+    
+}

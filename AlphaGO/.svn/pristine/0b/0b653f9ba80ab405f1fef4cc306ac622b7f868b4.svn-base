@@ -1,0 +1,202 @@
+package kr.or.ddit.controller.view;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.dto.ExamVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.ProblemVO;
+import kr.or.ddit.service.ClassService;
+import kr.or.ddit.service.ExamService;
+import kr.or.ddit.service.MemberService;
+
+@Controller
+@RequestMapping("/exam")
+public class ExamController {
+   
+   @Autowired
+   private MemberService memberService;
+   
+   @Autowired
+   private ExamService examService;
+   
+   @Autowired
+   private ClassService classService;
+   
+   @RequestMapping("/main")
+   public void main() {}
+   
+   
+   /**
+    * 수강중인 수업 리스트
+    * @param session
+    * @param model
+    * @return
+    */
+   @RequestMapping(value = "/list")
+	public String examList(HttpSession session, Model model) {
+		String url = "/exam/list";
+		
+		Map<String, Object> dataMap = null;
+		List<ExamVO> examList = null;
+		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+
+		String id = member.getId();
+
+		try {
+			dataMap = classService.getClassing(id);
+			examList = examService.getExam(id);
+			
+			dataMap.put("examList", examList);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		model.addAttribute("dataMap", dataMap);
+		return url;
+	}
+   
+   /**
+    * 수업 선택 후 시험 리스트
+    * @param session
+    * @param name
+    * @return
+    * @throws SQLException
+    */
+    @ResponseBody
+	@RequestMapping("/examlist")
+	public ResponseEntity<List<ExamVO>> examNameList(HttpSession session, String name) throws SQLException {
+		ResponseEntity<List<ExamVO>> entity = null;
+		List<ExamVO> examNameList = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+
+		String id = member.getId();
+
+		map.put("className", name);
+		map.put("id", id);
+
+		examNameList = examService.selectExamList(map);
+
+		entity = new ResponseEntity<List<ExamVO>>(examNameList, HttpStatus.OK);
+
+		return entity;
+	}
+   
+   
+   @RequestMapping(value = "/detail")
+	public String examDetail(Model model, HttpSession session, int examCode) {
+		String url = "/exam/detail";
+		
+		List<ProblemVO> problemList = null;
+		try {
+			problemList = examService.getExamProblem(examCode);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("problem", problemList);
+		
+		return url;
+	}
+   
+   
+   @RequestMapping(value = "/result", method = RequestMethod.GET)
+	public String examResult() {
+		String url = "/exam/result";
+		
+		return url;
+	}
+
+   @RequestMapping(value = "/check", method = RequestMethod.POST)
+   public String check(HttpServletRequest request, int examCode, int problem) {
+	   String url = "/exam/detail";
+	   	   
+//	   Set<String> keySet = request.getParameterMap().keySet();
+//	   for(String key : keySet) {
+//		   System.out.println(key + " : " + request.getParameter(key));
+//	   }
+	   List<String> answerList = new ArrayList<String>();
+	   
+	   for(int i = 1;  i <= problem; i++) {
+		   String answerKey = "select" + i;
+		   String zooKey = "zoo" + i;
+		   String answer = request.getParameter(answerKey);
+		   if(answer == null) {
+			   answer = request.getParameter(zooKey);
+		   }
+		   
+		   answerList.add(answer);
+	   }
+	  
+	   String ans = "";
+	   int score = 0;
+	   try {
+		   for(int i = 0; i < problem; i++) {
+			   ans = examService.getExamProblem(examCode).get(i).getProblemAnswer();	
+
+			   if(ans.equals(answerList.get(i))) {
+				   score += 100 / problem;
+			   }
+
+		   }
+	   } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	   }
+
+	   System.out.println(score);
+	   
+//	   for(String s : answerList) {
+//		   System.out.println("--------------");
+//		   System.out.println(s);
+//		   System.out.println("--------------");
+//	   }
+	   
+	   return url;
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

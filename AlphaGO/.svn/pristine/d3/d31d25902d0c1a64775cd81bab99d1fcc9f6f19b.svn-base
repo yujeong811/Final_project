@@ -1,0 +1,96 @@
+package kr.or.ddit.controller.view;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.ClassVO;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.SubDetailVO;
+import kr.or.ddit.dto.SubdetailClassingVO;
+import kr.or.ddit.dto.SubjectVO;
+import kr.or.ddit.service.ClassService;
+import kr.or.ddit.service.MemberService;
+
+
+@Controller
+@RequestMapping("/class")
+public class ClassController {
+
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private ClassService classService;
+
+
+   // 수강신청
+   @RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String classList(SearchCriteria cri, HttpSession session, Model model) throws Exception{
+		String url = "class/list";
+
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+
+		Map<String, Object> dataMap = classService.getApplicationClassList(member.getId(), cri);
+		List<ClassVO> classList = (List<ClassVO>) dataMap.get("classList");
+		for(ClassVO vo : classList) {
+
+			//수업명
+			String name = memberService.getMember(vo.getId()).getName();
+			vo.setName(name);
+
+			//과목 코드
+			SubjectVO sub = classService.selectSubjectBySubdetail(Integer.parseInt(vo.getSubdetailCode()));
+			vo.setSubjectCode(sub.getSubjectCode());
+		}
+
+		model.addAttribute("dataMap", dataMap);
+
+		return url;
+	}
+
+   @ResponseBody
+   @RequestMapping(value = "/checkOverStudent")
+   public int checkOverStudent(int code) throws SQLException{
+	   int result = 0; //신청가능;
+	   String stuCnt = classService.selectOverStuCnt(code);
+	   if(stuCnt != null) {
+		   result = 1;
+	   }
+
+	   return result;
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

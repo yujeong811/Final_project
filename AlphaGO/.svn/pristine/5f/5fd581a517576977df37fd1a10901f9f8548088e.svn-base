@@ -1,0 +1,116 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+ <!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <a href="#" class="logo logo-dark">
+            <span class="logo-sm">
+                <img src="<%=request.getContextPath() %>/resources/assets/images/logo-sm.png" alt="" height="22">
+            </span>
+            <span class="logo-lg">
+                <img src="<%=request.getContextPath() %>/resources/assets/images/logo-dark.png" alt="" height="22">
+            </span>
+        </a>
+
+        <a href="#" class="logo logo-light">
+            <span class="logo-lg">
+                <img src="<%=request.getContextPath() %>/resources/assets/images/logo-light.png" alt="" height="22">
+            </span>
+            <span class="logo-sm">
+                <img src="<%=request.getContextPath() %>/resources/assets/images/logo-sm-light.png" alt="" height="22">
+            </span>
+        </a>
+    </div>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <div data-simplebar class="sidebar-menu-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="home"></i>
+                        <span class="menu-item">Home</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="icon nav-icon" data-feather="user"></i>
+                        <span class="menu-item">마이페이지</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="#">개인정보</a></li>
+                        <li><a href="#">출결조회</a></li>
+                        <li><a href="#">성적관리</a></li>
+                        <li><a href="#">상담관리</a></li>
+                        <li><a href="#">학습계획표</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="archive"></i>
+                        <span class="menu-item">자료실</span>
+                    </a>
+                </li>
+
+               <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="icon nav-icon" data-feather="book-open"></i>
+                        <span class="menu-item">수업관리</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="#">과제관리</a></li>
+                        <li><a href="#">시험관리</a></li>
+                        <li><a href="#">오답노트</a></li>
+                        <li><a href="#">수업신청</a></li>
+                        <li><a href="#">수업후기</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="mail"></i>
+                        <span class="menu-item" >쪽지함</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="bell"></i>
+                        <span class="menu-item" >공지사항</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="message-circle"></i>
+                        <span class="menu-item" >질문게시판</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="icon nav-icon" data-feather="tag"></i>
+                        <span class="menu-item" >건의사항</span>
+                    </a>
+                </li>
+
+                
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

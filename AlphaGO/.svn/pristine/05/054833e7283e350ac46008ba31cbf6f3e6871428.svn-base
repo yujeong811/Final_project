@@ -1,0 +1,223 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- card 시작 -->
+			<div class="card">
+				<!-- card-header 시작 -->
+				<div class="card-header">
+					<h4 class="card-title">수업 목록</h4>
+				</div>
+				<!-- card-header 끝 -->
+
+				<!-- card-body 시작 -->
+				<div class="card-body" style="padding: 0.9rem 0.9rem;">
+					<!-- title 시작 -->
+					<div class="col-md-12"
+						style="text-align: center; padding-left: 50px; padding-right: 50px;">
+						<span class="badge badge-soft-primary" style="font-size: 1.2em;">
+							수업 목록</span>
+					</div>
+					<!-- title 끝 -->
+
+					<!-- 검색 및 등록 시작-->
+					<div class="col-md-12">
+						<div class="col-sm-8">
+							<button type="button" id="registBtn" class="btn btn-soft-primary"
+								style="float: left; width: 20%;">등록</button>
+						</div>
+						<div class="col-sm-4"
+							style="float: right; margin-top: 10px; padding-right: 50px;">
+							<!-- keyword -->
+							<input class="form-control" type="text" name="keyword"
+								placeholder="검색어를 입력하세요." value="${param.keyword}"
+								style="width: 80%; float: left" /> <span
+								class="input-group-append">
+								<button class="btn btn-soft-primary" type="button"
+									id="searchBtn" style="float: right; width: 20%;"
+									data-card-widget="search" onclick="list_go(1);">
+									<i class="fa fa-fw fa-search"></i>
+								</button>
+							</span>
+							<hr>
+						</div>
+					</div>
+					<!-- 검색 및 등록 끝 -->
+				</div>
+				<!-- card-body 끝 -->
+
+				<!-- card-body list시작 -->
+				<div class="card-body" style="padding: 0.9rem 0.9rem;">
+					<!-- table 시작 -->
+					<div class="col-md-12">
+						<p style="font-size: small;">* 수업 목록을 클릭해 수업 상세 정보를 확인하세요 *</p>
+						<table class="table  table-hover"
+							style="text-align: center;">
+							<thead class="table-primary">
+								<tr>
+									<th>과목명</th>
+									<th>수업명</th>
+									<th>강의랭크</th>
+									<th>강의실</th>
+									<th>강사명</th>
+									<th>기간</th>
+									<th>수강생수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>수학</td>
+									<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+									<td>A</td>
+									<td>201</td>
+									<td>강동주</td>
+									<td>2022/07/01~2022/10/30</td>
+									<td>30명</td>
+								</tr>
+								<tr>
+									<td>수학</td>
+									<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+									<td>A</td>
+									<td>201</td>
+									<td>강동주</td>
+									<td>2022/07/01~2022/10/30</td>
+									<td>30명</td>
+								</tr>
+								<tr>
+									<td>수학</td>
+									<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+									<td>A</td>
+									<td>201</td>
+									<td>강동주</td>
+									<td>2022/07/01~2022/10/30</td>
+									<td>30명</td>
+								</tr>
+								<tr>
+									<td>수학</td>
+									<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+									<td>A</td>
+									<td>201</td>
+									<td>강동주</td>
+									<td>2022/07/01~2022/10/30</td>
+									<td>30명</td>
+								</tr>
+								<tr>
+									<td>수학</td>
+									<td>★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+									<td>A</td>
+									<td>201</td>
+									<td>강동주</td>
+									<td>2022/07/01~2022/10/30</td>
+									<td>30명</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- pagination -->
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+
+					<!-- class detail 시작 -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-8" style="float:left; padding-right: 10px;">
+								<span class="badge badge-soft-primary" style="font-size: 1.2em;">
+									수업 상세</span>
+								<table class="table " style="font-size: small;
+										text-align: center;margin-top: 5px;">
+									<tr>
+										<td style="background-color: rgba(3, 142, 220, .2);">수업명</td>
+										<td colspan="5">★[특강]시작부터 끝까지 함께하는 단기 속성 수1 수업!★</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">강의금액</td>
+										<td>500,000</td>
+									</tr>
+									<tr>
+										<td style="background-color: rgba(3, 142, 220, .2);">과목</td>
+										<td>수학</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">과목영역</td>
+										<td>수1</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">시작일</td>
+										<td>2022-07-01</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">종료일</td>
+										<td>2022-10-30</td>
+									</tr>
+									<tr>
+										<td style="background-color: rgba(3, 142, 220, .2);">강의시간</td>
+										<td colspan="3">화4,화5,목4,목5</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">정원</td>
+										<td>30명</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">시수</td>
+										<td>50시간</td>
+									</tr>
+									<tr>
+										<td style="background-color: rgba(3, 142, 220, .2);">강의실</td>
+										<td colspan="3">201호</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">강사명</td>
+										<td>김형돈</td>
+										<td style="background-color: rgba(3, 142, 220, .2);">학년</td>
+										<td>1</td>
+									</tr>
+								</table>
+							</div>
+							<div class="col-sm-1"
+								style="float: left;margin-top: 60px;display: flex; justify-content: center; align-items: center;">
+								<i style="font-size: 50px;" class="uil-angle-double-right"></i>
+							</div>
+							<div class="col-md-3" style="float:right;">
+								<span class="badge badge-soft-primary" style="font-size: 1.2em;">
+									해당 수업 수강생 목록</span>
+								<table class="table table-hover"
+									style="font-size: small; text-align: center; margin-top: 5px;">
+									<thead>
+										<tr class="table-primary">
+											<th>이름</th>
+											<th>학년</th>
+											<th>학교명</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>강동주</td>
+											<td>고1</td>
+											<td>배재고</td>
+										</tr>
+										<tr>
+											<td>이유정</td>
+											<td>고1</td>
+											<td>둔산여고</td>
+										</tr>
+										<tr>
+											<td>김형돈</td>
+											<td>고1</td>
+											<td>대덕고</td>
+										</tr>
+									</tbody>
+								</table>
+								<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- card-body 끝 -->
+
+
+
+			</div>
+			<!-- card 끝 -->
+		</div>
+	</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+

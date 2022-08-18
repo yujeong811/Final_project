@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<script>
+  alert("상담후속조치가 저장되었습니다..");
+  
+  window.opener.location.href="<%=request.getContextPath()%>/master/consultend.go";
+  window.close();
+ 
+ 
+ 
+ </script>

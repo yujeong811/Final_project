@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<body>
+	<div class="d-flex">
+		<h5 class="flex-grow-1"
+			style="font-weight: bold; margin-bottom: 15px;">
+			<i class="uil-edit" style="margin-right: 10px; font-size: 1.3em;"></i>3월
+			국어 모의고사
+		</h5>
+		<p style="font-weight: bold; margin-right: 15px;">
+			<i class="uil-clock" style="padding: 5px; font-size: 1.2em;"></i>남은
+			시간 : 8분 30초
+		</p>
+		<button type="button" class="btn btn-purple"
+			style="width: 100px; height: 30px; padding-top: 3px;">제출하기</button>
+	</div>
+	<div class="row gx-3 gy-2">
+		<div class="col-8" style="float: left;">
+			<div class="card">
+				<div class="card-body">		
+					<!-- pagenation -->
+					<ul class="pagination pagination-rounded">
+						<li class="page-item disabled" style="margin-right:215px;"><span class="page-link"><i
+								class="mdi mdi-chevron-left"></i></span></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item active"><span class="page-link">
+								2 <span class="sr-only">(current)</span>
+						</span></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item" style="margin-left:215px;"><a class="page-link" href="#"><i
+								class="mdi mdi-chevron-right"></i></a></li>
+					</ul>
+					<!-- end -->
+					<div class="row gx-3 gy-2">
+						<div class="col-6" style="float: left;">
+						1. djfak
+						</div>
+						<div class="col-6" style="float: left;">
+						2. sdfsdfsdf
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-body"></div>
+			</div>
+		</div>
+	</div>
+</body>

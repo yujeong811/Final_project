@@ -1,0 +1,94 @@
+package kr.or.ddit.controller.view;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.command.PacounseltDateCommand;
+import kr.or.ddit.command.TeachermasCommand;
+import kr.or.ddit.service.MHomeService;
+
+@Controller
+@RequestMapping("/master")
+public class DJ_MasterController {
+
+	@Autowired
+	MHomeService mhomeService;
+	 
+	@RequestMapping("/home")
+	public String home(Model model) throws Exception{
+		String url = "master/home";
+//		Map<String, Object> dataMap = new HashMap<String, Object>();//데이터를 담아줄 맵
+//		
+//		//오늘의 강사 근태 리스트
+//		List<TeachermasVO> teacherAttendList = mhomeService.selectTeacherAttendList();
+////		System.out.println("from master Controller" + teacherAttendList.toString());
+//		
+//		//상담 신청 목록
+//		List<PacounseltVO> counseltList = mhomeService.selectCounseltList();
+//		System.out.println(counseltList.toString());
+//		
+//		dataMap.put("teacherAttendList", teacherAttendList);
+//		dataMap.put("counseltList", counseltList);
+//		
+//		model.addAttribute("dataMap", dataMap);//모델에 데이터가 담겨있는 맵을 넣어준다
+		return url;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/selectTeacherAttendList")
+	public ResponseEntity<List<TeachermasCommand>> selectTeacherAttendList(){
+		ResponseEntity<List<TeachermasCommand>> entity = null;
+		List<TeachermasCommand> list = null;
+		
+		try {
+			list = mhomeService.selectTeacherAttendList();
+			entity = new ResponseEntity<List<TeachermasCommand>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<List<TeachermasCommand>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
+
+	@ResponseBody
+	@RequestMapping("/selectCounseltList")
+	public ResponseEntity<List<PacounseltDateCommand>> selectCounseltList(){
+		ResponseEntity<List<PacounseltDateCommand>> entity = null;
+		List<PacounseltDateCommand> list = null;
+		try {
+			list = mhomeService.selectCounseltList();
+			entity = new ResponseEntity<List<PacounseltDateCommand>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<List<PacounseltDateCommand>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

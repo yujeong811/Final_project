@@ -1,0 +1,496 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<body>
+	<div class="row gx-3 gy-2">
+		<div class="col-7" style="float: left;">
+			<div class="card">
+				<div class="card-body" style="padding: 15px;">
+					<h5 style="font-weight: bold; margin-bottom: 15px;">
+						<i class="uil-book-open" style="margin-right: 10px;"></i>문제 리스트
+						<button type="button" class="btn btn-soft-success"
+							style="margin-right: 5px; height: 30px; line-height: 5px; float: right;"
+							data-bs-toggle="modal" data-bs-target="#question">추가</button>
+					</h5>
+					<div>
+						<div class="dropdown col-sm-6"
+							style="margin-bottom: 5px; float: left;">
+							<button class="btn btn-soft-secondary dropdown-toggle"
+								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+								style="width: 130px; height: 30px; line-height: 10px;"
+								aria-expanded="false">
+								문제형식<i class="mdi mdi-chevron-down" style="margin-left: 10px;"></i>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li><a class="dropdown-item" href="#">객관식 </a></li>
+								<li><a class="dropdown-item" href="#">주관식</a></li>
+							</ul>
+							<button class="btn btn-soft-secondary dropdown-toggle"
+								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+								style="width: 130px; height: 30px; line-height: 10px;"
+								aria-expanded="false">
+								지문 유무<i class="mdi mdi-chevron-down" style="margin-left: 10px;"></i>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li><a class="dropdown-item" href="#">지문 있음 </a></li>
+								<li><a class="dropdown-item" href="#">지문 없음</a></li>
+							</ul>
+
+						</div>
+						<div class="input-group col-sm-6"
+							style="width: 250px; float: right; margin-bottom: 10px;">
+
+
+							<select class="form-control col-md-3" name="searchType"
+								id="searchType">
+								<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>
+									전체</option>
+								<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>과목</option>
+								<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>단원명</option>
+
+
+							</select> <input class="form-control" type="text" style="width: 80px;"
+								name="keyword" placeholder="검색어" value="${cri.keyword }" /> <span
+								class="input-group-append">
+								<button class="btn btn-soft-success" style="float: right;"
+									type="button" id="searchBtn" data-card-widget="search"
+									onclick="list_go(1);">
+									<i class="fa fa-fw fa-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div>
+
+
+						<div style="width: 100%;">
+							<div style="height: auto;">
+								<table class="table text-center table-hover"
+									style="height: auto; text-align: center;">
+									<thead>
+										<tr>
+											<th data-column-id="name"
+												style="font-weight: bold; background: #8BDDA8; width: 55px;"><div
+													class="gridjs-th-content">
+													<input type="checkbox" name="item">
+												</div></th>
+											<th data-column-id="name"
+												style="font-weight: bold; background: #8BDDA8; width: 55px;"><div
+													class="gridjs-th-content">코드</div></th>
+											<th data-column-id="email"
+												style="font-weight: bold; background: #8BDDA8;"><div
+													class="gridjs-th-content">유형</div></th>
+											<th data-column-id="position"
+												style="font-weight: bold; background: #8BDDA8;"><div
+													class="gridjs-th-content">문제</div></th>
+											<th data-column-id="company"
+												style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+													class="gridjs-th-content">난이도</div></th>
+											<th data-column-id="company"
+												style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+													class="gridjs-th-content">오답률</div></th>
+											<th data-column-id="name"
+												style="font-weight: bold; background: #8BDDA8; width: 97px;"><div
+													class="gridjs-th-content">문제보기</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: red;">상</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;"
+													data-bs-toggle="modal"
+													data-bs-target=".bs-example-modal-center">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">보통</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: blue;">하</td>
+											<td data-column-id="company">낮음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: red;">상</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">보통</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+										<tr>
+											<td data-column-id="name"><input type="checkbox"
+												name="item"></td>
+											<td data-column-id="name">123</td>
+											<td data-column-id="position"><span
+												class="badge rounded-pill bg-success"
+												style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+											<td data-column-id="email"
+												style="text-align: left; padding: 8px;">(가)와 (나)에 대한
+												설명으로 가장 적절한 것은?</td>
+											<td data-column-id="company" style="color: green;">중</td>
+											<td data-column-id="company">높음</td>
+											<td data-column-id="company"><button type="button"
+													class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<!-- pagination -->
+					<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="card" style="height: 817px;">
+				<div class="card-body" style="padding: 15px;">
+					<div class="d-flex">
+						<div class="me-auto d-flex justify-content-start">
+							<h5 style="font-weight: bold; margin-right: 5px;"
+								class="flex-grow-1">시험 출제 문제 |</h5>
+							<p>2022학년도 중간테스트</p>
+						</div>
+						<button type="button" class="btn btn-soft-danger"
+							style="margin-bottom: 10px; height: 30px; margin-right: 5px; line-height: 5px;">삭제</button>
+						<button type="button" class="btn btn-soft-success"
+							style="margin-bottom: 10px; height: 30px; line-height: 5px;">완료</button>
+					</div>
+					<div
+						style="background: lightgray; font-weight: bold; margin-bottom: 14px; padding: 5px; width: 80px; text-align: center; border-radius: 15px">
+						10 / 25</div>
+
+					<div>
+						<table class="table text-center table-hover"
+							style="height: auto; text-align: center; margin-top: 10px;">
+							<thead>
+								<tr>
+									<th data-column-id="name"
+										style="font-weight: bold; background: #8BDDA8; width: 55px;"><div
+											class="gridjs-th-content">
+											<input type="checkbox" name="item">
+										</div></th>
+									<th data-column-id="name"
+										style="font-weight: bold; background: #8BDDA8; width: 53px;"><div
+											class="gridjs-th-content">문항</div></th>
+									<th data-column-id="email"
+										style="font-weight: bold; background: #8BDDA8;"><div
+											class="gridjs-th-content">코드</div></th>
+									<th data-column-id="position"
+										style="font-weight: bold; background: #8BDDA8;"><div
+											class="gridjs-th-content">단원</div></th>
+									<th data-column-id="company"
+										style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+											class="gridjs-th-content">유형</div></th>
+									<th data-column-id="company"
+										style="font-weight: bold; background: #8BDDA8; width: 68px;"><div
+											class="gridjs-th-content">난이도</div></th>
+									<th data-column-id="name"
+										style="font-weight: bold; background: #8BDDA8; width: 97px;"><div
+											class="gridjs-th-content">문제보기</div></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">1</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											data-bs-toggle="modal"
+											data-bs-target=".bs-example-modal-center"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">2</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">3</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">4</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">5</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">6</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">7</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">8</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">9</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+								<tr>
+									<td data-column-id="name"><input type="checkbox"
+										name="item"></td>
+									<td data-column-id="name">10</td>
+									<td data-column-id="position">123</td>
+									<td data-column-id="email">1단원</td>
+									<td data-column-id="company" style="color: red;"><span
+										class="badge rounded-pill bg-success"
+										style="font-size: 0.8em; padding: 10px; weight: 100px;">비문학</span></td>
+									<td data-column-id="company" style="color: red">상</td>
+									<td data-column-id="company"><button type="button"
+											class="btn btn-soft-secondary" style="font-size: 0.8em;">미리보기</button></td>
+								</tr>
+
+
+							</tbody>
+
+						</table>
+						<%@ include file="/WEB-INF/views/common/pagination.jsp"%>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal fade bs-example-modal-center" tabindex="-1"
+		role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">문제 미리보기</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div style="font-weight: bold;">[문제]</div>
+					<div>01. 위 발표자의 말하기에 대한 설명으로 적절하지 않은 것은?</div>
+					<p style="margin-left: 10px;">
+						① 그림을 그리면서 설명을 하여 청중의 이해<br>② 준언어적 표현을 조절하여 발표의 전달력<br>③
+						자신의 경험에 비추어 청중의 관심<br> ④ 질문하고 답하는 방식을 사용하여 발표 내용<br> ⑤
+						청중이 얻을 수 있는 효용을 제시하며 실천을 권유<br>
+					</p>
+					<div style="font-weight: bold;">[답]</div>
+					<div style="margin-bottom: 15px;">
+						<span style="font-weight: bold; color: red;">④ 질문하고 답하는 방식을
+							사용하여 발표 내용</span>
+					</div>
+					<div style="font-weight: bold;">[해설]</div>
+					<div style="margin-bottom: 10px;">첫해 배치 에는 두 가지 문제가 있었는데요, 우선
+						작물의 키를 고려하지 않았다는 점이에요. 해는 동쪽에서 떠서 한낮에 남쪽을 지나 서쪽으로 지고 해가 떠 있는 반대
+						방향으로 그림자가 생기죠. 작물은 광합성이 많이 이루어지는 오전부터 한낮까지 그림자의 영향을 최소한으로 받아야 잘 자랄
+						수 있어요. 이를 고려해 키가 작은 작물을 동쪽과 남쪽에 배치해야 해요. 해는 동쪽에서 떠서 한낮에 남쪽을 지나
+						서쪽으로 지고 해가 떠 있는 반대 방향으로 그림자가 생기죠. 작물은 광합성이 많이 이루어지는 오전부터 한낮까지 그림자의
+						영향을 최소한으로 받아야 잘 자랄 수 있어요. 이를 고려해 키가 작은 작물을 동쪽과 남쪽에 배치해야 해요.</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</body>

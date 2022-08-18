@@ -1,0 +1,99 @@
+package kr.or.ddit.dao;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+
+
+import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.dto.NoticeVO;
+import kr.or.ddit.dto.StudentVO;
+
+
+
+public class StudentDAOImpl implements StudentDAO {
+
+	private SqlSession session;
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}
+	
+	@Override
+	public List<StudentVO> selectStudentList() throws Exception {
+		List<StudentVO>studentList=null;
+		
+		try {
+			studentList=session.selectList("Student-Mapper.selectStudentList");
+		} catch (Exception e) {
+			throw e;
+		}
+		return studentList;
+	}
+
+	@Override
+	public List<StudentVO> selectStudentList (Criteria cri) throws Exception {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<StudentVO> studentList
+		= session.selectList("Student-Mapper.selectStudentList",null,rowBounds);
+		
+		return studentList;
+	}
+
+	@Override
+	public int selectStudentListCount() throws Exception {
+		int totalCount=session.selectOne("Student-Mapper.selectStudentListCount");
+		
+		return totalCount;
+	}
+
+	@Override
+	public int selectSearchStudentListCount(SearchCriteria cri) throws Exception {
+		int totalCount = session.selectOne("Student-Mapper.selectStudentListCount", cri);
+		return totalCount;
+	}
+
+	@Override
+	public List<StudentVO> selectSearchStudentList( Criteria cri) throws SQLException {
+		int startRow = cri.getStartRowNum();
+		int endRow = startRow+cri.getPerPageNum()-1;
+
+		SearchCriteria searchCri = (SearchCriteria)cri;
+		
+		Map<String, Object> dataParam = new HashMap<String, Object>();
+		dataParam.put("startRow", startRow);
+		dataParam.put("endRow", endRow);
+		dataParam.put("searchType", searchCri.getSearchType());
+		dataParam.put("keyword", searchCri.getKeyword());
+
+		List<StudentVO> studentList = session.selectList("Student-Mapper.selectSearchStudentList", dataParam);
+
+		return studentList;
+	}
+
+	@Override
+	public void insertStudent(StudentVO student) throws SQLException {
+		session.update("Student-Mapper.insertStudent",student);
+		
+	}
+
+	@Override
+	public StudentVO selectStudentById(String id) throws SQLException {
+		StudentVO student = session.selectOne("Student-Mapper.selectStudentById",id);
+		return student;
+	}
+
+	
+	
+	
+
+}

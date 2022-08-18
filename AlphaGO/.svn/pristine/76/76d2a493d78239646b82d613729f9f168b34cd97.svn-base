@@ -1,0 +1,136 @@
+package kr.or.ddit.dto;
+
+import java.util.Date;
+
+public class MemberVO {
+	
+
+	private String id;
+	private String name;
+	private Date regDate;
+	private String pwd;
+	private String email;
+	private String picture;
+	private String phone;
+	private String address;
+	private String authority;
+	private int enabled;
+	private String parent_phone;
+	private int age;
+	private String grade;
+	private int school_code;
+	private String register;
+	private String subject;
+	private String major;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	public String getParent_phone() {
+		return parent_phone;
+	}
+	public void setParent_phone(String parent_phone) {
+		this.parent_phone = parent_phone;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public int getSchool_code() {
+		return school_code;
+	}
+	public void setSchool_code(int school_code) {
+		this.school_code = school_code;
+	}
+	public String getRegister() {
+		return register;
+	}
+	public void setRegister(String register) {
+		this.register = register;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", name=" + name + ", regDate=" + regDate + ", pwd=" + pwd + ", email=" + email
+				+ ", picture=" + picture + ", phone=" + phone + ", address=" + address + ", authority=" + authority
+				+ ", enabled=" + enabled + ", parent_phone=" + parent_phone + ", age=" + age + ", grade=" + grade
+				+ ", school_code=" + school_code + ", register=" + register + ", subject=" + subject + ", major="
+				+ major + "]";
+	}
+	
+}

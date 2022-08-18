@@ -1,0 +1,33 @@
+package kr.or.ddit.controller.view;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/consulting")
+public class ConsultController {
+	
+	@RequestMapping("/insert")
+	public String insert() throws Exception {
+		String url = "consulting/insert";
+		return url;
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() throws Exception {
+		String url = "consulting/detail";
+		return url;
+	}
+	
+	@RequestMapping("/insertdetail")
+	public String insertdetail() throws Exception {
+		String url = "consulting/insertdetail";
+		return url;
+	}
+	@RequestMapping("/list")
+	public String list() throws Exception {
+		String url = "consulting/list";
+		return url;
+	}
+
+}
